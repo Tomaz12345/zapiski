@@ -94,55 +94,145 @@
 
 
 
+% 14. predavanje: 13.1.
+
+\[= \int_{-\infty}^{\infty} y e^{-\frac{1}{2}y^2} dy = \frac{1}{\sqrt{2\pi (1-\rho^2)}}
+\int_{-\infty}^{\infty} x e^{-\frac{1}{2(1-\rho^2)} (x - \rho y)^2} dx =\]
+\[E(N(\rho y, \sqrt{1-\rho^2})), \text{ ker je } p(x) = \frac{1}{\sigma \sqrt{2\pi}}
+e^{-\frac{1}{2} (\frac{x - \mu}{\sigma})^2}\]
+\[= \rho \frac{1}{\sqrt(2\pi)} \int_{-\infty}^{\infty} y^2 e^{-\frac{1}{2} y^2} dy =\]
+\[(\frac{1}{\sqrt(2\pi)} \int_{-\infty}^{\infty} y^2 e^{-\frac{1}{2} y^2} = D(N(0,1)) = 1) \implies = \rho\]
+Torej sta X in Y nekorelirani $\stackrel{\text{v splo"snem}}{\iff} \rho = 0 \stackrel{\text{ta primer}}{\iff}
+X, Y$ neodvisni \\
+Kak"sna je gostota, "ce je $\rho$ blizu 1?
+$\rho \uparrow 1:$ %skica
+$\rho \downarrow -1:$ \\ %skica
+gostota je \"skoraj skoncentrirana\" na neki premici, torej med X in Y obstaja skoraj linearna zveza
+
+\subsection{Pogojna porazdelitev in pogojno matemati"cno upanje}
+
+Izberimo si dogodek B s $P(B) > 0$
+
+\begin{defn}
+    Pogojna porazdelitvena funkcija slu"cajne spremnljivke X glede na B je $F_X(X \mid B) := P(X \leq x \mid B) =
+    \frac{P(X \leq x \land B)}{P(B)}$ \\
+\end{defn}
+
+Ima enake lastnosti kot porazdelitvena funkcija
+
+\begin{enumerate}[label=\Alph*]
+    \item Diskreten primer \\
+        Naj bo (X,Y) diskretno porazdeljen slu"cajni vektor z verjetnostno funkcijo $p_{ij} = P(X=x_i, Y=y_i) i,j = 1, 2 \cdots$ \\
+        Za pogoj B vzemimo $B = (Y=y_j)$ pri nekem j, torej $q_j = P(Y=Y_j)$ \\
+        Potem je pogojna porazdelitvena funkcija slu"cajne spremenljivke X glede $F_X(X \mid Y=y) :=
+        \frac{P(X \leq x \mid Y=y_j)}{P(Y=y_j)} = \frac{1}{q_{j}} \sum_{j: x_j \leq x} p_{ij}$ \\
+        "Ce vpeljemo pogojno verjetnostno funkcije $P_{i \mid j} = P(X=x_i \mid Y=y_j) = \frac{p_{ij}}{q_j}$,
+        $F_X(X \mid Y=y_j) = \sum_{i: x_i \leq X} p_{i \mid j}$ \\
+        Pogojno matemati"cno upanje slu"cajne spremenljivke X glede na $Y=y_j$ je matemati"cno upanje te porazdelitve:
+        \[E(X \mid Y=y_j) := \sum_{i} x_i \cdot p_{i \mid j} = \frac{1}{q_j} \sum_{i} x_j \cdot p_{ij} \]    % e(x_i)?
+        Regresijska funkcija $\ell (y_j) = \sum (X \mid Y=y_j)$, ki je definirana na zalogi vrednoti slu"cajne
+        spremenljivke Y \\
+        Definirajmo novo slu"cajno spremenljivko $E(X \mid Y) = \ell (y)$, ki ji re"cemo pogojno matemati"cno upanje
+        slu"cajne spremenljivke X glede slu"cajne spremenljivke Y \\
+        Ta ima shemo $E(X \mid Y) = \begin{pmatrix} \ell (y_1) & \ell (y_2) & \cdots \\ q_1 & q_2 & \cdots
+        \end{pmatrix} = \begin{pmatrix} E(X \mid Y=y_1) & \cdots \\ q_1 & \cdots
+        \end{pmatrix}$ \\
+        Zanjo velja
+        \[E(X \mid Y) = \sum_j \ell (y_j) \cdot q_j ? \sum_j \sum_i x_i \cdot p_{ij} = \sim_i x_i (\sum_j p_{ij}) =
+        \sum_i x_i \cdot p_i = E(X)\]
+        kjer je $p_i = P(X=x_i)$ \\
+        Kaj dobimo, "ce sta X in Y neodvisni slu"cajni spremenljivki? \\
+        Tedaj je $p_{i \mid j} = \frac{p_{ij}}{q_j} = \frac{p_i \cdot q_j}{q_j} = p_i$ in
+        $\ell (y_j) = E(E(X \mid Y=y_j)) = \sum_i x_i \cdot p_{i \mid j} = \sum_i x_i \cdot p_i = E(X)$, torej je
+        regresijska funkcija kar konstanta $E(X)$ oz. je $E(X \mid Y)$ izrojena slu"cajna spremenljivka z vrednostjo $E(X)$
+
+        \begin{ex}
+            Koko"s znese N jajc, kjer je $N \sim Poi(\lambda)$ z $\lambda > 0$. Iz vsakega jajca se z verjetnostjo
+            $p \in (0,1)$ izvali pi"s"canec, neodvisno od drugih jajc. Naj bo K "stevilo pi"s"cancev Dolocino $E(K \mid N),
+            E(K) in E(N \mid K)$ \\
+            \[P(N=n) = \frac{\lambda^n}{n!} e^{-\lambda} \; n = 0, 1, 2 \cdots \]
+            \[P(K=k \mid N=n) = \binom{n}{k} p^k q^{n-k} \; k = 0, 1 \cdots n \]
+            \[\ell(n) = E(K \mid N=n) = E(Bin(n,p)) = n \cdot p\]
+            torej je $E(K \mid N) = \ell(n) = p \cdot N$
+            \[E(K \mid N) = \begin{pmatrix}p \cdot 0 & p \cdot 1 & p \cdot 2 & \cdots \\ P(N=0) & P(N=1) & P(N=2) & \cdots
+            \end{pmatrix} \]
+            \[E(K) = E(E(K \mid N)) = E(p \cdot N) = p \cdot E(N) = p \cdot \lambda \]
+            \[P(K=k) = \sum_{n=k}^{\infty} P(K=k \mid N=n) \cdot P(N \leq n) = \sum_{n=k}^{\infty} \frac{n!}{k!(n-k)!}
+            p^k q^{n-k} \cdot \frac{\lambda^n}{n!} e^{-\lambda} = \]
+            \[= \frac{1}{k!} e^{-\lambda} p^k \lambda^k
+            \sum_{n=k}^{\infty} \frac{(qk)^{n-k}}{(n-k)!} = \frac{(p\lambda)^k}{k!} e^{-\lambda} e^{q\lambda} =
+            \frac{(p\lambda)^k}{k!} e^{-p\lambda} \; k = 0, 1 \cdots n\]
+            Torej je $K \sim Poi(p \cdot \lambda)$ \\
+            \[P(N=n \mid K=k) = \frac{P(N=n, K=k)}{P(K=k)} = \frac{P(K=k \mid N=n) \cdot P(N=n)}{P(K=k)} =\]
+            \[= \frac{n! p^k q^{n-k}}{k! (n-k)!} \cdot \frac{\lambda^n e^{-\lambda}}{n!} \cdot
+            \frac{p k! e^{p\lambda}}{(p \lambda)^k} = \frac{(q\lambda)^{n-k}}{(n-k)!} \cdot e^{-q\lambda} n = k, k+1 \cdots\]
+            To je za k premaknjena Poissonova porazdelitev: $k + Poi(q \lambda)$ \\
+            Potem je $\psi(k) = E(N \mid K=k) = E(k + Poi(q k)) = k + q \cdot \lambda$ in zato je $E(N \mid K) = \psi(k) =
+            k \cdot q + \lambda$ \\
+            Preizkus: $E(E(N \mid K)) = E(k + q \cdot \lambda) = p \lambda + q \lambda = \lambda = E(N)$ (ok) \\
+            Regresijsko premico je vpeljal Golten (1822-1911)
+        \end{ex}
+    \item Zvezni primer \\
+        Naj bo $(X,Y)$ zvezno porazdeljen slu"cajni vektor z gostoto $p_{(X,Y)}(x,y)$. Vzemimo $B = (y < Y \leq y+k)$ za
+        nek $y \in \R, k > 0$. \\
+        Potem je $F_X(X \mid y < Y \leq y+k) = P(x \leq x \mid y < Y \leq y+k) =
+        \frac{P(X \leq x, y < Y \leq y+k)}{P(y < Y \leq y+k)} = \frac{F_{(X,Y)}(x,y+k) - F_{(X,Y)}(x,y)}{F_Y(y+k) - F_Y(y)}$ \\
+        Pogojna porazdelitvena funkcija slu"cajne spremenljivke X glede na dogodek $(Y=y)$ je limita, "ce obstaja:
+        \[F_X(x \mid Y=y) = \lim_{h \downarrow 0} F_X(x \mid y < Y \leq y+h) = \lim_{h \downarrow 0}
+        \frac{F_{(X,Y)}(x,y+h) - F_{(X,Y)}(x,y)}{F_Y(y+h) - F_Y(y)}\]
+
+
+
 % 15. predavanje: 14.2.
 
-Denimo sedaj, da sta $p_{X,Y}$ in $p_Y$ zvezni funkciji. Tedaj je $F_X(X \mid Y=y) = 
-\frac{\frac{\partial}{\partial y} F_{(X,Y)}(x,y)}{F_Y^{'}(y)} = \frac{1}{p_Y(y)}
-\int_{-\infty}^x p_{(X,Y)}(x,v) dv$ \\
-"Ce vpeljemo pogojno pogojno gostoto $p_X(x \mid Y=y) := \frac{p_{(X,Y)}(x,y)}{p_Y(y)}$, je torej
-\[F_{(X,Y)}(x \mid Y=y) = \int_{-\infty}^x p_X(u \mid y) du \]
-Pogojno matemati"cno upanje slu"cajne spremenljivke X glede na dogodek $(Y=y)$ je 
-\[E(X \mid Y=y) :=
-\int_{-\infty}^{\infty} x \cdot p_X(x|y) dx = \frac{1}{p_Y(y)} \cdot \int_{-\infty}^{\infty}
-x p_{(X,Y)}(x,y) dx\]
-Vpeljimo regresijsko funkcijo $l(y) := E(X \mid Y=y)$, definirano na zalogi vrednosti slu"cajne spremenljivke Y.
-Tako dobimo novo slu"cajno spremenljivko $E(X \mid Y) := l(y)$: pogojno matemati"cno upanje slu"cajne spremenljivke
-X glede na slucajno spremenljivko Y. \\
-Kot v diskretnem primeru se poka"ze enakost $E(E(X \mid Y)) = E(X)$
+        Denimo sedaj, da sta $p_{X,Y}$ in $p_Y$ zvezni funkciji. Tedaj je $F_X(X \mid Y=y) = 
+        \frac{\frac{\partial}{\partial y} F_{(X,Y)}(x,y)}{F_Y^{'}(y)} = \frac{1}{p_Y(y)}
+        \int_{-\infty}^x p_{(X,Y)}(x,v) dv$ \\
+        "Ce vpeljemo pogojno pogojno gostoto $p_X(x \mid Y=y) := \frac{p_{(X,Y)}(x,y)}{p_Y(y)}$, je torej
+        \[F_{(X,Y)}(x \mid Y=y) = \int_{-\infty}^x p_X(u \mid y) du \]
+        Pogojno matemati"cno upanje slu"cajne spremenljivke X glede na dogodek $(Y=y)$ je 
+        \[E(X \mid Y=y) :=
+        \int_{-\infty}^{\infty} x \cdot p_X(x|y) dx = \frac{1}{p_Y(y)} \cdot \int_{-\infty}^{\infty}
+        x p_{(X,Y)}(x,y) dx\]
+        Vpeljimo regresijsko funkcijo $l(y) := E(X \mid Y=y)$, definirano na zalogi vrednosti slu"cajne spremenljivke Y.
+        Tako dobimo novo slu"cajno spremenljivko $E(X \mid Y) := l(y)$: pogojno matemati"cno upanje slu"cajne spremenljivke
+        X glede na slucajno spremenljivko Y. \\
+        Kot v diskretnem primeru se poka"ze enakost $E(E(X \mid Y)) = E(X)$
 
-\begin{ex}
-    $(X,Y) \sim N(\mu_x,\mu_y,\sigma_x,\sigma_y,\rho)$ \\
-    Robna gostota za Y je $N(\mu_y,\sigma_y)$ \\
-    Zato je pogojna gostota
-    \[p_X(x \mid y) = \frac{p_{(X,Y)}(x,y)}{p_y(x)} = \stackrel{\text{D.N.}}{\cdots} = \frac{1}{\sigma_x \sqrt(2\pi) (1-\rho^2)}
-    exp(-\frac{1}{2 (1-\rho)^2} (\frac{x-\mu_x}{\sigma_x} - \rho \frac{y-\mu_y}{\sigma_y})^2)\]
-    torej je $N(\mu_x + \rho \frac{\sigma_x}{\sigma_y}(y-\mu_y), \sigma_x \sqrt{1 - \rho^2})$ \\
-    Eksponent: $\frac{1}{2 (1 -\rho^2)} \sigma_x^2 (x - (\mu_x + \rho \frac{\sigma_x}{\sigma_y} (y-\mu_y)))^2$ \\
-    $\implies l(y) = E(X \mid Y=y) = \mu_x + \rho \frac{\sigma_x}{\sigma_y} (y - \mu_y)$ - 1. parameter \\
-    $= \alpha + \beta y: \beta = \rho \frac{\sigma_x}{\sigma_y}, \alpha = \mu_x - \frac{\sigma_x}{\sigma_y} \cdot \mu_y$ \\
-    Torej je $E(x \mid y) = \alpha + \beta y$
-\end{ex}
+        \begin{ex}
+            $(X,Y) \sim N(\mu_x,\mu_y,\sigma_x,\sigma_y,\rho)$ \\
+            Robna gostota za Y je $N(\mu_y,\sigma_y)$ \\
+            Zato je pogojna gostota
+            \[p_X(x \mid y) = \frac{p_{(X,Y)}(x,y)}{p_y(x)} = \stackrel{\text{D.N.}}{\cdots} = \frac{1}{\sigma_x \sqrt(2\pi) (1-\rho^2)}
+            exp(-\frac{1}{2 (1-\rho)^2} (\frac{x-\mu_x}{\sigma_x} - \rho \frac{y-\mu_y}{\sigma_y})^2)\]
+            torej je $N(\mu_x + \rho \frac{\sigma_x}{\sigma_y}(y-\mu_y), \sigma_x \sqrt{1 - \rho^2})$ \\
+            Eksponent: $\frac{1}{2 (1 -\rho^2)} \sigma_x^2 (x - (\mu_x + \rho \frac{\sigma_x}{\sigma_y} (y-\mu_y)))^2$ \\
+            $\implies l(y) = E(X \mid Y=y) = \mu_x + \rho \frac{\sigma_x}{\sigma_y} (y - \mu_y)$ - 1. parameter \\
+            $= \alpha + \beta y: \beta = \rho \frac{\sigma_x}{\sigma_y}, \alpha = \mu_x - \frac{\sigma_x}{\sigma_y} \cdot \mu_y$ \\
+            Torej je $E(x \mid y) = \alpha + \beta y$
+        \end{ex}
 
-\begin{ex}
-    Meritev onesna"zenosti zraka \\
-    Slu"cajna spremenljivka X meri koncentracijo ogljikovih delcev (v $\mu g / m^3$), Y pa koncentracijo ozona (v $\mu l/l = ppm$) \\
-    Podatki ka"zejo, da ima (X,Y) pribli"zno dvorazse"zno normalno porazdelitev, $\mu_x = 10.7, \sigma_x^2 = 29, \mu_y = 0.1,
-    \sigma_y^2 = 0.02, \rho = 0.72$ \\
-    Koncentracija ozona je "skodljiva zdravju, "ce je $\geq 0.3$ \\
-    Denimo, da naprava za merjenje ozona odpove, koncentracija "skodljivih delcev je $X = 200$
-    \begin{enumerate}[label=\alph*]
-        \item kolik"sna je pri"cakovana koncentracija ozona?
-        \item kolik"sna je verjetnost, da je stopnja ozona zdravju skodljiva
-    \end{enumerate}
-    \begin{enumerate}[label=\alph*]
-        \item \[E(Y \mid X=x) = \mu_y + \rho \frac{\sigma_y}{\sigma_x} (x - \mu_x) =
-            0.1 + 0.72 \sqrt{\frac{0.02}{29} (20 - 10.7)} \dot{=} 0.28 \]
-            % skica
-        \item Pogojna porazdelitev $Y \mid X=x$ je $N(\mu_y + \rho \frac{\sigma_y}{\sigma_x} (x - \mu_x), \sigma_x \sqrt{1 - \rho^2}) =
-            N(0.28, 0.1)$ \\
-            \[P(Y>0.3 \mid X=20) = 1 - P(Y \leq 0.3 \mid X=20) = 1 - F_{N(0,1)} (\frac{0.3 - 0.28}{0.1}) \dot{=} 0.42 \]
-    \end{enumerate}
-\end{ex}
+        \begin{ex}
+            Meritev onesna"zenosti zraka \\
+            Slu"cajna spremenljivka X meri koncentracijo ogljikovih delcev (v $\mu g / m^3$), Y pa koncentracijo ozona (v $\mu l/l = ppm$) \\
+            Podatki ka"zejo, da ima (X,Y) pribli"zno dvorazse"zno normalno porazdelitev, $\mu_x = 10.7, \sigma_x^2 = 29, \mu_y = 0.1,
+            \sigma_y^2 = 0.02, \rho = 0.72$ \\
+            Koncentracija ozona je "skodljiva zdravju, "ce je $\geq 0.3$ \\
+            Denimo, da naprava za merjenje ozona odpove, koncentracija "skodljivih delcev je $X = 200$
+            \begin{enumerate}[label=\alph*]
+                \item kolik"sna je pri"cakovana koncentracija ozona?
+                \item kolik"sna je verjetnost, da je stopnja ozona zdravju skodljiva
+            \end{enumerate}
+            \begin{enumerate}[label=\alph*]
+                \item \[E(Y \mid X=x) = \mu_y + \rho \frac{\sigma_y}{\sigma_x} (x - \mu_x) =
+                    0.1 + 0.72 \sqrt{\frac{0.02}{29} (20 - 10.7)} \dot{=} 0.28 \]
+                    % skica
+                \item Pogojna porazdelitev $Y \mid X=x$ je $N(\mu_y + \rho \frac{\sigma_y}{\sigma_x} (x - \mu_x), \sigma_x \sqrt{1 - \rho^2}) =
+                    N(0.28, 0.1)$ \\
+                    \[P(Y>0.3 \mid X=20) = 1 - P(Y \leq 0.3 \mid X=20) = 1 - F_{N(0,1)} (\frac{0.3 - 0.28}{0.1}) \dot{=} 0.42 \]
+            \end{enumerate}
+        \end{ex}
+\end{enumerate}
 
 \subsection{Vi"sji momenti in vrstilne karakteristike}
 
