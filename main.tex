@@ -1,0 +1,680 @@
+\documentclass[a4paper,12pt]{article}
+
+% General document formatting
+%\usepackage[margin=0.7in]{geometry}
+\usepackage[parfill]{parskip}
+\usepackage{url, hyperref}
+\usepackage{color}
+\usepackage[usestackEOL]{stackengine}[2013-10-15] % formatting Pascal
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{cancel}
+\usepackage[export]{adjustbox}
+
+% Related to math
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{mathtools}
+\usepackage{youngtab} % \young diagram
+\usepackage{tikz}
+
+% encoding and language
+\usepackage{lmodern}
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% multiline comments
+\usepackage{verbatim}
+
+% enumerate with letters
+\usepackage{enumitem}
+
+% images
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+% theorems
+\theoremstyle{definition}
+\newtheorem{counter}{Counter}[section] % not for use
+\newtheorem{defn}[counter]{Definicija}
+\newtheorem{lemma}[counter]{Lema}
+\newtheorem{conseq}[counter]{Posledica}
+\newtheorem{claim}[counter]{Trditev}
+\newtheorem{theorem}[counter]{Izrek}
+%%
+\theoremstyle{remark}
+\newtheorem*{ex}{Primer}
+\newtheorem*{rem}{Opomba}
+\newtheorem{rem*}[counter]{Opomba}
+\newtheorem{ex*}[counter]{Primer}
+\newtheorem{general}[counter]{Posplo"sitev}
+
+% I like my squares DARK
+\renewcommand\qedsymbol{$\blacksquare$}
+
+% common commands redefined convenience purposes
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\ch}{\operatorname{char}}
+
+% \cycle{1, 2, 3}
+\ExplSyntaxOn
+\NewDocumentCommand{\cycle}{ O{\;} m }{(\alec_cycle:nn { #1 } { #2 })}
+\seq_new:N \l_alec_cycle_seq
+\cs_new_protected:Npn \alec_cycle:nn #1 #2 {
+	\seq_set_split:Nnn \l_alec_cycle_seq { , } { #2 }\seq_use:Nn \l_alec_cycle_seq { #1
+}}
+\ExplSyntaxOff
+
+% Hack za Pascalov trikotnik
+% https://newbedev.com/pascal-s-triangle-style
+\def\x{\hspace{3ex}}    %BETWEEN TWO 1-DIGIT NUMBERS
+\def\y{\hspace{2.45ex}}  %BETWEEN 1 AND 2 DIGIT NUMBERS
+\def\z{\hspace{1.9ex}}    %BETWEEN TWO 2-DIGIT NUMBERS
+\stackMath
+
+\begin{document}
+
+\title{Verjetnost in statistika - zapiski s predavanj prof. Drnovška}
+\author{
+	Toma"z Poljan"sek
+}
+\date{študijsko leto 2022/23}
+\maketitle
+
+
+\pagenumbering{roman}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+
+
+
+% 15. predavanje: 14.2.
+
+Denimo sedaj, da sta $p_{X,Y}$ in $p_Y$ zvezni funkciji. Tedaj je $F_X(X \mid Y=y) = 
+\frac{\frac{\partial}{\partial y} F_{(X,Y)}(x,y)}{F_Y^{'}(y)} = \frac{1}{p_Y(y)}
+\int_{-\infty}^x p_{(X,Y)}(x,v) dv$ \\
+"Ce vpeljemo pogojno pogojno gostoto $p_X(x \mid Y=y) := \frac{p_{(X,Y)}(x,y)}{p_Y(y)}$, je torej
+\[F_{(X,Y)}(x \mid Y=y) = \int_{-\infty}^x p_X(u \mid y) du \]
+Pogojno matemati"cno upanje slu"cajne spremenljivke X glede na dogodek $(Y=y)$ je 
+\[E(X \mid Y=y) :=
+\int_{-\infty}^{\infty} x \cdot p_X(x|y) dx = \frac{1}{p_Y(y)} \cdot \int_{-\infty}^{\infty}
+x p_{(X,Y)}(x,y) dx\]
+Vpeljimo regresijsko funkcijo $l(y) := E(X \mid Y=y)$, definirano na zalogi vrednosti slu"cajne spremenljivke Y.
+Tako dobimo novo slu"cajno spremenljivko $E(X \mid Y) := l(y)$: pogojno matemati"cno upanje slu"cajne spremenljivke
+X glede na slucajno spremenljivko Y. \\
+Kot v diskretnem primeru se poka"ze enakost $E(E(X \mid Y)) = E(X)$
+
+\begin{ex}
+    $(X,Y) \sim N(\mu_x,\mu_y,\sigma_x,\sigma_y,\rho)$ \\
+    Robna gostota za Y je $N(\mu_y,\sigma_y)$ \\
+    Zato je pogojna gostota
+    \[p_X(x \mid y) = \frac{p_{(X,Y)}(x,y)}{p_y(x)} = \stackrel{\text{D.N.}}{\cdots} = \frac{1}{\sigma_x \sqrt(2\pi) (1-\rho^2)}
+    exp(-\frac{1}{2 (1-\rho)^2} (\frac{x-\mu_x}{\sigma_x} - \rho \frac{y-\mu_y}{\sigma_y})^2)\]
+    torej je $N(\mu_x + \rho \frac{\sigma_x}{\sigma_y}(y-\mu_y), \sigma_x \sqrt{1 - \rho^2})$ \\
+    Eksponent: $\frac{1}{2 (1 -\rho^2)} \sigma_x^2 (x - (\mu_x + \rho \frac{\sigma_x}{\sigma_y} (y-\mu_y)))^2$ \\
+    $\implies l(y) = E(X \mid Y=y) = \mu_x + \rho \frac{\sigma_x}{\sigma_y} (y - \mu_y)$ - 1. parameter \\
+    $= \alpha + \beta y: \beta = \rho \frac{\sigma_x}{\sigma_y}, \alpha = \mu_x - \frac{\sigma_x}{\sigma_y} \cdot \mu_y$ \\
+    Torej je $E(x \mid y) = \alpha + \beta y$
+\end{ex}
+
+\begin{ex}
+    Meritev onesna"zenosti zraka \\
+    Slu"cajna spremenljivka X meri koncentracijo ogljikovih delcev (v $\mu g / m^3$), Y pa koncentracijo ozona (v $\mu l/l = ppm$) \\
+    Podatki ka"zejo, da ima (X,Y) pribli"zno dvorazse"zno normalno porazdelitev, $\mu_x = 10.7, \sigma_x^2 = 29, \mu_y = 0.1,
+    \sigma_y^2 = 0.02, \rho = 0.72$ \\
+    Koncentracija ozona je "skodljiva zdravju, "ce je $\geq 0.3$ \\
+    Denimo, da naprava za merjenje ozona odpove, koncentracija "skodljivih delcev je $X = 200$
+    \begin{enumerate}[label=\alph*]
+        \item kolik"sna je pri"cakovana koncentracija ozona?
+        \item kolik"sna je verjetnost, da je stopnja ozona zdravju skodljiva
+    \end{enumerate}
+    \begin{enumerate}[label=\alph*]
+        \item \[E(Y \mid X=x) = \mu_y + \rho \frac{\sigma_y}{\sigma_x} (x - \mu_x) =
+            0.1 + 0.72 \sqrt{\frac{0.02}{29} (20 - 10.7)} \dot{=} 0.28 \]
+            % skica
+        \item Pogojna porazdelitev $Y \mid X=x$ je $N(\mu_y + \rho \frac{\sigma_y}{\sigma_x} (x - \mu_x), \sigma_x \sqrt{1 - \rho^2}) =
+            N(0.28, 0.1)$ \\
+            \[P(Y>0.3 \mid X=20) = 1 - P(Y \leq 0.3 \mid X=20) = 1 - F_{N(0,1)} (\frac{0.3 - 0.28}{0.1}) \dot{=} 0.42 \]
+    \end{enumerate}
+\end{ex}
+
+\subsection{Vi"sji momenti in vrstilne karakteristike}
+
+\begin{defn}[Momenti]
+    Naj bo $k \in \N$ in $a \in \R$. Moment reda k glede na to"cko a je $m_k(a) := E((X-a)^k)$ ("ce obstaja)
+\end{defn}
+
+Za a obicajno vzamemo
+\begin{enumerate}
+    \item $a=0$: $z_k := m_k(0) = E(X^k)$ za"cetni moment reda k
+    \item $a=E(X)$: $m_k := m_k(E(X))$ cenralni moment reda k
+\end{enumerate}
+
+Ocitno je $z_1 = E(X), m_2 = D(X)$
+
+\begin{claim}
+    "Ce $\exists m_n(a)$, potem obstajaj tudi moment $m_k(a)$ za vse $k < n$
+\end{claim}
+
+\begin{proof}
+    (V zveznem primeru): \\
+    \[E((X-a)^k) = \int_{-\infty}^{\infty} (x-a)^k p_X(x) dx = \int{a-1}^{a+1} (X-a)^k p_X(x) dx +
+    \int_{(-\infty,a-1) \cup (a+1,\infty)} (x-a)^k p_X(x) dx \leq \]
+    \[\leq \int_{-\infty}^{\infty} p_X(x) dx + \int_{(-\infty,a-1) \cup (a+1,\infty)} (x-a)^k p_X(x) dx \leq\]
+    \[\leq 1 + E((X-a)^k) < \infty\]
+\end{proof}
+
+\begin{claim}
+    "Ce obstaja zacetni moment $z_n$, potem obstaja $m_n(a)$ glede na poljubno to"cko $a \in \R$
+\end{claim}
+
+\begin{proof}
+    \[E((X-a)^n) \leq E((|X| + |a|)^n) = \sum_{k=0}^n \binom{n}{k} E(a)^{n-k} \cdot E(|X|^k) < \infty\]
+\end{proof}
+
+Centralne momente lahko izrazimo z za"cetnimi:
+\[m_n(a) = E((X-a)^n) = \sum_{k=0}^n \binom{n}{k} (-a)^{n-k} E(X^k)\]
+\[a = E(X) \; \implies \; m_k = \sum_{k=0}^n \binom{n}{k} (-1)^{n-k} z_1^{n-k} z_k \]
+
+Asimetrija slu"cajne spremenljivke X je $A(X) := E(X_s^3) = E((\frac{X-E(X)}{\sigma_x})^3) =
+\frac{m_3}{m_{2}^{\frac{3}{2}}}$ $m_2 = \sigma^2 = D(X)$ \\
+$A(N(\mu,\sigma)) = 0, $ ker $A(X) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} x^3 e^{-\frac{1}{2}x^2} dx$ \\
+Splo"s"cenost (kurtozis) $K(X) := E(X_s^4) = \frac{m_4}{m_2^2}$ \\
+$K(N(\mu,\sigma)) = 3$ \\
+Ce momenti ne obstajajo (npr. "ze $E(X)$ ne), potem si lahko pomagamo z vrstilnimi karakteristikami
+
+\begin{defn}[Mediana]
+    Mediana slu"cajne spremenljivke X je vsaka vrednost $x \in \R$, za katero velja $P(X \leq x) \leq \frac{1}{2}$
+    in $P(Y \geq x) \geq \frac{1}{2} (1-P(X < x) = 1 - F(x-))$
+\end{defn}
+
+"Ce je F porazdelitvena funkcija za X, je to ekvivalentno s pogojem $F(x-) \leq \frac{1}{2} \leq F(x)$ \\
+"Ce je X zvezno porazdeljena slu"cajna spremenljivka, dobimo $F(X) = \frac{1}{2}$ oz.
+$\int_{-\infty}^{\infty} p(t) dx = \frac{1}{2}$     % skica grafa
+
+
+
+% 16. predavanje: 21.2.
+
+Te vrednosti (lahko jih je ve"c) ozna"cimo z $X_{\frac{1}{2}}$
+
+\begin{ex} \text{} \\
+    \begin{itemize}
+        \item
+            $X \sim \begin{pmatrix}0 & 1 \\ \frac{1}{5} & \frac{4}{5} \end{pmatrix}$ \\
+            % skica
+            $x_{\frac{1}{2}} = 1, E(X) = \frac{4}{5}$
+        \item $X: \begin{pmatrix}-1 & 0 & 1 \\ \frac{1}{4} & \frac{1}{4} & \frac{2}{4} \end{pmatrix}$ \\
+            % skica
+            Mediane so $[0,1]$
+        \item % skica
+        \item $X \sim N(0,1)$ \\
+            % skica
+            $x_{\frac{1}{2}} = \mu = E(X)$
+    \end{itemize}
+\end{ex}
+
+\begin{defn}[Kvantil]
+    Kvantil reda p $(p \in (0,1))$ je vsaka vrednost $x_p$, za katero velja $P(X \leq x_p) \geq p$ in $P(X \geq x_p) \geq 1-p$ \\
+    Ekvivalentno je $F(x_p-) \leq p \leq F(x_p)$
+\end{defn}
+
+"Ce je X zvezno porazdeljena, je pogoj $F(x_p) = p$ t.j. $\int_{-\infty}^{\infty} p(t) dt = p$
+
+\begin{itemize}
+    \item Kvartili: $X_{\frac{1}{4}}, X_{\frac{2}{4}}, X_{\frac{3}{4}}$
+    \item Percentili: $X_{\frac{1}{100}}, X_{\frac{2}{100}}, \cdots X_{\frac{99}{100}}$
+\end{itemize}
+
+\begin{ex}
+    Telesna vi"sina odraslih mo"skih
+    % skica
+\end{ex}
+
+\begin{defn}[(Semiinter)kvartilni razmik]
+    $s := \frac{1}{2} (x_{\frac{3}{4}} - x_{\frac{1}{4}})$
+\end{defn}
+
+je nadomestek (analog) za standardno deviacijo
+
+\begin{ex} \text{} \\
+    \begin{itemize}
+        \item $X \sim N(0,1)$ \\
+            $X_{\frac{1}{2}} = 0$ \\
+            $\int_{-\infty}^{\frac{1}{4}} p(t) dt = \frac{1}{4} \xRightarrow{\text{tabelca}} x_{\frac{1}{4}} \doteq -0.67$ \\
+            $\xRightarrow{\text{simetrija}} x_{\frac{3}{4}} \doteq 0.67 \implies s = 0.67, \sigma(x) = 1$ \\
+        \item $X$ naj ima Cauchyjevo porazdelitev \\
+            $p(x) = \frac{1}{\pi(1 + x^2)}$ \\
+            $x_{\frac{1}{2}} = 0$ \\
+            % skica
+            Momenti ne obstajajo \\
+            \[\int_{-\infty}^{x_{\frac{1}{4}}} \frac{1}{\pi} \frac{1}{1 + x^2} dx = \frac{1}{4} \]
+            \[\frac{1}{\pi} \arctan x \vert_{x=-\infty}^{x_{\frac{1}{4}}} = \frac{1}{4} \]
+            \[\frac{1}{\pi} arctan x_{\frac{1}{4}} + \frac{1}{2} = \frac{1}{4}\]
+            \[arctan x_{\frac{1}{4}} = \frac{1}{4} \implies x_{\frac{1}{4}} = -1\]
+            \[\xRightarrow{\text{simetrija}} x_{\frac{3}{4}} = 1, s = 1\]
+    \end{itemize}
+\end{ex}
+
+\subsection{Rodovne funkcije}
+
+\begin{defn}
+    Naj bo X slu"cajna spremenljivka z vrednostmi v $\N \cup \{0\}: p_k = P(X = k) k = 0, 1, 2 \cdots \;
+    p_k \geq 0, \sum_{k = 0}^{\infty} = 1$ \\
+    Rodovna funkcija sku"cajne spremenljivke X je
+    \[G_X(s) = p_0 + p_1 s + p_2 s^2 + \cdots = \sum_{k = 0}^{\infty} p_k \cdots s^k\]
+    za $\forall s \in \R$, za katere vrsta absolutno konvergira.
+\end{defn}
+
+O"citno je $G_X(0) = p_0, G_X(1) = \sum_{k = 0}^{\infty} p_k = 1$ \\
+Ker je $s^X: \begin{pmatrix}s^0 & s^1 & s^2 & \cdots \\ p_0 & p_1 & p_2 & \cdots\end{pmatrix}$, je $G_X(s) = E(s^X)$ \\
+Za $s \in [-1,1]$ velja $|p_k \cdot s^k| \leq P_k$ in $\sum_{k = 0}^{\infty} p_k = 1$. Zato je vrsta
+konvergentna, "ce je $|s| \leq 1$. Torej je konvergen"cni radij vrste vsaj 1
+
+\begin{ex} \text{} \\
+    \begin{itemize}
+        \item $X \sim geo(p)$, $p \in (0,1)$
+            \begin{align*}
+                &p_k = P(X = k) = p \cdot q^{k-1} \; k = 1,2,3 \cdots \\
+                &G_X(s) = \sum_{k = 1}^{\infty} p \cdot q^{k - 1} s^k = ps \sum_{k = 0}^{\infty} (qs)^{k-1} \\
+                &= ps \frac{1}{1 - qs}
+            \end{align*}
+            konvergira, ko $|qs| < 1 \Leftrightarrow |s| < \frac{1}{|q|} =: R$
+        \item $p_k = P(X = k) = \frac{\lambda^k}{k!} e^{-\lambda}$
+            \[G_X(s) = \sum_{k = 0}^{\infty} \frac{\lambda^k}{k!} e^{-\lambda} s^k =
+            e^{-\lambda} \sum_{k = 0}^{\infty} \frac{(\lambda s)^k}{k!} = \]
+            \[= e^{-\lambda} \cdot e^{\lambda s} = e^{\lambda(s - 1)} \]
+            $R = \infty \; \forall s \in \R$
+    \end{itemize}
+\end{ex}
+
+Iz teorije Taylorjevih vrst sledi
+
+\begin{theorem}[O enili"cnosti]
+    Naj imata X in Y rodovni funkciji $G_X$ in $G_Y$. Potem je $G_X(s) = G_Y(s)$ za $\forall s \in [-1,1] \leftrightarrow
+    P(X = k) = P(Y = k)$ za vse $k = 0, 1, 2 \cdots$ \\
+    Tedaj velja $P(X = k) = \frac{1}{k!} G_X^{k}(0)$
+\end{theorem}
+
+$G_X(s) = \sum_{k = 0}^{\infty} p_k s^k$, $p_k = P(X = k)$ \\
+Naj ima rodovna funkcija $G_X$ slu"cajne spremenljivke X konvergen"cni radij R > 1. Potem za $\forall s \in (-R,R)$ velja
+$G_X^{'}(s) = \sum_{k = 1}^{\infty} k \cdot p_k s^{k-1}$ \\
+"Ce postavimo $s=1$, dobimo $G^{'}(1) = \sum_{k = 1}^{\infty} k \cdot p_k = E(X)$
+
+\begin{theorem}
+    Naj ima X rodovno funkcijo $G_X(s)$ in naj bo $n \in \N$. Potem je
+    \[G_X^{n}(1-) \equiv \lim_{s \nearrow 1} G_X^{n}(s) = E(X (X-1) (X-2) \cdots (X-N+1))\]
+\end{theorem}
+
+\begin{proof}
+    Za $\forall s \in [0,1)$ je $G_X^{n}(s) = \sum_{k = n}^{\infty} k(k-1)(k-2) \cdots (k-n+1) p_k s^{k-n+1} =$
+    \[= E(X(X-1)(X-2) \cdots (X-n+1) \cdot s^{X-n}) \]
+    Ko gre $s \uparrow 1$, z uporabo Abelove leme dobimo
+    \[\lim_{s \nearrow 1} G_X^{n}(s) = \lim_{s \nearrow 1} \sum_{k = n}^{\infty} k(k-1) \cdot (k-n+1) =\]
+    \[\stackrel{\text{Abelova lema}}{=} \sum_{k = n}^{\infty} lim_{s \nearrow 1} k(k-1) \cdot (k-n+1) =
+    \sum_{k = n}^{\infty} k(k-1) \cdot (k-n+1) p_k = E(X(X-1) \cdots (X-n+1))\]
+\end{proof}
+
+\begin{conseq}
+    \[E(X) = G_{X}^{'}(1-)\]
+    \[D(X) = E(X^2) - (E(X))^2 = E(X(X-1)) + E(X) - (E(X))^2 = G_X^{(2)}(1-) + G_X^{(1)}(1) - (G_X^{(1)}(1-))^2\]
+\end{conseq}
+
+\begin{theorem}
+    Naj bosta X in Y neodvisni slu"cajni spremenljivki z rodovnima funkcijama $G_X$ in $G_Y$. Potem je $G_{X+Y}(s) =
+    G_X(s) \cdot G_Y(s)$ za $s \in [-1,1]$
+\end{theorem}
+
+\begin{proof}
+    $G_{X+Y}(s) = E(s^{X+Y}) = E(s^X \cdot s^Y) \stackrel{\text{izrek}}{=} E(s^X) \cdot E(s^Y) = G_X(s) \cdot G_Y(s)$,
+    saj sta $s^X$ in $s^Y$ neodvisni slu"cajni spremenljivki
+\end{proof}
+
+\begin{general}
+    "Ce so $X_1, X_2 \cdots X_n$ neodvisne slu"cajne spremenljivke, potem je za vse $s \in [-1,1] G_{X_1 + \cdots + X_n}(s) =
+    G_{X_1}(s) \cdot \cdots \cdot G_{X_n}(s).$ \\
+    "Ce so $X_1, X_2 \cdots X_n$ enako porazdeljene in neodvisne, potem je
+    \begin{align*}
+        G_{X_1 + \cdots + X_n}(s) = (G_X(s))^n    % (*)
+    \end{align*}
+\end{general}
+
+\begin{theorem}
+    Naj bodo za $\forall n \in \N$ slu"cajne spremenljivke $N, X_1, X_2 \cdots X_n$ neodvisne. Naj ima N rodovno
+    funkcijo $G_N, X_n$ pa rodovno funkcijo $G_X$. Potem ima slu"cajna spemenljivka $S := X_1 + X_2 + \cdots + X_n$
+    rodovno funkcijo enako $G_S = G_N \circ G_X$ oz. $G_S(s) = G_N(G_X(s))$ za $s \in [-1,1]$
+\end{theorem}
+
+To je posplo"sitev formule dd: $P(N = n) = 1, G_N(s) = 1 \cdot s^n = s^n$%(*)
+
+\begin{proof}
+    Zaradi neodvisnosti imamo $P(S = k) = \sum_{n=0}^{\infty} P(S = k, N = n) =$
+    \[= \sum_{n=0}^{\infty} P(N = n, X_1 + \cdots + X_n = k) \stackrel{\text{neodvisnost}}{=}
+    \sum_{n=0}^{\infty} P(N = n) \cdot P(X_1 + \cdots + X_n = k)\]
+    Zato je
+    \[G_S(s) = \sum_{k=0}^{\infty} P(S = k) \cdot s^k =
+    \sum_{k=0}^{\infty} \sum_{n=1}^{\infty} P(N = n) \cdot P(X_1 + \cdots + X_n = k) \cdot s^k =\]
+    \[= \sum_{n=1}^{\infty} P(N = n) (\sum_{k=0}^{\infty} P(X_1 + \cdots + X_n = k) \cdot s^k) =\]
+    \[\stackrel{G_{X_1 + \cdots + X_n}(s) \stackrel{\text{neodvisnost}}{\*} (G_X(s)^n)}{=}
+    \sum_{n=1}^{\infty} P(N = n) \cdot (G_X(s))^n = G_N(G_X(s))\]
+    za vse $s \in [-1,1]$
+\end{proof}
+
+
+
+% 17. predavanje: 28.2.
+
+\begin{conseq}
+	Pri predpostavkah iz izreka velja Waldova enakost: \[E(S) = E(N) \cdot E(X)\]
+\end{conseq}
+
+\begin{proof}
+    \begin{align}
+    &G_S(s) = G_N(G_X(s)) \forall s \in [-1,1] \\
+    &E(S) = G_s^{'}(1-) = G_N^{'}(G_X(1-)) \cdot G_X^{'}(1-) = E(N) \cdot E(X)
+    \end{align}
+\end{proof}
+
+\begin{ex}
+    Koko"s, jajca, pi"s"canci \\
+    N jajc, $N \sim Poi(\lambda)$ \\
+    K je "stevilo pi"s"cancev \\
+    Definiramo $X_i = 1$ dogodek, da se iz i-tega jajca izvali pi"s"canec, sicer $X_i = 0$. Potem je
+    $X_i: \begin{pmatrix}
+        0 & 1 \\
+        q & p
+    \end{pmatrix}, q = 1 - p$ in $X_i$ so neodvisne slu"cajne spremenljivke. \\
+    O"citno je $K = X_1 + X_2 + \cdots + X_n$ \\
+    Ker je $G_N(s) = e^{\lambda(s-1)}$ in $G_X(s) = q \cdot s^0 + p \cdot s = q + ps$, je po
+    izreku $G_K(s) = G_N(G_X(s)) = e^{\lambda(q + ps - 1)} = e^{\lambda(ps - p)} = e^{\lambda p(s-1)} \forall s \in [-1,1]$,
+    zato je $K \sim Poi(\lambda p)$
+\end{ex}
+
+\subsection{Momentno rodovna funkcija}
+
+\begin{defn}[Momentno rodovna funkcija]
+    Momentno rodovna funkcija je $M_X(t) = E(e^{tX})$ za $t \in \R$, za katere obstaja matemati"cno upanje
+\end{defn}
+
+V primeru zvezne porazdelitve je $M_X(t) = \int_{-\infty}^{\infty} e^{tx} p_X(x) dx$ \\
+To je Laplaceova transformacija funkcije $p_X$ \\
+V diskretnem primeru $X: \begin{pmatrix}x_1 & x_2 & \cdots \\ p_1 & p_2 & \cdots \end{pmatrix}$ je
+$M_X(t) = \sum_i e^{tx} p_i$ \\
+
+V posebnem primeru, ko ima X nenegative celo"stevilske vrednosti, je $M_X(t) = \sum_{i=0}^{\infty} e^{it} p_i =$
+\[= \sum_{i=0}^{\infty} p_i (e^{t})^{i} = G_X(e^t) \; (M_X(t) = E((e^t)^X) = G_X(e^t))\]
+\[G_X(s) = E(s^X)\]
+
+O"citno je $M_X(0) = E(e^0) = E(1) = 1$
+
+\begin{ex}
+    \[X \sim N(0,1)\]
+    \[M_X(t) = \int_{-\infty}^{\infty} e^{tx} \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} dx =\]
+    \[= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{(x-t)^2}{2}} dx \cdot e^{-\frac{t^2}{2}} =\]
+    \[= e^{\frac{t^2}{2}} \forall t \in \R\]
+    ker je $\frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{(x-t)^2}{2}}$ gostota za $N(0,1)$
+\end{ex}
+
+\begin{theorem}
+    Naj bo $M_X(t) < \infty$ (obstaja, $< \infty$ zato, ker je $e^t > 0$) za $\forall t \in (-\delta, \delta)$ pri
+    nekem $\delta > 0$. Potem je porazdelitev za X natanko dolo"cena z $M_X$, vsi za"cetni momenti obstajajo,
+    $z_k = E(X^k) = M_X^{k}(0)$ za $\forall k \in \N$ in velja $M_X(t) = \sum_{k=0}^{\infty} \frac{z_k}{k!} t^k$ % M_X^{(k)} ?? 
+    za $\forall t \in (-\delta, \delta)$
+\end{theorem}
+
+\begin{proof} (bistvo)
+    \[M_X(t) = E(e^{t \cdot X}) = E(\sum_{k=0}^{\infty} t^k \frac{x^k}{k!}) =\]
+    \[\sum_{k=0}^{\infty} \frac{E(X^k)}{k!} t^k = \sum_{k=0}^{\infty} \frac{z^k}{k!} t^k\]
+\end{proof}
+
+\begin{claim}
+    $M_{aX+b}(t) = e^{bt} M_X(at), a \neq 0, b \in R$
+\end{claim}
+
+\begin{proof}
+    $M_{aX+b}(t) = E(e^{t(aX+b)}) = E(e^{(at)X} \cdot e^{bt}) = e^{bt} M_X(at)$
+\end{proof}
+
+\begin{theorem}
+    "Ce sta X in Y neodvisni slu"cajni spremenljivki, potem je $M_{X+Y}(t) = M_X(t) \cdot M_Y(t)$
+\end{theorem}
+
+\begin{proof}
+    $M_{X+Y}(t) = E(e^{t(X+Y)}) = E(e^{t^X} \cdot e^{tY}) \stackrel{\text{$e^{tX}$, $e^{tY}$ neodvisni}}{=} $ \\
+    $= E(e^{t^X}) \cdot E(e^{tY}) = M_X(t) \cdot M_Y(t)$
+\end{proof}
+
+\begin{claim}
+    Naj bosta X in Y neodvisni slu"cajni spremenljivki in $X \sim N(\mu_x, \sigma_x), Y \sim N(\mu_y, \sigma_y)$.
+    Potem je $X + Y \sim N(\mu_x + \mu_y, \sqrt{\sigma_x^2 + \sigma_y^2})$
+\end{claim}
+
+\begin{proof}
+    Ker je
+    \[U := \frac{X-\mu_x}{\sigma_x} = \frac{X-E(X)}{\sigma(X)} \sim N(0,1)\]
+    (standardizacija), je
+    \[X = \sigma_x \cdot U + \mu_x\]
+    in zato je
+    \[M_X(t) = e^{\mu_x t} \cdot M_U(\sigma_x t)\]
+    po zadnji trditvi. Potem je
+    \[M_U(t) = e^{\frac{t^2}{2}}\]
+    je
+    \[M_X(t) = e^{\mu_x t} \cdot e^{\frac{\sigma_x^2 t^2}{2}} = e^{\frac{\sigma_x^2 t^2}{2} + \mu_x t} \; \forall t \ in \R\]
+    za $Y$ velja podobno. Po zadnjem izreku je
+    \[M_{X+Y}(t) = M_X(t) \cdot M_Y(t) = e^{\frac{\sigma_x^2 t^2}{2} + \mu_x t} \cdot e^{\frac{\sigma_y^2 t^2}{2} + \mu_y t} =\]
+    \[= e^{\frac{(\sigma_x^2 + \sigma_y^2) t^2}{2} + (\mu_x + \mu_y) t}\]
+    Po izreku je
+    \[X + Y \sim N(\mu_x+\mu_y, \sqrt{\sigma_x^2 + \sigma_y^2})\]
+\end{proof}
+
+\begin{rem}
+    Če bi vedeli, da je $X + Y$ porazdeljena normalno, bi ``samo'' izra"cunali parametra %integral?
+\end{rem}
+
+\begin{ex}
+    \[X \sim N(0,1), M_X(t) = e^{\frac{t^2}{2}} = \sum_{k=0}^{\infty} \frac{(\frac{t^2}{2})^k}{k!} =
+    \sum_{k=0}^{\infty} \frac{1}{2^k \cdot k!} t^{2k}\]
+    Po drugi strani je $M_X(t) = \sum_{j=0}^{\infty} \frac{z_j}{j!} t^j \; \forall t \in \R$ \\
+    Primerjamo koeficiente:
+    \begin{itemize}
+        \item lihi koeficienti: $z_{2k-1} = 0 \; k \in \N$
+        \item sodi koeficienti:
+        \[\frac{z_{2k}}{(2k)!} = \frac{1}{k! 2^k} \implies z_{2k} = \frac{(2k)!}{k! 2^k} =\]
+        \[= \frac{1 \cdot 2 \cdot 3 \cdot \cdots \cdot (2k)}{2 \cdot 4 \cdot 5 \cdot \cdots \cdot (2k)} =
+        1 \cdot 3 \cdot 5 \cdot \cdots \cdot (2k-1) = (2k-1)!! \; k \in \N\]
+    \end{itemize}
+\end{ex}
+
+\subsection{"Sibki in krepki zakon velikih "stevil}
+
+\begin{defn}[Verjetnostna konvergenca]
+    Zaporedje slu"cajnih spremenljivk $\{X_n\}_{n \in \N}$ verjetnostno konvergira proti sku"cajni spremenljivki
+    X, "ce za $\forall \epsilon > 0$ velja $\lim_{n \to \infty} P(|X_n-X| \geq \epsilon) = 0$ \\
+    oz. $\lim_{n \to \infty} P(|X_n-X| < \epsilon) = 1$
+\end{defn}
+
+\begin{defn}[Skoraj gotova konvergenca]     % izraz ?
+    Zaporedje slu"cajnih spremenljivk $\{X_n\}_{n \in \N}$ skoraj gotovo konvergira proti sku"cajni spremenljivki
+    X, "ce velja P(p $\lim_{n \to \infty} X_n = X) = 1$ \\
+    Tukaj je $(\lim_{n \to \infty} X_n = X) = \{\omega \in \Omega: \lim_{n \to \infty} X_n(\omega) = X(\omega)\} =$
+    \[= \{\omega \in \Omega: \forall k (\in \N) \exists m \in \N \forall n \geq m: |X_n(\omega) - X(\omega)| < \frac{1}{k}\} =\]
+    \begin{align}
+        = \{\cap_{k \in \N} \cup_{m \in \N} \cap_{n \geq m} \omega \in \Omega: |X_n(\omega) - X(\omega)| < \frac{1}{k}\} \*
+    \end{align}
+\end{defn}
+
+\begin{rem}
+    Števne unije in preseki $\implies$ smo v $\sigma-$algebri, torej je to res dogodek
+\end{rem}
+
+\begin{claim}
+    Če $X_n \xrightarrow[]{n \to \infty} X$ skoraj gotovo, potem za $\forall \epsilon > 0
+    \lim_{n \to \infty} P(|X_n - X| < \epsilon \text{ za } n \geq m) = 1$
+\end{claim}
+
+\begin{proof}
+    Ozna"cimo $c_m := (|X_n - X| < \epsilon \text{ za } n \geq m) = \cap_{n=m}^{\infty} (|x_n - X| < \epsilon)$. \\
+    Potem je $c_1 \subseteq c_2 \subseteq \cdots$ \\
+    \* je $c_m$ za $\epsilon = \frac{1}{k}$ in $(\lim_{n \to \infty} X_n = X) \subseteq \cup_{n=1}^{\infty} c_m$ (presek) \\
+    Torej je $1 = P(\lim_{n \to \infty} X_n = X) \subseteq =(\cup_{m=1}^{\infty} c_m) = \lim_{m \to \infty} P(c_m)$ \\
+    Od tod sledi $\lim_{m \to \infty} P(c_m) = 1$
+\end{proof}
+
+\begin{conseq}
+    "Ce $X_n \xrightarrow[]{n \to \infty} X$ skoraj gotovo, potem $X_n \xrightarrow[]{n \to \infty} X$ verjetnostno konvergira.
+\end{conseq}
+
+\begin{proof}
+    Izberemo $\epsilon > 0$. Potem velja
+    \[P(|X_n - X| < \epsilon \text{ za } \forall n \geq m) \leq P(|X_m - X| < \epsilon)\]
+    "Ce uporabimo trditev, dobimo $\lim_{n \to \infty} P(|X_n - X| < \epsilon) = 1$ (leva stran). % verjetnostna konvergenca \\
+\end{proof}
+
+\begin{rem}
+    Obratna implikacija ne velja
+\end{rem}
+
+
+
+% 18. predavanje: 7.3.
+
+\begin{defn}
+    Naj bo $X_1, X_2, X_3 \cdots$ zaporedje slu"cajnih spremenljivk, ki imajo matemati"cno upanje.
+    Definirajmo $Y_n = \frac{S_n - E(S_n)}{n} = \frac{X_1 + \cdots + X_n}{n} - \frac{E(X_1) + \cdots + E(X_n)}{n}$ \\
+    Potem je $E(Y_n) = 0$ \\
+    Za $\{Y_n\}_{n \in \N}$ velja "sibki zakon velikih "stevil ("SZV"S), kadar $Y_n \stackrel{n \to \infty}{\rightarrow} 0$
+    verjetnostno, torej za $\forall \epsilon > 0 \lim_{n \to \infty} (|y| < \epsilon) = 1 =
+    \lim_{n \to \infty} (|\frac{S_n - E(S_n)}{n}| < \epsilon)$
+    Za $\{Y_n\}_{n \in \N}$ velja krepki zakon velikih "stevil (KZV"S), kadar $Y_n \stackrel{n \to \infty}{\rightarrow} 0$
+    skoraj gotovo, torej $P(\lim_{n \to \infty} \frac{S_n - E(S_n)}{n} = 0) = 1$ \\
+    "Ce velja KVZ"S, potem velja "SVZ"S
+\end{defn}
+
+\begin{ex}
+    Me"cemo kocko, $X_k$ je $\#$ pik v k-tem metu. Potem je $E(X_k) = \frac{7}{2}$ in $Y_n = \frac{X_1 + \cdots + X_n}{n} - \frac{7}{2}$ \\
+    Ali konvergira $\frac{X_1 + \cdots + X_n}{n} \stackrel{n \to \infty}{\rightarrow} \frac{7}{2}$ skoraj gotovo? (Da)
+\end{ex}
+
+\begin{theorem} \text{} \\
+    \begin{enumerate}[label=\alph*]
+        \item Neenakost Markova: "ce slu"cajna spremenljivka X ima matemati"cno upanje, potem je
+            $P(|X| \geq a) \leq \frac{E(|X|)}{a}$ za $\forall a > 0$
+        \item Neenakost "Cebi"seva: "ce slu"cajna spremenljivka X ima disperzijo, potem je
+            $P(|X - E(X)| \geq a \cdot \sigma(x)) \leq \frac{1}{a^2}$ za $\forall a > 0$ (pomembno za
+            $a \geq 1$, ker je verjetnost $\leq 1$) \\
+            oz. "ce pi"semo $\epsilon = a \cdot \sigma(x) \implies P(|X - E(X)| \geq \epsilon) \leq \frac{D(X)}{\epsilon^2}$
+            za $\forall \epsilon > 0$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    (samo zvezni primer)
+    \begin{enumerate}[label=\alph*]
+        \item \[E(X) = \int_{-\infty}^{\infty} |x| p_x(x) dx \geq \int_{\{x: |x| \geq a\}} |x| p_x(x) dx \geq\]
+            \[|a| \int_{\{x: |x| \geq a\}} p_x(x) dx = a \cdot P(|X| \geq a)\]
+        \item \[P((X - E(X)) \geq \epsilon) = P((X - E(X))^2 \geq \epsilon^2)
+            \stackrel{\text{(a) za X-E(X)}}{\leq} \frac{E((X-E(X))^2)}{\epsilon^2} = \frac{D(X)}{\epsilon^2}\]
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Markov]
+    "Ce za zaporedje slu"cajnih spremenljivk $\{X_n\}_{n \in \N}$ velja $\frac{D(S_n)}{n^2} \stackrel{n \to \infty}{\rightarrow} 0$,
+    potem velja "SZV"S. Tukaj je $S_n := X_1 + \cdots + X_n$
+\end{theorem}
+
+\begin{proof}
+    V neenakosti "Cebi"seva vzamemo $X = \frac{S_n}{n}$
+    \[P(\frac{|S_n - E(S_n)|}{n} \geq \epsilon) \leq \frac{P(S_n)}{n^2 \epsilon^2} \stackrel{n \to \infty}{\rightarrow} 0\]
+    "Ce vzamemo $Y_n = \frac{|S_n - E(S_n)|}{n}$, je $P(|Y_n| \geq \epsilon) \stackrel{n \to \infty}{\rightarrow} 0$ \\
+    oz. $P(|Y_n| < \epsilon) \stackrel{n \to \infty}{\rightarrow} 1$ \\
+    Zato $Y_n \stackrel{n \to \infty}{\rightarrow} 0$ verjetnostno, torej velja "SZV"S za zaporedje $\{X_n\}_{n \in \N}$
+\end{proof}
+
+\begin{conseq}[Izrek "Cebi"sev]
+    "Ce so $X_1, X_2 \cdots X_n$ paroma nekorelirane slu"cajne spremenljivke in $\sup_{n \in \N} D(X_n) < \infty$, potem
+    za $\{X_n\}_{n \in \infty}$ velja "SVZ"S
+\end{conseq}
+
+\begin{proof}
+    Ker je $D(S_n) = D(X_1) + \cdots + D(X_n) \leq n \cdot c$, je $\frac{D(S_n)}{n^2} \leq \frac{n \cdot c}{n^2}
+    = \frac{c}{n} \stackrel{n \to \infty}{\rightarrow} 0$, zato po izreku Markova velja "SZV"S
+\end{proof}
+
+\begin{ex}
+    $X_n: \begin{pmatrix}0 & 1 \\ q & p\end{pmatrix}$ neodvisne slu"cajne spremenljivke, $D(X_n) = pq, E(X_n) = p,
+    E(S_n) = n \cdot p$ \\
+    Po izreku "Cebi"seva velja "SZV"S: $P(\frac{|S_n - E(S_n)|}{n} \geq \epsilon) \stackrel{n \to \infty}{\rightarrow} 0$
+    \[\implies P(|\frac{S_n}{n} - p| \geq \epsilon) \stackrel{n \to \infty}{\rightarrow} 0\]
+    $S_n$ je frekvenca dogodka, $\frac{S_n}{n}$ je relativna frekvenca, $\frac{S_n}{n} = \frac{X_1 + \cdots + X_n}{n}
+    \stackrel{n \to \infty}{\rightarrow} p$ verjetnostno \\
+    To je Bernoulijev zakon velikih "stevil iz 1713
+\end{ex}
+
+\begin{theorem}[Kolmogorov]
+    "Ce za neodvisne slu"cajne spremenljivke $\{X_n\}_{n \in \N}$ velja $\sum_{n=1}^{\infty} \frac{D_n}{n^2} < \infty$,
+    potem velja KZV"S, t.j. $P(\lim_{n \to \infty} \frac{S-n - E(S_n)}{n} = 0) = 1$. \\
+    Posebej je pogoj za vrsto izpolnjen, "ce je $\sup_n D(X_n) < \infty$ 
+\end{theorem}
+
+\begin{ex}
+    $X_n: \begin{pmatrix}0 & 1 \\ q & p\end{pmatrix}$ neodvisne slu"cajne spremenljivke, $D(X_n) = pq$ \\
+    Po izreku Kolmogorova velja KVZ"S, t.j. $\frac{S_n}{n} = \frac{X_1 + \cdots + X_n}{n}
+    \stackrel{n \to \infty}{\rightarrow} p$ skoraj gotovo. \\
+    To posplo"suje Bernoullijev zakon
+\end{ex}
+
+\subsection{Centralni limitni izrek}
+
+\begin{defn}
+    Naj bo $\{X_n\}_{n \in \N}$ zaporedje slu"cajnih spremenljivk s kon"cnimi disperzijami. Definiramo
+    $S_n := X_1 + \cdots + X_n$ in standardizirajmo: $Z_n = \frac{S_n - E(S_n)}{\sigma(S_n)}$, torej
+    $E(Z_n) = 0, D(Z_n) = 1$ \\
+    Za $\{X_n\}_{n \in \N}$ velja centralni limitni izrek, "ce je $F_{Z_n}(x) = P(Z_n \leq x)
+    \stackrel{n \to \infty}{\rightarrow} F_{N(0,1)} \forall x \in \R$, t.j.
+    \[P(\frac{S_n - E(S_n)}{\sigma(S_n)} \leq x) \stackrel{n \to \infty}{\rightarrow}
+    \frac{1}{2 \pi} \int_{-\infty}^x e^{-\frac{t^2}{2}} dx \text{ za } \forall x \in \R\]
+    Pracimo, da $\{Z_n\}_{n \in \N}$ po porazdelitvi konvergira proti standardizirani normalni porazdelitvi.
+\end{defn}
+
+\begin{theorem}[Centralni limitni izrek (CLI, osnovna verzija)]
+    Naj bodo $X_1, X_2 \cdots$ neodvisne in enako porazdeljene slu"cajne spremenljivke. Potem zanje velja centralni limitni
+    zakon, t.j
+    \[P(\frac{S_n - E(S_n)}{\sigma(S_n)} \leq x) \stackrel{n \to \infty}{\rightarrow}
+    \int_{-\infty}^x e^{\frac{t^2}{2}} dx \text{ za } \forall x \in \R\]
+\end{theorem}
+
+Dokazal je Ljapunov (1900), s tem je posplo"sil Laplaceov izrek iz leta 1812. V dokazu bomo uporabili
+
+\begin{theorem}[O zveznosti rodovne funkcije]
+    Naj za zaporedje $\{Z_n\}_{n \in \N}$ slu"cajnih spremenljivk velja: \\
+    $M_{Z_n}(t) \rightarrow M_{N(0,1)}(t) = e^{\frac{t^2}{2}}$ za vse $t \in (-\delta,\delta)$ pri nekem $\delta > 0$ \\
+    Potem $F_{Z_n}(x) \rightarrow F_{N(0,1)}(x)$ za $\forall x \in \R$
+\end{theorem}
+
+\begin{proof}
+    CLI v primeru, ko $X_n$ imajo momentno rodovno funkcijo \\
+    $M_X(t) = E(e^{t X_n})$ na neki okolici to"cke 0 \\
+    Naj bo $E(X_n) = \mu, D(X_n) = \sigma^2$ in $U_n := X_n - \mu = X_n - E(X_n)$. Torej je $E(U_n) = 0$ in
+    $D(U_n) = \sigma^2$ ter $M_{U}(t) = 1 + t E(U_n) + \frac{t^2}{2!} E(U_n^2) + o(t^2) =$ \\
+    $= 1 + \frac{t^2}{2} \sigma^2 + o(t^2)$ ($\lim_{n \to \infty} \frac{o(n)}{n} = 0$) \\
+    Ker je $D(S_n) \stackrel{\text{neodvisne}}{=} D(X_1) + \cdots + D(X_n) = n \cdot \sigma^2$ in
+    $E(S_n) = n \cdot \mu = E(X_1) + \cdots + E(X_n)$, je $Z_n = \frac{S_n - E(S_n)}{\sigma(S_n)} =$ \\
+    $= \frac{1}{\sigma \sqrt{n}}$ ($\sum_{n=0}^{n} U_i$) \\
+    Potem je $M_{Z_n}(t) = E(e^{t Z_n}) = E(e^{\frac{t}{\sigma \sqrt{n}}(U_1 + \cdots + U_n)}) =
+    E(e^{\frac{t}{\sigma \sqrt{n}} U_1}) \cdot \cdots \cdot E(e^{\frac{t}{\sigma \sqrt{n}} U_n}) =$ \\
+    $\stackrel{\text{enaki}}{=} (M_U(\frac{t}{\sigma \sqrt{n}}))^n = (1 + \frac{t^2}{2n} + o(\frac{1}{n}))^n$ \\
+    $\stackrel{n \to \infty \equiv o(\frac{1}{n} \to 0)}{\rightarrow} e^{\frac{t^2}{2}}$
+    \begin{lemma}
+        "Ce $X_n \to X$, potem $(1 + \frac{X_n}{n})^n \stackrel{n \to \infty}{\rightarrow} e^x$
+    \end{lemma}
+    Po prej"snjem izreku: $F_{Z_n}(x) \stackrel{n \to \infty}{\rightarrow} F_{N(0,1)}(x)$
+\end{proof}
+
+
+\end{document}

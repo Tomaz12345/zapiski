@@ -1,0 +1,5 @@
+# pdflatex outputs
+main.aux
+main.log
+main.out
+main.toc
