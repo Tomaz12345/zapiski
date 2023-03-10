@@ -94,6 +94,195 @@
 
 
 
+% 12. predavanje: 23.12.
+
+\begin{conseq}
+    Slu"cajna spremenljivka $X$ ima matemati"cno upanje $\iff$ $X$ ima matemati"cno upanje. Tedaj velja
+    $|E(X)| = E(|X|)$
+\end{conseq}
+
+\begin{proof}
+    (samo diskreten primer): \\
+    \begin{equation*}
+        E(|X|) \stackrel{\text{trd.} f(x)=|x|}{=} \sum_i |x_i| \cdot p_i \geq |\sum_i x_i \cdot p_i| = |E(X)|
+    \end{equation*}
+\end{proof}
+
+\begin{conseq}
+    Za $\forall a \in \R$ in vsako slu"cjano spremenljivko $X$ z matemati"cnim upanjem velja $E(a \cdot X) = a \cdot E(X)$
+    (homogenost)
+\end{conseq}
+
+\begin{proof}
+    $f(x) = a \cdot x$, trditev (od prej)
+\end{proof}
+
+Podobno kot zadnjo trditev se doka"ze
+
+\begin{claim}
+    Naj bo $f: \R^2 \to \R$ zvezna funkcija in $(X,Y)$ slu"cajni vektor
+    \begin{enumerate}[label=(\alph*)]
+        \item Naj bo $(X,Y)$ diskretno porazdeljen $p_{ij} := P(X=x_i, Y=y_j)$. Potem je $E(f(X,Y)) = \sum_i \sum_i
+            f(x_i,y_j) \cdot p_{ij}$ ("ce le vrsta (oz. kon"cna vsota) absolutno konvergira)
+        \item Naj bo $(X,Y)$ zvezno porazdeljen z gostoto $p(X,Y)$. Potem je $E(f(X,Y)) = \int_{-\infty}^{\infty} dx
+            \int_{-\infty}^{\infty} f(x,y) p_{(X,Y)}(x,y) dy$ ("ce le integral absolutno konvergira)
+    \end{enumerate}
+\end{claim}
+
+\begin{conseq}
+    "Ce slu"cajni spremenljivki $X$ in $Y$ imata matamati"cno upanje, potem ga ima tudi $X+Y$ in velja $E(X+Y) = E(X) + E(Y)$
+    (aditivnost)
+\end{conseq}
+
+\begin{proof}
+    (samo zvezen primer): \\
+    \begin{align*}
+        &E(X,Y) \stackrel{f(x,y)=x+y}{=} \int_{-\infty}^{\infty} dx \int_{-\infty}^{\infty} (x+y) p_{(X,Y)}(x,y) dy =\\
+        &= \int_{-\infty}^{\infty} x dx \int_{-\infty}^{\infty}p_{(X,Y)}(x,y) dy +
+        \int_{-\infty}^{\infty} y dy \int_{-\infty}^{\infty}p_{(X,Y)}(x,y) dx =\\
+        &= \int_{-\infty}^{\infty} x p_X(x) dx + \int_{-\infty}^{\infty} y p_{Y}(y) dy = E(X) + E(Y)
+    \end{align*}
+\end{proof}
+
+\begin{conseq}
+    Za slu"cajne spremenljivke $X_1 \cdots X_n$, ki imajo matemati"cno upanje, velja $E(a_1 X_1 + \cdots + a_n X_n) =
+    a_1 E(X_1) + \cdots + a_n E(X_n)$ z $\forall a_1 \cdots a_n \in \R$
+\end{conseq}
+
+\begin{equation*}
+    E(X+Y) = \int_{-\infty}^{\infty} x \cdot p_{X+Y}(x) dx \stackrel{\text{?}}{=} E(X) + E(Y) \text{ ni o"citno iz tega}
+\end{equation*}
+
+\begin{ex}
+    \begin{enumerate}
+        \item "Ce ima $X$ matemati"cno upanje, potem $E(X-E(X)) = E(X) - E(E(X)) = E(X) - E(X) = 0$
+        \item $X_k \sim Ber(p)$, t.j. $X_k \sim \begin{pmatrix}0 & 1 \\ q & p\end{pmatrix}, q = 1 - p$
+            \begin{equation*}
+                X = X_1 + \cdots + X_n \implies E(X) = E(X_1) + \cdots + E(X_n) = n \cdot p
+            \end{equation*}
+    \end{enumerate}
+\end{ex}
+
+Posebej to (v 2. zgledu) velja v primeru, ko so $\{X_k\}_{i=1}^n$ neodvisne. To velja tudi za Bernoullijevo zaporedje
+ponovitev poskusa: opazujemo dogodek A s $P(A) = p$. $X$ je frekvenca dogodka A v n ponovitvah poskusa. Potem je
+$X \sim Bin(n,p)$ in $X = X_1 + \cdots + X_n$, kjer je $(X_k=1)$ dogodek, da se A zgodi v k-ti ponovitvi poskusa,
+sicer je $(X_k=0)$. Po zgornjem je $E(X) = n \cdot p$. Do tega lahko pridemo tudi direktno:
+\begin{align*}
+    &E(X) = \sum_{k=0}^{n} k \cdot p_k = \sum_{k=0}^{n} k \cdot \binom{n}{k} p^k q^{n-k} = \\
+    &= \sum_{k=1}^{n} k \cdot \frac{n}{k} \binom{n-1}{k-1} p^k q^{n-k} =
+        np \sum_{k=1}^{n} \binom{n-1}{k-1} p^{k-1} q^{n-k} \stackrel{j=k-1}{=} \\
+    &= np (\sum_{j=0}^{n-1} \binom{n-1}{j} p^j q^{n-1-j}) = np (p+q)^{n-1} = np
+\end{align*}
+
+\begin{claim}[Cauchy-Schwartzova neenakost]
+    "Ce obstajata $E(X^2)$ in $E(Y^2)$, potem obstaja tudi $E(X,Y)$ in velja $E(|X \cdot Y|) \leq \sqrt{E(X^2) \cdot E(Y^2)}$.
+    Ena"caj velja samo v primeru $|Y| = \sqrt{\frac{E(Y^2)}{E(X^2)}}|X|$ z verjetnostjo 1
+\end{claim}
+
+\begin{proof}
+    Ker za nenegativa realna "stevila velja neenakost
+    \begin{equation*}
+        u \cdot v \leq \frac{1}{2}(u^2 + v^2) \; \iff \; (u-v)^2 \geq 0
+    \end{equation*}
+    za nenegativni slu"cajni spremenljivki $U$ in $V$ velja neenakost
+    \begin{equation*}
+        U \cdot V \leq \frac{1}{2}(U^2 + V^2)
+    \end{equation*}
+    Enakost velja samo v to"ckah $\omega \in \Omega$, za katere je $U(\omega) = V(\omega)$ \\
+    "Ce vstavimo $U = a \cdot |X|$ in $V = \frac{1}{a}|Y|$ za $a > 0$, dobimo
+    $|X \cdot Y| \leq \frac{1}{2} (a^2 Y^2 + \frac{1}{a^2}Y^2)$ in zato je
+    \begin{equation}
+        E(|X \cdot Y|) \leq \frac{1}{2} (a^2 E(X^2) + \frac{1}{a^2} E(Y^2)) \text{ za } \forall a > 0
+    \end{equation}
+    "Ce vstavimo $a^2 = \sqrt{\frac{E(Y^2)}{E(X^2)}}$ na desni strani dobimo
+    \begin{equation*}
+        \frac{1}{2} (\sqrt{E(Y^2) + E(X^2)} + \sqrt{E(X^2 + E(Y^2))}) = \sqrt{E(X^2) + E(Y^2)}
+    \end{equation*}
+    Torej je
+    \begin{equation*}
+        E(|X \cdot Y|) \leq \sqrt{E(X^2) \cdot E(Y^2)}
+    \end{equation*}
+    Enakost v neenakosti velja $\iff a |X| = \frac{1}{a} |Y|$, torej $|Y| = a^2 |X| = \frac{E(Y^2)}{E(X^2)} |X|$
+    z verjetnostjo 1
+\end{proof}
+
+\begin{conseq}
+    "Ce obstaja $E(X^2)$, potem obstaja $E(X)$ in velja $(E(X))^2 \leq E(X^2)$
+\end{conseq}
+
+\begin{proof}
+    $Y=1$, t.j. $Y: \begin{pmatrix}1 \\ 1\end{pmatrix} \implies$
+    \begin{align*}
+        &E(|X \cdot 1|) \leq \sqrt{E(X^2) \cdot 1}  /^2
+        &(E(|X|))^2 \leq E(X^2)
+    \end{align*}
+\end{proof}
+
+\begin{claim}
+    Naj bosta $X$ in $Y$ neodvisni slu"cajni spremenljivki, ki imata matemati"cni upanji. Potem ima matemati"cno
+    upanje tudi $X \cdot Y$ in velja $E(X \cdot Y) = E(X) \cdot E(Y)$
+\end{claim}
+
+\begin{proof}
+    (samo zvezem primer): \\
+    \begin{align*}
+        &E(X \cdot Y) \stackrel{\text{trd}}{=} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} x \cdot y
+            \cdot p_{(X,Y)}(x,y) dx dx \stackrel{\text{neodvisnost}}{=} &
+        &=\underset{\R}{\iint} x \cdot y \cdot p_X(x) \cdot p_Y(y) dx dy =
+            \int_{-\infty}^{\infty} x p_X(x) dx \cdot \int_{-\infty}^{\infty} x p_Y(y) dy = E(X) \cdot E(Y)
+    \end{align*}
+\end{proof}
+
+\begin{defn}[Nekoreliranost]
+    Slu"cajni spremenljivki $X$ in $Y$ sta nekorelirani, "ce velja $E(X \cdot Y) = E(X) \cdot E(Y)$, sicer sta
+    korelirani.
+\end{defn}
+
+Po trditvi iz neodvisnosti sledi nekoreliranost. Obratno pa ne velja:
+
+\begin{ex}
+    \begin{align*}
+        &U = \begin{pmatrix}0 & \frac{\pi}{2} & \pi \\ \frac{1}{3} & \frac{1}{3} & \frac{1}{3}\end{pmatrix} \\
+        &X = cos(U): \begin{pmatrix}1 & 0 & -1 \\ \frac{1}{3} & \frac{1}{3} & \frac{1}{3}\end{pmatrix} \\
+        &Y = sin(U): \begin{pmatrix}0 & 1 & 0 \\ \frac{1}{3} & \frac{1}{3} & \frac{1}{3}\end{pmatrix} =
+            \begin{pmatrix}0 & 1 \\ \frac{2}{3} & \frac{1}{3}\end{pmatrix} \\
+        &E(X) = 0, E(Y) = \frac{1}{3} \\
+        &X \cdot Y = sin(U) \cdot cos(U) = 0 \implies E(X \cdot Y) = 0 \implies \text{ X in Y sta nekorelirani
+            slu"cajni spremenljivki}
+    \end{align*}
+    \begin{center}
+        \begin{tabular}{ c | c c | c}
+            X \textbackslash Y & 0 & 1 & $\Sigma$ \\
+            \hline
+            -1 & $\frac{1}{3}$ & 0 & $\frac{1}{3}$ \\
+            0 & 0 & $\frac{1}{3}$ & $\frac{1}{3}$ \\
+            -1 & $\frac{1}{3}$ & 0 & $\frac{1}{3}$ \\
+            \hline
+            $\sum$ & $\frac{2}{3}$ & $\frac{1}{3}$ & 1
+        \end{tabular}
+        $\implies$ nista neodvisni, npr $\frac{1}{3} = P(X=1,Y=0) \neq P(X=1) \cdot P(Y=0) = \frac{1}{3} \cdot \frac{2}{3}$
+    \end{center}
+\end{ex}
+
+\begin{claim}
+    $X: \begin{pmatrix}x_1 & x_2 \\ p_1 & p_2\end{pmatrix}$,
+    $Y: \begin{pmatrix}y_1 & y_2 \\ q_1 & q_2\end{pmatrix}$ \\
+    Potem sta $X$ in $Y$ neodvisni $\iff$ nekorelirani \\
+    $\iff E(X \cdot Y) = E(X) \cdot E(Y)$   % D.N?
+\end{claim}
+
+\subsection{Disperzija, kovarianco in korelacijski koeficient}
+
+\begin{defn}[Disperzija]
+    Naj obstaja $E(X^2)$. Disperzija oz. varianca slu"cajne spremenljivke $X$ je $D(X) \equiv var(X) := E((X-E(X))^2)$
+\end{defn}
+
+Disperzija meri razpr"senost slu"cajne spremenljivke $X$ okoli $E(X)$ \\
+Ker je $E((X-E(X))^2) = E(X^2 - 2E(X)X + (E(X))^2) = E(X^2) - 2E(X)E(X) + (E(X))^2 = E(X^2) - (E(X))^2$, je
+$D(X) = E(X^2) - (E(X))^2$
+
+
+
 % 13. predavanje: 6.1.
 
 Lastnosti disperzije:
