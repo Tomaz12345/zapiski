@@ -94,14 +94,205 @@
 
 
 
-% 14. predavanje: 13.1.
+% 13. predavanje: 6.1.
 
-\[= \int_{-\infty}^{\infty} y e^{-\frac{1}{2}y^2} dy = \frac{1}{\sqrt{2\pi (1-\rho^2)}}
-\int_{-\infty}^{\infty} x e^{-\frac{1}{2(1-\rho^2)} (x - \rho y)^2} dx =\]
-\[E(N(\rho y, \sqrt{1-\rho^2})), \text{ ker je } p(x) = \frac{1}{\sigma \sqrt{2\pi}}
-e^{-\frac{1}{2} (\frac{x - \mu}{\sigma})^2}\]
-\[= \rho \frac{1}{\sqrt(2\pi)} \int_{-\infty}^{\infty} y^2 e^{-\frac{1}{2} y^2} dy =\]
-\[(\frac{1}{\sqrt(2\pi)} \int_{-\infty}^{\infty} y^2 e^{-\frac{1}{2} y^2} = D(N(0,1)) = 1) \implies = \rho\]
+Lastnosti disperzije:
+
+\begin{itemize}
+    \item $D(X) \geq 0$ in $D(X) = 0 \iff P(X=E(X)) = 1$, t.j. X je izrojena slu"cajna spremenljivka
+    \item $D(a \cdot X) = a^2 D(X) \; a \in \R$
+    \item $\forall a \in \R$ velja: $E((X-a)^2) \geq D(X)$. Enakost velja le v primeru $a = E(X)$
+        \begin{proof}
+            \begin{align*}
+                &E((X-a)^2) = E(X^2 - 2aX + a^2) = E(X^2) - 2E(x)|a| + a^2 =
+                &= (a-E(X))^2 + E(X^2) - (E(X))^2 = D(X) + (a-E(X))^2 \geq D(X)
+            \end{align*}
+            Enakost velja samo za $a=E(X)$
+        \end{proof}
+\end{itemize}
+
+\begin{defn}[Standardna deviacija]
+    Standardna deviacija ali standardni odklon slu"cajne spremenljivke $X$ je $\sigma(X) := \sqrt{D(X)}$
+\end{defn}
+
+Zanjo velja $\sigma(aX) = |a| \cdot \sigma(X)$ za $\forall a \in \R$ \\
+Primeri nekaterih $E(X)$ in $D(X)$
+
+\begin{enumerate}
+    \item enakomerna diskretna porazdelitev: $\begin{pmatrix}x_1 & \cdots & x_n \\ \frac{1}{n} & \cdots & \frac{1}{n}\end{pmatrix}$
+        \begin{align*}
+            E(X) = \frac{x_1 + \cdots + x_n}{n}, D(X) = E(X^2) - (E(X))^2 = \frac{x_1^2 + \cdots + x_n^2}{2} -
+            (\frac{x_1 + \cdots + x_n}{2})^2
+        \end{align*}
+    \item Binomska porazdelitev $Bin(n,p), n \in \N, p \in (0,1), q = 1-p$
+        \begin{align*}
+            E(X) = n \cdot p, D(X) = npq, \sigma(X) = \sqrt{npq}
+        \end{align*}
+    \item Poissonova porazdelitev $Poi(\lambda), \lambda > 0$
+        \begin{align*}
+            E(X) = \lambda, D(X) = \lambda
+        \end{align*}
+    \item Geometrijska porazdelitev $geo(p), p \in (0,1), q = 1-p$
+        \begin{align*}
+            E(X) = \frac{1}{p}, D(X) = \frac{q}{p^2}
+        \end{align*}
+    \item Pascalova porazdelitev $Pas(m,p), m \in \N, p \in (0,1)$
+        \begin{align*}
+            E(X) = \frac{m}{p}, D(X) = \frac{mq}{p^2}
+        \end{align*}
+    \item Enakomerna zvezna porazdelitev $Ed$ na $[a,b]$    % ed oznaka?
+        \begin{align*}
+            E(X) = \frac{a+b}{2}, D(X) = \frac{(b-a)^2}{12}
+        \end{align*}
+    \item Normalna porazdelitev $N(\mu, \sigma)$
+        \begin{align*}
+            E(X) = \mu, D(X) = \sigma^2, \sigma(X) = \sigma
+        \end{align*}
+    \item Porazdelitev gama $\gamma(b,c)$
+        \begin{align*}
+            E(X) = \frac{b}{c}, D(X) = \frac{b}{c^2}
+        \end{align*}
+    \item Porazdelitev $\chi^2(n) = \gamma(\frac{n}{2}, \frac{1}{2})$
+        \begin{align*}
+            E(X) = n, D(X) = 2n
+        \end{align*}
+    \item Eksponentna porazdelitev $Exp(\lambda), \lambda > 0$ $= \gamma(1,\lambda)$
+        \begin{align*}
+            E(X) = \frac{1}{\lambda}, D(X) = \frac{1}{\lambda^2}, \sigma(X) = \frac{1}{\lambda}
+        \end{align*}
+\end{enumerate}
+
+Preverimo, da je $D(X) = \sigma^2$ za $X \sim N(\mu, \sigma)$
+
+\begin{align*}
+    &D(X) = E((X-E(X))^2) = \frac{1}{\sigma\sqrt{2\pi}} \int_{-\infty}^{\infty} (x-\mu)^2 \cdot
+        e^{-\frac{1}{2} (\frac{x-\mu}{\sigma})^2} dx
+\end{align*}
+\begin{equation*}
+    t = \frac{x-\mu}{\sigma} \implies x - \mu = \sigma t, dx = \sigma dt
+\end{equation*}
+\begin{align*}
+    &= \frac{\sigma^2}{\sqrt{2\pi}} \int_{-\infty}^{\infty} t^2 e^{-\frac{1}{2}t^2} =
+\end{align*}
+\begin{align*}
+    &u = t, dv = t \cdot e^{-\frac{1}{2}t^2} \\
+    &du = dt, v = -e^{-\frac{1}{2}t^2}
+\end{align*}   
+\begin{align*}
+    &\frac{\sigma^2}{\sqrt{2\pi}} (-t e^{-\frac{1}{2}t^2} \vert_{-\infty}^{\infty}) +
+        \int_{-\infty}^{\infty} e^{-\frac{1}{2}t^2} dt=
+    &= \frac{\sigma^2}{\sqrt{2\pi}} (0 + \sqrt{2\pi}) = \sigma^2
+\end{align*}
+
+\begin{defn}[Kovarianca]
+    Kovarianca slu"cajnih spremnljivk $K(X,Y) \equiv Cov(X,Y) := E((X-E(X))(Y-E(Y)))$
+\end{defn}
+
+% ??
+Ker je
+\begin{equation*}
+    E((X-E(X))(Y-E(Y))) = E(XY - E(Y)X - E(X)Y + E(X)E(Y)) = E(XY) - E(X)E(X) - E(X)E(Y)+ E(X)E(Y)
+\end{equation*}
+je $cov(X,Y) = E(XY) - E(X)E(Y)$ \\
+
+Lastnosti:
+
+\begin{enumerate}
+    \item $K(X,X) = D(X)$
+    \item $K(X,Y) = 0 \iff$ $X$ in $Y$ sta neodvisni
+    \item $K$ je simetri"cna in bilinearna funkcija:
+        \begin{itemize}
+            \item $K(X,Y) = K(Y,X)$
+            \item $K(aX+bY,Z) = aK(X,Z) + bK(Y,Z) \forall a,b \in \R$
+        \end{itemize}
+    \item "Ce obstajata $D(X)$ in $D(Y)$, potem obstaja tudi $K(X,Y)$. Tedaj velja $|K(X,Y)| \leq
+        \sqrt{D(X) \cdot D(Y)} = \sigma(X) \cdot \sigma(Y)$ \\
+        To sledi iz Cauchy-Schwartzove neenakosti ($|E(U \cdot V)| \leq \sqrt{E(U^2) \cdot E(V^2)}$) za
+        slu"cajni spremenljivki $X-E(X)$ in $Y-E(Y)$. Ena"caj v neenakosti velja $\iff$ $Y - E(Y) \pm
+        \frac{\sigma(Y)}{\sigma(X)} (X - E(X))$ z verjetnostjo 1
+    \item "Ce X in Y imata disperziji, potem jo ima tudi $X+Y$ in valja $D(X+Y) = D(X) + D(Y) + 2K(X,Y)$ \\
+        "ce sta $X$ in $Y$ nekorelirani (posebej neodvisni), potem je $D(X+Y) = D(X) + D(Y)$
+        \begin{proof}
+            Sledi iz enakosti
+            \begin{align*}
+                &(X+Y-E(X+Y))^2 ? ((X-E(X))+(Y-E(Y)))^2 = (X-E(X))^2 + (Y-E(Y))^2 + 2(X-E(X))(Y-E(Y)) \quad E() \\
+                &D(X+Y) = E((X-E(X))^2) + E((Y-E(Y))^2) + E(2(X-E(X))(Y-E(Y))) = D(X) + D(Y) + 2K(X,Y)
+            \end{align*}
+        \end{proof}
+    \item Posplo"sitev: $D(X_1 + \cdots + X_n) = D(X_1) + \cdots + D(X_n) + 2 \sum_{i<j} K(X_i,X_j)$ \\
+        "Ce so $X_1 \cdots X_n$ paroma nekorelirani (posebej neodvisni), potem je $D(X_1 + \cdots + X_n) =
+        D(X_1) + \cdots + D(X_n)$
+\end{enumerate}
+
+\begin{ex}
+    $Bin(n,p)$ je vsota $X = X_1 + \cdots + X_n$, kjer je $X_i \sim Ber(p)$, t.j. $X_i \sim
+    \begin{pmatrix}0 & 1 \\ q & p\end{pmatrix}$, ki so neodvisne \\
+    Zato je $D(X) = D(X_1 + \cdots + X_n) = n \cdot D(X_1) = n \cdot p \cdot q$, saj je
+    $D(X_n) = E(X_n^2) - (E(X_n))^2 = p - p^2 = pq$
+\end{ex}
+
+\begin{defn}[Standardizacija slu"cajne spremenljivke]
+    Standardizacija sku"cajne spremenljivke $X$ je slu"cajna spremenljivka $X_s = \frac{X-E(X)}{\sigma(X)}$ 
+\end{defn}
+
+Zanjo velja:
+\begin{itemize}
+    \item $E(X_s) = 0$
+    \item $D(X_s) = \frac{1}{\sigma(x)^2} \cdot D(X-E(X)) = \frac{1}{\sigma(X)^2} D(X) = 1$
+\end{itemize}
+
+\begin{ex}
+    \begin{equation*}
+        X \sim N(\mu, \sigma) \implies X_s = \frac{X-E(X)}{\sigma(X)} = \frac{X-\mu}{\sigma} \sim N(0,1)
+    \end{equation*}
+\end{ex}
+
+\begin{defn}[Korelacijski koeficient]
+    Korelacijski koeficient slu"cajnih spremenljivk $X$ in $Y$ je
+    \begin{equation*}
+        r(X,Y) = \frac{K(X,Y)}{\sigma(X) \sigma(Y)} = \frac{E((X-E(X))(Y-E(Y)))}{\sigma(X)\sigma(Y)} = E(X_s \cdot Y_s)
+    \end{equation*}
+\end{defn}
+
+Lastnosti:
+
+\begin{enumerate}
+    \item $r(X,Y) = 0 \iff X$ in $Y$ sta nekorelirani
+    \item $r(X,Y) \in [-1,1]$, kar sledi iz lastnosti (4) za kovarianco
+    \item \begin{itemize}
+        \item $r(X,Y) = 1 \iff Y = \frac{\sigma(Y)}{\sigma(X)} (X-E(X)) + E(Y)$ z verjetnostjo 1
+        \item $r(X,Y) = -1 \iff Y = -\frac{\sigma(Y)}{\sigma(X)} (X-E(X)) + E(Y)$ z verjetnostjo 1
+    \end{itemize}
+        Tedaj imamo linearno zvezo med $X$ in $Y$
+\end{enumerate}
+
+\begin{ex}
+    \begin{equation*}
+        (X,Y) \sim N(\mu_x, \mu_y, \sigma_x, \sigma_y, \rho) \; \mu_x, \mu_y \in \R, \sigma_x, \sigma_y \in [0,\infty], \rho \in [-1,1]
+    \end{equation*}
+    Trdimo, da je $r(X,Y) = \rho$
+    \begin{align*}
+        &(X_s,Y_s) \sim N(0,0,1,1,\rho) \\
+        &r(X,Y) = E(X_s \cdot Y_s) = \frac{1}{2\pi \sqrt{1-p^2}} \underset{\R}{\iint} x y 
+            e^{-\frac{1}{2(1-\rho^2)} (x^2 - 2\rho xy ' y^2)} dx dy \\
+    \end{align*}
+    \begin{equation*}
+        x^2 - 2 \rho xy + y^2 = (x-\rho y)^2 + (1-\rho^2)y^2
+    \end{equation*}
+    \begin{align*}
+        %
+        %
+        %
+% 14. predavanje: 13.1.
+        %
+        &= \int_{-\infty}^{\infty} y e^{-\frac{1}{2}y^2} dy = \frac{1}{\sqrt{2\pi (1-\rho^2)}}
+        \int_{-\infty}^{\infty} x e^{-\frac{1}{2(1-\rho^2)} (x - \rho y)^2} dx = \\
+        &=E(N(\rho y, \sqrt{1-\rho^2})), \text{ ker je } p(x) = \frac{1}{\sigma \sqrt{2\pi}}
+        e^{-\frac{1}{2} (\frac{x - \mu}{\sigma})^2} = \\
+        &= \rho \frac{1}{\sqrt(2\pi)} \int_{-\infty}^{\infty} y^2 e^{-\frac{1}{2} y^2} dy = \\
+        &= (\frac{1}{\sqrt(2\pi)} \int_{-\infty}^{\infty} y^2 e^{-\frac{1}{2} y^2} = D(N(0,1)) = 1) \implies = \rho
+    \end{align*}
+\end{ex}
 Torej sta X in Y nekorelirani $\stackrel{\text{v splo"snem}}{\iff} \rho = 0 \stackrel{\text{ta primer}}{\iff}
 X, Y$ neodvisni \\
 Kak"sna je gostota, "ce je $\rho$ blizu 1?
