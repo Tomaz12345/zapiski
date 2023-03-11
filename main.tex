@@ -94,6 +94,188 @@
 
 
 
+% 11. predavanje: 16.12.
+
+\begin{conseq}
+    "Ce so $X_1, X_2 \cdots X_n$ neodvisne slu"cajne spremenljivke, porazdeljene $N(0,1)$, potem je
+    $Y := X_1^2 + \cdots + X_n^2$ porazdeljena po $\chi^2(n)$
+\end{conseq}
+
+\begin{proof}
+    Vemo, da je $X_i^2 \sim \chi^2(1)$ in da so $X_1^2 \cdots X_n^2$ neodvisne spremenljivke. Potem je po trditvi
+    + indukciji $Y \sim \chi^2(1 + \cdots + 1) = \chi^2(n)$
+\end{proof}
+
+Oglejmo si transformacijo $f: \R^2 \to \R, (x,y) \to (u,v)$, ki preslika zvezno porazdeljen slu"cajni vektor $(x,y)$ v
+zvezno porazdeljen slu"cajni vektor $(u,v)$, torej $U = u(x,y), V = v(x,y)$ \\
+Ozna"cimo "se $A_{u,v} = (-\infty,u] \times (-\infty,v]$ \\
+Potem je
+
+\begin{equation*}
+    F_{(U,V)}(u,v) = \underset{A_{u,v}}{\iint} p_{(U,V)}(s,t) ds dt
+\end{equation*}\label{eqn:Auv}
+
+Pot drugi strani pa je
+
+\begin{equation*}
+    F_{(U,V)}(u,v) = P((U,V) \in A_{u,v}) = P((X,Y) \in f^{-1}(A_{u,v})) = \underset{f^{-1}(A_{u,v})}{\iint}
+    p_{(X,Y)}(x,y) dx dy
+\end{equation*}
+
+Privzemimo "se, da je f zvezno odvedljiva bijekcija. Potem je $f: \R^2 \to \R^2, (u,v) \to (x,y)$ tudi zvezno
+odvedljiva. Z zamenjavo spremenljivk $x = X(u,v), y = Y(u,v)$ v zadnjem intergalu dobimo
+
+\begin{equation*}
+    F_{(U,V)}(u,v) = \underset{A_{u,v}}{\iint} p_{(X,Y)}(x(s,t),y(s,t)) \cdot |J(s,t)| dx ds
+\end{equation*}
+
+kjer je
+
+\begin{equation*}
+    J(u,v) = \begin{bmatrix}
+        \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} \\
+        \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v}
+    \end{bmatrix}(u,v)
+\end{equation*}
+
+Jacobijeva determinanta.
+
+Zaradi \ref{eqn:Auv} imamo torej $p_{(U,V)}(u,v) = p_{(X,Y)}(x(u,v), y(u,v)) |J(u,v)|$
+
+Oglejmo si poseben primer
+
+\begin{ex}
+    $U = X, V = v(x,y)$ oz $X = U, Y = y(u,v)$ \\
+    Tedaj je $p_{(U,V)}(u,v) = p_{(X,Y)}(u, y(u,v)) |\frac{\partial y}{\partial v}(u,v)|$ \\
+    Gostota spremenljivke $V$ je $\int_{-\infty}^{\infty}  p_{(X,Y)}(u, y(u,v)) |\frac{\partial y}{\partial v}(u,v)| dv =
+    p_V(v)$ \\
+    Pi"simo $Z = V$, torej je $Y = y(x,z)$, saj je $U=X$ \\
+    Potem prepi"semo $p_Z(z) = \int_{-\infty}^{\infty}  p_{(X,Y)}(u, y(x,z)) |\frac{\partial y}{\partial z}(x,z)| dx$
+\end{ex}
+
+\begin{ex} \text{} \\
+    \begin{enumerate}
+        \item $Z = X + Y \implies Y = Z - X$, torej je $y(x,z) = z - x, \frac{\partial y}{\partial z}(x,z) = 1$
+            \begin{equation*}
+                p_{X+Y}(z) = \int_{-\infty}^{\infty} p_{(X,Y)}(x,z-x) \cdot 1 dx
+            \end{equation*}
+        \item $Z = X \cdot Y \implies Y = \frac{Z}{X}$, torej je $y(x,z) = \frac{z}{x},
+            \frac{\partial y}{\partial z}(x,z) = \frac{1}{x}$
+            \begin{equation*}
+                p_{X \cdot Y}(z) = \int_{-\infty}^{\infty} p_{(X,Y)}(x,\frac{z}{x}) \frac{1}{|x|} dx
+            \end{equation*}
+            "Ce sta "se $X$ in $Y$ neodvisni slu"cajni spremenljivki, potem je
+            \begin{equation*}
+                p_{X \cdot Y}(z) = \int_{-\infty}^{\infty} p_X(x) \cdot p_Y(\frac{z}{x}) \cdot \frac{1}{|x|} dx
+            \end{equation*}
+    \end{enumerate}
+\end{ex}
+
+\subsection{Matemati"cno upanje oz. pri"cakovana vrednost}
+
+V primeru $X : \begin{pmatrix}x_1 & \cdots & x_n \\ p_1 & \cdots & p_n
+\end{pmatrix}$ je matemati"cno upanje oz. pricakovana vrednost vsota $E(X) := \sum_{k=1}^{n} x_k \cdot p_k$ \\
+
+V posebnem primeru $p_1 = \cdots = p_n = \frac{1}{n}$ je $E(X) = \frac{1}{n} \sum_{k=1}^{n} x_k =
+\frac{x_1 + \cdots + x_n}{n}$ - povpre"cje "stevil $x_1 \cdots x_n$ \\
+
+expected value, expectation, mean value \\
+
+Naj bo $X$ diskretno porazdeljena slu"cajna spremenljivka z neskon"cno zalogo vrednosti:
+
+\begin{equation*}
+    X: \begin{pmatrix}
+        x_1 & x_2 & x_3 & \cdots \\
+        p_1 & p_2 & p_3 & \cdots \\
+    \end{pmatrix}
+\end{equation*}
+
+$X$ ima matemati"cno upanje oz. pri"cakovano vrednost, "ce je $\sum_{k=1}^{\infty} |x_k| p_k < \infty$ \\
+Tedaj je matemati"cno upanje definirano kot $E(X) = \sum_{k=1}^{\infty} x_k \cdot p_k$ \\
+Naj bo sedaj $X$ zvezno porazdeljena slu"cajna spremenljivka z gostoto $p_X$. Potem ima $X$ matemati"cno
+upanje, "ce je $\int_{-\infty}^{\infty} |x| \cdot p_X(x) dx < \infty$. Tedaje je matemati"cno upanje
+slu"cajne spremenljivke $X$ enako $E(X) = \int_{-\infty}^{\infty} x \cdot p_X(x) dx$
+
+\begin{ex} \text{} \\
+    \begin{enumerate}
+        \item $X \sim Ber(p)$ oz. $X: \begin{pmatrix}0 & 1 \\ q & p
+            \end{pmatrix} q = 1-p, E(X) = 0 \cdot q + 1 \cdot p = p$
+        \item $X \sim Poi(\lambda)$, torej $p_k = P(X=k) = \frac{\lambda^k}{k!} e^{-\lambda} k = 0, 1 \cdots$
+            \begin{equation*}
+                E(X) = \sum_{k=0}^{\infty} k \cdot p_k = \sum_{k=0}^{\infty} k \cdot \frac{\lambda^k}{k!} e^{-\lambda} =
+                e^{-\lambda} \cdot \lambda \sum_{k=1}^{\infty} \frac{\lambda^{k-1}}{(k-1)!} = \lambda
+            \end{equation*}
+        \item Enakomerna porazdelitev na $[a,b]$
+            \begin{align*}
+                &p(X) = \begin{cases}
+                    \frac{1}{b-a} \; \text{ "ce } a \leq x \leq b \\
+                    0 \quad \text{sicer}
+                \end{cases} \\
+                &E(X) = \int_{a}^{b} x \cdot \frac{1}{b-a} dx = \frac{1}{b-a} \cdot \frac{x^2}{2} \vert_{a}^b =
+                    \frac{b^2 - a^2}{2(b-a)} = \frac{b+a}{2}
+            \end{align*}
+        \item $X \sim N(\mu, \sigma)$ %skica
+            \begin{align*}
+                &E(X) = \frac{1}{\sigma \sqrt{2\pi}} \cdot \frac{-\infty}{\infty} x \cdot
+                e^{-\frac{1}{2} (\frac{x-\mu}{\sigma})^2} dx =
+            \end{align*}
+            \begin{equation*}
+                U = \frac{x - \mu}{\sigma} \implies du = \frac{dx}{\sigma}
+            \end{equation*}
+            \begin{align}
+                &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} (\sigma u + \mu) e^{-\frac{1}{2} u^2} du =
+                &= \frac{1}{\sqrt{2\pi}} \sigma \int_{-\infty}^{\infty} u \cdot e^{-\frac{1}{2} u^2} du +
+                    \mu \cdot \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} u \cdot e^{-\frac{1}{2} u^2} du =
+                &= \mu
+            \end{align}
+            Ker je v predzadnjem koraku 1. funkcija (v integralu) liha, 2. pa je gostota porazdelitve $N(0,1)$
+        \item Cauchyjeva porazdelitev $p(x) = \frac{1}{\pi (1+x^2)}$ \\ % skica
+            Nima matemati"cnega upanja, saj je $\int_{-\infty}^{\infty} |x| \cdot \frac{1}{\pi (1+x^2)} dx =
+            \frac{2}{\pi} \int_{0}^{\infty} \frac{x}{1+x^2} dx = \frac{1}{\pi} ln(1+x^2) \vert_{0}^{\infty} = \infty$
+        \item $1 - \frac{1}{2} + \frac{1}{3} - \cdots$ je pogojno konvergentna vrsta, t.j. konvergira, a ne absolutno
+            \begin{align*}
+                &X: \begin{pmatrix}
+                    x_1 & x_2 & \cdots \\
+                    p_1 & p_2 & \cdots \\
+                \end{pmatrix}, \sum_{k=1}^{\infty} x_k \cdot p_k = \sum_{k=1}^{\infty} \frac{(-1)^{k-1}}{k} \\
+                &x_k \cdot p_k = \frac{(-1)^{k-1}}{k} \\
+                &\sum_{k=1}^{\infty} p_k = 1
+                &p_k := \frac{1}{2^k} \text{ npr. ker je vsota 1} \\
+                &x_k := \frac{(-1)^{k-1}}{k} = 2^k
+            \end{align*}
+            Ta porazdelitev nima matemati"cnega upanja, ker vrsta ne konvergira absolutno
+    \end{enumerate}
+\end{ex}
+
+\begin{claim}
+    Naj bo $f: \R \to \R$ zvezna funkcija
+    \begin{enumerate}[label=(\alph*)]
+        \item "Ce je $X: \begin{pmatrix} x_1 & x_2 & \cdots \\ p_1 & p_2 & \cdots \end{pmatrix}$ \\
+            potem je $E(f \circ X) \equiv E(f(X)) = \sum_{k=1}^{\infty} f(x_k) \cdot p_k$
+            ("ce le to matema"ticno upanje obstaja)
+        \item "Ce je $X$ zvezno porazdeljena z gostoto $p_X$, potem je $E(f \circ X) =
+            \int_{-\infty}^{\infty} f(x) \cdot p_X(x) dx$
+    \end{enumerate}
+\end{claim}
+
+\begin{proof}
+    (samo (a)): \\
+    \begin{equation*}
+        f \circ X: \begin{pmatrix}
+            f(x_1) & f(x_2) & \cdots \\
+            p_1 & p_2 & \cdots \\
+        \end{pmatrix}
+    \end{equation*}
+    npr "ce $f(x_1) = f(x_3) \implies \begin{pmatrix}
+        f(x_1) & f(x_2) & \cdots \\
+        p_1 + p_3 & p_2 & \cdots \\
+    \end{pmatrix}$ \\
+    ($E(f \circ X) = \int_{-\infty}^{\infty} x \cdot p_{f(x)}(x) dx = \cdots =
+    \int_{-\infty}^{\infty} f(x) \cdot p_X(x) dx$ - substitucija $y=f(x)$ v integralu)
+\end{proof}
+
+
+
 % 12. predavanje: 23.12.
 
 \begin{conseq}
