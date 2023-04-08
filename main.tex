@@ -1455,4 +1455,148 @@ Iz teh vzor"cnih podatkov "zelimo oceniti nekatere lastnosti populacije, kot sta
 
 
 
+% 20. predavanje: 21.3.
+
+Ocene za $\mu$ so:
+
+\begin{itemize}
+    \item vzor"cno povpre"cje: $\overline{x} = \frac{x_1 + \cdots + x_n}{n}$
+    \item vzor"cni modus: najpogostej"sa vrednost v vzorcu
+    \item vzor"cna mediana: srednja vrednost v vzorcu, urejenem po velikosti
+\end{itemize}
+
+Ocene za $\sigma$ so:
+
+\begin{itemize}
+    \item vzor"cni razmak: razlika med najve"cjo in najmanj"so vrednostjo v vzorcu
+    \item vzor"cna disperzija: $s_0^2 ? \frac{1}{n} \sum_{i=1}^n (x_i - \overline{x})^2$
+    \item popravljena vzor"cna disperzija: $s^2 ? \frac{1}{n-1} \sum_{i=1}^n (x_i - \overline{x})^2 =
+        \frac{n}{n-1} s_0^2$
+\end{itemize}
+
+\subsection{Vzor"cne statistike in cenilke}
+
+\begin{defn}[Vzor"cna statistika]
+    Naj bo $(X_1, X_2 \cdots X_n)$ vzorec t.i. slu"cajni vektor, kjer so $X_1 \cdots X_n$ enako porazdeljene
+    kot slucajna spremenljivka $X$ in med seboj neodvisne. \\
+    Vzor"cna statistika je simetri"cna funkcija vzorca $y = g(X_1, X_2 \cdots X_n)$, kjer je $g$ simetricna
+    funkcije n spremenljivk
+\end{defn}
+
+Praviloma vzor"cna statistika ocenjuje vrednost nekega parametra $\xi$. Tedaj je y cenilka za parameter. \\
+y je odvisna od n, zato pi"semo tudi $y_n = g(X_1 \cdots X_n)$. \\
+
+\begin{defn}[Nepristranskost, doslednost]
+    "Ce je $E(Y) = \xi$, je $Y$ nepristranska cenilka za parameter $xi$ \\
+    Cenilka $Y=Y_n$ je dosledna, "ce $Y_n \stackrel{n \to \infty}{\to} \xi$
+    verjetnostno, t.i. $\forall \epsilon > 0$ je $\lim_{n \to \infty} P(|Y_n - \xi| \geq \epsilon) = 0$ oz.
+    $\lim_{n \to \infty} P(|Y_n - \xi| < \epsilon) = 1$
+\end{defn}
+
+\begin{defn}[Standardna napaka]
+    Standardna napaka vzor"cne statistike $Y$ je standardna deviacija slu"cajne spremenljivke $Y$:
+    $SE(Y) := \sigma(Y)$
+\end{defn}
+
+\begin{defn}[Vzor"cno povprecje]
+    Naj bo $X$ slu"cajna spremenljivka na populaciji, ki ima matemati"cno upanje $E(X) = \mu$ in standardno
+    deviacijo $\sigma(X) = \sigma$. Naj bo $(X_1 \cdots X_n)$ vzorec. Definirajmo vzor"cno povprecje
+    \begin{equation*}
+        \overline{X} = \frac{X_1 + \cdots + X_n}{n}
+    \end{equation*}
+    ki je vzor"cna statistika. \\
+\end{defn}
+
+Je cenilka za $\overline{X}$, ki je nepristranska:
+
+\begin{equation*}
+    E(\overline{X}) = \frac{1}{n} (E(X_1) + \cdots + E(X_n)) = \frac{1}{n} n \cdot \mu = \mu
+\end{equation*}
+
+Po "SZV"S (izreku "Cebi"seva) je to dosledna cenilka za $\mu$. \\
+Ker je
+\begin{equation*}
+    D(\overline{X}) \stackrel{\text{neodv}}{=} \frac{1}{n^2} \sum_{i=1}^n D(X_i) =
+    \frac{1}{n^2} n \cdot \sigma^2 = \frac{\sigma^2}{n}
+\end{equation*}
+
+je standardna napaka
+
+\begin{equation*}
+    SE(Y) = \frac{\sigma}{\sqrt{n}}
+\end{equation*}
+
+- "cim vecji n, bolje oceni parameter $\mu$ \\
+Po CLI je pri velikem n slu"cajna spremenljivka $Z_n := \frac{S - n \mu}{\sigma \sqrt{n}} =
+\frac{\overline{X} - \mu}{\frac{\sigma}{\sqrt{n}}} = \frac{\overline{X} - \mu}{\sigma} \sqrt{n}$
+porazdeljena pribli"zno $N(0,1)$ oz. $\overline{X}$ je porazdeljen pribli"zno $N(\mu, \frac{\sigma}{\sqrt{n}})$ \\
+"Ce je $X$ normalno porazdeljena $N(\mu, \sigma)$, potem je $\overline{X}$ porazdeljen
+$N(\mu, \frac{\sigma}{\sqrt{n}})$ za vsak $n$
+
+\begin{claim}
+    Naj bo $Y_n$ cenilka za $\xi$. "Ce je $E(Y_n) \stackrel{n \to \infty}{\to} \xi$ in
+    $D(Y_n) \stackrel{n \to \infty}{\to} 0$, potem je $Y=Y_n$ dosledna cenilka za $\xi$
+\end{claim}
+
+\begin{proof}
+    Fiksirajmo $\epsilon > 0$. Dokazati moramo $\lim_{n \to \infty} P(|Y_n - \xi| \geq \epsilon) = 0$ \\
+    Ker je $E(Y_n) \stackrel{n \to \infty}{\xi}$, obstaja $n_0 \in \N$: $|E(Y_n) - \xi| < \frac{\epsilon}{2}$
+    zato je dogodek
+    \begin{align*}
+        &(|Y_n - \xi| \geq \epsilon) \subseteq (|Y_n - E(Y_n)| + |E(Y_n) - \xi| \geq \epsilon) \text{ za }
+            \forall n \subseteq\\
+        &\stackrel{n \geq n_0}{\subseteq} (|Y_{n_0} - E(Y_{n_0})| + |E(Y_{n_0}) - \xi| \geq \epsilon)
+    \end{align*}
+    Torej je za $n \geq n_0$
+    \begin{equation*}
+        P(|Y_n - \xi| \geq \epsilon) \leq P(|Y_n - E(Y_n)| \geq  \frac{\epsilon}{2})
+        \leq \frac{D(Y_n)}{\epsilon^2} \cdot 4 \stackrel{n \to \infty}{\to} 0 \text{ (doslednost)}
+    \end{equation*}
+    Neenakost "Cebi"seva: $P(|X - E(X)| \geq \epsilon) \leq \frac{D(X)}{\epsilon^2}$ \\
+    Tako imamo doslednost cenilke: $P(|Y_n - \xi| \geq \epsilon) \stackrel{n \to \infty}{\to} 0$
+\end{proof}
+
+\begin{ex}
+    Porazdelitev $\chi^2$, n "stevilo prostorskih stopenj \\
+    \begin{equation*}
+        p(X) = \begin{cases}
+            \frac{1}{2^{\frac{n}{2}} \gamma(\frac{n}{2})} x^{\frac{n}{2}-1} e^{-\frac{x}{2}} x > 0 \\
+            0 \text{ sicer}
+        \end{cases}
+    \end{equation*}
+    Modus = $n-2$, $E(X) = n$, $D(X) = 2n$ \\
+    Mediana $\approx n \cdot (1 - \frac{2}{9n})^3$
+\end{ex}
+
+\begin{defn}[Vzorcna disperzija]
+    Naj bo X slu"cajna spremenljivka na populaciji. Vzor"cna disperzija je definirana s
+    \begin{equation*}
+        s_0^2 = \frac{1}{n} \sum_{i=1}^n (x_i - \overline{x})^2
+    \end{equation*}
+    popravljena vzor"cna disperzija pa je
+    \begin{equation*}
+        s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \overline{x})^2
+    \end{equation*}
+\end{defn}
+
+Kako sta porazdeljeni, "ce je $X \sim N(\mu, \sigma)$? \\
+Raje vzemimo vzor"cno statistiko: $\chi^2 := \frac{1}{\sigma^2} \sum_{i=1}^n (x_i - \overline{x})^2 =
+\frac{n}{\sigma^2} s_0^2 = \frac{n-1}{\sigma^2} s^2$ \\
+Ni lahko izra"cunati, da je $\chi^2 \sim \chi^2(n-1)$ \\
+Ideja izpeljave je $\chi^2 = Z_1^2 + \cdots + Z_{n-1}^2$ za $Z_i \sim N(0,1)$ in med seboj neodvisne.
+Potem uporabimo trditev iz verjetnosti: $Z_i^2 \sim \chi^2(1)$, torej $E(\chi^2) = n-1$, $D(\chi^2) = 2(n-1)$.
+Od tod sledi
+\begin{equation*}
+    E(s_0^2) = E(\frac{\sigma^2}{n} \chi^2) = \frac{\sigma^2}{n} E(\chi^2) = \frac{n-1}{n} \sigma^2
+\end{equation*}
+torej $s_0^2$ ni nepristranska za $\sigma^2$, je pa asimptoti"cno nepristranska, t.i.
+$E(s_0^2) \stackrel{n \to \infty}{\to} \sigma^2$ \\
+Podobno je $E(s^2) = \frac{\sigma^2}{n-1} E(\chi^2) = \sigma^2$, torej je $s^2$ nepristranska cenilka za
+$\sigma^2$ \\
+Ker je $D(s_0^2) = \frac{\sigma^4}{n^2} D(\chi^2) = \frac{\sigma^4 2(n-1)}{n^4} \stackrel{n \to \infty}{\to} 0$
+in $D(s^2) = \frac{2 \sigma^4}{(n-1)^2} \stackrel{n \to \infty}{\to} 0$, iz trditve sledi, da sta $s_0^2$ in
+$s^2$ dosledni cenilki za $\sigma^2$
+
+
+
 \end{document}
