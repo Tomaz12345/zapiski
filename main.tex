@@ -1326,7 +1326,133 @@ Dokazal je Ljapunov (1900), s tem je posplo"sil Laplaceov izrek iz leta 1812. V 
         "Ce $X_n \to X$, potem $(1 + \frac{X_n}{n})^n \stackrel{n \to \infty}{\rightarrow} e^x$
     \end{lemma}
     Po prej"snjem izreku: $F_{Z_n}(x) \stackrel{n \to \infty}{\rightarrow} F_{N(0,1)}(x)$
+
+
+
+% 19. predavanje: 14.3.
+
+    \begin{equation*}
+        \epsilon > 0: x - \epsilon \leq x_n \leq x + \epsilon \text{ za dovolj velik n}
+    \end{equation*}
+
+    \begin{align*}
+        &\implies (1 + \frac{x-\epsilon}{n})^n \leq (1 + \frac{x_n}{n})^n \leq (1 + \frac{x+\epsilon}{n})^n \\
+        &\implies (1 + \frac{x-\epsilon}{n})^n \to e^{x-\epsilon} \\
+        &\implies (1 + \frac{x_n}{n})^n \to e^{x} \\
+        &\implies (1 + \frac{x+\epsilon}{n})^n \to e^{x+\epsilon} \\
+    \end{align*}
 \end{proof}
+
+V splo"snem se CLI doka"ze s pomo"cjo karakteristi"cnih funkcij: \\
+naj bo X slu"cajna spremenljivka, $\ell_X(t) := E(e^{itX}) = E(cos(tX)) + iE(sin(tX)) t \in \R$ \\
+za razliko od momentno rodovnih funkcij karakteristi"cne funkcije vedno odstajajo \\
+v zveznem primeru je $\int_{-\infty}^{\infty} e^{itx}p(x)dx$ - Fourierova transformacija funkcije $p_X(x)$ \\
+$X_1, X_2 \cdots X_n$ neodvisne, enako porazdeljene
+
+\begin{align*}
+    &\mu := E(X_n), \sigma := \sigma(X_n) \\
+    &E(S_n) \stackrel{\text{neodvisnost}}{=} E(X_1) + \cdots + E(X_n) = n \mu \\
+    &D(S_n) \stackrel{\text{neodvisnost}}{=} D(X_1) + \cdots + D(X_n) = n \sigma^2
+\end{align*}
+
+$X_1, X_2 \cdots X_n$ neodvisne slu"cajne spremenljivke
+
+\begin{align*}
+    &Z_n = \frac{S_n - E(S_n)}{\sigma(S_n)} = \frac{S_n - n \mu}{\sqrt{n} \sigma} =
+        \frac{\frac{S_n}{n} - \mu}{\frac{\sigma}{\sqrt{n}}} \\
+    &\overline{Z_n} := \frac{S_n}{n} = \frac{X_1 + \cdots + X_n}{n} \implies
+        Z_n = \frac{\overline{X} - \mu}{\frac{\sigma}{\sqrt{n}}}
+\end{align*}
+
+Po CLI za velike n velja $Z_n \approx N(0,1)$, zato je $\overline{X} \approx N(\mu, \frac{\sigma}{\sqrt{n}})$ oz.
+$S_n \approx N(n \mu, \sigma \sqrt{n})$ \\
+"Ce so $X_1, X_2 \cdots$ porazdeljene normalno $N(\mu, \sigma)$, potem je $Z_n \sim N(0,1)$, torej
+$F_{Z_n}(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{x} e^{-\frac{t^2}{2}} dt$ \\
+
+\begin{ex}
+    Laplaceova formula je poseben primer CLI: \\
+    $X_n: \begin{pmatrix}0 & 1 \\ q & p\end{pmatrix}, X_n = 1$ je dogodek, da se dogodek A (s $P(A) = p$) zgodi
+    v n-ti ponovitvi poskusa, sicer je $X_n = 0$ \\
+    $E(X_n) = p, S_n = X_1 + \cdots + X_n$ frekvenca dogodka A v prvih n ponovitvah \\
+    $S_n \sim Bin(n,p), E(S_n) = np, D(S_n) = npq$, ker je $D(X_1) = pq$ \\
+    $Z_n = \frac{S_n - E(S_n)}{\sigma(S_n)} = \frac{S_n - np}{\sqrt{npq}} \stackrel{\text{CLI}}{\approx} N(0,1)$,
+    "ce je n velik \\
+    \begin{align*}
+        &P(S_n \leq X) = P(\frac{S_n - np}{\sqrt{npq}} \leq \frac{X - np}{\sqrt{npq}}) \approx \\
+        &\approx \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\frac{x-np}{\sqrt{npq}}} e^{-\frac{t^2}{2}} dt = \\
+        &= \frac{1}{2} + \Phi(\frac{x-np}{\sqrt{npq}})
+    \end{align*}
+    kjer je
+    \begin{equation*}
+        \Phi(x) := \frac{1}{\sqrt{2\pi}} \int_0^x e^{-\frac{t^2}{2}} dt
+    \end{equation*}
+    verjetnostni integral \\
+    \begin{align*}
+        &P(\alpha < S_n \leq \beta) = \\
+        &= P(S_n \leq \beta) - P(S_n \leq \alpha) \approx \\
+        &\approx \frac{1}{2} + \Phi(\frac{\beta - np}{\sqrt{npq}}) - \frac{1}{2} - \Phi(\frac{\alpha - no}{\sqrt{npq}}) = \\
+        &= \Phi(\frac{\beta - np}{\sqrt{npq}}) - \Phi(\frac{\alpha - np}{\sqrt{npq}})
+    \end{align*}
+    Laplaceova aproksimacijska formula
+\end{ex}
+
+\begin{ex}
+    Te"za vre"cke kostanja je porazdeljena pribli"zno normalno, saj je vsota te"z posameznih kostanjev, ki so neodvisne,
+    enako porazdeljene slu"cajne spremenljivke \\
+    $X_n \cdots$ te"za n-tega kostanja, $S_n = X_1 + \cdots + X_n \approx$ normalno - aditiven efekt
+\end{ex}
+
+\begin{ex}
+    \begin{align*}
+        &p_{X_n}(x) = \begin{cases}
+            \frac{1}{2}; x \in [-1,1] \\
+            0 \text{ sicer}
+        \end{cases} \\
+        &E(X_1) = 0, D(X_1) = \frac{(b-a)^2}{12} = \frac{1}{3} \\
+        &S_1 = X_1, Z_1 = \frac{X_1 - E(X_1)}{\sigma(X_1)} = \frac{X_1}{\sqrt{\frac{1}{3}}} = x_1 \sqrt{3} \\
+        &S_2 = X_1 + X_2 , Z_2 = \frac{S_2 - E(S_2)}{\sigma(S_2)} =
+            \frac{X_1 + X_2 - E(X_1 + X_2)}{\sigma(X_1 + X_2)} \\
+        &S_3 = X_1 + X_2 + X_3, Z_3 = \frac{S_3 - E(S_3)}{\sigma(S_3)}
+    \end{align*}
+\end{ex}
+
+\section{Statistika}
+
+\subsection{Osnovni pojmi}
+
+Kot vedo statistiko razdelimo na:
+\begin{enumerate}
+    \item opisno statistiko: zbiranje, razvr"s"canje, prikazovanje podatkov, ra"cunanje osnovnih koli"cin
+    \item analiti"cno statistiko: upraba podatkov pri sklepanju glede zakonitosti danega podro"cja
+\end{enumerate}
+
+\begin{defn}[Populacija]
+    Populacija je kon"cna ali neskon"cna mno"zica elementov, pri katerih merimo ali opazujemo neko koli"cino
+\end{defn}
+
+\begin{ex} \text{} \\
+    \begin{enumerate}[label=(\alph*)]
+        \item kontrole kvalitete: populacija je mno"zica (serija) izdelka, npr. dnevna proizvodnja, merimo
+            lastnosti izdelkov, npr. "zivljensko dobo
+        \item testiranje seb: populacija je mno"zica vseh zaposlenih v dr"zavi, merimo npr. starost,
+            vi"sino place $\cdots$
+    \end{enumerate}
+\end{ex}
+
+Matemati"cni pogled: na verjetnostnem prostoru $(\Omega, \mathcal{F})$ imamo slu"cajno spremenljivko X. \\
+Praviloma ne moremo izmeriti cele populacije, ampak meritve opravimo na relativno majhnem delu populacije,
+na vzorcu. Le-ta mora biti reprezentativen, izbran nepristransko in dovolj velik. \\
+Matemati"cni pogled: vzorec velikosti n je slu"cajni vektor $(x_1 \cdots x_n)$, kjer so komponente enako porazdeljene
+kot slu"cajna spremenljivka X in med seboj neodvisne. \\
+Vrednost tega slu"cajnega vektorja pri enem naboru n meritev je realizacija vzorca: $(x_1 \cdots x_n)$: to so
+konkretni podatki, ki jih analiziramo. Pri opisni statistiki predstavimo in obdelamo te podatke. \\
+Iz teh vzor"cnih podatkov "zelimo oceniti nekatere lastnosti populacije, kot sta:
+
+\begin{enumerate}
+    \item sredina populacije $\mu$, t.i. matemati"cno upanje slu"cajne spremenljivke X
+    \item povpre"cni odklon $\sigma$ od sredine populacije, t.i. Standardna deviacija slu"cajne spremenljivke X
+\end{enumerate}
+
 
 
 \end{document}
