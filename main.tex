@@ -1713,4 +1713,165 @@ funkcijo $\phi_k$. Potem je $c_k := \phi_k(z_1 \cdots z_m)$ cenilka za parameter
 
 
 
+% 22. predavanje: 4.4.
+
+\subsubsection{Metoda maksimalne zanesljivosti (oz. najve"cjega verjetja)}
+
+\begin{defn}[Funkcija zanesljivosti]
+    Naj bo gostota slu"cajne spremenljivke $X$ odvisna od parametra $\xi$, torej $p(x; \xi)$. Funkcija
+    zanesljivosti (likelihood function) je
+    \begin{equation*}
+        L(x_1 \cdots x_n; \xi) = p(x_1; \xi) \cdot \cdots \cdot p(x_n; \xi)
+    \end{equation*}
+\end{defn}
+
+Pri danih $x_1 \cdots x_n$ izberimo tak $\xi_{max}$, da ima $L$ tam maksimum. Ta vrednost parametra je odvisna od
+$x_1 \cdots x_n$, torej $\xi_{max} = \phi(x_1, x_2 \cdots x_n)$ za neko funkcijo $\phi$. Tako dobimo cenilko
+$c := \phi(x_1 \cdots x_n)$ za parameter $\xi$
+
+\begin{ex}
+    \begin{equation*}
+        p(x; \lambda) := \begin{cases}
+            \lambda e^{-\lambda x} \; x > 0 \\
+            0 \qquad x < 0
+        \end{cases}
+    \end{equation*}
+    $\lambda$ je neznan parameter, ki ga ocenjujemo
+    \begin{equation*}
+        L(x_1 \cdots x_n; \lambda) = \lambda e^{-\lambda x_1} \cdot \cdots \cdot \lambda e^{-\lambda x_n} =
+        \lambda^n e^{-(x_1 + \cdots + x_n)}
+    \end{equation*}
+    Poiskati moramo $\lambda_{max}$, pri katerem je dose"zen maksimum funkcije $L$ (oz. maksimum funkcije $\ln(L)$)
+    \begin{align*}
+        &\ln L(x_1 \cdots x_n; \lambda) = n \cdot \ln \lambda - \lambda \sum_{i=1}^{n} x_i \\
+        &\frac{\partial}{\partial \lambda} (\ln L(x_1 \cdots x_n; \lambda)) = \frac{n}{\lambda} -
+            \sum_{i=1}^{n} x_i = 0 \\
+        &\quad \implies \lambda_{max} = \frac{n}{\sum_{i=1}^n x_i} = \frac{1}{\overline{x}}
+    \end{align*}
+    Ker je $\frac{\partial^2}{\partial \lambda^2} \ln L(x_1 \cdots x_n; \lambda) = -\frac{n}{\lambda^2} < 0$,
+    je v $\lambda_{max}$ maksimum. \\
+    Cenilka za $\lambda$ je $c := \frac{1}{\overline{X}}$ \\
+    Isto cenilko dobimo z metodo momentov:
+    \begin{align*}
+        &z_1 = E(X) = \frac{0}{\infty} x \lambda e^{-\lambda x} dx = \stackrel{\text{D.N.}}{\cdots} \frac{1}{\lambda} &
+        &\implies \lambda = \frac{1}{z_1} = \frac{1}{\overline{x}}
+    \end{align*}
+    cenilka za $\lambda$ je $c := \frac{1}{\overline{X}}$
+\end{ex}
+
+\begin{ex}
+    $X \sim N(\mu, \sigma)$, $\mu, \sigma$ neznana parametra, ki ju ocenjujemo
+    \begin{align*}
+        &L(x_1 \cdots x_n; \mu, \sigma) := \frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2} (\frac{x_1-\mu}{\sigma})^2} \cdot
+            \cdots \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2} (\frac{x_n-\mu}{\sigma})^2} = \\
+        &= \frac{1}{(2\pi)^{\frac{n}{2}}} \cdot \frac{1}{\sigma^n} e^{-\frac{1}{2 \sigma^2}
+            (x_1 - \mu)^2 + \cdots + (x_n - \mu)^2} \\
+        &\ln L = -\frac{n}{2} \ln 2\pi - n \cdot \ln \sigma - \frac{1}{2 \sigma^2} ((x_1 - \mu)^2 + \cdots +
+            (x_n - \mu)^2) \\
+        &\frac{\partial}{\partial \mu} \ln L = -\frac{1}{2 \sigma^2} (2(x_1 - \mu)(-1) + \cdots +
+            2(x_1 - \mu)(-1)) = \frac{1}{\sigma^2} (x_1 - \mu + \cdots + x_n - \mu) = 0 \\
+        &x_1 + \cdots + x_n - n\mu = 0 \implies \mu = \frac{x_1 + \cdots + x_n}{n} = \overline{x} \\
+        &\frac{\partial}{\partial \sigma} \ln L = -\frac{n}{\sigma} + \frac{1}{\sigma^3}
+            ((x_1 - \mu)^2 + \cdots + (x_n - \mu)^2) = 0 \\
+        &\implies \sigma^2 = \frac{1}{n} ((x_1 - \mu)^2 + \cdots + (x_n - \mu)^2) = \\
+        &= \frac{1}{n} ((x_1 - \overline{x})^2 + \cdots + (x_n - \overline{x})^2) = s_0^2
+    \end{align*}
+    Cenilka za $\mu$ je $\overline{X}$, cenilka za $\sigma^2$ je $S_0^2 =
+    \frac{1}{n} \sum_{i=1}^{n} (X_i - \overline{X})^2$
+\end{ex}
+
+\begin{ex}
+    $Bin(1,p) = Ber(p), X: \begin{pmatrix}0 & 1 \\ q & p\end{pmatrix} q = 1-p, p$ neznan parameter
+    \begin{align*}
+        &P(X=x) = p^x (1-p)^{1-x} x \in \{0, 1\} \\
+        &L(x_1 \cdots x_n; p) = p^{x_1} (1-p)^{1-x_1} \cdot \cdots \cdot p^{x_n} (1-p)^{1-x_n} = \\
+        &= p^{x_1 + \cdots + x_n} (1-p)^{n - (x_1 + \cdots + x_n)} \\
+        &x := x_1 + \cdots + x_n \implies L(x_1 \cdots x_n; p) = p^x (1-p)^{1-x} x \in \{0, 1 \cdots n\} \\
+        &\ln L = x \ln p + (n-x) \ln(1-p) \\
+        &\frac{\partial}{\partial p} \ln L = \frac{x}{p} - \frac{n-x}{1-p} = 0 \\
+        &\implies x(1-p) = (n-x)p \implies x - xp = np - xp \implies p = \frac{x}{n} = \overline{x}
+    \end{align*}
+    Cenilka za $p$ je $P := \overline{X} = \frac{X_1 + \cdots + X_n}{n}$ \\
+    Ker je
+    \begin{equation*}
+        E(P) = \frac{1}{n} (E(X_1) + \cdots + E(X_n)) = p
+    \end{equation*}
+    je $P$ nepristranska cenilka \\
+    Ker je
+    \begin{equation*}
+        D(P) = \frac{1}{n^2} (D(X_1 + \cdots + D(X_n))) = \frac{1}{n^2} n D(X_1) =
+        \frac{1}{n} D(X_1) \stackrel{n \to \infty}{\to} 0
+    \end{equation*}
+    po trditvi sledi, da je $\overline{X}$ dosledna cenilka za $P$
+\end{ex}
+
+\subsection{Intervalsko ocenjevanje parametrov}
+
+\begin{defn}[Interval zaupanja]
+    Naj bo gostota slu"cajne spremenljivke $X$ odvisna od parametra $\xi$. Interval $[A,B]$ (odvisen le od
+    $(x_1 \cdots x_n)$ in ne do $\xi$) je interval zaupanja za parameter $\xi$, pri stopnji tveganja
+    $\alpha \in (0,1)$, "ce je
+    \begin{equation*}
+        P(\xi \in [A,B]) = 1-\alpha \text{ oz. } P(\xi \notin [A,B]) = \alpha
+    \end{equation*}
+\end{defn}
+
+Za $\alpha$ obi"cajno vzamemo vrednost $0.05$ (ali $0.01$) \\
+$A$ in $B$ sta vzor"cni statistiki, $1 - \alpha$ je stopnja zaupanja
+
+\begin{ex}
+    $X \sim N(\mu, \sigma), \sigma$ poznamo, $\mu$ pa je neznan parameter. \\
+    Slu"cajna spremenljivka $Z := \frac{\overline{X} - \mu}{\sigma} \sqrt{n} \sim N(0,1)$ \\
+    Pri dani stopnji tveganja $\alpha$ najdemo $z_{\frac{\alpha}{2}} > 0$, da je
+    $P(-z_{\frac{\alpha}{2}} < Z < z_{\frac{\alpha}{2}}) = 1-\alpha$ oz.
+    $P(|Z| > z_{\frac{\alpha}{2}}) = \alpha$ oz. $P(Z > z_{\frac{\alpha}{2}}) = \frac{\alpha}{2}$ \\
+    Pogoj $|Z| < z_{\frac{\alpha}{2}}$ pomeni: $|\overline{X} - \mu| < z_{\frac{\alpha}{2}} \cdot
+    \frac{\sigma}{\sqrt{n}}$ \\
+    \begin{align*}
+        &A := \overline{X} - Z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}} < \mu <\\
+        &< \overline{X} + Z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}} =: B
+    \end{align*}
+    $[A,B]$ je interval zaupranja za $\mu$ pri stopnji tveganja $\alpha$ \\
+    Konkreten zgled: imejmo vzorec velikosti $n=36$, za katerega izra"cunamo $\overline{x} = 2.6$ in
+    $s = \sqrt{\frac{1}{n-1} \sum_{i=1}^{n} (x_i - \overline{x})^2} = 0.3$. Predpostavimo, da imamo
+    $X \sim N(\mu, \sigma)$ in predpostavimo, da je $\sigma := s = 0.3$ (kar pogosto naredimo, "ce je
+    n razmeroma velik). Vzemimo $\alpha = 0.05$. Iz tabele razberemo $z_{\frac{\alpha}{2}} = 1.96$, torej
+    $P(Z > z_{\frac{\alpha}{2}}) = \frac{\alpha}{2}$. Tedaj je vzor"cna vrednost za $A$ enaka
+    \begin{equation*}
+        \overline{x} - z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}} = 2.6 - 1.96 \frac{0.3}{\sqrt{36}} = 2.5
+    \end{equation*}
+    vzor"cna vrednost za $B$ je $\overline{x} - z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}} = 2.7$ \\
+    Interval zaupanja za $\mu$ je $[2.5, 2.7]$, t.j.
+    \begin{equation*}
+        P(\mu \in [2.5, 2.7]) = 1 - \alpha = 0.95
+    \end{equation*}
+\end{ex}
+
+\begin{ex}
+    $X \sim N(\mu, \sigma)$, $\mu$ in $\sigma$ sta neznana. \\
+    I"s"cemo interval zaupanja za $\mu$. \\
+    Slu"cajna spremenljivka $T := \frac{\overline{X} - \mu}{\sigma} \sqrt{n} \sim Student(n-1)$ \\
+    Pri danem tveganju $\alpha$ izberemo $t_{\frac{\alpha}{2}} > 0$, da je $P(|T| < t_{\frac{\alpha}{2}}) =
+    1 - \alpha$ oz. $P(T > t_{\frac{\alpha}{2}}) = \frac{\alpha}{2}$ \\
+    Sedaj imamo podobno situacijo kot v primeru 1. \\
+    Pogoj $|T| < t_{\frac{\alpha}{2}}$ pomeni
+    \begin{equation*}
+        A := \overline{X} - t_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}} < \mu <
+        \overline{X} + t_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}} =: B
+    \end{equation*}
+    Konkreten zgled: "zivljenska doba "zarnic v vzorcu je $9.8, 10.2, 10.4, 9.8, 10.0, 10.2, 9.6$ (v dneh),
+    $n=7$. Predpostavimo normalni model $N(\mu, \sigma)$ z neznanima parametroma $\mu$ in $\sigma$
+    \begin{align*}
+        &\overline{x} = \frac{1}{n} \sum_{i=1}^n x_i = 10.0 \\
+        &s := \sqrt{\frac{1}{n-1} \sum_{i=1}^n (x_i - \overline{x})^2} = 0.283
+    \end{align*}
+    Vzemimo $\alpha = 0.05$, iz tabele za $Student(5)$ razberemo $t_{\frac{\alpha}{2}} = 2.45$ \\
+    Vzor"cna vrednost za $A$ je $a = \overline{x} - t_{\frac{\alpha}{2}} \cdot \frac{s}{\sqrt{n}} = 9.74$ \\
+    Vzor"cna vrednost za $B$ je $b = \overline{x} + t_{\frac{\alpha}{2}} \cdot \frac{s}{\sqrt{n}} = 10.26$ \\
+    Interval zaupanja za $\mu$ je $[9.74, 10.26]$, kar zapi"semo kot $\mu = 10.0 \pm 0.26$, Verjetnost, da
+    je $\mu \in [9.74, 10.26]$ je 0.95
+\end{ex}
+
+
+
 \end{document}
