@@ -1599,4 +1599,118 @@ $s^2$ dosledni cenilki za $\sigma^2$
 
 
 
+% 21. predavanje: 28.3.
+
+\subsubsection*{Studentova t-porazdelitev}
+
+\begin{equation*}
+    p(x) = \frac{1}{\sqrt{n} B(\frac{n}{2},\frac{1}{2})} (1 + \frac{x^2}{n})^{-\frac{n+1}{2}}
+\end{equation*}
+kjer je $B(p,q) = \frac{\Gamma(p) \Gamma(q)}{\Gamma(p+q)}$ Beta funkcija
+
+\begin{align*}
+    n = 1: &\quad \frac{1}{\pi} (1+x^2)^{-1} = \frac{1}{\pi (1+x^2)} \text{Cauchyjeva porazdelitev} \\
+    &\text{ko gre } n \to \infty, \text{ gre } \sqrt{n} B(\frac{n}{2},\frac{1}{n}) \to \sqrt{2 \pi}
+        \text{ in } (1 + \frac{x^2}{n})^{-\frac{n-1}{2}} = ((1 + \frac{x^2}{n})^n)^{-\frac{n+1}{2n}}
+        \to e^{-\frac{x^2}{2}} \\
+    &\text{torej je pri velikih n gostota pribli"zno } N(0,1) \\
+    n = 2: &\quad \frac{1}{\sqrt{2} B(1,\frac{1}{2})} (1 + \frac{x^2}{2})^{-\frac{3}{2}} \\
+    &\text{za } n \geq 2 \text{ je } E(X) = 0 \\
+    n = 3: &\quad c \cdot (1 + \frac{x^2}{2})^{-2} \approx \frac{1}{x^4} \text{ za velike } x \\
+    &\text{za } n \geq 3 \text{ je } D(X) = \frac{n}{n-2} > 1
+\end{align*}
+
+Leta 1908 jo je odkril W.S. Gosset, statistik v pivovarni guiness v Dublinu. Student je njegov prevdonim.
+
+\subsubsection*{}
+
+Pri normalni porazdelitvi slu"cajne spremenljivke $X \sim N(\mu, \sigma)$ je vzor"cno povpre"cje  $\overline{X}$
+porazdeljeno $N(\mu, \frac{\sigma}{\sqrt{n}}), \overline{X} = \frac{X_1 + \cdots + X_n}{n}$, torej je
+$Z := \frac{\overline{X} - \mu}{\frac{\sigma}{\sqrt{n}}} = \frac{\overline{X} - \mu}{\sigma} \sqrt{n}$
+porazdeljena N(0,1). "Ce poznamo $\sigma$, potem bomo znali povedati, kako dobra ocena za $\mu$ je $\overline{X}$
+($\to$ intervali zaupanja). \\
+
+Kako ravnati, "ce $\sigma$ ne poznamo? \\
+Lahko jo ocenimo s $s = \sqrt{\frac{1}{n-1} \sum_{i=1}^n (X_i - \overline{X})^2}$, tako da potem vzor"cna
+statistika $T = \frac{\overline{X} - \mu}{s} \sqrt{n}$ ni ve"c porazdeljena po $N(0,1)$, niti pribli"zno
+normalna, razen "ce je n velik in je s potem skoraj konstanta $\sigma$. \\
+
+Kako je porazdeljena vzor"cna statistika T? \\
+Ker je $\chi^2 = \frac{1}{\sigma^2} \sum_{i=1}^n (X_i - \overline{X})^2 = \frac{(n-1) S^2}{\sigma^2}$, je
+$\frac{Z}{T} = \frac{S}{\sigma} = \sqrt{\frac{\chi^2}{n-1}}$, torej je $T = \frac{Z}{\sqrt{\frac{\chi^2}{n-1}}}$ \\
+Izka"ze se, da sta $Z \sim N(0,1)$ in $\chi^2 \sim \chi^2(n-1)$ neodvisni slu"cajni spremenljivki. Od tod lahko
+izra"cunamo, da ima $T$ Studentovo porazdelitev z $n-1$ prostorskimi stopnjami:
+\begin{equation*}
+    p_T(t) = \frac{1}{(n-1) B(\frac{n-1}{2}, \frac{1}{2})} \cdot \frac{1}{(1 + \frac{x^2}{n-1})^{\frac{n}{2}}}
+\end{equation*}
+
+\subsection{Metode za pridobivanje cenilk}
+
+\subsubsection{Metoda momentov}
+
+\begin{defn}[Vzro"cni moment]
+    Naj bo $(X_1, X_2 \cdots X_n)$ vzorec velikosti n, torej $X_1 \cdots X_n$ neodvisne slu"cajne spremenljivke,
+    porazdeljene kot slu"cajna spremenljivka $X$. Zacetni moment reda $k$ je $z_k = E(X^k)$. Definiramo k-ti
+    vzro"cni moment $z_k := \frac{X_1^k + \cdots + X_n^k}{n}$. Le ta je nepristranska cenilka za $z_k:
+    E(Z_k) = \frac{1}{n} (E(X_1^k) + \cdots + E(X_n^k)) = z_k$. $Z_k$ je tudi dosledna cenilka za $z_k$.
+\end{defn}
+
+Naj bo gostota slu"cajne spremenljivke $X$ odvisna od parametrov $\xi_1 \cdots \xi_n: p(X; \xi_1 \cdots \xi_m)$.
+Naj odstajajo za"cetni momenti $z_k = E(X^k) = \int_{-\infty}^{\infty} p(x; \xi_1 \cdots \xi_n) dx, k = 1, 2 \cdots m$.
+Denimo, da iz teh m ena"cb lahko izrazimo parametre: $\xi_k = \phi_k(z_1, z_2 \cdots z_m), k = 1 \cdots m$ za neko
+funkcijo $\phi_k$. Potem je $c_k := \phi_k(z_1 \cdots z_m)$ cenilka za parameter $\xi_k, k = 1 \cdots n$
+
+\begin{ex}
+    Naj bo $X \sim N(\mu, \sigma)$, kjer sta $\mu$ in $\sigma$ neznana parametra. Potem je $z_1 = E(X) = \mu,
+    z_2 = E(X^2) = E(X^2) - (E(X))^2 + (E(X))^2 = D(X) + (E(X))^2 = \sigma^2 + \mu^2$ (m = 2) \\
+    Iz teh dveh ena"cb izrazimo parametra $\mu$ in $\sigma$: $\mu = z_1, \sigma^2 = z_2 - \mu^2 = z_2 - z_1^2$. \\
+    Cenilka za $\mu$ je $Z_1 = \overline{X} = \frac{X_1 + \cdots + X_n}{n}$, cenilka za $\sigma^2$ je
+    $Z_2 - Z_1^2 = \frac{X_1^2 + \cdots + X_n^2}{n} - \overline{X}^2$. To je enako
+    \begin{align*}
+        &S_0^2 = \frac{1}{n} \sum_{i=1}^n (X_i - \overline{X})^2 = \\
+        &= \frac{1}{n} \sum_{i=1}^n (X_i^2 - 2 X_i \overline{X} + \overline{X}^2) = \\
+        &= \frac{1}{n} \sum_{i=1}^n X_i^2 - 2 \overline{X} \overline{X} + \overline{X}^2 = \\
+        &= \frac{1}{n} \sum_{i=1}^2 X_i^2 - \overline{X}^2
+    \end{align*}
+    Torej bodimo "ze znani cenilki za parametra $\mu$ in $\sigma^2$
+\end{ex}
+
+\begin{ex}
+    Naj bo $X$ porazdeljena enakomerno na $[a,b]$, kjer sta $a$ in $b$ neznana parametra. I"s"cemo cenilki za $a$
+    in $b$. Po metodi momentov moramo izra"cunati 2 za"cetna momenta
+    \begin{align*}
+        &z_1 = E(X) = \frac{a+b}{2} \\
+        &z_2 = E(X^2) = \int_{-\infty}^{\infty} x^2 p(x; a, b) dx = \frac{1}{b-a} \int_{a}^{b} x^2 dx = \\
+        &= \frac{1}{b-a} \frac{x^3}{3} \vert_a^b = \frac{b^3-a^3}{3(b-a)} = \frac{b^2 + ab + a^2}{3}
+    \end{align*}
+    Iz 1. ena"cbe dobimo $b = 2z_1 - a$, kar vstavimo v 2. ena"cbo
+    \begin{align*}
+        &3z_2^2 = b^2 + ab + a^2 = 4z_1^2 - 4z_1 a + a^2 + 2a z_1 - a^2 + a^2 \\
+        &\implies 3z_2 = 4z_1^2 - 2z_1 a + a^2 \\
+        &a^2 - 2a z_1 + (4z_1^2 - 3z_2) = 0 \\
+        &\quad D = 4z_1^2 - 4(4z_1^2 - 3z_2) = 12(z_2 - z_1^2) \\
+        &a_{1,2} = \frac{1}{2} (2z_1 \pm \sqrt{D}) = z_1 \pm \frac{1}{2} 2\sqrt{3} \sqrt{z_2 - z_1^2} =
+            z_1 \pm \sqrt{3} \sqrt{z_2 - z_1^2}
+    \end{align*}
+    Ker je $a < b$, je torej
+    \begin{align*}
+        &a = z_1 - \frac{1}{2} 2\sqrt{3} \sqrt{z_2 - z_1^2} \\
+        &b = z_1 + \frac{1}{2} 2\sqrt{3} \sqrt{z_2 - z_1^2}
+    \end{align*}
+    Cenilka za a je
+    \begin{align*}
+        &A := Z_1 \pm \frac{1}{2} 2\sqrt{3} \sqrt{Z_2 - Z_1^2}
+        &A := Z_1 \pm \frac{1}{2} 2\sqrt{3} \sqrt{Z_2 - Z_1^2} = Z_1 - S_0 \sqrt{3} \text{ po prej"snjem primeru}
+            = \overline{X} - S_0 \sqrt{3}
+    \end{align*}
+    Cenilka za b je $B = \overline{X} + S_0 \sqrt{3}$
+    Denimo da imamo konkreten vzorec $-2, 0, 1, 2, 4 (n=5)$ \\
+    $\overline{X} = \frac{-2 + 0 + 1 + 2 + 4}{5} = 1$ \\
+    $S_0^2 = \frac{1}{n} \sum_{i=1}^n (X_i - \overline{X})^2 = \frac{1}{5} ((-3)^2 + (-1)^2 + 0^2 + 1^2 + 3^2) = 4$
+    Vzor"cna vrednost za $A$ je $\overline{X} - S_0 \sqrt{3} = 1 - 2\sqrt{3} = \doteq -2.46$, vzor"cna
+    vrednost z $B$ je $\overline{X} + S_0 \sqrt{3} = 1 + 2\sqrt{3} \doteq 4.46$
+\end{ex}
+
+
+
 \end{document}
