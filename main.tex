@@ -94,6 +94,206 @@
 
 
 
+% 10. predavanje: 9.12.
+
+$f \circ X = f(X)$ \\
+saj je mno"zica
+
+\begin{align*}
+    &(Y \leq y) \equiv \{\omega \in \Omega: f(X(\omega)) \leq y\} = \\
+    &= \{\omega \in \Omega: f(X(\omega)) \in (-\infty, y]\} = \\
+    &= \{\omega \in \Omega: X(\omega) \in f^{-1}((-\infty, y])\} = \\
+    &= \{X \in f^{-1}((-\infty, y])\} 
+\end{align*}
+
+dogodek, ker je $f^{-1}((-\infty, y])$ zaprta mno"zica, torej Borelova. \\
+$y$ je funkcija slu"cajne spremenljivke X. \\
+Naj bo $f$ strogo nara"s"cajo"ca funkcija z zalogo vrednosti $(a,b)$, kjer je $-\infty \leq a < b \leq \infty$ \\
+Vzemimo $y \in (a,b)$. Potem je
+
+\begin{align*}
+    &F_Y(y) \stackrel{\text{def}}{=} P(Y \leq y) = P(f \circ X \leq y) = \\
+    &\text{f nara"s"cajo"ca} \to \text{obrnljiva} \\
+    &= P(X \leq f^{-1}(y)) = F_X(f^{-1}(y))
+\end{align*}
+
+kjer je $f^{-1}: (a,b) \to \R$ inverzna funkcija k funkciji $f$ \\
+"ce je $y \geq b$ je $F_Y(y) = 1$ \\
+"ce je $y \leq a$ je $F_Y(y) = 0$ \\
+"Ce je "se $f$ zvezno odvedljiva in $X$ zvezno porazdeljena slu"cajna spremenljivka, potem je $y$ tudi zvezno
+porazdeljena z gostoto $\Phi$
+
+\begin{equation*}
+    \Phi_Y(y) = F_Y^{'}(y) = F_X^{'}(f^{-1}(y)) \cdot (f^{-1}(y))^{'}
+\end{equation*}
+
+za $y \in (a,b)$, "ce je $y \notin (a,b)$, je $p_Y(y) = 0$ \\
+Podobno ravnamo v primeru, ko je f strogo padajo"ca ($(a,b)$ zaloga vrednosti)
+
+\begin{align*}
+    &F_Y(y) = P(Y \leq y) = P(f \circ X \leq y) = P(X \geq f^{-1}(y)) = \\
+    &= 1 - P(X \leq f^{-1}(y)) = 1 - F_X(f^{-1}(y)-)
+\end{align*}
+
+\begin{ex}
+    $X \sim N(0,1)$, $f(x) = kx + n, k \neq 0, n \in \R$ \\
+    Vzemimo, da je $k > 0$. Definiramo $Y = f(X)$. Tedaj je
+
+    \begin{equation*}
+        p_Y(y) = p_X(\frac{y - n}{k}) \cdot \frac{1}{k}
+    \end{equation*}
+
+    po formuli (prej).
+    \begin{align*}
+        &y = kx + n \implies x = \frac{y-n}{k} = f^{-1}(y)
+    \end{align*}
+
+    To je enako
+
+    \begin{align*}
+        p_Y(y) = \frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2} (\frac{y-n}{k})^2} \frac{1}{k}
+    \end{align*}
+
+    torej je $Y \sim N(n, k)$ \\
+    "Ce je $k < 0$, potem je $p_Y(y) = p_X(\frac{y-n}{k}) \cdot \frac{1}{-k}$, torej za poljuben
+    $k \in \R \textbackslash \{0\}$ je $Y \sim N(n, |k|)$
+\end{ex}
+
+\begin{ex}
+    $X \sim N(0,1), f(x) = x^2$. Tedaj ima $Y = f(X) = X^2$ porazdelitveno funkcijo
+    
+    \begin{equation*}
+        F_Y(y) = P(Y \leq y) = P(X^2 \leq y) = 0
+    \end{equation*}
+
+    za $y \leq 0$ in
+
+    \begin{align*}
+        &F_Y(y) = P(|X| \leq \sqrt{y}) = P(-\sqrt{y} \leq X \leq \sqrt{y}) = F_X(\sqrt{y}) - F_X(-\sqrt{y}) = \\
+        &= \frac{1}{\sqrt{2\pi} \int_{-\sqrt{y}}^{\sqrt{y}}} e^{-\frac{x^2}{2}} dx
+            \stackrel{e^{-\frac{x^2}{2}}\text{ soda}}{under}\text{=} \frac{2}{\sqrt{2\pi}}
+            \int_{0}^{\sqrt{y}} e^{-\frac{x^2}{2}} dx
+    \end{align*}
+
+    za $y \geq 0$ \\
+    Gostota za $Y$ pa je
+    
+    \begin{align*}
+        &p_Y(y) = F_Y^{'}(y) = \frac{2}{\sqrt{2\pi}} \cdot e^{-\frac{1}{2}(\sqrt{y})^2} \cdot \frac{1}{2\sqrt{y}} = \\
+        &= \frac{1}{\sqrt{2\pi}} y^{-\frac{1}{2}} e^{-\frac{y}{2}}
+    \end{align*}
+
+    kar je $\chi^2(1)$, saj je
+
+    \begin{equation*}
+        \chi^2(n): p_X(x) = \frac{1}{2^{\frac{n}{2}} \gamma(\frac{n}{2})} x^{\frac{n}{2} - 1} e^{-\frac{x}{2}}
+    \end{equation*}
+
+    za $x > 0$, sicer $p_X(x) = 0$
+\end{ex}
+
+\begin{claim}
+    "Ce sta $X$ in $Y$ neodvisni slu"cajni spremenljivki, $f$ in $g: \R \to \R$ zvezni funkciji, potem sta tudi
+    $U = f(X)$ in $V = g(Y)$ neodvisni slu"cajni spremenljivki
+\end{claim}
+
+\begin{proof}
+    \begin{align*}
+        &F_{(U,V)}(u,v) = P(f(x) \leq u, g(y) \leq v) = P(X \in f^{-1}((-\infty, u]), Y \in g^{-1}((-\infty, v])) =\\
+        &f^{-1}((-\infty, u]) \text{ in } g^{-1}((-\infty, v]) \text{ zaprti } \implies \text{ Borelovi} \\
+        &\stackrel{\text{Borelov izrek}}{=} P(X \in f^{-1}((-\infty, u])) \cdot P(Y \in g^{-1}((-\infty, v])) = \\
+        &= P(f(X) \leq u) \cdot P(g(Y) \leq v) = F_U(u) \cdot F_V(v) \; \forall u, v \in \R
+    \end{align*}
+\end{proof}
+
+\begin{theorem}
+    Naj bo $X = (X_1 \cdots X_n): \Omega \to \R^n$ slu"cajni vektor in $f = (f_1 \cdots f_m): \R^n \to \R^m$ zvezna
+    preslikava. Potem je $Y = f \circ X \equiv f(X): \Omega \to \R^m$ tudi slu"cajni vektor (brez dokaza).
+\end{theorem}
+
+$Y$ je funkcija slu"cajnega vektorja $X$ in ima $m$ komponent $Y = (Y_1 \cdots Y_m)$. \\
+Porazdelitvena funkcija za $Y_j, (j = 1, 2 \cdots m)$ je
+
+\begin{equation*}
+    F_{Y_j}(y) = P(f_i(x_1 \cdots x_n) \leq y) = P((x_1 \cdots x_n) \in f_j^{-1}((-\infty, y])) \text{ mno"zica v} \R^n
+\end{equation*}
+
+"Ce je $X = (X_1 \cdots X_n)$ zvezno porazdeljena, je torej
+
+\begin{equation*}
+    F_{Y_j}(y) = \int \underbrace{\cdots}_{f^{-1}((-\infty, y])} \int p_X(x_1 \cdots x_n) dx_1 \cdots dx_n
+\end{equation*}
+
+\begin{ex}
+    $n = 2, m = 1$, $(x,y): \Omega \to \R^2$ zvezno porazdeljen
+
+    \begin{align*}
+        &F_Z(z) = P(Z \leq z) = P(f(x,y) \leq z) = P((X,Y) \in f^{-1}((-\infty, z])) = \\
+        &= \iint\limits_{x + y \leq z} p_{(X,Y)}(x,y) dx dy = \int_{-\infty}^{\infty} dx
+            \int_{-\infty}^{z-x} p_{(X,Y)}(x,y) dy
+    \end{align*}
+
+    od tod sledi, da je gostota slu"cajne spremenljivke $Z$
+
+    \begin{equation*}
+        p_Z(z) = F_Z^{'}(z) = \int_{-\infty}^{\infty} p_{(X,Y)}(x,z-x) dx
+    \end{equation*}
+
+    "Ce sta "se $X$ in $Y$ neodvisni slu"cajni spremenljivki, potem je
+
+    \begin{equation*}
+        p_Z(z) = \int_{-\infty}^{\infty} p_X(x) \cdot p_Y(z-x) dx \text{ - konvolucija funkcij } p_X \text{ in } p_Y
+    \end{equation*}
+\end{ex}
+
+Vzemimo posebni primer $X \sim \chi^2(m)$, $Y \sim \chi^2(n)$, torej
+
+\begin{equation*}
+    p_X(x) = \frac{1}{2^{\frac{m}{2}} \Gamma(\frac{m}{2})} x^{\frac{m}{2} - 1} e^{-\frac{x}{2}} \text{ za } x > 0
+    \text{ in 0 sicer}
+\end{equation*}
+
+za $p_Y(y)$ podobno. \\
+Po zadnji formuli je $p_Z(z) = \int_{-\infty}^{\infty} p_X(x) \cdot p_Y(z-x) dx = 0$ za $z \leq 0$, \\
+sicer je za $z > 0$
+
+\begin{align*}
+    &p_Z(z) = \frac{1}{2^{\frac{m}{2}} \Gamma(\frac{m}{2}) 2^{\frac{m}{2}} \Gamma(\frac{n}{2})} e^{-\frac{z}{2}}
+        \int_{0}^{z} x^{\frac{m}{2} - 1} (z-x)^{\frac{m}{2} - 1 + \frac{n}{2} - 1 + 1} e^{-\frac{x}{2}}
+        e^{-\frac{z-x}{2}} dx = \\
+    &= \frac{1}{2^{\frac{m+n}{2}} \Gamma(\frac{m}{2}) \Gamma(\frac{n}{2})} e^{-\frac{z}{2}}
+        \int_0^z x^{\frac{m}{2} - 1} (z-x)^{\frac{n}{2} - 1} dx =
+\end{align*}
+
+\begin{align*}
+    &B(p,q) = \int_0^1 t^{p-1} (1-t)^{q-1} dt \\
+    &x = tz \; dx = z dt
+\end{align*}
+
+\begin{align*}
+    &= \frac{1}{2^{\frac{m+n}{2}} \Gamma(\frac{m}{2}) \Gamma(\frac{n}{2})} e^{-\frac{z}{2}}
+        z^{\frac{m}{2} - 1 + \frac{n}{2} - 1 + 1} \int_0^1 t^{\frac{m}{2} - 1} (1-t)^{\frac{n}{2} - 1} dt =
+\end{align*}
+
+\begin{align*}
+    &B(p,q) = \frac{\Gamma(p) \Gamma(q)}{\Gamma(p+q)} \\
+    &\to B(\frac{m}{2}, \frac{n}{2}) = \frac{\Gamma(\frac{m}{2}) \Gamma(\frac{n}{2})}{\Gamma(\frac{m+n}{2})}
+\end{align*}
+
+\begin{align*}
+    &= \frac{1}{2^{\frac{m+n}{2}} \Gamma(\frac{m+n}{2})} e^{-\frac{z}{2}} z^{\frac{m+n}{2} - 1}
+\end{align*}
+
+Torej $X + Y \sim \chi^n(m+n)$ \\
+Dokazali smo
+
+\begin{claim}
+    Naj bosta neodvisni slu"cajni spremenljivki $X \sim \chi^2(m), Y \sim \chi^2(n)$z. Potem je
+    $X + Y \sim \chi^2(m+n)$
+\end{claim}
+
+
+
 % 11. predavanje: 16.12.
 
 \begin{conseq}
