@@ -94,6 +94,220 @@
 
 
 
+% 9. predavanje: 2.12.
+
+$N(\mu, A), \mu \in \R^n, A \in \R^{m \times n}$ pozitivna definitna matrika, t.j. sebi adjungirana matrika,
+za katero velja
+
+\begin{equation*}
+    x^T A x = \langle Ax, x \langle > 0 \; \forall x \in \R^n \text{\textbackslash} \{0^n\}
+\end{equation*}
+
+V to"cki $x = (x_1 \cdots x_n)^T$ je
+
+\begin{equation*}
+    p(x) = \sqrt{\frac{detA}{(2\pi)^n}} \cdot e^{-\frac{1}{2} (x-\mu)^T A (x-\mu)}
+\end{equation*}
+
+Izra"cunajmo integral
+
+\begin{align*}
+    &\int \underbrace{\cdots}_{\R^n} \int e^{-\frac{1}{2} (x-\mu)^T A (x-\mu)} dx = \\
+    &y = x - \mu \implies dy = dx \\
+    &= \int \underbrace{\cdots}_{\R^n} \int e^{-\frac{1}{2} y^T A y} dy
+\end{align*}
+
+Ker je $A$ pozitivna definitna matrika, obstaja ortogonalna matrika $U$ in diagonalna matrika
+$D = diag(\lambda_1 \cdots \lambda_n)$, da je $A = U^T D U$
+
+\begin{align*}
+    &= \int \underbrace{\cdots}_{\R^n} \int e^{-\frac{1}{2} y^T U^T D U y} dy = \\
+    &z = U y, y = U^T z, dy = |det U^T| dz = dz \\
+    &= \int \underbrace{\cdots}_{\R^n} \int e^{-\frac{1}{2} z^T D z} dz = \\
+    &= \int \underbrace{\cdots}_{\R^n} \int e^{-\frac{1}{2} (\lambda_1 z_1^2 + \cdots + \lambda_n z_n^2)}
+        dz_1 \cdots dz_n = \\
+    &= \int_{\R} e^{-\frac{1}{2} \lambda_1 z_1^2} dz_1 \cdots \int_{\R} e^{-\frac{1}{2} \lambda_1 z_n^2} dz_n = \\
+\end{align*}
+
+Ker je $\int_{\R} e^{-\frac{1}{2} \lambda z^2} dz = \sqrt{\frac{2\pi}{\lambda}}$ - $z \in \R$ - s pomo"cjo
+$\Gamma$ funkcije, Bronsterin, sledi iz
+
+\begin{equation*}
+    \frac{1}{\sqrt{2\pi}\sigma} = \int_{\R} e^{-\frac{1}{2} (\frac{x}{\sigma})^2} dx = 1
+\end{equation*}
+
+Gostota za $N(0, \sigma), \lambda := \frac{1}{\sigma^2}, \sigma = \frac{1}{\sqrt{\lambda}}$
+
+\begin{align*}
+    &= \sqrt{\frac{2\pi}{\lambda_1}} \cdot \cdots \cdot \sqrt{\frac{2\pi}{\lambda_1}} =
+        \sqrt{\frac{(2\pi)^n}{det A}}
+\end{align*}
+
+Torej je $\int \underbrace{\cdots}_{\R^n} \int p(x) dx = 1$ \\
+Dvoraz"se"zni primer je posebni primer
+
+\begin{align*}
+    &A = \frac{1}{1-\rho^2} \begin{bmatrix}
+            \frac{1}{\sigma_x^2} & -\frac{\rho}{\sigma_x \sigma_y} \\
+            -\frac{\rho}{\sigma_x \sigma_y} & \frac{q}{\sigma_y^2} \\
+        \end{bmatrix}, \mu = \begin{bmatrix}
+            \mu_x \\
+            \mu_y
+        \end{bmatrix} \\
+    &det A = \frac{1}{1-\rho^2} (\frac{1}{\sigma_x^2 \sigma_y^2} - \frac{\rho^2}{\sigma_x^2 \sigma_y^2})
+        \stackrel{\text{?}}{=} \frac{1}{\sigma_x^2 \sigma_y^2}
+\end{align*}
+
+$K = A^{-1} = \begin{bmatrix}
+    \sigma_x^2 & \rho \sigma_x \sigma_y \\
+    -\rho \sigma_x \sigma_y & \sigma_y^2
+\end{bmatrix}$ kovarian"cna matrika (slu"cajnemu vektorju $X,Y$)
+
+\subsection{Neovdisnost slu"cajnih spremenljivk}
+
+\begin{defn}[Neodvisnost]
+    Slu"cjane spremenljivke $x_1, x_2 \cdots x_n$ v slu"cjanem vektorju $x = (x_1 \cdots x_n)$ so neodvisne,
+    "ce je
+
+    \begin{equation*}
+        F_X(x_1 \cdots x_n) = F_{X_1}(x_1) \cdots F_{X_n}(x_n) \text{ za } \forall x \in \R^n
+    \end{equation*}
+    
+    oziroma
+
+    \begin{equation*}
+        P(X_1 \leq x_1, X_2 \leq x_2 \cdots X_n \leq x_n) = P(X_1 \leq x_1) \cdots P(X_n \leq x_n)
+    \end{equation*}
+
+    oziroma dogodki $(X_1 \leq x_1) \cdots (X_n \leq x_n)$ so neodvisni
+\end{defn}
+
+Oglejmo si dvorazse"zni diskretni primer
+
+\begin{claim}
+    Naj bo $(X,Y)$ diskretno porazdeljen vektor:
+
+    \begin{equation*}
+        p_{ij} = P(X = x_i, Y = y_j), p_i = P(X = x_i), q_j = P(Y = y_j)
+    \end{equation*}
+
+    Potem sta $X$ in $Y$ neodvisni $\iff p_{ij} = p_i \cdot q_j \; \forall i,j$
+\end{claim}
+
+\begin{proof}
+    $F \equiv F_{(X,Y)}$ porazdelitvena funkcija vektorja $(x,y)$ \\
+    $(\Rightarrow)$
+
+    \begin{align*}
+        &p_{ij} \stackrel{\text{def}}{=} P(X = x_i, Y = y_j) =
+            \lim_{h \to 0} P(x_i - h < X \leq x_i, y_j - h < Y \leq y_j) = \\
+        &= \lim_{h \to 0} (F_X(x_i) F_Y(y_j) - F_X(x_i - h) F_Y(y_j) -
+            F_X(x_i) F_Y(y_j - h) - F_X(x_i - h) F_Y(y_j - h)) = \\
+        &\stackrel{\text{neodv.}}{=} \lim_{h \to 0} (F_X(x_i) - F_X(x_i - h)) (F_Y(y_j) - F_Y(y_j - h)) = \\
+        &= \lim_{h \to 0} P(x_i - h < X \leq x_i) \cdot P(y_j - h < Y \leq y_j) = \\
+        &= \lim_{h \to 0} P(x_i - h < X \leq x_i) \cdot \lim_{h \to 0} P(y_j - h < Y \leq y_j) = \\
+        &= P(X = x_i) \cdot P(Y = y_j) = p_i \cdot q_j
+    \end{align*}
+
+    $(\Leftarrow)$
+
+    \begin{align*}
+        &F_{(X,Y)}(x,y) = P(X \leq x, Y \leq y) = P(\cup_{i: x_i \leq x} \cup_{j: y_j \leq y} (X = x_i, Y = y_j)) = \\
+        &\stackrel{\text{disjunktni}}{=} \sum_{i: x_i \leq x} \sum_{j: y_j \leq y} P(X = x_i, Y = y_j) = \\
+        &\stackrel{\text{predpostavka}}{=} \sum_{i: x_i \leq x} \sum_{j: y_j \leq y} p_i q_j = \\
+        &= (\sum_{i: x_i \leq x} p_i) (\sum_{j: y_j \leq y} q_j) = \\
+        &= P(X \leq x_i) \cdot P(Y \leq y_j) = F_X(x) \cdot F_Y(y)
+    \end{align*}
+\end{proof}
+
+Torej sta $X$ in $Y$ neodvisni slu"cajni spremenljivki
+%tabelca
+
+\begin{claim}
+    Naj bo $(X,Y)$ zvezno porazdeljen slu"cajni vektore z gostoto $p(x,y)$. Potem sta $X$ in $Y$ neodvisni
+    slu"cajni spremenljivki $\iff$ $p_{(X,Y)}(x,y) = p_X(x) \cdot p_Y(y)$ za (skoraj) vse $x,y \in \R$
+\end{claim}
+
+\begin{proof}
+    (ideja): $X$ in $Y$ sta neodvisni, "ce $F_{(X,Y)}(x,y) = F_X(x) \cdot F_Y(y) \forall x, y \in \R$. "Ce parcialno
+    odvajamo po $x$ in po $y$, dobimo $p_{(X,Y)}(x,y) = p_X(x) \cdot p_Y(y)$. Obratno dobimo z integriranjem po
+    $x$ in po $y$
+\end{proof}
+
+\begin{ex}
+    $(X,Y) \sim N(\mu_x, \mu_y, \sigma_x, \sigma_y, \rho)$. Tedaj je
+
+    \begin{align*}
+        &X \sim N(\mu_x, \sigma), Y \sim N(\mu_y, \sigma_y) \\
+        &X \text{ in } Y \text{ sta neodvisni } \iff \rho = 0 \\
+        &p_{(X,Y)}(x,y) = \frac{1}{2\pi \sigma_x \sigma_y} e^{-\frac{1}{2} ((\frac{x-\mu_x}{\sigma_x})^2 +
+            (\frac{y-\mu_y}{\sigma_y})^2)} = \\
+        &= \frac{1}{\sqrt{2\pi} \sigma_x} e^{-\frac{1}{2} (\frac{x-\mu_x}{\sigma_x})^2} +
+            \frac{1}{\sqrt{2\pi} \sigma_y} e^{-\frac{1}{2} (\frac{y-\mu_y}{\sigma_y})^2} = p_X(x) \cdot p_Y(y)
+    \end{align*}
+
+    \begin{align*}
+        &N(0,0,1,1,\rho): x^2 - 2\rho x y + y^2 = c \text{ - ovojnica} \\
+        &\quad \rho = 0: x^2 + y^2 = c \text{ - kro"znica}
+    \end{align*}
+\end{ex}
+
+\begin{claim}
+    Naj bo $(X,Y)$ zvezno porazdeljen slu"cajni vektor. Potem sta $X$ in $Y$ neodvisni $\iff p_{(X,Y)}(x,y) =
+    f(x) \cdot g(y)$ za neki integrabilni funkciji $f$ in $g$
+\end{claim}
+
+\begin{proof}
+    ($\Rightarrow$) jasno na zadnji trditvi \\
+    ($\Leftarrow$)
+
+    \begin{align*}
+        &p_X(x) = \int_{-\infty}^{\infty} p_{(X,Y)}(x,y) dy \stackrel{\text{predpostavka}}{=}
+            f(x) \int_{-\infty}^{\infty} g(y) dy \text{ in } \\
+        &p_Y(y) = \int_{-\infty}^{\infty} p_{(X,Y)}(x,y) dx \stackrel{\text{predpostavka}}{=}
+            g(y) \int_{-\infty}^{\infty} f(x) dx \\
+    \end{align*}
+
+    Ker je $\iint\limits_{\R^2} p_{(X,Y)}(x,y) dx dy = 1$, je
+
+    \begin{equation*}
+        \int_{-\infty}^{\infty} f(x) dx \cdot \int_{-\infty}^{\infty} g(y) dy = 1 \text{ predpostavka}
+    \end{equation*}
+
+    Zato je $p_X(x) \cdot p_Y(y) = f(x) \cdot g(y) = p_{(X,Y)}(x,y)$, kar pomeni neodvisnost po prej"snji trditvi
+\end{proof}
+
+\begin{theorem}
+    Slu"cajni spremenljivki $X$ in $Y$ sta neodvisni $\iff$ za vsaki Borelovi mno"zici $A, B \subseteq \R$ velja
+
+    \begin{equation*}
+        P(X \in A, Y \in B) = P(X \in A) \cdot P(Y \in B)
+    \end{equation*}
+
+    t.j. dogodka $(X \in A)$ in $(Y \in B)$ sta neodvisna \\
+    (Borelova $\sigma$-algebra: najmanj"sa $\sigma$-algebra z odprtimi mno"zicami)
+\end{theorem}
+
+\begin{proof}
+    ($\Leftarrow$)
+
+    \begin{align*}
+        &A = (-\infty, x], B = (-\infty, y] \\
+        &P(X \leq x, Y \leq y) = P(X \in (-\infty, x], Y \in (-\infty, y]) = \\
+        &= P(x \in (-\infty, x]) \cdot P(Y \in (-\infty, y]) = P(X \leq x) P(Y \leq y) \\
+        &\implies F_{(X,Y)}(x,y) = F_X(x) \cdot F_Y(y)
+    \end{align*}
+
+    ($\Rightarrow$) izpustimo
+\end{proof}
+
+\subsection{Funkcije slu"cajnih spremenljivk in slu"cajnih vektorjev}
+
+Naj bo $X: \Omega \to \R$ slu"cajna spremenljivka in $f: \R \to \R$ zvezna. Potem je $Y := f \circ X: \omega \to \R$
+tudi slu"cajna spremenljivka.
+
+
+
 % 10. predavanje: 9.12.
 
 $f \circ X = f(X)$ \\
