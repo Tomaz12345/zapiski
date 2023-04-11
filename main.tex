@@ -94,13 +94,184 @@
 
 
 
+% 8. predavanje: 25.11.
+
+\begin{align*}
+    &(X,Y): \Omega \to \R^2 \text{ slu"cajni vektor} \\
+    &F_{(X,Y)}(x,y) = P(X \leq x, Y \leq y) = P((x,y) \in (-\infty, x] \times (-\infty, y])
+\end{align*}
+
+Izrazimo z $F_{(X,Y)} = F$ verjetnost $P(a < X < b, c < Y < d)$. To bo posplo"sitev formule
+$P(a < X < b) = F_X(b) - F_X(a)$ \\
+Najprej vzemimo posebni primer:
+
+\begin{align*}
+    &P(a < X \leq b, Y \leq d) = P((X \leq b, Y \leq d) \text{\textbackslash} (X \leq a, Y \leq d)) = \\
+    &=P (X \leq b, Y \leq d) - P(X \leq a, Y \leq d) = F(b,d) - F(a,b)
+\end{align*}
+
+V splo"snem primeru pa imamo
+
+\begin{align*}
+    &P(a < X \leq b, c < Y \leq d) = P((a < X \leq b, Y \leq d) \text{\textbackslash}
+        (a < X \leq b, Y \leq c)) = \\
+    &= P(a < X \leq b, Y \leq d) - P(a < X \leq b, Y \leq c) = \\
+    &\stackrel{\text{fiks. y}}{=} (F(b,d) - F(a,d)) - (F(b,c) - F(a,c))
+\end{align*}
+
+Torej je
+
+\begin{equation*}
+    P(a < X \leq b, c < Y \leq d) = F(b,d) - F(a,d) - F(b,c) + F(a,c)
+\end{equation*}
+
+Najpomembnej"sa razreda ve"crazse"znih porazdelitev sta
+
+\subsubsection{Diskretne porazdelitve}
+
+\begin{defn}
+    Slu"cajni vektor $X = (X_1 \cdots X_n): \Omega \to \R^n$ je diskretno porazdeljen, "ce je njegova zaloga vrednosti
+    kon"cna/"stevna mno"zica to"ck v $\R^n$. Omejimo se na $n=2: \Omega \to \R^2$. \\
+    Naj bo $\{x_1, x_2 \cdots\}$ zaloga vrednosti slu"cajne spremenljivke $X$ in $\{y_1, y_2 \cdots\}$ zaloga
+    vrednosti slu"cajne spremenljivke $Y$. Potem je zaloga vrednosti vektorja $(X,Y)$ vsebovana v
+    $\{(x_i, y_i): i = 1,2 \cdots j = 1,2 \cdots \}$. \\
+    Definiramo verjetnostno funkcijo $p_{ij} := P(X = x_i, Y = y_j) i = 1,2 \cdots j = 1,2 \cdots$ \\
+    Ker je $\{(X = x_i, Y = y_j)\}_{ij}$ popoln sistem dogodkov, je $\sum_i \sum_j p_{ij} = 1$
+\end{defn}
+
+%tabelca
+\begin{align*}
+    &X: \begin{pmatrix}
+            x_1 & x_2 & \cdots \\
+            p_1 & p_2 & \cdots
+        \end{pmatrix} \\
+    &p_i = P(X = x_i) = P(\cup_j (X = x_i, Y = y_j)) = \sum_j P(X = x_i, Y = y_j) = \sum_j p_{ij} \; i = 1,2 \cdots \\
+    &\text{"ce je } Y: \begin{pmatrix}
+            y_1 & y_2 & \cdots \\
+            q_1 & q_2 & \cdots
+        \end{pmatrix} \text{, je } \\
+    &q_j = P(Y = y_i) = P(\cup_i (X = x_i, Y = y_j)) = \sum_i P(X = x_i, Y = y_j) = \sum_i p_{ij} \; j = 1,2 \cdots
+\end{align*}
+
+\begin{ex}
+    Met dveh kock: $X$ "stevilo pik na 1. kocki, $Y$ na 2.
+\end{ex}
+
+\subsubsection{Zvezne porazdelitve}
+
+\begin{defn}
+    Slu"cajni vektor $X = (X_1 \cdots X_n)$ je zvezno porazdeljen, "ce obstaja integrabilna funkcija $p_X: \R^n \to \R$,
+    imenovana gostota porazdelitve, da je
+
+    \begin{align*}
+        &F_X(x) = F_{(X_1 \cdots X_n)}(x_1 \cdots x_n) = \int_{-\infty}^{x_1} dt_1 \int_{-\infty}^{x_2} dt_2 \cdots
+            \int_{-\infty}^{x_n} p_X(t_1 \cdots t_n) dt_n \text{ za } \forall x = (x_1 \cdots x_n) \in \R^n
+    \end{align*}
+\end{defn}
+
+Ker je $\lim_{\substack{x_1 \to \infty \\ \vdots \\ x_n \to \infty}} F_X(x_1 \cdots x_n) = 1$, je
+
+\begin{equation*}
+    \int \cdots_{\R^n} \int p_X(t_1 \cdots t_n) dt_1 \cdots dt_n = 1
+\end{equation*}
+
+Za vsako Borelovo mno"zico $A \subseteq \R^n$ (najmanj"sa $\sigma$-algebra z vsemi odprtimi pravokotniki) je
+
+\begin{equation*}
+    P(X \in A) \equiv P((x_1 \cdots x_n) \in A) = \int \cdots_{A} \int p_X(t_1 \cdots t_n) dt_1 \cdots dt_n
+\end{equation*}
+
+Omejimo se na $n=2: F_{(X,Y)}(x,y) = \int_{-\infty}^{x} du \int_{-\infty}^{y} p_{(X,Y)}(u,v) dv$ \\
+Robni porazdelitvi sta:
+
+\begin{align*}
+    &F_X(x) = \lim_{y \to \infty} F_{(X,Y)}(x,y) = \text{ (brez utemeljevanja)} \\
+    &= \int_{-\infty}^{x} du \int_{-\infty}^{\infty} p_{(X,Y)}(u,v) dv
+\end{align*}
+
+ki ima gostoto
+
+\begin{align*}
+    p_X(x) = \int_{-\infty}^{\infty} p_{(X,Y)}(x,y) dy
+\end{align*}
+
+in
+
+\begin{align*}
+    &F_Y(y) = \lim_{x \to \infty} F_{(X,Y)}(x,y) = \\
+    &= \int_{-\infty}^{y} dv \int_{-\infty}^{\infty} p_{(X,Y)}(u,v) du
+\end{align*}
+
+ki ima gostoto
+
+\begin{align*}
+    p_Y(y) = \int_{-\infty}^{\infty} p_{(X,Y)}(x,y) dx
+\end{align*}
+
+(ekvivalentno vsoti v diskretnem primeru). \\
+Najpomembnej"sa dvorazse"zna zvezna porazdelitev je normalna:
+
+\begin{align*}
+    &N(\mu_x, \mu_y, \sigma_x, \sigma_y, \rho), \mu_x, \mu_y \in \R, \sigma_x, \sigma_y > 0, \rho \in (-1,1) \\
+    &p(x,y) = \frac{1}{2\pi \sigma_x \sigma_y \sqrt{1-\rho^2}} e^{-\frac{1}{2 (1-\rho^2)}
+        ((\frac{x-\mu_x}{\sigma_x})^2 - 2 \rho \frac{x-\mu_x}{\sigma_x} \frac{y-\mu_y}{\sigma_y} +
+        (\frac{y-\mu_y}{\sigma_y})^2)} \\
+    &(\mu_x, \mu_y) \text{ premik, } (\sigma_x, \sigma_y) \text{ razteg} \\
+    &N(0,0,1,1,\rho): p(x,y) = \frac{1}{2\pi \sqrt{1-\rho^2}} e^{-\frac{1}{2 (1-\rho^2)} (x^2 - 2 \rho x y + y^2)}
+\end{align*}
+
+Nivojnice, izohipse se: $x^2 - 2 \rho x y + y^2 = c$
+
+\begin{itemize}
+    \item $\rho = 0$: kro"znica
+    \item $\rho \in (-1,1)$: elipsa
+\end{itemize}
+
+Robni porazdelitvi sta
+
+\begin{equation*}
+    p_X(x) = \int_{-\infty}^{\infty} p(x,y) dx = \cdots = \frac{1}{\sigma_x \sqrt{2\pi}}
+    e^{-\frac{1}{2} (\frac{x-\mu_x}{\sigma_x})^2}
+\end{equation*}
+
+torej $X \sim N(\mu_x, \sigma_x)$. Podobno $Y \sim N(\mu_y, \sigma_y)$
+
+\begin{ex}
+    Krvni tlak, $X$ je sistoli"cni, $Y$ je diastoli"cni krvni tlak \\
+    $\mu_x = 120, \mu_y = 75, \rho \doteq 0.7$
+\end{ex}
+
+Dvorazse"zna normalna porazdelitev je posebni primer ve"crazse"zne normalne porazdelitve $N(\mu, A)$, kjer je
+$\mu = (\mu_1 \cdots \mu_n)^T$ in $A$ pozitivno definitna matrika. \\
+Gostota v to"cki $x = (x_1 \cdots x_n)^T$ je
+
+\begin{align*}
+    &p(X) = \sqrt{\frac{det A}{(2\pi)^n}} e^{-\frac{1}{2} (x-\mu)^T A (x-\mu)} \\
+    &(x-\mu)^T A (x-\mu) = \langle A(x-\mu), x-\mu \rangle
+\end{align*}
+
+Za dokaz enakosti
+
+\begin{equation*}
+    \int \cdots_{\R^n} \int p(x) dx_1 \cdots dx_n = 1
+\end{equation*}
+
+izra"cunajmo integral
+
+\begin{equation*}
+    \int \cdots_{\R^n} \int e^{-\frac{1}{2} (x-\mu)^T A (x-\mu)} dx_1 \cdots dx_n =
+    \sqrt{\frac{(2\pi)^n}{det A}}
+\end{equation*}
+
+
+
 % 9. predavanje: 2.12.
 
 $N(\mu, A), \mu \in \R^n, A \in \R^{m \times n}$ pozitivna definitna matrika, t.j. sebi adjungirana matrika,
 za katero velja
 
 \begin{equation*}
-    x^T A x = \langle Ax, x \langle > 0 \; \forall x \in \R^n \text{\textbackslash} \{0^n\}
+    x^T A x = \langle Ax, x \rangle > 0 \; \forall x \in \R^n \text{\textbackslash} \{0^n\}
 \end{equation*}
 
 V to"cki $x = (x_1 \cdots x_n)^T$ je
