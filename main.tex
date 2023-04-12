@@ -2459,4 +2459,163 @@ $A$ in $B$ sta vzor"cni statistiki, $1 - \alpha$ je stopnja zaupanja
 
 
 
+% 23. predavanje: 11.4.
+
+\begin{ex}
+    Pri normalni porazdelitvi $N(\mu, \sigma)$ ocenjujemo parameter $\sigma$. Vzor"cna statistika
+
+    \begin{equation*}
+        \chi^2 := \frac{1}{\sigma^2} \sum_{i=1}^{n} (x_i - \overline{x})^2 =
+        \frac{n-1}{\sigma^2} \sum_{i=1}^{n} (x_i - \overline{x})^2S 
+    \end{equation*}
+
+    je porazdeljena po $\chi^2(n-1)$ \\
+    Izberimo $c_1$ in $c_2$ da je
+
+    \begin{equation*}
+        P(\chi^2 < c_1) = \frac{\alpha}{2} = P(\chi^2 > c_2)
+    \end{equation*}
+
+    oz.
+
+    \begin{equation*}
+        P(c_1 < \chi^2 < c_2) = 1 - \alpha
+    \end{equation*}
+
+    Pogoj $c_1 < \chi^2 < c_2$ pomeni
+
+    \begin{align*}
+        &c_1 < \frac{n-1}{\sigma^2} s^2 < c_2 \iff \\
+        &\iff \frac{1}{c_1} > \frac{\sigma^2}{(n-1)s^2} > \frac{1}{c_2} \iff \\
+        &\iff B := \frac{(n-1)s^2}{c_1} > \sigma^2 > \frac{(n-1)s^2}{c_1} =: A 
+    \end{align*}
+
+    $[A,B]$ je interval zaupanja za $\sigma^2$ pri stopnji tveganja $\alpha$
+
+    \begin{align*}
+        &A = \frac{1}{c_2} \sum_{i=1}^{n} (x_i - \overline{x})^2, \\
+        &B = \frac{1}{c_1} \sum_{i=1}^{n} (x_i - \overline{x})^2
+    \end{align*}
+
+    \begin{ex}
+        "Zarnice iz prej"snjega primera: \\
+        $n=7, (n-1)s^2 = \sum_{i=1}^{n} (x_i - \overline{x})^2 = 0.481, \alpha = 0.05$9
+
+        \begin{align*}
+            &\chi^2(6): c_1 = 1.24, c_2 = 14.45 \\
+            &a = \frac{1}{14.45} 0.481 = 0.033, b = \frac{1}{1.24} 0.481 = 0.388 \\
+            &\implies P(0.033 < \sigma^2 < 0.388) = 0.95 \\
+            &P(0.182 < \sigma < 0.623) = 0.95
+        \end{align*}
+
+        $[0.182, 0.623]$ je interval zaupanja za $\sigma$ pri stopnji tveganja $0.05$
+    \end{ex}
+\end{ex}
+
+\begin{ex}
+    $X: \begin{pmatrix}
+        0 & 1 \\
+        q & p
+    \end{pmatrix}, q = 1-p, p$ neznan parameter, ki ga ocenjujemo \\
+    $(x_1 \cdots x_n)$ vzorec. Potem je $S_n = X_1 + \cdots + X_n \sim Bin(n,p)$ in $\overline{X} = \frac{S_n}{n}$
+    je nepristranska in dosledna cenilka za $p$. Po CLI (Laplaceovi formuli) je pri velikih n
+    $Z := \frac{S_n - np}{\sqrt{npq}} \sim N(0,1)$ oz. $Z = \frac{\overline{X} - p}{\sqrt{pq}} \sqrt{n} \sim N(0,1)$
+    oz. $\overline{X} \sim N(p, \sqrt{\frac{pq}{n}})$ \\
+    Pri danem $\alpha > 0$ izberimo $z_{\frac{\alpha}{2}} > 0$, da je $P(|Z| < z_{\frac{\alpha}{2}}) = 1 - \alpha$ \\P
+    Pogoj $|Z| < z_{\frac{\alpha}{2}}$ pomeni $|S - np| < z_{\frac{\alpha}{2}} \sqrt{npq}$ oz.
+    $|\overline{X} - p| < z_{\frac{\alpha}{2}} \cdot \sqrt{\frac{pq}{n}}$ \\
+    "Ce na desni strani naredimo aproksimacijo $\overline{X} \approx p$, dobimo pogoj
+
+    \begin{equation*}
+        |\overline{X} - p| < z_{\frac{\alpha}{2}} \sqrt{\frac{\overline{X} (1-\overline{X})}{n}}
+    \end{equation*}
+
+    od koder dobimo interval zaupanja za $p$:
+
+    \begin{align*}
+        &A := \overline{X} - z_{\frac{\alpha}{2}} \sqrt{\frac{\overline{X} (1-\overline{X})}{n}} \\
+        &B := \overline{X} + z_{\frac{\alpha}{2}} \sqrt{\frac{\overline{X} (1-\overline{X})}{n}} \\
+        &A < p < B
+    \end{align*}
+
+    \begin{ex}
+        Predsedni"ske volitve v ZDA leta 2000: \\
+        Anketa na $2207$ volivcev: $n=2207, \alpha = 0.05 \implies z_{\frac{\alpha}{2}} = 1.96$ \\
+        George Bush: $47\%$, Algore: $44\%$, Ralph Nader: $2\%$ \\
+        Dolo"cimo intervale zaupanja
+
+        \begin{equation*}
+            p_{Bush} = 0.47 \pm 1.96 \sqrt{\frac{0.47 (1-0.47)}{2207}} \doteq 0.47 \pm 0.02
+        \end{equation*}
+
+        Interval zaupanja za $p_{Bush}$ je $[0.45, 0.49]$
+
+        \begin{equation*}
+            p_{Algore} = 0.44 \pm 1.96 \sqrt{\frac{0.44 \cdot 0.56}{2207}} \doteq 0.44 \pm 0.02
+        \end{equation*}
+
+        Interval zaupanja za $p_{Algore}$ je $[0.42, 0.46]$
+
+        \begin{equation*}
+            p_{Nader} = 0.02 \pm 1.96 \sqrt{\frac{0.02 \cdot 0.98}{2207}} \doteq 0.02 \pm 0.006
+        \end{equation*}
+
+        Odstopanje:
+
+        \begin{align*}
+            &z_{\frac{\alpha}{2}} \sqrt{\frac{\overline{x} (1-\overline{x})}{n}} < 
+                2 \sqrt{\frac{\frac{1}{4}}{n}} = \frac{1}{\sqrt{n}} \\
+            &x(1-x) \leq \frac{1}{4} \iff x-x^2 \leq \frac{1}{4} \iff \\
+            &\iff 0 \leq x^2 - x + \frac{1}{4} = (x-\frac{1}{2})^2
+        \end{align*}
+    \end{ex}
+\end{ex}
+
+\subsection{Preizku"sanje statisti"cnih hipotez}
+
+\begin{defn}[Statisti"cna hipoteza]
+    Statisti"cna hipoteza je vsaka domneva o porazdelitvi slu"cajne spremenljivke $X$ na populaciji
+\end{defn}
+
+\begin{defn}[Enostavnost hipoteze]
+    Hipoteza je enostavna, "ce natanko dolo"ca porazdelitev, sicer je sestavljena
+\end{defn}
+
+\begin{ex}
+    $X \sim N(\mu, \sigma), \sigma$ poznamo, $\mu$ je neznan parameter \\
+    $H(\mu = 0)$ je primer enostavne hipoteze. "Ce $\sigma$ ne poznamo, je to sestavljena hipoteza
+\end{ex}
+
+Vedno preizku"samo eno ni"celno hipotezo $H_0$ nasproti alternativni hipotezi $H_1$
+
+\begin{ex}
+    $X \sim N(\mu, \sigma), \sigma$ poznamo \\
+    $H_0(\mu = 0): H_1(\mu \neq 0)$
+\end{ex}
+
+Za $H_0$ obi"cajno vzamemo enostavno hipotezo, za katero upamo, da jo bomo zavrnili \\
+Hipoteza je lahko pravilna ali nepravilna. Ideal je sprejeti pravilno in zavrniti nepravilno. Odlo"citi se
+moramo na osnovi vzorca. "Ce vzor"cni podatki preve"c odstopajo od hipoteze, potem niso konsistentni z njo oz.
+so razlike zna"cilne (signifikantne); tedaj hipotezo zavrnemo \\
+Vnaprej dolo"cimo stopnjo zna"cilnosti $\alpha \in [0,1]$, to je verjetnost, da zavrnemo pravilo hipotezo.
+Obi"cajno je $\alpha = 0.05$ ali $\alpha = 0.01$. Take teste imenujemo testi zna"cilnosti
+
+Primeri testov znacilnosti
+
+\subsubsection{test $Z$}
+
+$X \sim N(\mu, \sigma), \sigma$ znan parameter \\
+Ni"celna domneva je $H_=(\mu = \mu_0)$, kjer je $\mu_0$ damo realno "stevilo \\
+Pri predpostavki $H_0(\mu = \mu_0)$ je $Z := \frac{\overline{X} - \mu}{\sigma} \sqrt{n}$ porazdeljena
+$N(0,1)$, saj je $\overline{X} \sim N(\mu_0, \frac{\sigma}{\sqrt{n}})$ \\
+Vzemimo $H_1(\mu \neq \mu_0)$. Tedaj $H_0$ zavrnemo, "ce vzor"cna vrednost za $Z$ le"zi na kriticnem obmocju
+
+\begin{equation*}
+    K_{\alpha} = (-\infty, -z_{\frac{\alpha}{2}}] \cup [z_{\frac{\alpha}{2}}, \infty)
+\end{equation*}
+
+kjer je $\alpha$ stopnja zna"cilnosti in $P(Z > z_{\frac{\alpha}{2}}) = \frac{\alpha}{2}$
+
+
+
 \end{document}
