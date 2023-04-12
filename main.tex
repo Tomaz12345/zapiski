@@ -94,6 +94,182 @@
 
 
 
+% 6. predavanje: 11.11.
+
+
+\subsubsection{Poissonova porazdelitev}
+
+$Poi(\lambda), \lambda > 0$
+
+\begin{align*}
+    &p_k = P(X = k) = \frac{\lambda^k}{k!} e^{-\lambda} \; k = 0, 1, 2 \cdots \\
+    &\sum_{k=0}^{\infty} p_k = (\sum_{k=0}^{\infty} \frac{\lambda^k}{k!}) e^{-\lambda} =
+        e^{\lambda} e^{-\lambda} = 1
+\end{align*}
+
+$\implies$ to je res porazdelitev ($p_i \geq 0, \sum p_i = 1$)
+
+\begin{ex}
+    "Stevilo klicev v telefonskem omre"zju v "casovni enoti \\
+    Binomska, velik $n$, majhen $p \implies$ Poissonova \\
+    Lahko modeliramo z binomsko porazdelitvijo $Bin(n,p)$, kjer je $n$ "stevilo naro"cnikov in $p$ verjetnost, da se
+    posameznik odlo"ci za klic v "casovni enoti. Ker je $n$ velik in $p$ majhen, je to pribli"zno $Poi(\lambda)$, kjer
+    je $\lambda = np$ (v praksi ni za vse ista) 
+\end{ex}
+
+\begin{ex}
+    "Stevilo napa"cnih "crk v knjigi \\
+    (Veliko "crk v knigi, melo verjetno, da se zmotimo.) \\
+    Lahko modeliramo z $Bin(n,p)$, kjer je $n$ "stevilo vseh "crk v knjigi, $p$ je verjetnost, da si izberemo
+    napa"cno "crko \\
+    Ker je $n$ velik, $p$ pa majhen, lahko to aproksimiramo s $Poi(\lambda)$, kjer je $\lambda = np$ \\
+    Raje vzamemo $Poi(\lambda)$ kot $Bin(n,p)$, ker je preprostej"sa
+\end{ex}
+
+\subsubsection{Geometrijska porazdelitev}
+
+$Geo(p), \; p \in (0,1)$ \\
+Ponavljamo poskus, v katerem opazujemo dogodek $A$ s $P(A) = p, q = 1-p$. $(X=k)$ je dogodek, da se $A$ zgodi prvi"c
+v k-ti ponovitvi
+
+\begin{equation*}
+    p_k = P(A = k) = p \cdot q^{k-1} \; k = 1, 2 \cdots
+\end{equation*}
+
+\begin{equation*}
+    \sum_{k=1}^{\infty} p_k = p \cdot \sum_{k=1}^{\infty} q^{k-1} = p \sum_{k=0}^{\infty} q^k =
+    p \frac{1}{1-q} = \frac{p}{p} = 1
+\end{equation*}
+
+\begin{ex}
+    Me"cemo kocko, $X$ je "stevilo metov, da pade "sestica prvi"c. Potem je $X \sim Geo(\frac{1}{6})$
+\end{ex}
+
+\subsubsection{Pascalova ali negativna binomska porazdelitev}
+
+$Pas(m,p), \; m \in \N, p \in (0,1)$ \\
+Ponavljamo poskus, v katerem nas zanima dogodek $A$ s $P(A) = p$. $(X=k)$ je dogodek, da se $A$ zgodi m-ti"c v
+k-ti ponovitvi poskusa. Torej $Pas(1,p) = Geo(p)$
+
+\begin{equation*}
+    p_k = P(X = k) = \binom{k-1}{m-1} p^m q^{k-m} \; k = m, m+1 \cdots
+\end{equation*}
+
+($A$ se zgodi ($m-1$)-krat, $\overline{A}$ pa ($k-m$)-krat) \\
+DN: Enakost $\sum_{k=m}^{\infty} p_k = 1$ analiti"cno preverimo z ($m-1$)-kratnim odvajanjem geometrijske vrste
+
+\begin{equation*}
+    \sum_{k=0}^{\infty} q^{k-1} = \frac{1}{1-q}
+\end{equation*}
+
+oz. z direktno uporabo binomske vrste:
+
+\begin{equation*}
+    (1-q)^{-m} = \sum_{j=0}^{\infty} \binom{-m}{j} q^j
+\end{equation*}
+
+\begin{ex}
+    Me"cemo kocko, $X$ je "stevilo potrebnih metov, da pade "sestica $m$-krat. Potem je $X \sim Pas(m, \frac{1}{6})$
+\end{ex}
+
+\subsubsection{Hipergeometrijska porazdelitev}
+
+$Hip(n; M, N), \; 0 < M < N, n,M,N \in \N, n \leq \min\{M, N-M\}$ \\
+V posodi je $N$ kroglic, od tega $M$ belih, ostale "crne. Slu"cajno izberemo $n$ kroglic (brez vra"canja). $X$ je
+"stevilo belih kroglic med izbranimi kroglicami. Torej $(X=k)$ je dogodek, da je med izbranimi $n$ kroglicami $k$
+belih
+
+\begin{align*}
+    &p_k = P(X = k) = \frac{\binom{m}{k} \binom{N-m}{n-k}}{\binom{N}{n}} \; k = 0, 1 \cdots n \\
+    &\binom{m}{k} \cdots k \text{ belih} \\
+    &\binom{N-m}{n-k} \cdots \text{ ostale "crne} \\
+    &\binom{n}{N} \cdots \text{ izberemo } n \text{ izmed } N
+\end{align*}
+
+Ker je $\{(X = k)\}^n$ popoln sistem dogodkov, je jasno, da je $\sum_{k=0}^{n} p_k = 1$ \\
+Torej velja binomska identiteta
+
+\begin{equation*}
+    \sum_{k=0}^{n} \binom{m}{k} \binom{N-m}{n-k} = \binom{N}{n}
+\end{equation*}
+
+- verjetnostni dokaz
+
+\begin{ex}
+    V ribniku je $N$ rib, od tega $M$ krapov. Ulovimo $n$ rib. Naj bo $X$ "stevilo ulovljenih krapov. Potem je
+    $X \sim Hip(n; M, N)$
+\end{ex}
+
+"Ce je $n << \min\{M, N-M\}$, potem je $Hip(n; M, n) \approx Bin(n, \frac{M}{N})$:
+
+\begin{align*}
+    &p_k = \frac{\frac{M(M-1) \cdots (M_k+1)}{k!} \frac{(N-m)(N-m+1) \cdots (N-m-n+k+1)}{(n-k)!}}
+        {\frac{N(N-1) \cdots (N-n+1)}{n!}} \approx \\
+    &\stackrel{\substack{k \leq m \\ n \leq N}}{\approx} \frac{\frac{M^k}{k!} \frac{(N-m)^{n-k}}{(n-k)!}}
+        {\frac{N^n}{n!}} = \binom{n}{k} (\frac{M}{N})^k (\frac{N-M}{N})^{n-k} = \binom{n}{k} p^k q^{n-k}
+\end{align*}
+
+Intuicija: vzemanje kroglic, $n << \min\{M, N-M\}$ \\
+"Ce je $n << \min\{M, N-M\}$, ne naredimo velike napake, "ce kroglice vra"camo. Tedaj je "stevilo belih
+izvle"cenih kroglic binomsko porazdeljeno: $X \sim Bin(n, \frac{M}{N})$
+
+\subsubsection{Zvezno porazdeljene slu"cajne spremenljivke}
+
+\begin{defn}[Zvezna porazdelitev]
+    Slu"cajna spremenljivka $X$ je zvezno porazdeljena (zvezna), "ce obstaja nenegativa integrabilna funkcije
+    $p_X$, imenovana gostota porazdelitve, da je
+
+    \begin{equation*}
+        F_X(x) = \int_{-\infty}^{\infty} p_X(t) dt \text{ za } \forall x \in \R
+    \end{equation*}
+\end{defn}
+
+Analogija z diskretnimi porazdelitvami: $F_X(x) = \sum_{n: X_n \leq x} p_k, X: \begin{pmatrix}
+    x_1 & \cdots \\
+    p_1 & \cdots
+\end{pmatrix}$ \\
+Tedaj je $F_X$ zvezna funkcija. V to"ckah, kjer je $p_X$ zvezna, je $F_X$ zvezno odvedljiva in velja
+$F_X^{'}(x) = p_X(x)$ \\
+Ker je $\lim_{x \to \infty} F_X(x) = 1$, je $\int_{-\infty}^{\infty} p_X(t) dt = 1$ \\
+Za $x_1 < x_2$ velja
+
+\begin{equation*}
+    P(x_1 < X < x_2) = F_X(x_2-) - F_X(x_1+) = \int_{-\infty}^{x_2} p_X(t) dx - \int_{-\infty}^{x_1} p_X(t) dt =
+    \int_{x_1}^{x_2} p_X(t) dt
+\end{equation*}
+
+Pomembnej"se zvezne porazdelitve:
+
+\subsubsection{Enakomerna zvezna porazdelitev na $[a,b]$}
+
+\begin{align*}
+    &p_X(x) = \begin{cases}
+            \frac{1}{b-a} \text{ "ce } a < x < b \\
+            0 \text{ sicer}
+        \end{cases} \\
+    &F_X(x) = \begin{cases}
+        0 \text{ "ce } x \leq a \\
+        \frac{x-a}{b-a} \text{ "ce } a < x < b \\
+        1 \text{ "ce } x \geq b
+    \end{cases}
+\end{align*}
+
+\begin{ex}
+    Slu"cajno izberemo $X$ na $[0,1]$
+\end{ex}
+
+\subsubsection{Normalna ali Gaussova porazdelitev}
+
+$N(\mu, \sigma), \; \mu \in \R, \sigma > 0$
+
+\begin{equation*}
+    p_X(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2} (\frac{x-\mu}{\sigma})^2}
+\end{equation*}
+
+$N(0,1): p_X(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$ - standardizirana normalna porazdelitev
+
+
+
 % 7. predavanje: 18.11.
 
 $\sigma$ velik: \\
