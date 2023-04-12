@@ -94,6 +94,217 @@
 
 
 
+% 7. predavanje: 18.11.
+
+$\sigma$ velik: \\
+$\sigma$ majhen: \\
+Porazdelitvena funkcija:
+
+\begin{align*}
+    &F(X) = \frac{1}{\sigma \sqrt{2\pi}} \int_{-\infty}^{x} e^{-\frac{1}{2} (\frac{t-\mu}{\sigma})^2} dt = \\
+    &u = \frac{t-\mu}{\sigma}, du = \frac{dt}{\sigma} \\
+    &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\frac{x-\mu}{\sigma}} e^{-\frac{1}{2}u^2} du = \\
+    &= \frac{1}{\sqrt{2\pi}} (\int_{-\infty}^{0} \cdots + \int_{0}^{\frac{x-\mu}{\sigma}} \cdots) = \\
+    &= \frac{1}{2} + \Phi(\frac{x-\mu}{\sigma})
+\end{align*}
+
+Laplaceova integralaska formula pravi, da je $Bin(n,p) \approx N(np, \sqrt{npq})$ za velik $n:$
+
+\begin{equation*}
+    P_n(k) = \frac{1}{\sqrt{2\pi npq}} - \frac{1}{2} (\frac{k - np}{\sqrt{npq}})^2
+\end{equation*}
+
+\begin{ex}
+    Sistoli"cni krvni tlak \\
+    %slika%
+    verjetnost, da ima slu"cajno oseba krvni tlak med $120$ in $130$ mmHg
+\end{ex}
+
+\subsubsection{Eksponentna porazdelitev}
+
+\begin{align*}
+    &Exp(\lambda), \lambda > 0 \\
+    &p(x) = \begin{cases}
+            \lambda e^{-\lambda x} \lambda \geq 0 \\
+            0 \quad \text{sicer}
+        \end{cases}
+\end{align*}
+
+\begin{equation*}
+    F(x) = \begin{cases}
+        1 - e^{-\lambda x} \text{ "ce } x \geq 0 \\
+        0 \quad \text{ "ce } x \leq 0
+    \end{cases}
+\end{equation*}
+
+\begin{ex}
+    Radioaktivni razpad \\
+    $F(x)$ je verjetnost, da se radioaktivni razpad zgodi pred trenutkom $x \in \R^{+}$
+\end{ex}
+
+\subsubsection{Porazdelitev gama}
+
+\begin{align*}
+    &\Gamma(b,c), \; b, c > 0 \\
+    &p(x) = \begin{cases}
+            \frac{c^b}{\Gamma(b)} x^{b-1} e^{-cx} x > 0 \\
+            0 \quad \text{sicer}
+        \end{cases}
+\end{align*}
+
+O"citno je $Exp(\lambda) = \Gamma(1, \lambda)$
+
+\begin{equation*}
+    \Gamma(y) = \int_{0}^{\infty} x^{y-1} e^{-x} dx
+\end{equation*}
+
+\begin{align*}
+    &\int_{-\infty}^{\infty} p(x) dx = \frac{c^b}{\Gamma(b)} \int_{0}^{\infty} x^{b-1} e^{-cx} dx = \\
+    &t = cx, dt = c dx \\
+    &= \frac{c^b}{\Gamma(b)} \int_{0}^{\infty} (cx)^{b-1} e^{-cx} c dx = \\
+    &= \frac{1}{\Gamma(b)} \cdot \Gamma(b) = 1
+\end{align*}
+
+- je porazdelitev
+
+\subsubsection{Porazdelitev $\chi^2(n)$}
+
+(hi-kvadrat), $n \in \N$, $n$ je "stevilo prostorskih stopenj
+
+\begin{align*}
+    &\chi^2(n) = \Gamma(\frac{n}{2}, \frac{1}{2}) \\
+    &p(x) = \begin{cases}
+        \frac{1}{2^{\frac{1}{2}} \Gamma(\frac{1}{2})} x^{\frac{n}{2} - 1} e^{-\frac{x}{2}} x > 0 \\
+        0 \qquad \text{sicer}
+    \end{cases}
+\end{align*}
+
+\subsubsection{Cauchyjeva porazdelitev}
+
+\begin{equation*}
+    p(x) = \frac{1}{\pi (1+x^2)} \; x \in \R
+\end{equation*}
+
+\begin{align*}
+    &F(x) = \frac{1}{\pi} \int_{-\infty}^{\infty} \frac{dt}{1+t^2} = \frac{1}{\pi} \arctan t \vert_{-\infty}^x = \\
+    &= \frac{1}{\pi} \arctan x - \frac{1}{\pi} \cdot \frac{\pi}{2} = \frac{1}{\pi} \arctan x + \frac{1}{2}
+\end{align*}
+
+\begin{ex}
+    Slu"cajna spremenljivka, ki ni niti zvezno niti disktretno porazdeljena \\
+    Vr"zemo kovanec, "ce pade grbc, postavimo $X=1$, "ce pade cifra, pa naj bo $X$ slu"cajno izbrano stevilo na
+    $[0,2]$ \\
+    Izra"cunamo porazdelitveno funkcijo:
+
+    \begin{align*}
+        &F(x) = P(X \leq x) = \stackrel{x \in [0,2]}{=} P(\text{grb}) \cdot P(X \leq x \mid \text{grb}) +
+            P(\text{cifra}) \cdot P(X \leq x \mid \text{cifra})
+    \end{align*}
+
+    "Ce je $0 \leq x \leq 1$, potem je
+
+    \begin{equation*}
+        F(x) = \frac{1}{2} \cdot 0 + \frac{1}{2} \cdot \frac{x}{2} = \frac{x}{4}
+    \end{equation*}
+
+    "Ce je $1 \leq x \leq 2$, potem je
+
+    \begin{equation*}
+        F(x) = \frac{1}{2} \cdot 1 + \frac{1}{2} \cdot \frac{x}{2} = \frac{1}{2} + \frac{x}{4}
+    \end{equation*}
+
+    \begin{align*}
+        F(x) = \begin{cases}
+            0 \text{ "ce } x \leq 0 \\
+            \frac{x}{4} \text{ "ce } 0 \leq x < 1 \\
+            \frac{1}{2} + \frac{x}{4} \text{ "ce } 1 \leq x \leq 2 \\
+            1 \text{ "ce } x \geq 2
+        \end{cases}
+    \end{align*}
+
+    Ker $F$ ni zvezna funkcija, $X$ ni zvezno porazdeljena \\
+    Ker $F$ ni odsekoma konstantna, $X$ ni diskretno porazdeljena
+\end{ex}
+
+\subsection{Slu"cajni vektorji}
+
+\begin{defn}[Slu"cajni vektor]
+    Naj bo $(\Omega, \Phi, P)$ verjetnostni prostor. Slu"cajni vektor je n-terica slu"cajnih spremenljivk
+    $x = (x_1 \cdots x_n): \Omega \to \R^n$ z lastnostjo, da je mno"zica
+    
+    \begin{equation*}
+        (X_1 \leq x_1 \cdots X_n \leq x_n) := \{\omega \in \Omega: X_1(\omega) \leq x_1 \cdots X_n(\omega) \leq x_n\}
+    \end{equation*}
+
+    dogodek za vse n-terice $x = (x_1 \cdots x_n)$, se pravi v $\Phi$ za $\forall x = (x_1 \cdots x_n) \in \R^n$
+\end{defn}
+
+\begin{defn}[Porazdelitvena funkcija]
+    Porazdelitvena funkcija slu"cajnega vektorja $X = (X_1 \cdots X_n)$ je funkcija, definirana z
+
+    \begin{equation*}
+        F_X(x) = F_{(X_1 \cdots X_n)}(x_1 \cdots x_n) := P(X_1 \leq x_1 \cdots X_n \leq x_n)
+    \end{equation*}
+
+    Torej $F_X: \R^n \to \R$
+\end{defn}
+
+$F_X$ ima podobne lastnosti kot v primeru $n=1$ \\
+O"citno je $0 \leq F_X(x) \leq 1$ za $\forall x \in \R^n$, glede na vsako spremenljivko je $F_X$ nara"s"cajo"ca
+in z desne zvezna, velja "se:
+
+\begin{equation*}
+    \lim_{\substack{x_1 \to \infty \\ \vdots \\ x_n \to \infty}} F_{(X_1 \cdots X_n)}(x_1 \cdots x_n) = 1
+\end{equation*}
+
+\begin{defn}[Robna porazdelitev]
+    "Ce po"sljemo v $\infty$ samo nekatere spremenljivke, dobimo porazdelitveno funkcijo slu"cajnega podvektorja, npr.
+
+    \begin{equation*}
+        \lim_{\substack{x_2 \to \infty \\ \vdots \\ x_n \to \infty}} F_{(X_1 \cdots X_n)}(x_1 \cdots x_n) = F_{X_1}(x_1)
+    \end{equation*}
+
+    ali pa
+
+    \begin{equation*}
+        \lim_{x_n \to \infty} F_{(X_1 \cdots X_n)}(x_1 \cdots x_n) =
+            F_{X_1 \cdots X_{n-1}}(x_1 \cdots x_{n-1})
+    \end{equation*}
+
+    Takim porazdelitvam re"cemo robne (marginalne) porazdelitve
+\end{defn}
+
+Oglejmo si dvorazse"zni primer ($n=2$):
+
+\begin{equation*}
+    (X,Y): \Omega \to \R^2
+\end{equation*}
+
+za $\forall (x,y) \in \R^2$ je 
+
+\begin{equation*}
+    (X \leq x, Y \leq y) := \{\omega \in \Omega: X(\omega) \leq x, Y(\omega) \leq y\}
+\end{equation*}
+
+dogodek \\
+Porazdelitvena funkcija $F_{(X,Y)}: \R^2 \to \R$ je definirana z
+
+\begin{align*}
+    &F_{(X,Y)}(x,y) := P(X \leq x, Y \leq y) \\
+    &\lim_{x \to \infty} F_{(X,Y)}(x,y) = P(Y \leq y) = F_Y(y) \\
+    &\lim_{y \to \infty} F_{(X,Y)}(x,y) = P(X \leq x) = F_X(x) \\
+\end{align*}
+
+Izrazimo $P(a < X \leq b, c < Y \leq d)$ s porazdelitveno fukncijo $F(X,Y) = F$. To bo posplo"sitev formule
+
+\begin{equation*}
+    P(a < X \leq b) = F_X(b) - F_X(a)
+\end{equation*}
+
+ki smo jo imeli v primeru $n=1$
+
+
+
 % 8. predavanje: 25.11.
 
 \begin{align*}
