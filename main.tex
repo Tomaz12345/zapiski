@@ -93,7 +93,148 @@
 
 
 
-% 4. predavanje; 28.10.
+% 3. predavanje: 28.10.
+
+$(\Omega, \Phi, P)$
+
+\begin{ex}
+    (Ne"stevni neskon"cni verjetnostni prostor) \\
+    $\Omega = [0,1] \times [0,1]$ \\
+    $\Phi :=$ najmanj"sa $\sigma$-algebra, ki vsebuje vse odprte pravokotnike $(a,b) \times (c,d),
+    \; a,b,c,d \in (0,1)$ \\
+    npr. elipse: $\frac{1}{n}$ radij, za $\forall n$ vzamemo kvadrate v elipsi, izberemo unijo \\
+    = najmanj"sa $\sigma$-algebra, ki vsebuje vse zaprte pravokotnike $[a,b] \times [c,d], \; a,b,c,d \in [0,1]$ -
+    Borelova $\sigma$-algebra \\
+    Izka"ze se, da $\Phi \neq P(\Omega)$
+\end{ex}
+
+Verjetnost $P$ definiramo na pravokotnikih s $P((a,b) \times (c,d)) = (b-a) (d-c)$ \\
+Ni lahko videti, da je to mo"zno raz"siriti do "stevno aditivne preslikave na $P(\Omega)$ \\
+Verjetnostna preslikava $P$ (na $\Phi$) se imenuje Lebesgueova mera \\
+To je geometrijska definicija verjetnosti:
+
+\begin{equation*}
+    \square = \cap_{n=1}^{\infty} (a-\frac{1}{n}, b+\frac{1}{n}) \times (c-\frac{1}{n}, d+\frac{1}{n})
+\end{equation*}
+
+\subsection{Pogojna verjetnost}
+
+\begin{defn}[Pogojna verjetnost]
+    Fiksirajmo dogodek $B$ s $P(B) > 0$. Pogojna verjetnost dogodka $A$ pri pogoju $B$ je
+
+    \begin{equation*}
+        P(A \mid B) = \frac{P(A \cap B)}{P(B)}
+    \end{equation*}
+\end{defn}
+
+\begin{ex}
+    V posodi sta 2 beli in ena "crna kroglica. Slu"cajno izberemo eno kroglico, jo vrnemo v posodo in potem ponovno
+    izberemo kroglico. Kolik"sna je verjetnost, da smo v drugo izbrali belo kroglico, "ce smo v prvo izbrali belo
+    kroglico?
+    $\Omega = \begin{matrix}
+        B_1B_1 & B_1B_2 & B_1\text{"C} \\
+        B_2B_1 & B_2B_2 & B_2\text{"C} \\
+        \text{"C}B_1 & \text{"C}B_2 & \text{"C"C} \\
+    \end{matrix}$ \\
+    \begin{align*}
+        &P(\text{prvi"c bela}) = \frac{6}{9} = \frac{2}{3} \\
+        &P(\text{drugi"c bela} \mid \text{prvi"c bela}) = \frac{P(\text{prvi"c in drugi"c bela})}{P(\text{prvi"c bela})}
+            = \frac{\frac{4}{9}}{\frac{2}{3}} = \frac{2}{3}
+    \end{align*}
+\end{ex}
+
+Iz definicije sledi $P(A \cap B) = P(B) \cdot P(A \mid B)$ \\
+Za poljubne dogodke $A, B, C$ velja
+
+\begin{align*}
+    &P(A \cap (B \cap C)) = P(B \cap C) \cdot P(A \mid B \cap C) = \\
+    &= P(C) \cdot P(B \mid C) \cdot P(A \mid B \cap C)
+\end{align*}
+
+oz. ``lep"se''
+
+\begin{equation*}
+    P(A \cap B \cap C) = P(A) \cdot P(B \mid A) \cdot P(C \mid A \cap B)
+\end{equation*}
+
+To posplo"simo na $n$ dogodkov $A_1, A_2 \cdots A_n$:
+
+\begin{align*}
+    &P(A_1 \cap \cdots \cap A_n) = P(A_1) \cdot P(A_2 \mid A_1) \cdots P(A_n \mid A_1 \cap \cdots \cap A_{n-1}) = \\
+    &= P(A_1) \cdot \prod_{i=2}^{n} P(A_i \mid \cap_{j=1}^{i-1} A_j)
+\end{align*}
+
+Desna stran:
+
+\begin{equation*}
+    P(A_1) \cdot \frac{P(A_1 \cap A_2)}{P(A_1)} \cdot \frac{P(A_1 \cap A_2 \cap A_3)}{P(A_1 \cap A_2)} \cdots
+    \frac{P(A_1 \cap \cdots \cap A_n)}{P(A_1 \cap \cdots \cap A_{n-1})}
+\end{equation*}
+
+Imejmo poskus v dveh korakih (fazah). V 1. koraku se zgodi natanko en dogodek iz popolnega sistema dogodkov
+$H_1, H_2 \cdots$ (kon"cno/"stevno mnogo). V drugem koraku nas zanima dogodek $A$. Izrazimo $P(A)$ z verjetnostmi
+$P(H_1), P(H_2 \cdots)$ in $P(A \mid H_1), P(A \mid H_2) \cdots$. \\
+Ker je $A = A \cap \Omega = A \cap (\cup_i H_i) = \cup_i (A \cap H_i)$ in ker so $\{A \cap H_i\}_i$ paroma
+nezrdu"zljivi dogodki (zaradi $H_i$), je
+
+\begin{equation*}
+    P(A) = \sum_i P(A \cap H_i) = \sum_i P(H_i) \cdot P(A \mid H_i)
+\end{equation*}
+
+To je formula o popolni verjetnosti
+
+\begin{ex}
+    Na sre"colovu je $n$ sre"ck, od tega je $m$ dobitnih ($m < n$). Ali imamo pred za"cetkom sre"colova ve"cje
+    mo"znosti za dobitek, "ce izbiramo prvi ali drugi? \\
+    $H_1$: prvi dobi, $H_2$: prvi ne dobi, $A$: drugi zadane \\
+    \begin{align*}
+        &P(\text{prvi dobi}) = \frac{m}{n} \\
+        &P(\text{drugi dobi}) = P(\text{prvi dobi}) \cdot P(\text{drugi dobi} \mid \text{prvi dobi}) + \\
+        &+ P(\text{prvi ne dobi}) \cdot P(\text{drugi dobi} \mid \text{prvi ne dobi}) = \\
+        &= \frac{m}{n} \cdot \frac{m-1}{n-1} + \frac{n-m}{n} \cdot \frac{m}{n-1} = \cdots = \frac{m}{n} 
+    \end{align*}
+\end{ex}
+
+Pri dvofaznem poskusu nas zanima 
+
+\begin{equation*}
+    P(H_k \mid A) = \frac{P(H_k \cap A)}{P(A)} =
+    \frac{P(H_k) \cdot P(A \mid H_k)}{\sum_i P(H_i) \cdot P(A \mid H_i)}
+\end{equation*}
+
+- Bayesova formula
+
+\begin{ex}
+    Test s poligrafom (= detektor la"zi) \\
+    Resnicoljub opravi test s poligrafom z verjetnostjo $0.95$. Z enako verjetnostjo poligraf prepozna la"znivca.
+    Izmed $1000$ oseb, med katerimi je natanko en la"znivec, slu"cajno izberemo eno osebo, katero poligraf
+    proglasi za la"znivca. Kolik"sna je pogojna verjetnost, da je ta oseba res la"znivec? \\
+    Naj bo $L$ dogodek, da je oseba la"znivec. \\
+    Naj bo $L_p$ dogodek, da poligraf za osebo pravi, da je la"znivec. Potem je
+
+    \begin{align*}
+        &P(L_p \mid L) = 0.95 \text{ in } P(L_P^C \mid L^C) = 0.95 \text{ oz.} \\
+        &P(L_P \mid L^C) = 0.05 \\
+        &P(L) = 0.001
+    \end{align*}
+
+    I"s"cemo verjetnost $P(L \mid L_p)$ \\
+    $H_1 = L, H_2 = L^C, A = L_p$ \\
+
+    \begin{align*}
+        &P(L \mid L_p) = \frac{P(L) \cdot P(L_p \mid L)}{P(L) \cdot P(L_p \mid L) + P(L^C) \cdot P(L_p^C \mid L^C)} = \\
+        &= \frac{0.001 \cdot 0.95}{0.001 \cdot 0.95 + 0.999 \cdot 0.05} = \frac{95}{5050} \doteq 0.02 = \frac{1}{50}
+    \end{align*}
+\end{ex}
+
+Matemati"cno ekvivalenten problem je presejalni test, npr. program DORA. (Pogojna) verjetnost, da je oseba bolna, "ce
+je test pozitiven, je majhna. \\
+Dogodka $A$ in $B$ sta neodvisna, "ce je $P(A \cap B) = P(A) \cdot P(B)$ \\
+"Ce je $P(B) > 0$, potem lahko ta pogoj zapi"semo kot $P(A) = \frac{P(A \cap B)}{P(B)} = P(A \mid B)$
+
+
+
+% 4. predavanje: 28.10.
 
 \begin{defn}[Neodvisnost]
     $A$ in $B$ sta neodvisna, "ce $P(A \cap B) = P(A) \cdot P(B)$ \\
