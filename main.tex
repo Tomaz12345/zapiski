@@ -94,6 +94,194 @@
 
 
 
+% 5. predavanje; 4.11.
+
+Vpeljimo verjetnostni integral
+
+\begin{equation*}
+    \Phi(x) = \frac{1}{\sqrt{2\pi}} \int_0^x e^{-\frac{t^2}{2}} dt
+\end{equation*}
+
+$\Phi$ je liha funkcija, zvezno odvedljiva in strogo nara"s"cajo"ca \\
+$\Phi(0) = 0$ in $\Phi(x) = f(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$ \\
+Poka"zimo, da je $\lim_{x \to \infty} \Phi(x) = \frac{1}{2}$. S pomo"cjo $\Gamma$ funkcije imamo
+
+\begin{align*}
+    &\lim_{x \to \infty} \Phi(x) = \frac{1}{\sqrt{2\pi}} \int_{0}^{\infty} e^{-\frac{x^2}{2}} dt = \\
+    &x = \frac{t^2}{2}, dx = t dt, dt = \frac{dx}{t} = \frac{dx}{\sqrt{2x}} \\
+    &= \frac{1}{\sqrt{2\pi}} \int_{0}^{\infty} e^{-x} \frac{dx}{\sqrt{2x}} = \\
+    &= \frac{1}{2\sqrt{\pi}} \int_{0}^{\infty} x^{-\frac{1}{2}} e^{-x} dx = \\
+    &\stackrel{\Gamma(\frac{1}{2}) = \sqrt{pi}}{=} \frac{1}{2}
+\end{align*}
+
+Laplaceova formula se glasi:
+
+\begin{equation*}
+    P_n(k_1, k_2) = \Phi(\frac{k_2 - np}{\sqrt{npq}}) - \Phi(\frac{k_1 - np}{\sqrt{npq}})
+\end{equation*}
+
+\begin{ex}
+    Kaljivost semen \\
+    Kolik"sna je verjetnost, da vzkali ve"c kot $950$ semen v zavoj"cku s $1000$ semeni \\
+    $A$: seme ne vzkali, $p = P(A) = 0.05, q = 0.95, n = 1000 \implies np = 1000$
+
+    \begin{align*}
+        &P_{1000}(0,50) = \Phi(\frac{50-50}{\sqrt{50 \cdot 0.95}}) - \Phi(\frac{0-50}{\sqrt{50 \cdot 0.95}}) \doteq \\
+        &\doteq \Phi(7.36) \approx 0.500
+    \end{align*}
+
+    - verjetnost, da ne vzkali manj kot $50$ semen
+\end{ex}
+
+\subsection{slu"cajne spremenljivke}
+
+Danemu poskusu priredimo dolo"ceno "stevilsko koli"cino, katere verjetnost je odvisna od slu"cajna
+
+\begin{ex} \text{} \\
+    \begin{enumerate}
+        \item Met kocke, "stevilo pik
+        \item Streljanje v tar"co, razdalja zadetka od sredi"s"ca tar"ce
+    \end{enumerate}
+\end{ex}
+
+\begin{defn}[Slu"cajna spremenljivka]
+    Realna slu"cajna spremenljivka na verjetnostnem prostoru $(\Omega, \Phi, P)$ je funkcije $X: \Omega \to \R$ z
+    lastnostjo, da je za $\forall x \in \R$ mno"zica $\{\omega \in \Omega: X(\omega) \leq x\}$ v $\Phi$, se pravi dogodek
+\end{defn}
+
+Oznaka: $\{\omega \in \Omega: X(\omega) \leq x\} \equiv X^{-1}((-\infty, x]) \equiv (X \leq x)$ (ali $\{X \leq x\}$)
+
+\begin{defn}[Porazdelitvena funkcija]
+    Porazdelitvena funkcija $F_X: \R \to \R$ je funkcija, definirana s predpisom $F_X(x) = P(X \leq x) \equiv P((X \leq x))$
+\end{defn}
+
+Dogovor: $P((X \leq x)) \leftrightarrow P(X \leq x)$ \\
+Lastnosti porazdelitvene funkcije $F_X \equiv F$:
+
+\begin{enumerate}
+    \item $0 \leq F(X) \leq 1$ za $\forall x \in \R$ (verjetnost)
+    \item $F$ je nara"s"cajo"ca funkcija, t.j. iz $x_1 < x_2$ sledi $F(x_1) \leq F(x_2)$
+        \begin{proof}
+            sledi iz $(X \leq x_1) \subseteq (X \leq x_2) \quad / P()$
+        \end{proof}
+    \item $\lim_{x \to \infty} F(x) = 1, \lim_{x \to -\infty} F(x) = 0$
+        \begin{proof}
+            limita $\lim_{x \to \infty} F(x)$ obstaja, ker je $F$ nara"s"cajo"ca in navzgor omejena z 1. \\
+            Vzemimo strogo nara"s"cajo"ce zaporedje $\{x_n\} \subseteq \R$, ki je neomejeno. Potem je
+            \begin{align*}
+                &\lim_{x \to \infty} F(x) = \lim_{n \to \infty} F(x_n) = \lim_{n \to \infty} P(X \leq x_n) = \\
+                &\cup_{n = 1}^{\infty} (X \leq x_n) = \Omega: \\
+                &\qquad (\subseteq): \text{logi"cno} \\
+                &\qquad (\supseteq): \omega \in \Omega \implies \exists n \in \N: X(\omega) = x_n \\
+                &\qquad \quad \implies \omega \in (X \leq x_n) \\
+                &\stackrel{P \text{ je zvezna}}{=} P(\cup_{n=1}^{\infty} (X \leq x_n)) = P(\Omega) = 1
+            \end{align*}
+
+            Drugo poka"zemo podobno (namesto $\cup$ je $\cap$)
+        \end{proof}
+    \item $F$ je zvezna z desne, t.j. $F(X+) = F(X) \forall x \in \R$
+        \begin{proof}
+            obstoj limite ni problemati"cen: $F(x+) = \lim_{x \to 0} F(x+h) = \lim_{n \to \infty} F(x_n)$, kjer
+            je $\{x_n\}_n \subseteq \R$ strogo nara"s"cajo"ce zaporedje z limito v $x$ \\
+            $\{(X \leq x_n)\}_{n \in \N}$ je padajo"ce zaporedje s presekom
+
+            \begin{align*}
+                &\{(X \leq x_n)\} = \cap_{n=1}^{\infty} \{\omega \in \Omega: X(\omega) \leq x_n\} = \\
+                &= \{\omega \in \Omega: X(\omega) \leq x\} = (X \leq x): \\
+                &\qquad (\supseteq): \text{ o"citno} \\
+                &\qquad (\subseteq): \omega \in \Omega \implies \text{za vsak n izpolnjeno} \implies    
+                    \lim \text{ obstaja}
+            \end{align*}
+
+            \begin{align*}
+                &F(x+) = \lim_{n \to \infty} F(x_n) = \lim_{n \to \infty} P(X \leq x_n) = \\
+                &= P(\cap_{n=1}^{\infty} (X \leq x_n)) = P(X \leq x) = F(x)
+            \end{align*}
+        \end{proof}
+    \item $F(X-) = P(X < x) \neq F(x)$ v splo"snem
+        \begin{align*}
+            &P(x_1 < X \leq x_2) = P((X \leq x_2) \text{\textbackslash} (X \leq x_1)) = \\
+            &= P(X \leq x_2) - P(X \leq x_1) = F(x_2) - F(x_1) \\
+            &P(x_1 < X < x_2) = P(X < x_2) - P(X \leq x_1) = F(x_2-) - F(x_1) \\
+            &P(x_1 \leq X \leq x_2) = F(x_2) - F(x_1-) \\
+            &P(x_1 \leq X < x_2) = F(x_2-) - F(x_1-)
+        \end{align*}
+\end{enumerate}
+
+\begin{rem}
+    V nekaterih u"cbenikih je porazdelitvena funkcija definirana z $F(x) = P(X < x)$ - zvezna z leve
+\end{rem}
+
+Najpomembnej"sa razreda slu"cajnih spremenljivk sta
+
+\subsubsection{Diskretna slu"cajna spremenljivka}
+
+\begin{defn}[Diskretna slu"cajna spremenljivka]
+    Slu"cajna spremenljivka $X: \Omega \to \R$ je diskretno porazdeljena, "ce je njena zaloga vrednosti kon"cna ali
+    "stevna mno"zica. Naj bo $\{x_1, x_2 \cdots\}$ zaloga vrednosti slu"cajne spremenljivke $X$.
+\end{defn}
+
+Vpeljimo verjetnostno funkcijo $p_n := P(X = x_n) \; n = 1, 2 \cdots$. Potem je
+
+\begin{equation*}
+    \sum_n p_n = P(\cup_n (X = x_n)) = P(\Omega) = 1
+\end{equation*}
+
+in
+
+\begin{align*}
+    &F_X(x) = P(X \leq x) = P(\cup_{n: x_n \leq x} (X = x_n)) = \\
+    &\text{paroma nezdru"zljivi dogodki} \\
+    &= \sum_{n: x_n \leq x} P(X = x_n) = \sum_{n: x_n \leq x} p_n
+\end{align*}
+
+npr. naj bodo $x_1 < x_2 < x_3$ v zalogi vrednosti slu"cajne spremenljivke $X$ \\
+$F$ je odsekoma konstantna
+
+\begin{equation*}
+    X: \begin{pmatrix}
+        x_1 & x_2 & \cdots \\
+        p_1 & p_2 & \cdots
+    \end{pmatrix}
+\end{equation*}
+
+Pomembnej"se diskretne porazdelitve:
+
+\subsubsection{Enakomerna diskretna porazdelitev} na $n$ to"ckah
+
+\begin{equation*}
+    X: \begin{pmatrix}
+        x_1 & x_2 & \cdots & x_n \\
+        \frac{1}{n} & \frac{1}{n} & \cdots & \frac{1}{n}
+    \end{pmatrix}
+\end{equation*}
+
+\begin{ex}
+    Met kocke, $X: \begin{pmatrix}
+        1 & 2 & 3 & 4 & 5 & 6 \\
+        \frac{1}{6} & \frac{1}{6} & \frac{1}{6} & \frac{1}{6} & \frac{1}{6} & \frac{1}{6}
+    \end{pmatrix}$
+\end{ex}
+
+\subsubsection{Binomska porazdelitev}
+
+$Bin(n,p), n \in \N, p \in (0,1), n-$krat ponovimo poskus, gledamo dogodek $A$ z verjetnostjo $P(A) = p$, $X$ je
+frekvenca dogodka $A$ v $n$ ponovitvah
+
+\begin{align*}
+    &X: \begin{pmatrix}
+            0 & 1 & \cdots & n \\
+            p_0 & p_1 \cdots p_n
+        \end{pmatrix} \\
+    &p_k = \binom{n}{k} p^k q^{n-k}
+\end{align*}
+
+\begin{ex}
+    $n$-krat vr"zemo kocko. $X$ je frekvenca "sestice. $X \sim Bin(n, \frac{1}{6})$
+\end{ex}
+
+
+
 % 6. predavanje: 11.11.
 
 
