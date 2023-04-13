@@ -93,6 +93,186 @@
 
 
 
+% 4. predavanje; 28.10.
+
+\begin{defn}[Neodvisnost]
+    $A$ in $B$ sta neodvisna, "ce $P(A \cap B) = P(A) \cdot P(B)$ \\
+    Dogodki $\{A_i\}_i$ so neodvisni, "ce za poljuben kon"cen nabor razli"cnih dogodkov $A_{i_1}, A_{i_2} \cdots
+    A_{i_n}$ velja
+
+    \begin{equation*}
+        P(A_{i_i} \cap \cdots \cap A_{i_n}) = P(A_{i_1}) \cdot \cdots \cdot P(A_{i_n})
+    \end{equation*}
+
+    "Ce zahtevamo le za $n=2$, t.j. $P(A_i \cap A_j) = P(A_i) \cdot P(A_j), i \neq j$, tedaj so dogodki paroma
+    neodvisni
+\end{defn}
+
+O"citno iz neodvisnosti sledi paroma neodvisnost. Obratno ne velja
+
+\begin{ex}
+    \begin{align*}
+        &\Omega = \{1, 2, 3, 4\}, P(\{k\}) = \frac{1}{4} \text{ za } k = 1,2,3,4 \text{ npr. met tetraedra} \\
+        &A = \{1, 2\}, B = \{1, 3\}, C = \{1, 4\} \\
+        &P(A) = P(B) = P(C) = \frac{2}{4} = \frac{1}{2} \\
+        &A \cap B = B \cap C = A \cap C = \{1\} \\
+        &\implies P(A \cap B) = P(B \cap C) = P(A \cap C) = \frac{1}{4} \\
+        &\implies A, B, C \text{ so paroma neodvisni} \\
+        &A \cap B \cap C = \{1\} \\
+        &P(A \cap B \cap C) = \frac{1}{4} \neq \frac{1}{8} = P(A) \cdot P(B) \cdot P(C) \\
+        &\implies \text{ niso neodvisni}
+    \end{align*}
+\end{ex}
+
+\begin{claim}
+    Naj bosta $A$ in $B$ neodvisna dogodka. Potem sta neodvisna tudi $A$ in $B^C$. Prav tako tudo $A^C$ in $B$
+    ter $A^C$ in $B^C$ (komplementiranje ohranja neodvisnost)
+\end{claim}
+
+\begin{proof}
+    Ker je $A \cap B^C = A \text{\textbackslash} (A \cap B)$ je
+
+    \begin{align*}
+        &P(A \cap B^C) = P(A \text{\textbackslash} (A \cap B)) = P(A) - P(A \cap B) = \\
+        &\stackrel{A, B \text{ neodvisna}}{=} P(A) - P(A) \cdot P(B) = P(A) (1-P(B)) = P(A) \cdot P(B^C)
+    \end{align*}
+
+    podobno za ostale kombinacije
+\end{proof}
+
+\subsection{Zaporedja neodvisnih ponovitev poskusa}
+
+\begin{defn}
+    Imejmo zaporedje $n$ neodvisnih ponovitev poskusa, dolo"cenega v verjetnostnem prostoru $(\Omega, \Phi, P)$,
+    v katerem je mo"zen $A$ s $P(A) = p \in (0,1)$. Potem je $q := P(A^C) = 1 - p$
+\end{defn}
+
+Z $A_n(k)$ ozna"cimo dogodek, da se v $k$ ponovitvah poskusa $A$ zgodi natanko $n$-krat, $k = 0, 1 \cdots n$ \\
+Poka"zimo, da je njegova verjetnost $P_n(k) := P(A_n(k)) = \binom{n}{k} p^k q^{n-k}$ - Bernoullijeva formula \\
+$A_n(k)$ je disjunktna unija $\binom{n}{k}$ dogodkov, da se $A$ zgodi na predpisanih $k$ mestih, $A^C$ pa na
+preostalih $(n-k)$ mestih. Verjetnost le teh je produkt $p$-jev in $q$-jev: $p^k q^{n-k}$. Od tod sledi
+Bernoullijeva formula
+
+\begin{ex}
+    Kaljivost semen je $95\%$. Kolik"sna je verjetnost, da izmed $1000$ semen vzkali to"cno $950$ semen? \\
+    $A$ = seme ne vzkali \\
+    $P(A) = p = 0.05, q = 0.95$ \\
+    $P_{1000}(50) = \binom{1000}{50} 0.05^{50} \cdot 0.95^{950} \doteq 0.05779$
+\end{ex}
+
+Brez ra"cunala je to te"zko izra"cunati tudi "ce uporabimo Stirlingovo formulo na $n!$:
+
+\begin{equation*}
+    n! \sim \sqrt{2\pi n} (\frac{n}{e})^n
+\end{equation*}
+
+Tukaj $\sim$ pomeni: $a_n \sim b_n$ "ce $\lim_{n \to \infty} \frac{a_n}{b_n} = 1$ \\
+Torej je $\lim_{n \to \infty} \frac{\sqrt{2\pi n}}{n!} (\frac{n}{e})^n = 1$
+
+\subsubsection{Aproksimacijski formuli za $P_n(k)$}
+
+\subsubsection{Poissonova formula}
+
+"Ce je $n$ velik in $k$ majhen, je $P_n(k) \approx \frac{\lambda^k}{k!} e^{-\lambda}$, kjer je $\lambda = np$
+
+\begin{proof}
+    \begin{align*}
+        &P_n(k) \stackrel{\text{def}}{=} \binom{n}{k} p^k q^{n-k} =
+            \frac{n(n-1) \cdots (n-k+1)}{k!} (\frac{\lambda}{n})^k (1 - \frac{\lambda}{n})^{n-k} = \\
+        &= \frac{\lambda}{k!} \frac{n}{n} \frac{n-1}{n} \cdots \frac{n-k+1}{n}
+            (1 - \frac{\lambda}{n})^n (1 - \frac{\lambda}{n})^{-k} \approx \\
+        &\frac{n-i}{n} \to 1, (1 - \frac{\lambda}{n})^n \to e^{-\lambda}, (1 - \frac{\lambda}{n})^{-k} \to 1 \\
+        &\approx \frac{\lambda^k}{k!} e^{-\lambda}
+    \end{align*}
+\end{proof}
+
+\begin{ex}
+    Kaljivost semen
+
+    \begin{align*}
+        &P_{1000}(50) \doteq \frac{50^{50}}{50!} e^{-50} = \frac{1}{50!} (\frac{50}{e})^{50} = \\
+        &\stackrel{\text{Stirling}}{=} \frac{1}{\sqrt{2\pi50}} = \frac{1}{10\sqrt{pi}} \doteq 0.05642
+    \end{align*}
+\end{ex}
+
+\subsubsection{Laplaceova lokalna formula}
+
+"Ce je $n$ velik, potem je $P_n(k) \approx \frac{1}{\sqrt{2\pi npq}} \cdot e^{-\frac{(k-np)^2}{2npq}}$ \\
+Kasneje (2. semester) bomo dokazali splo"snej"si izrek (centralni limitni izrek) \\
+Nari"simo zaporedje $\{P_n(k)\}_{k=0}^n$, $n$ fiksen
+
+\begin{align*}
+    &P_n(0) = q^n \\
+    &P_n(1) = n p q^{n-1} \\
+    &P_n(2) = \frac{n(n-1)}{2} p^2 q^{n-2}
+\end{align*}
+
+Pomaknjena in raztegnjena funkcija $f(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$ \\
+
+\begin{align*}
+    &P_n(k) \leq P_n(k+1)\text{?} \\
+    &\frac{n!}{k!(n-k)!} p^k q^{n-k} \leq \frac{n!}{(k+1)!(n-k-1)!} p^{k+1} q^{n-k-1} \\
+    &\frac{q}{n-k} \leq \frac{p}{k+1} \iff kq + q \leq np - kp \iff \\
+    &\iff k(p+q) + q \leq np \iff k + q \leq np
+\end{align*}
+
+Neenakost se obrne pri $k \approx np$
+
+\begin{ex}
+    Kaljivost semen
+
+    \begin{align*}
+        &p = 0.05, q = 0.95, k = 50 \implies np = 50 \\
+        &P_{1000}(50) \approx \frac{1}{\sqrt{2 \pi \cdot 50 \cdot 0.95}} = \frac{1}{\sqrt{95\pi}}
+            \doteq 0.05788
+    \end{align*}
+\end{ex}
+
+\subsubsection{Laplaceova integralska formula}
+
+Zanima nas dogodek $B_n(k_1, k_2)$, da se n $n$ ponovitvah poskusa dogodek $A$ zgodi vsaj $k_1$-krat in manj kot
+$k_2$-krat, $0 \leq k_1 < k_2 \leq n+1$ \\
+Ker je 
+
+\begin{equation*}
+    B_n(k_1, k_2) = A_n(k_1) \cup A_n(k_1+1) \cup \cdots \cup A_n(k_2-1)
+\end{equation*}
+
+(disjunktna unija), je
+
+\begin{equation*}
+    P_n(k_1, k_2) := P(B_n(k_1, k_2)) = \sum_{k=k_1}^{k_2-1} |A_n(k)| = \sum_{k=k_1}^{k_2-1} P_n(k)
+\end{equation*}
+
+Po Laplaceovi lokalni formuli je
+
+\begin{align*}
+    &P_n(k_1, k_2) \approx \frac{1}{\sqrt{2\pi npq}} \sum_{k=k_1}^{k_2-1} e^{-\frac{(k-nq)^2}{2npq}} = \\
+    &\doteq \frac{1}{\sqrt{2\pi}} \sum_{k=k_1}^{k_2-1} e^{-\frac{1}{2} x_k^2} \Delta x_k
+\end{align*}
+
+kjer je
+
+\begin{align*}
+    &x_k := \frac{k-np}{\sqrt{npq}} \\
+    &\implies \Delta x_k := x_{k-1} - x_k = \frac{k+1-np}{\sqrt{npq}} - \frac{k-np}{\sqrt{npq}} =
+        \frac{1}{\sqrt{npq}}
+\end{align*}
+
+To je integralaska (Riemannova) vsota za funkcijo $f(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$ \\
+$P_n(k_1, k_2) \approx \sum_{k=k_1}^{k_2-1} f(x_k) \Delta x_k$ na intervalu $a = \frac{k_1-np}{\sqrt{npq}},
+b = \frac{k_2-np}{\sqrt{npq}}$ \\
+Za velik $n$ torej velja:
+
+\begin{equation*}
+    P_n(k_1, k_2) \approx \int_a^b f(x) dx = \int_{\frac{k_1-np}{\sqrt{npq}}}^{\frac{k_2-np}{\sqrt{npq}}}
+    e^{-\frac{x^2}{2}} dx
+\end{equation*}
+
+- Laplaceova integralska formula \\
+$\Phi(x) = \frac{1}{\sqrt{2\pi}} \int_0^x e^{-\frac{t^2}{2}} dt$ - verjetnostni integral
+
+
 
 % 5. predavanje; 4.11.
 
