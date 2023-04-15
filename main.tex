@@ -93,6 +93,186 @@
 
 
 
+% 2. predavanje: 21.10.
+
+3. asociativnost: $(A \cup B) \cup C = A \cup (B \cup C), (A \cap B) \cap C = A \cap (B \cap C)$ \\
+4. distributivnost: $(A \cap B) \cup C = (A \cup C) \cap (B \cup C), (A \cup B) \cap C = (A \cap C) \cup (B \cap C)$ \\
+oz. $(A \cdot B) + C = (A + C) \cdot (B + C), (A + B) \cdot C = (A \cdot C) + (B \cdot C)$ \\
+5. deMorganova zakona: $(A \cup B)^C = A^C \cap B^C, (A \cap B)^C = A^C \cup B^C$ \\
+"se ve"c: $(\cup_{i \in I} A_i)^C = \cap_{i \in I} A_i^C, (\cap{i \in I} A_i)^C = \cup{i \in I} A_i^C$
+
+\begin{defn}[$\sigma$-algebra]
+    Neprazna dru"zina podmno"zic dogodkov $F$ v $\Omega$ je $\sigma$-algebra, "ce velja:
+
+    \begin{enumerate}
+        \item $A \in F \implies A^C \in F$ (zaprtost za komplement)
+        \item $A_1, A_2 \cdots \in F \implies \cup_{i=1}^{\infty} A_i \in F$ (zaprtost za "stevne unije)
+    \end{enumerate}
+
+    "Ce v 2) zahtevamo manj: \\
+    $A, B \in F \implies A \cup B \in F$ ("sibkej"si pogoj) pravimo, da je $F$ algebra
+\end{defn}
+
+V algebri imamo zaprtost za kon"cne unije, t.j. $A_1 \cdots A_n \in F \implies \cup_{i=1}^n A_j \in F$ (zaradi
+indukcije). Ker je $\cap_i A_i^C = (\cup_i A_i)^C$ (deMorgan), je algebra zaprta za kon"cne preseke, $\sigma$-algebra
+pa za "stevne preseke. \\
+Ker je $A$ \textbackslash $B = A \cap B^C$, je algebra zaprta za razlike dogodkov. \\
+Vsaka algebra vsebuje $\{\emptyset, \Omega\}$: ker je neprazna, obstaja dogodek $A \in F$, potem je $A^C \in F$ in
+zato je 
+
+\begin{equation*}
+    \Omega = A \cup A^C \in F, \emptyset = A \cap A^C \in F
+\end{equation*}
+
+Najmanj"sa ($\sigma$-)algebra je $F = \{\emptyset, \Omega\}$, najve"cja ($\sigma$-)algebra je poten"cna mno"zica
+$P(\Omega)$
+
+\begin{ex}
+    Izberimo $\emptyset \neq A \subsetneq \Omega$. Najmanj"sa $\sigma$-algebra, ki vsebuje $\{1\}, \{2\}, \{3\} \cdots$
+    je $P(\N)$, saj je $A = \cup_{k \in A} \{k\}$ za $\forall k \subseteq \N$ (kon"cna sli "stevna unija) \\
+    Najmanj"sa algebra $F$, ki vsebuje $\{1\}, \{2\}, \{3\} \cdots$ je enaka algebri
+
+    \begin{equation*}
+        g = \{A \subseteq \N: A \text{ je kon"cna ali } A^C \text{ je kon"cna}\}
+    \end{equation*}
+
+    Dokazujemo $g$ je algebra:
+    
+    \begin{enumerate}
+        \item zaprtost za komplemente: $A \in g \implies$
+        \begin{enumerate}
+            \item bodisi $A$ je kon"cna mno"zica $\implies A = (A^C)^C \implies A^C \in g$ (zaprtost za komplement)
+            \item bodisi je $A^C$ kon"cna mno"zica $\implies A^C \in g$
+        \end{enumerate}
+        \item $A,B \in g \stackrel{?}{\implies} A \cup B \in g$
+        \begin{enumerate}
+            \item $A \cup B$ je kon"cna $\implies (A \cup B) \in g$ (vse kon"cne mno"zice)
+            \item $A \cup B$ ni kon"cna $\implies$ vsaj ena izmed $A$ in $B$ ni kon"cna, recimo $A$ je neskon"cna. \\
+                Toda $A \in G \implies A^C$ je kon"cna mno"zica. \\
+                Ker je $(A \cup B)^C \subseteq A^C$ in $A^C$ je kon"cna, je $(A \cup B)^c$ tudi kon"cna mno"zica,
+                torej $A \cup B \in g$ \\
+                $A \in g$:
+                \begin{itemize}
+                    \item $A$ je kon"cna: $A = \cup_{k \in A} \{k\} \in F$ (kon"cna unija)
+                    \item $A^C$ je kon"cna: $A^C = (\cup_{k \in A^C})^C \in F$ (kon"cna unija)
+                \end{itemize}
+                $\implies g \in F$
+        \end{enumerate}
+    \end{enumerate}
+
+    Ker je $F$ najmanj"sa algebra, ki vsebuje $\{1\}, \{2\} \cdots$, je tukaj ena"caj, torej $g = F$ \\
+    Ker npr. mno"zica sodih "stevil ni v $g \in F$, je $g \notin P(\N)$, torej $g$ ni $\sigma$-algebra
+\end{ex}
+
+\begin{defn}[Nezdru"zljivost dogodkov]
+    Dogodka $A$ in $B$ sta nezdru"zljiva ali disjunktna, "ce je $A \cap B = \emptyset$
+\end{defn}
+
+\begin{defn}[Popoln sistem dogodkov]
+    Zaporedje $\{A_i\}_i$ (kon"cno ali "stevno mnogo) je popoln sistem dogodkov, "ce $\Omega = \cup_i A_i$ in
+    $A_i \cap A_j = \emptyset \forall i \neq j$
+\end{defn}
+
+\begin{defn}[Verjetnost]
+    Naj bo $F \sigma$-algebra na $\Omega$. Verjetnost na $(\Omega, F)$ je preslikava $P: F \to \R$ z lastnostmi:
+
+    \begin{enumerate}
+        \item $P(A) \geq 0 \forall A \in F$
+        \item $P(\Omega) = 1$ \\
+        \item Za poljubne paroma nezdru"zljive dogodke $A_1, A_2 \cdots$ velja
+            \begin{equation*}
+                P(\cup_{i=1}^{\infty} A_i) = \sum_{i=1}^{\infty} P(A_i)
+            \end{equation*}
+            "stevna aditivnost (verjetnostne preslikave)
+    \end{enumerate}
+\end{defn}
+
+Lastnosti preslikave $P$:
+
+\begin{enumerate}
+    \item $P(\emptyset) = 0$
+        \begin{proof}
+            v 3) vstavimo $A_1 = A_2 = \cdots = \emptyset$:
+            \begin{align*}
+                &P(\emptyset) = P(\emptyset) + P(\emptyset) + \cdots + P(\emptyset) = k \cdot P(\emptyset) \implies \\
+                &\implies (k-1) P(\emptyset) = 0 \implies P(\emptyset) = 0
+            \end{align*}
+        \end{proof}
+    \item $P$ je kon"cno aditivna, t.j. za poljubne paroma nezdru"zljive dogodke $A_1 \cdots A_n$ velja
+        \begin{equation*}
+            P(\cup_{i=1}^n A_i) = \sum_{i=1}^{n} P(A_i)
+        \end{equation*}
+        \begin{proof}
+            v 3) vzamemo $A_{n+1} = A_{n+2} = \cdots = \emptyset$:
+            \begin{equation*}
+                P(\cup_{i=1}^n A_i) = \sum_{i=1}^{\infty} P(A_i) = \sum_{i=1}^{n} P(A_i)
+                (\text{zaradi} P(\emptyset) = 0)
+            \end{equation*}
+        \end{proof}
+    \item $P$ je monotona, t.j. iz $A \subseteq B$ ($A,B \in F$) sledi $P(A) \subseteq P(B)$, "se ve"c:
+        $A \subseteq B \implies P(B \text{\textbackslash} A) = P(B) - P(A)$
+        \begin{proof}
+            Ker je $B = A \cup (B \text{\textbackslash} A)$ in $A \cap (B \text{\textbackslash} A) = \emptyset$,
+            je po b) $P(B) = P(A) + P(B \text{\textbackslash} A)$
+        \end{proof}
+    \item $P(A^C) = 1 - P(A)$ za $A \in F$
+        \begin{proof}
+            \begin{align*}
+                &B = \Omega \implies P(A^C) = P(\Omega \text{\textbackslash} A) = \\
+                &\stackrel{c)}{=} P(\Omega) - P(A) \stackrel{2)}{=} 1 - P(A)
+            \end{align*}
+        \end{proof}
+    \item $P$ je zvezna, t.j.
+        \begin{enumerate}
+            \item iz $A_1 \subseteq A_2 \subseteq \cdots A_i \in F$ sledi
+                $P(\cup_{i=1}^{\infty} A_i) = \lim_{i \to \infty} P(A_i)$
+            \item iz $B_1 \supseteq B_2 \supseteq \cdots B_i \in F$ sledi
+                $P(\cap_{i=1}^{\infty} B_i) = \lim_{i \to \infty} P(B_i)$
+        \end{enumerate}
+        Definiramo
+        \begin{align*}
+            &C_1 = A_1 \\
+            &C_i = A_i - A_{i-1} \text{ za } i \geq 2
+        \end{align*}
+        Potem $C_i \cap C_j = \emptyset$ za $i \neq j$, $A_n = C_1 \cup \cdots \cup C_n$ in
+        $\cup_{i=1}^{\infty} A_i = \cup_{i=1}^{\infty} C_i$ \\
+        Torej imamo
+        \begin{align*}
+            &P(\cup_{i=1}^{\infty} A_i) = P(\cup_{i=1}^{\infty} C_i) = \\
+            &\stackrel{3)}{=} \sum_{i=1}^{\infty} P(C_i) = \lim_{n \to \infty} \sum_{i=1}^{n} P(C_i) = \\
+            &\stackrel{b)}{=} \lim_{n \to \infty} P(A_i) 
+        \end{align*}
+        \begin{proof}
+            Dokazujemo ii):
+            iz $B_1 \supseteq B_2 \supseteq \cdots$ sledi $B_1^C \subseteq B_2^C \subseteq \cdots$ in zato po (i)
+            \begin{equation*}
+                P(\cup_{i=1}^{\infty} B_i^C) = \lim_{i \to \infty} P(B_i^C) \stackrel{a)}{=} 1 - \lim_{i \to \infty} P(B_i)
+            \end{equation*}
+            Toda
+            \begin{equation*}
+                P(\cup_{i=1}^{\infty} B_i^C) = P((\cup_{i=1}^{\infty} B_i)^C) \stackrel{d)}{=} 1 - P(\cap_{i=1}^{\infty} B_i)
+            \end{equation*}
+            Od tod sledi "zelena enakost
+            \begin{equation*}
+                P(\cap_{i=1}^{\infty} B_i^C) = \lim_{i \to \infty} P(B_i)
+            \end{equation*}
+        \end{proof}
+\end{enumerate}
+
+$(\Omega, F, P)$ verjetnostni prostor
+
+\begin{ex}
+    (kon"cni ali "stevni verjetnostni prostor) \\
+    $\Omega = \{w_1, w_2 \cdots\}$ kon"cna ali "stevna mno"zica, paroma razli"cni, \\
+    $F = P(\Omega), A = \cup_{i \in A} \{w_i\}$ kon"cna ali "stevna unija \\
+    $\{w_1\}, \{w_2\} \cdots$ so popoln sistem dogodkov \\
+    "ce je $p_i := P(\{w_i\})$, je $P(A) = \sum_{i: w_i \in A} p_i$ in $\sum_i p_i = 1 = P(\Omega)$ \\
+    Poseben primer: $\Omega$ ima $n$ elementov in $p_i = \frac{1}{n}, P(A) \frac{\text{mo"c}(A)}{n}$ \\
+    To je kla"si"cna definicija verjetnosti
+\end{ex}
+
+
+
 % 3. predavanje: 28.10.
 
 $(\Omega, \Phi, P)$
