@@ -93,13 +93,139 @@
 
 
 
-% 2. predavanje: 21.10.
+% 1. predavanje: 7.10.
 
-3. asociativnost: $(A \cup B) \cup C = A \cup (B \cup C), (A \cap B) \cap C = A \cap (B \cap C)$ \\
-4. distributivnost: $(A \cap B) \cup C = (A \cup C) \cap (B \cup C), (A \cup B) \cap C = (A \cap C) \cup (B \cap C)$ \\
-oz. $(A \cdot B) + C = (A + C) \cdot (B + C), (A + B) \cdot C = (A \cdot C) + (B \cdot C)$ \\
-5. deMorganova zakona: $(A \cup B)^C = A^C \cap B^C, (A \cap B)^C = A^C \cup B^C$ \\
-"se ve"c: $(\cup_{i \in I} A_i)^C = \cap_{i \in I} A_i^C, (\cap{i \in I} A_i)^C = \cup{i \in I} A_i^C$
+\section{Verjetnost}
+
+\subsection{Neformalni uvod v verjetnost}
+
+Začetki verjetnosti (kot vede) so v 17. stoletju, motivacija igre na sre"co \\
+17. stol: Fermat, Pascal, Bernoulli \\
+18. in 19 stol: Laplace, Poisson, "Cebi"sev, Markov \\
+20. stol: Kolmogorov (okoli 1930), utemeljitelj sodobnega verjetnostnega ra"cuna \\
+
+\begin{defn}[Dogodek]
+    Izvajamo poskus, opazujemo nek pojav, ki se lahko zgodi in ga imenujemo dogodek
+\end{defn}
+
+\begin{ex}
+    Met po"stene kocke, dogodek je npr. pade "sestica, ali npr. pade sodo "stevilo pik
+\end{ex}
+
+\begin{defn}[Frekvenca]
+    Poskus ponovimo $n$-krat. Opazujemo dogodek $A$. \\
+    Naj bo $K_n(A)$ frekvenca dogodka $A$, t.j. "stevilo tistih ponovitev, pri katerih se je dogodek $A$ zgodil. \\
+    Relativna frekvenca je $f_n(A) = \frac{K_n(A)}{n} \in [0,1]$
+\end{defn}
+
+Dokazati je mogo"ce, da zaporedje $\{f_n(A)\}$ konvergira, recimo h $p \in [0,1]$. \\
+Statisti"cna definicija verjetnosti: $P(A) := p$. \\
+Pogosto verjetnost lahko dolo"cimo vnaprej: \\
+Klasi"cna definicija verjetnosti: $P(A) = \frac{\text{"stevilo ugodnih izidov za dogodek }A}{\text{"stevilo vseh izidov}}$
+pri pogoju, da imajo vsi izidi enake mo"znosti
+
+\begin{ex}
+    met kocke: \\
+    $P(\text{pade "sestica}) = \frac{1}{6}$ \\
+    $P(\text{pade sodo "stevilo pik}) = \frac{3}{6} = \frac{1}{2}$
+\end{ex}
+
+\begin{ex}
+    Kolik"sna je verjetnost, da pri metu dveh kock zna"sa vsota pik 7? \\
+    Mo"zne vsote: $2, 3, 4 \cdots 7 \cdots 12$: 11 mo"znosti \\
+    Ali je $P(\text{vsota 7}) = \frac{1}{11}$? Ne, ker te vsote nimajo enakih mo"znosti: \\
+    $2=1+1, 3=2+1=1+2$ \\
+    Vsi mo"zni izidi so $\{(i,j): i,j \in \{1, 2 \cdots 6\}\} = \{1, 2 \cdots 6\} \times \{1, 2 \cdots 6\}$ \\
+    $\begin{matrix}
+        (1,1) & (1,2) & \cdots & (1,6) \\
+        (2,1) & (2,2) & \cdots & (2,6) \\
+         & \vdots & & \\
+        (6,1) & (6,2) & \cdots & (6,6) \\
+    \end{matrix}$ \\
+    $P(\text{vsota 7}) = \frac{6}{36} = \frac{1}{6}$
+\end{ex}
+
+"Ce je vseh izidov neskon"cno, si lahko pomagamo z geometrijsko definicijo verjetnosti
+
+\begin{ex}
+    Osebi se dogovorita za sestanek med 10. in 11. uro; "cas prihoda je slu"cajen. Vsak "caka najve"c 20 minut, najdlje
+    do 11. ure; "ce v tem "casu drugega ni, odide. Kolik"sna je verjetnost sre"canja? \\
+    Za"cnimo "cas "steti ob 10. uri. Naj bo $x$ "cas prihoda 1. osebe, $y$ pa "cas prihoda druge osebe \\
+    Mo"zni izidi so kvadrat $[0,1]^2 = [0,1] \times [0,1]$ \\
+    Ugodni izidi so $|x-y| \leq \frac{1}{3}$
+    \begin{enumerate}
+        \item $x \geq y: \; x - y \leq \frac{1}{3}$ oz. $x - \frac{1}{3} \leq y$
+        \item $x \leq y: \; y - x \leq \frac{1}{3}$ oz. $y \leq x + \frac{1}{3}$
+    \end{enumerate}
+    $P(\text{sre"canje}) = \frac{\text{plo"s"cina ozna"cenega lika}}{\text{polo"s"cina kvadrata}} =
+    \frac{1 - (\frac{2}{3})^2}{1} = \frac{5}{9}$
+\end{ex}
+
+\begin{ex}
+    Slu"cajno razporedimo $n$ kroglic v $m$ posod, kjer je $m>n$. Kolik"sna je verjetnost, da so vse kroglice v prvih
+    $n$ posodah, v vsaki ena? \\
+    Obravnavajmo 3 variante:
+    \begin{enumerate}
+        \item kroglice razlikujemo \\
+            Vsi izidi: $m \cdot m \cdots m = m^2$ variacije \\
+            Ugodni izidi: $n \cdot (n-1) \cdots 1 = n!$ permutacija \\
+            $\implies P(A) = \frac{n!}{m^n}$
+        \item kroglic ne razlikujemo \\
+            $n$ kroglic, $m-1$ "crtic $\implies (m+n-1)$ mest \\
+            Vsi izidi: $\binom{m+n-1}{n}$ kombinacije s ponavljanjem \\
+            Ugidni izidi: 1 \\
+            $P(A) = \frac{1}{\binom{m+n-1}{n}}$
+        \item kroglic ne razlikujemo, v vsaki posodi je kve"cjemu ena \\
+            "Stevilo vseh izidov je $\binom{m}{n}$ \\
+            Ugoden izid je samo eden \\
+            Torej je $P(A) = \frac{1}{\binom{m}{n}}$
+    \end{enumerate}
+\end{ex}
+
+V kvantni mehaniki so kroglice razli"cni delci, posode so energetska stanja \\
+V primeru (a) imamo Maxwell-Boltzmanovi statistiki, velja za molekule plina \\
+V primeru (b) imamo Bose-Einsteinovo statistiko, velja za bozone (npr. fotoni) \\
+V primeru (c) imamo Fermi-Diracovo statistiko, velja za fermione (npr elektroni);
+zanje velja Diracovo izklju"citveno na"celo: v vsakem stanju je najve"c en delec
+
+\subsection{Aksiomati"cna definicija verjetnosti}
+
+Kolmogorov (okoli 1930)
+
+\begin{defn}[Dogodek]
+    Imamo prostor vseh dogodkov $\Omega$ (mo"zna oznaka je $G$). Dogodki so nekatere (ne nujno vse)
+    podmno"zice $A \subseteq \Omega$
+\end{defn}
+
+\begin{ex}
+    Met kocke: $\Omega = \{1,2,3,4,5,6\}$, dogodki so vse podmno"zice,  $\{6\} \cdots$ dogodek, da pade "sestica,
+    $\{2,4,6\} \cdots$ dogodek, da pade sodo "stevilo pik
+\end{ex}
+
+Ra"cunanje z dogodki
+
+\begin{enumerate}
+    \item Vsota dogodkov oz. unija dogodkov: $A + B$ oz. $A \cup B$: dogodek, da se zgodi vsaj eden od $A$ in $B$
+    \item Produkt dogodkov oz. presek dogodkov: $A \cdot B$ oz. $A \cap B$: dogodek, da se zgodita oda dogodka $A$ in $B$
+    \item Nasprotni dogodek oz. komplement dogodka: $\overline{A} = A^C$
+\end{enumerate}
+
+Pravila za ra"cunanje z dogodki:
+
+\begin{itemize}
+    \item idempotentnost: $A \cup A = A = A \cap A$
+    \item komutativnost: $A \cap B = B \cap A$ in $A \cup B = B \cup A$
+
+
+
+% 2. predavanje: 14.10.
+
+    \item asociativnost: $(A \cup B) \cup C = A \cup (B \cup C), (A \cap B) \cap C = A \cap (B \cap C)$
+    \item distributivnost: $(A \cap B) \cup C = (A \cup C) \cap (B \cup C), (A \cup B) \cap C = (A \cap C) \cup (B \cap C)$
+        oz. $(A \cdot B) + C = (A + C) \cdot (B + C), (A + B) \cdot C = (A \cdot C) + (B \cdot C)$
+    \item deMorganova zakona: $(A \cup B)^C = A^C \cap B^C, (A \cap B)^C = A^C \cup B^C$ \\
+        "se ve"c: $(\cup_{i \in I} A_i)^C = \cap_{i \in I} A_i^C, (\cap_{i \in I} A_i)^C = \cup_{i \in I} A_i^C$
+\end{itemize}
 
 \begin{defn}[$\sigma$-algebra]
     Neprazna dru"zina podmno"zic dogodkov $F$ v $\Omega$ je $\sigma$-algebra, "ce velja:
