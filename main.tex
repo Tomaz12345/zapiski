@@ -3820,4 +3820,148 @@ kjer je $\alpha$ stopnja zna"cilnosti in $P(Z > z_{\frac{\alpha}{2}}) = \frac{\a
 
 
 
+% 24. predavanje: 18.4.
+
+$Z \dots$ testna statistika \\
+Pri stopnji zna"cilnosti $\alpha$ dolo"cimo $z_{\frac{\alpha}{2}} > 0$, da je
+
+\begin{equation*}
+    P(Z > z_{\frac{\alpha}{2}}) = \frac{\alpha}{2}
+\end{equation*}
+
+$K_{\alpha}$ kriti"cno obmo"cje \\
+"Ce je vzor"cna vrednost za $Z$ na $K_{\alpha}$, hipotezo $H_0$ zavrnemo
+
+\begin{ex}
+    Izdelovalec vrvic trdi, da je povpre"cna sila, pri kateri se vrvica strga 150N s standardno deviacijo
+    5N. Na vzorcu 50 vrvic ($n=50$) je bila popvre"cna sila 148N. Privzamemo normalno porazdelitev $N(\mu,5)$.
+    Pri stopnji zna"cilnosti $\alpha = 0.01$ testiramo hipotezo
+
+    \begin{equation*}
+        H_0(\mu = 150) : H_1(\mu \neq 150)
+    \end{equation*}
+
+    Iz tabel razberemo $z_{\frac{\alpha}{2}} = 2.58$ \\
+    Kriti"cno obmo"cje $K_{\alpha} = (-\infty, -2.58] \cup [2.58, \infty)$ \\
+    Testna statistika $Z = \frac{\overline{X}-150}{5} \sqrt{50} = (\overline{X}-150) \sqrt{2}$, njena vzor"cna
+    vrednost je
+
+    \begin{equation*}
+        z = (148 - 150) \sqrt{2} = -2 \sqrt{2} = -2.82
+    \end{equation*}
+
+    Ker je $z = -2.82 \in K_{\alpha}, H_0$ zavrnemo; razlike so zna"cilne (signifikantne) \\
+    Ker gledamo odstopanja v obe smeri, je to dvostranski test $Z$. \\
+    Smiselen bi bil enostranski test $Z$: $H_0(\mu = 150) : H_1(\mu < 150)$ \\
+    $K_{\alpha} = (-\infty, -z_{\alpha})$, pri $\alpha = 0.01$ je $z_{\alpha} = 2.33$ \\
+    Ker $z = -2.82 \in K_{\alpha}, H_0$ zavrnemo tudi sedaj
+\end{ex}
+
+\subsubsection{test T: $X \sim N(\mu, \sigma)$, $\mu$ neznan}
+
+$H_0(\mu = \mu_0) : H_1(\mu \neq \mu_0), \mu_0$ je dano "stevilo \\
+Testna statistika
+
+\begin{equation*}
+    T = \frac{\overline{X} - \mu_0}{S} \sqrt{n}
+\end{equation*}
+
+$S$ je vzor"cna deviacija \\
+Pri predpostavki $H_0$ je porazdeljena po Student(n-1) \\
+$K_{\alpha} = (-\infty, -t_{\frac{\alpha}{2}}] \cup [t_{\frac{\alpha}{2}}, \infty)$ \\
+"Ce vzor"cna vrednost za $T$ le"zi na $K_{\alpha}$, hipotezo zavrnemo
+
+\begin{ex}
+    Nadaljevanje prej"snjega primera \\
+    Privzamemo deviacijo 5N izra"cunano iz vzorca, torej
+
+    \begin{equation*}
+        S = 5N, s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \overline{x})^2
+    \end{equation*}
+
+    Kot prej je $\overline{x} = 148N$ \\
+    Iz tabel razberemo, da je $t_{\frac{\alpha}{2}} = 2.68$ (pri 49 prostorskih stopnjah in $\alpha = 0.01$) \\
+    $K_{\alpha} = (-\infty, -2.68] \cup [2.68, \infty)$, vzor"cna vrednost za $T$ je (tako kot prej) $t = -2.82$ \\
+    Ker $t \in K_{\alpha}, H_0$ zavrnemo
+\end{ex}
+
+\begin{ex}
+    V klini"cnem poskusu testirajo zdravila za zni"zevanje krvnega tlaka so 10 bolnikom izmerili sistoli"cno krvni
+    tlak pred in po zdravljenju. Razlike \"pred-po\" so $-8,0,2,4,9,14,19,22,32,35 mmHg$. Predpostavimo normalni model
+    $N(\mu, \sigma)$ z neznanima $\mu$ in $\sigma$. Testiramo hipotezo $H_0(\mu = 0) : H_1(\mu > 0)$. Naredimo
+    test zna"cilnosti (parametri"cni test zna"cilnosti)
+    
+    \begin{enumerate}
+        \item enostranski test $T$ $H_0(\mu = 0) : H_1(\mu > 0), H_0 :=$ zdravilo ne u"cinkuje
+        \item stopnja zna"cilnosti $\alpha = 0.05$
+        \item testna statistika $T = \frac{\overline{X}}{S} \sqrt{10}$, $n=10$
+        \item kriti"cno obmo"cje $K_{\alpha} = [t_{\alpha}, \infty)$ \\
+            $Student(9) \implies t_{\alpha} = 1.83$
+        \item vzor"cna vrednost za $T$ je
+            \begin{equation*}
+                t = \frac{12.9}{14.1} \sqrt{10} = 2.89
+            \end{equation*}
+    \end{enumerate}
+
+    Sklep: ker $t = 2.89 \in K_{\alpha}$, hipotezo $H_0$ zavrnemo
+\end{ex}
+
+\begin{defn}[P-vrednost]
+    P-vrednost je najmanj"sa stopnja zna"cilnosti, pri kateri "se lahko zavrnemo hipotezo (pro danih vzor"cnih
+    podatkih)
+\end{defn}
+
+V na"sem primeru je $P = 0.89\% = 0.0089$
+
+\subsubsection{Studentov primerjalni test}
+
+Imejmo 2 neodvisna vzorca velikosti $m$ in $n$. Prvi je vzet iz populacije, na kateri ime slu"cajna spremenljivka
+$X \sim N(\mu_x, \sigma)$, druga pa iz populacije, na kateri imamo $Y \sim N(\mu_x, \sigma)$. Predpostavljamo torej
+enakost disperzij. "Ce sta $s_x^2$ in $s_y^2$ povpre"cni vzor"cni disperziji
+
+\begin{align*}
+    &S_X^2 = \frac{1}{m-1} \sum_{i=1}^{m} (x_i - \overline{x})^2 \\
+    &S_Y^2 = \frac{1}{n-1} \sum_{i=1}^{n} (y_i - \overline{y})^2
+\end{align*}
+
+potem definiramo skupno vzor"cno varianco
+
+\begin{equation*}
+    S^2 = \frac{(m-1) S_X^2 + (n-1) S_Y^2}{m+n-2} = \frac{1}{m+n-1} (\sum_{i=1}^{m}
+    (x_i - \overline{x})^2 + \sum_{i=1}^{n} (y_i - \overline{y})^2)
+\end{equation*}
+
+Testiramo hipotezo $H_0(\mu_x = \mu_y) : H_1(\mu_x \neq \mu_y)$. Testna statistika
+
+\begin{equation*}
+    T = \frac{\overline{X} - \overline{Y}}{S} \sqrt{\frac{mn}{m+n}}
+\end{equation*}
+
+Potem je
+
+\begin{align*}
+    &\overline{X} - \overline{Y} \sim N(0, \sqrt{(\frac{\sigma}{\sqrt{m}})^2 + (\frac{\sigma}{\sqrt{n}})^2}) = \\
+    &= N(0, \sigma \sqrt{\frac{1}{m} + \frac{1}{n}}) = N(0, \sigma \sqrt{\frac{m+n}{mn}})
+\end{align*}
+
+Zato ima spremenljivka
+
+\begin{equation*}
+    Z = \frac{\overline{X} - \overline{Y}}{S} \sqrt{\frac{mn}{m+n}} \sim N(0,1)
+\end{equation*}
+
+Ker je spremenljivka
+
+\begin{equation*}
+    U = \frac{(m+n-2) S^2}{\sigma^2} \sim \chi^2(m+n-2)
+\end{equation*}
+
+je
+
+\begin{equation*}
+    T = \frac{Z}{\sqrt{\frac{U}{m+n-2}}} \sim Student(m+n-2)
+\end{equation*}
+
+
+
 \end{document}
