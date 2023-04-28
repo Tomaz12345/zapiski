@@ -3964,4 +3964,164 @@ je
 
 
 
+% 25. predavanje: 25.4.
+
+\begin{ex}
+    2 zdravili proti nespe"cnosti preizkusijo na vzorcih velikosti $m=n=10$. \\
+    Dodatno "stevilo ur pri prvem zdravilu: $1.9, 0.8, 1.1, 0.1, -0.1, 4.4, 5.5, 1.6, 4.6, 3.4$ \\
+    Dodatno "stevilo ur pri drugem zdravilu pa $0.7, -1.6, -0.2, -1.2, -0.1, 3.4, 3.7, 0.8, 0.0, 2.0$
+
+    \begin{enumerate}
+        \item dvostranski standardni primerjalni test $H_0(\mu_x = \mu_y) : H_1(\mu_x \neq \mu_y)$
+        \item stopnja zna"cilnosti $\alpha = 0.05$
+        \item testna statistika $T = \frac{\overline{X} - \overline{Y}}{S} \sqrt{\frac{mn}{m+n}} \sim Student(m+n-2)
+            = Student(18)$, "ce velja hipoteza $H_0$
+        \item kriti"cno obmo"cje $K_{\alpha} = (-\infty, -t_{\frac{\alpha}{2}}] \cup [t_{\frac{\alpha}{2}}, \infty),
+            t_{\frac{\alpha}{2}} = 2.10$ (iz tabele, 18 prostorskih stopenj)
+        \item vzor"cna vrednost za $T$ je 
+            \begin{equation*}
+                t = \frac{\overline{x} - \overline{y}}{s} \sqrt{5} = \frac{2.33 - 0.75}{\sqrt{3.70}} \sqrt{5} = 1.84
+            \end{equation*}
+    \end{enumerate}
+
+    Sklep: ker $1.84 \notin K_{\alpha}$, hipoteze $H_0$ ne moremo zavrniti pri stopnji zna"cilnosti $5\%$ \\
+    $P$-vrednost pride 0.079
+\end{ex}
+
+Poleg populacijskega povpre"cja $\mu$ lahko testiramo tudi druge koli"cine:
+
+\begin{itemize}
+    \item standardna deviacija $\sigma: H_0(\sigma = \sigma_0), \sigma_0$ je dano "stevilo
+    \item tip porazdelitvenega zakona: $H_0(F = F_0)$
+    \item neodvisnost dveh spremenljivk
+    \item korelacijski koeficient
+\end{itemize}
+
+\subsubsection{Test hi-kvadrat}
+
+(Pearson) \\
+Preizkus domneve o tipu porazdelitvenega zakona, torej $H_0(F = F_0) : H_1(F \neq F_0)$, kjer je $F_0$ dana
+porazdelitvena funkcija. Zalogo vrednosti slu"cajne spremenljivke $X$ razdelimo na $r$ razredov (disjunktno)
+$S_1, S_2 \cdots S_r$, da je
+
+\begin{equation*}
+    p_k = P(X \in S_k \mid H_k) > 0 \; \forall k = 1, 2 \cdots r
+\end{equation*}
+
+Potem je $\sum_{k=1}^{r} p_k = 1, \sum_{k=1}^{r} N_k = n$ ter $N_k \sim Bin(n, p_k)$ in $E(N_k) = p \cdot n_k$
+kar je pri"cakovana vrednost za $k$-ti razred. \\
+Pri velikem $n$ ima testna statistika $\chi^2 = \sum_{k=1}^{r} \frac{(N_k - n p_k)^2}{n p_k}$ pribli"zno
+porazdelitev $\chi^2(r-1)$ \\
+"Ce $\chi^2$ zavzame preveliko vrednost, hipotezo $H_0$ zavrnemo \\
+$K_{\alpha} = [c_{\alpha}, \infty), P(\chi^2 > c_{\alpha}) = \alpha$
+
+\begin{ex}
+    Preizku"samo \"po"stenost\" kocke \\
+    v $n=120$ dobimo za "stevilo pik
+
+    \begin{center}
+        \begin{tabular}{ c c c c c c c c}
+            "stevilo pik & 1 & 2 & 3 & 4 & 5 & 6 & \\
+            opazovane frekvence & 20 & 22 & 17 & 18 & 19 & 24 & $N_k$ \\
+            pri"cakovane frekvence & 20 & 20 & 20 & 20 & 20 & 20 & $n p_k$
+            \end{tabular}
+    \end{center}
+
+    $r = 6, p_k = \frac{1}{6}$
+
+    \begin{equation*}
+        \chi^2 = \frac{(20-20)^2}{20} + \frac{(22-20)^2}{20} + \cdots + \frac{(24-20)^2}{20} = \frac{34}{20} = 1.7
+    \end{equation*}
+
+    Pri $\alpha = 0.05$ in 5 prostorskih stopnjah je $c_{\alpha} = 11.1$ \\
+    Ker $1.7 \notin K_{\alpha}$, hipoetzo $H_0$, da gre za enakomerno porazdelitev na 6 to"ckah ne moremo zavrniti
+\end{ex}
+
+\begin{ex}
+    Podatki o "stevilo mo"cnih potresov (vsaj 8 stopnje po Richterjevi lestvici) v obdobju 1969-2001, $n=33$
+
+    \begin{center}
+        \begin{tabular}{c c c c c c c c}
+            "stevilo potresov & 0 & 1 & 2 & 3 & 4 & 5 & $\cdots$ \\
+            "stevilo let s toliko potresiv & 15 & 13 & 4 & 1 & 0 & 0 & $\cdots$
+        \end{tabular}
+    \end{center}
+
+    Hipoteza $H_0:$ podatki so porazdeljeni po $Poisson(1.5): p_k = e^{-1.5} \frac{(1.5)^k}{k!} k = 0, 1, 2 \cdots$ \\
+    Pri"cakovane frekvence so
+
+    \begin{center}
+        \begin{tabular}{c c c c c c c}
+            "stevilo potresov & 0 & 1 & 2 & 3 & 4 & $\cdots$ \\
+            "stevilo let s toliko potresiv & 7.4 & 11.0 & 8.3 & 4.1 & 1.6 & $\cdots$
+        \end{tabular}
+    \end{center}
+
+    Vsota za od (vklju"cno z) 3 naprej je 6.3 \\
+    Teorija priporo"ca, da so pri"cakovane frekvence vsaj 5, zato vpeljemo razred ``$\geq 3$"
+
+    \begin{center}
+        \begin{tabular}{c c c c c}
+            razred & 0 & 1 & 2 & 3 \\
+            opazovane frekvence & 15 & 13 & 4 & 1 \\
+            pri"cakovane frekvence & 7.4 & 11.0 & 8.3 & 6.3
+        \end{tabular}
+    \end{center}
+
+    $r=4$
+
+    \begin{equation*}
+        \chi^2 = \frac{(15-7.4)^2}{7.4} + \frac{(13-11)^2}{11} + \frac{(4-8.3)^2}{8.3} + \frac{(1-6.3)^2}{6.3} = 14.9
+    \end{equation*}
+
+    Pri $\chi^2(3)$ je $c_{\alpha} = 7.82$ \\
+    Ker $14.9 \in K_{\alpha} = [7.82, \infty)$, hipotezo $H_0$ zavrnemo \\
+    $P$-vrednost je 0.002
+\end{ex}
+
+\begin{rem}
+    "Ce so v testu $\chi^2$ frekvence $p_k$ odvedljivo odvisne od parametra $\theta$, torej $p_k(\theta)$, potem ima
+    statistika $\chi^2 = \sum_{k=1}^{r} \frac{(N_k - n p_k(\hat{\theta}))^2}{n p_k(\hat{\theta})}$ pribli"zno
+    porazdelitev $\chi^2(r-2)$, kjer je $\hat{\theta}$ cenilka za parameter $\theta$ po metodi maksimalne zanesljivosti
+\end{rem}
+
+\begin{ex}
+    Potresi (od prej), $H_0$: podatki imajo Poissonovo porazdelitev \\
+    Cenilka za $\lambda$ je 
+    
+    \begin{equation*}
+        \hat{\lambda} = \overline{X} = \frac{0 \cdot 15 + 1 \cdot 13 + 2 \cdot 4 + 3 \cdot 1}{33} = \frac{8}{11} = 0.73
+    \end{equation*}
+
+    (ista cenilka tako po metodi momentov kot po moetodi najve"cjega verjetja) \\
+    Torej
+
+    \begin{equation*}
+        p_k(\hat{\lambda}) = e^{-0.73} \frac{(0.73)^k}{k!} \; k = 0, 1 \cdots
+    \end{equation*}
+
+    \begin{center}
+        \begin{tabular}{c c c c c}
+            razred & 0 & 1 & $\geq 2$ & k \\
+            opa"zene frekvence & 15 & 13 & 5 & $N_k$ \\
+            pri"cakovane frekvence & 15.9 & 11.6 & 5.5 & $n \cdot p_k(\hat{\lambda})$
+        \end{tabular}
+    \end{center}
+
+    $r=3$
+
+    \begin{equation*}
+        \chi^2 = \frac{(15-15.9)^2}{15.9} + \frac{(13-11.6)^2}{11.6} + \frac{(5-5.5)^2}{5.5} = 0.27
+    \end{equation*}
+
+    Za $\chi^2(r-2) = \chi^2(1)$ in $\alpha = 0.05$ je $c_{\alpha} = 3.84, K_{\alpha} = [3.84, \infty)$ \\
+    Ker $0.27 \notin K_{\alpha}$, hipoteze $H_0$ ne moremo zavrniti
+\end{ex}
+
+\begin{rem}
+    Ra"cuni bi bili druga"cni "ce bi imeli $\lambda = 0.73$ podan na za"cetku \\
+    ($\chi^2(r-1)$ vs. $\chi^2(r-2)$)
+\end{rem}
+
+
 \end{document}
