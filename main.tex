@@ -4124,4 +4124,343 @@ $K_{\alpha} = [c_{\alpha}, \infty), P(\chi^2 > c_{\alpha}) = \alpha$
 \end{rem}
 
 
+
+% 26. predavanje: 16.5.
+
+\subsection{Linearna regresija}
+
+\begin{defn}[Linearni regresijski model]
+    Linearni regresijski model: $Y = a + bx + U$ \\
+    Pri fiksnem $x \in \R$ predpostavljamo, da je $y = a + bx + U$, kjer sta $a$ in $b$ konstanti ter $U \sim N(0, \sigma)$ za nek
+    pozitiven $\sigma$ oz. $Y \sim N(a+bx, \sigma)$
+\end{defn}
+
+Za razli"cne vrednosti $x_1, x_2 \cdots x_n$ dobimo slu"cajni vektor $(y_1, y_2 \cdots y_n)$, kjer je $y_k \sim N(a + bx_k, \sigma)$ \\
+$y = a + bx$ je regresijska premica \\
+% skica
+$y_k$ je vrednost za $Y_k, k = 1, 2 \cdots n$ \\
+Radi bi ocenili $a$ in $b$ \\
+Z metodo maksimalne zanesljivosti se dobi cenilki
+
+\begin{equation*}
+    \hat{b} = \frac{\sum_{k=1}^{n} (x_k - \overline{X}) (x_k - \overline{Y})}{\sum_{k=0}^{n} (x_k - \overline{X})^2}
+\end{equation*}
+
+in
+
+\begin{equation*}
+    \hat{a} = \overline{Y} - \hat{b} \cdot \overline{X}
+\end{equation*}
+
+"Ce vpeljemo naslednje vsote
+
+\begin{align*}
+    &S_x := \sum_{k=1}^{n} x_k \\
+    &S_Y := \sum_{k=1}^{n} y_k \\
+    &S_{xx} := \sum_{k=1}^{n} x_k^2 \\
+    &S_{xY} := \sum_{k=1}^{n} x_k y_k \\
+\end{align*}
+
+je "stevec
+
+\begin{align*}
+    &\sum_{k=1}^{n} (x_k - \overline{X}) (y_k - \overline{Y}) = \sum_{k=1}^{n} (x_k y_k - \overline{X} y_k - x_k \overline{Y}
+        + \overline{X} \overline{Y}) = \\
+    &= S_{xx} - \frac{1}{n} \overline{X} S_y - \overline{Y} S_x + n \overline{X} \overline{Y} = \\
+    &= S_{xY} - \frac{1}{n} S_x S_Y - \frac{1}{n} S_Y S_x + \frac{1}{n} S_y = \\
+    &= S_{xY} - \frac{1}{n} S_x S_Y
+\end{align*}
+
+in
+
+\begin{align*}
+    &\sum_{k=1}^{n} (x_k - \overline{X})^2 = \sum_{k=1}^{n} (x_k^2  2 x_n \overline{X})^2 = \\
+    &= S_{xx} - 2 \overline{X} S_x + n \overline{X}^2 = \\
+    &= S_{xx} - 2 \frac{1}{n} S_x^2 + \frac{1}{n} S_x^2 = \\
+    &= S_{xx} - \frac{1}{n} S_x^2
+\end{align*}
+
+Torej je
+
+\begin{equation*}
+    \hat{b} = \frac{n S_{xY} - S_x S_y}{n S_{xx} - S_x^2}
+\end{equation*}
+
+in
+
+\begin{equation*}
+    \hat{a} = \frac{1}{n} S_Y + \hat{b} \frac{1}{n} S_x
+\end{equation*}
+
+\begin{ex}
+    Astronom Hubble je leta 1929 ugotavljal, da je hitrost oddaljevanja galaksije od zemlje linearno odvisna od oddaljenosti galaksije \\
+    $n = 24$
+
+    \begin{center}
+        \begin{tabular}{c | c c c c c c}
+            \hline
+            oddaljenost [mega Parsek] & 0.032 & 0.034 & 0.214 & $\cdots$ & 2.0 & 2.0 \\
+            hitrost oddaljevanja [km/s] & 170 & 290 & -130 & $\cdots$ & 800 & 1090
+        \end{tabular}
+    \end{center}
+
+    \begin{equation*}
+        S_x = 21.9, S_Y = 8065, S_{xx} = 29.5, S_{xY} = 12.519
+    \end{equation*}
+
+    \begin{equation*}
+        \hat{b} \to 456, \; \hat{a} \to -34
+    \end{equation*}
+
+    Regresijska permica ja $y = -34 + 456x$
+
+    % skica
+
+    Regresijska premica se zelo pribli"za izhodi"s"cu, kar se ujema s teorijo o velikem poku.
+\end{ex}
+
+Do cenilk $\hat{a}$ in $\hat{b}$ lahko pridemo po metodi najmanj"sih kvadratov: minimiziramo funkcijo
+
+\begin{equation*}
+    f(a,b) := \sum_{k=1}^{n} (y_k - (a - b x_k))^2
+\end{equation*}
+
+Porebna pogoja za minimum sta:
+
+\begin{align*}
+    &0 = \frac{\partial f}{\partial a} = -2 \sum_{k=1}^{n} (y_k - a - b x_k) = (-2) (S_Y - na - b S_x) \\
+    &0 = \frac{\partial f}{\partial b} = -2 \sum_{k=1}^{n} x_k (y_k - a - b x_k) = (-2) (S_{xY} - a S_x - b S_{xx})
+\end{align*}
+
+Torej
+
+\begin{align*}
+    &S_Y = na + b S_x \quad / \cdot S_x \\
+    &S_{xY} = a S_x + b S_{xx} \quad \cdot n
+\end{align*}
+
+Enačbi od"stejemo
+
+\begin{align*}
+    &S_x S_Y - n S_{xY} = b(S_x^2 - n S_{xx}) \\
+    &\implies b = \frac{n S_{xx} - S_x S_y}{n S_{xx} - S_x^2} \\
+    &a = \frac{1}{n} (S_Y - b S_x) = \frac{1}{n} S_Y - b \frac{1}{n} S_x
+\end{align*}
+
+\begin{equation*}
+    (X,Y) \sim N(\mu_x, \mu_y, \sigma_x, \sigma_y, \rho)
+\end{equation*}
+
+\begin{equation*}
+    E(Y \mid X = x) = \mu_y + \rho \frac{\sigma_y}{\sigma_x} (x - \mu_x) = \alpha + \beta x
+\end{equation*}
+
+kjer je $\beta = \rho \frac{\sigma_y}{\sigma_x}, \alpha = \mu_y - \beta \mu_x$
+
+\begin{equation*}
+    \beta = \rho \frac{\sigma_y}{\sigma_x} = \frac{K}{\sigma_x \sigma_y} \cdot \frac{\sigma_y}{\sigma_x} = \frac{K}{\sigma_x^2}
+\end{equation*}
+
+\begin{equation*}
+    \hat{b} = \frac{\frac{1}{n} \sum_{k=1}^{n} (x_k - \overline{X}) (y_k - \overline{Y})}{\frac{1}{n} \sum_{k=1}^{n} (x_k - \overline{X})^2}
+\end{equation*}
+
+"stevec: vzor"cna kovarianca \\
+imenovalec: vzor"cna disperzija za $x$
+
+\begin{equation*}
+    \hat{a} = \overline{Y} - \beta \overline{X}
+\end{equation*}
+
+% ($\beta \equiv \hat{b}, \alpha \equiv \hat{a}$)
+% Matoda maksimalne zanesljivosti in metoda najmanjših kvadratov
+
+\subsection{Testiranje zanesljivosti}
+
+Poseben primer testa $\chi^2$, imenuje se prilagoditveni test (Goodness-of-Fit Test). \\
+Ni"celna hipoteza $H_0$: dogodka $A$ in $B$ sta neodvisna \\
+"Ce je $p = P(A)$ in $q = P(B)$, imamo 4 razrede (kategorije):
+
+\begin{center}
+    \begin{tabular}{c c c c c} 
+        \hline
+        kategorija & $A \cap B$ & $A \cap B^C$ & $A^C \cap B$ & $A^C \cap B^C$ \\
+        verjetnost & $pq$ & $p(1-q)$ & $(1-p)q$ & $(1-p)(1-q)$
+    \end{tabular}
+\end{center}
+
+"Ce sta $p$ in $q$ znana parametra (obi"cajno nista), uporabimo test $\chi^2$ za $r=4$:
+
+\begin{equation*}
+    \chi^2 = \frac{(N_{A \cap B} - npq)^2}{npq} + \cdots + \frac{(N_{A^C \cap B^C} - n(1-p)(1-q))^2}{n(1-p)(1-q)}
+\end{equation*}
+
+Kjer je $N_{A \cap B}$ opa"zena frekvenca dogodka $A \cap B$ in $n$ velikost vzorca \\
+"Ce $H_0$ velja, ima $\chi^2 \sim \chi^2(3)$ pri velikem $n$
+
+% skica
+
+\begin{equation*}
+    K_{\alpha} = [c_{\alpha}, \infty)
+\end{equation*}"
+
+"Ce je vzor"cna vrednost za $\chi^2$ na $K_{\alpha}$, hipotezo $H_0$ zavrnemo \\
+Obi"cajno $p$ in $q$ nista znana parametra, zato ju ocenimo iz podatkov \\
+
+Kontngen"cna matrika:
+\begin{center}
+    \begin{tabular}{c | c c} 
+        & $B$ & $B^C$ \\
+        \hline
+        $A$ & $X_{11}$ & $X_{12}$ \\
+        $A^C$ & $X_{21}$ & $X_{22}$ \\
+    \end{tabular}
+\end{center}
+
+\begin{equation*}
+    X_{11} + X_{12} + X_{21} + X_{22} = n
+\end{equation*}
+
+kjer je $n$ velikost vzorca \\
+Cenilki za $p$ in $q$ sta $\hat{p} := \frac{X_{11} + X_{12}}{n}, \; \hat{q} := \frac{X_{11} + X_{21}}{n}$ \\
+Statistika $\chi^2$ je potem
+
+\begin{equation*}
+    \chi^2 = \frac{(X_{11} - n \hat{p} \hat{q})^2}{n \hat{p} \hat{q}} + \cdots +
+        \frac{(X_{22} - n (1-\hat{p}) (1-\hat{q}))^2}{n (1-\hat{p}) (1-\hat{q})}
+\end{equation*}
+
+Izka"ze se, da je $\chi^2 \sim \chi^2(1)$ za velik $n$
+
+\begin{ex}
+    Na univerzo Barkley prijavljene "studente razvrstimo glede na izbiro podro"cja v skupini "la"zje" in "te"zje" (glede na to ali
+    se je lahko ali te"zko vpisati na podro"cje)
+
+    \begin{center}
+        \begin{tabular}{c | c c | c} 
+            la"zji & 1385 & 133 & 1518 \\
+            te"zji & 1306 & 1702 & 3008 \\
+            \hline
+            & 2691 & 1835 & 4526 $=n$
+        \end{tabular}
+    \end{center}
+
+    Ali je izbira podro"cja neodvisna os spola? \\
+    Testirajno pri stopnji zna"cilnosti $\alpha = 0.05$
+
+    \begin{equation*}
+        n = 4526, X_{11} = 1385 \cdots
+    \end{equation*}
+
+    \begin{equation*}
+        \hat{p} \to \frac{1516}{4526} = 0.34, \; \hat{q} \to \frac{2691}{4526} = 0.59
+    \end{equation*}
+
+    Pri"cakovane frekvence:
+
+    \begin{center}
+        \begin{tabular}{c | c c | c} 
+            la"zji & 903 ($n \hat{p} \hat{q}$) & 615 & 1518 \\
+            te"zji & 1788 & 1220 & 3008 \\
+            \hline
+            & 2691 & 1835 & 4526
+        \end{tabular}
+    \end{center}
+
+    \begin{equation*}
+        n \hat{p} \hat{q} = (X_{11} + X_{12}) (X_{11} + X_{21}) \cdot \frac{1}{n}
+    \end{equation*}
+
+    \begin{equation*}
+        \chi^2 = \frac{(1385 - 903)^2}{903} + \cdots + \frac{(1702 - 1220)^2}{1220} = 957.1
+    \end{equation*}
+
+    Pri $\alpha = 0.05$ je $c_{\alpha} = 3.84$ \\
+
+    % skica
+
+    Hipotezo $H_0$ zavrnemo \\
+    P vrednost $4 \cdot 10^{-210}$
+\end{ex}
+
+Opisani test lahko posplo"simo na ve"cje kontingen"cne tabele: \\
+Denimo, da 1. karakteristika dolo"ca $r$ kategorij $A_1, A_2 \cdots A_r$, 2. pa $s$ kategorij $B_1, B_2 \cdots B_s$. \\
+Naj bo $p_i = P(A_i) i = 1, 2 \cdots r$ in $q_j = P(B_j) j = 1, 2 \cdots s \quad (\sum_{i=1}^{r} p_i = 1, \sum_{j=1}^{s} q_j = 1)$ \\
+Ni"celna hipoteza $H_0$: $A_i$ in $B_j$ sta neodvisna za vsak $i$ in vsak $j$ \\
+Vzorec velikosti $n$ \\
+Opa"zene frekvence:
+
+\begin{center}
+    \begin{tabular}{c | c c c c | c} 
+        & $B_1$ & $B_2$ & $\cdots$ & $B_r$ & \\
+        \hline
+        $A_1$ & $X_{11}$ & $X_{12}$ & $\cdots$ & $X_{1s}$ & $n \cdot \hat{p_1}$ \\ 
+        $A_2$ & $X_{21}$ & $X_{22}$ & $\cdots$ & $X_{2s}$ & $n \cdot \hat{p_2}$ \\ 
+        $\vdots$ & $\vdots$ & & & & $\vdots$ \\ 
+        $A_r$ & $X_{r1}$ & $X_{r2}$ & $\cdots$ & $X_{rs}$ & $n \cdot \hat{p_r}$ \\
+        \hline
+        & $n \cdot \hat{q_1}$ & $n \cdot \hat{q_2}$ & $\cdots$ & $n \cdot \hat{q_s}$ & $n$
+    \end{tabular}
+\end{center}
+
+\begin{align*}
+    &\hat{p_i} := \frac{1}{n} \sum_{j=1}^{s} x_{ij} \\
+    &\hat{q_j} := \frac{1}{n} \sum_{i=1}^{r} x_{ij}
+\end{align*}
+
+Cenilke za $p_i$ in $q_j$: \\
+Definiramo
+
+\begin{equation*}
+    \chi^2 = \sum_{i=1}^{r} \sum_{j=1}^{s} \frac{(X_{ij} - n \hat{p_i} \hat{q_j})^2}{n \hat{p_i} \hat{q_j}}
+\end{equation*}
+
+Izka"ze se, da je pri velikih $n$ $\chi^2$ pribli"no porazdeljena $\chi^2((r-1)(s-1))$ \\
+
+% skica
+
+"Ce je $n \hat{p_i} \hat{q_j} < 5$ za kak"sna $i$ in $j$, potem se priporo"ca, da se zdru"zi nekatere razrede
+
+\begin{ex}
+    $n=1031$ darovalcev krvi glede na krvno skupino (A, B, AB, 0) in RH faktor (+, -) \\
+    Opa"zene frekvence:
+
+    \begin{center}
+        \begin{tabular}{c | c c c c | c} 
+            & A & B & AB & 0 & \\
+            \hline
+            RH+ & 320 & 96 & 40 & 412 & 868 \\ 
+            RH- & 66 & 23 & 9 & 65 & 163 \\
+            \hline
+            & 386 & 119 & 49 & 477 & 1031
+        \end{tabular}
+    \end{center}
+
+    Pri"cakovane frekvence:
+
+    \begin{center}
+        \begin{tabular}{c | c c c c | c} 
+            & A & B & AB & 0 & \\
+            \hline
+            RH+ & 325.0 & 100.2 & 41.3 & 401.5 & 868 \\ 
+            RH- & 61.0 & 18.8 & 7.7 & 75.5 & 163 \\
+            \hline
+            & 386 & 119 & 49 & 477 & 1031
+        \end{tabular}
+    \end{center}
+
+    \begin{equation*}
+        \chi^2 = \frac{(320 - 325)^2}{325} + \cdots + \frac{(65 - 75.5)^2}{75.5} = 3.54
+    \end{equation*}
+
+    $\chi^2(3), \alpha = 0.05$ \\
+    $c_{\alpha} = 7.8$ \\
+
+    % skica
+
+    Ker $3.54 \notin K_{\alpha}$, hipoteze $H_0$ ne moremo zavrniti
+\end{ex}
+
+
+
 \end{document}
