@@ -4463,4 +4463,239 @@ Izka"ze se, da je pri velikih $n$ $\chi^2$ pribli"no porazdeljena $\chi^2((r-1)(
 
 
 
+% 27. predavanje 23.5.
+
+\subsubsection{Teoreti"cne osnove testa $\chi^2$}
+
+Oglejmo si primer, ko je $r=2$
+
+\begin{center}
+    \begin{tabular}{c | c c}
+         & $S_1$ & $S_2$ \\
+        \hline
+        opa"zene frekvence & $N$ & $n-N$ \\
+        pri"cakovane frekvence & $np$ & $n(1-p)$
+    \end{tabular}
+\end{center}
+
+$p = P($prvi razred$)$ \\
+$N \cdots$ "stevilo vrednosti vzorca, ki padejo v 1. razred $S_1$ \\
+Potem je
+
+\begin{align*}
+    &\chi^2 = \frac{(N-np)^2}{np} + \frac{(n-N - n(1-p))^2}{n(1-p)} = \\
+    &= \frac{(N-np)^2}{np} + \frac{(N-np)^2}{n(1-p)} = \frac{(N-np)^2}{np(1-p)} ((1-p) + p) = \\
+    &= (\frac{N - np}{\sqrt{n p (1-p)}})^2
+\end{align*}
+
+Ker je $N$ porazdeljena binomsko $Bin(n,p)$, je pri velikem $n$ slu"cajna spremenljivka 
+
+\begin{equation*}
+    \frac{N - E(N)}{\sigma(N)} =\frac{N - np}{\sqrt{n p (1-p)}}
+\end{equation*}
+
+porazdeljena po $N(0,1)$ (Laplaceova formula oz. CLI) \\
+Iz verjetnostnega dela vemo, da je kvadrat porazdelitve $N(0,1)$ porazdeljen po $\chi^2(1)$. Torej je $\chi^2$ porazdeljena po
+$\chi^2(1)$ pri velikem $n$. \\
+V splo"snem primeru (pri poljubnem $r \in \N$) se $\chi^2$ zapi"se kotvsota $(r-1)$ kvadratov slu"cajnih spremenljivk, ki so porazdeljene po
+$N(0,1)$ in neodvisne. Ker za porazdelitev $\chi^2$ velja $\chi^2(m) + \chi^2(n) \sim \chi^2(m+n)$ (za neodvisne slu"cajne
+spremenljivke), je potem $\chi^2$ porazdeljena po $\chi^2(1 + 1 + \cdots + 1) = \chi^2(r-1)$
+
+\subsection{Test za neznan dele"z}
+
+Naj bo $X: \begin{pmatrix}0 & 1 \\ q & p\end{pmatrix}$, kjer je $p$ neznan parameter, ki bi ga radi testirali. Testiramo
+$H_0(p = p_0) : H_1(p \neq p_0)$, kjer je $p \in (0,1)$ dano "stevilo. Vemo, da je $\overline{X}$ nepristranska cenilka za $p$. Po
+Laplaceovi formuli je
+
+\begin{equation*}
+    \overline{X} \approx N(p_0, \sqrt{\frac{p_0 q_0}{n}})
+\end{equation*}
+
+za velike $n$, "ce velja hipoteza $H_0$. Torej je
+
+\begin{equation*}
+    Z := \frac{\overline{X} - p_0}{\sqrt{p_0 q_0 / n}} \approx N(0,1)
+\end{equation*}
+
+za velike $n$. \\
+Pri dani stopnji zna"cilnosti $\alpha > 0$ dolo"cimo $z_{\frac{\alpha}{2}}$, da je
+
+\begin{equation*}
+    P(Z > z_{\frac{\alpha}{2}}) = \frac{\alpha}{2}
+\end{equation*}
+
+% skica
+
+$K_{\alpha} = (-\infty, -z_{\frac{\alpha}{2}}] \cup [z_{\frac{\alpha}{2}}, \infty)$ \\
+"Ce vzor"cna vrednost za $Z$ le"zi na kriti"cnem obmo"cju $K_{\alpha}$, potem hipotezo zavrnemo
+
+\begin{ex}
+    Proizvodnjo izdelkov je treba prilagoditi, "ce dele"z defektnih izdelkov prese"ze 10\%. Izmed 500 slu"cajno izbranih izdelkov
+    je 55 defektnih. Pri stopnji zna"cilnosti 5\% testiramo hipotezo, ali je potrebno prilagoditi proizvodnjo \\
+    $H_0(p_0 = 0.1) : H_1(p_0 > 0.1)$ - enostranski test
+
+    \begin{align*}
+        &Z = \frac{\overline{X} - 0.1}{\sqrt{0.1 \cdot 0.9 / 500}} = \\
+        &= \frac{\frac{55}{100} - 0.1}{\sqrt{0.1 \cdot 0.9 / 500}} = \\
+        &= \frac{0.01}{\sqrt{0.1 \cdot 0.9 / 500}} = 0.75
+    \end{align*}
+
+    % skica
+
+    $K_{\alpha} = [z_{\alpha}, \infty)$ (ker delamo enostranski test) \\
+    Iz tabel razberemo $z_{\alpha} = 1.54$ ($z_{\alpha} > 0$ dolo"cimo s pogojem $P(Z > z_{\alpha}) = \alpha$) \\
+    Ker $0.75 \notin K_{\alpha}$, hipoteze ne moremo zavrniti
+\end{ex}
+
+Za smiselnost testa je pomembno hipoteze formulirati pred analizo podatkov
+
+\begin{ex}
+    Pri neki loteriji izmed "stevil $0, 1 \cdots 9$ "zrebajo po eno "stevilo vsak dan. Pri pregledu podatkov za dalj"se "casovno odbobje
+    opaimo, da se "stevilo $7$ pojavi velikokrat ob sredah: izmed $150$ "stevil se $7$ pojavi $22$ krat. Testirajmo pri stopnji
+    zna"cilnosti $\alpha = 0.05$ hipotezo, da se $7$ pojavi preve"ckrat ob sredah \\
+    $H_0(p = 0.1) : H_1(p > 0.1)$ enostranski test \\
+    $\overline{X} = \frac{22}{150} = 0.147, z_{\alpha} = 1.64$ kot v prej"snjem primeru \\
+
+    % skica
+
+    $K_{\alpha} = [z_{\alpha}, \infty), n = 150$ \\
+    $Z = \frac{\overline{X} - p_0}{\sqrt{p_0 q_0 / n}} = \frac{0.147 - 0.1}{\sqrt{0.1 \cdot 0.9 / 150}} = 1.91$ \\
+    Ker $1.91 \in K_{\alpha}$, hipotezo $H_0$ zavrnemo \\
+    To je primer vohljanja podatkov \\
+    P-vrednost $P(Z \geq 1.91) = 0.028$, t.j. verjetnost, da se $7$ pojavi ob sredah vsaj $22$ krat \\
+    Verjetnost, da se $7$ pojavi $22$ krat v nekem dnevu je $1 - (1 - 0.028)^7 = 0.18$, kar ni ve"c zelo majhno "stevilo \\
+    Verjetnost, da se neko "stevilo pojavi vsaj $22$ krat v nekem dnevu pa je "se ve"cja
+\end{ex}
+
+\subsection{Neparametri"cni testi}
+
+Doslej smo preizku"sali hipoteze o neznanih parametrih v danih porazdelitvah (obi"cajno smo privzeli normalno porazdelitev). To
+so parametri"cni testi. \\
+"Ce na porazdelitev slu"cajne spremenljivke $X$ ne moremo ni"c privzeti, potem lahko uporabimo neparametri"cne teste
+
+\subsubsection{Test z znaki}
+
+To je analog testa T \\
+Na populaciji imamo $2$ slu"cajni spremenljivki: $X$ s porazdelitveno funkcijo $F_X$ in $Y$ s porazdelitveno funkcijo $F_Y$. \\
+Obravnavamo $2$ slu"cajna vektorja $(X_1, X_2 \cdots X_m)$ in $(Y_1, Y_2 \cdots Y_n)$, kjer je $X_i$ in $Y_i$ dobimo na istem
+elementu v populaciji. \\
+Testiramo hipotezo $H_0(F_X = F_Y)$ \\
+Definiramo razlike
+
+\begin{equation*}
+    D_i := X_i - Y_i \; i = 1, 2 \cdots n
+\end{equation*}
+
+Tukaj smo privzeli, da so vrednosti slu"cajnega vektorja $(D_1, D_2 \cdots D_n)$ razli"cne od $0$, sicer jih izpustimo in
+zmanj"samo $n$. "Ce velja $H_0(F_X = F_Y)$, potem je $P(D_i > 0) = \frac{1}{2} = P(D_i < 0)$ za vsak $i = 1, 2 \cdots n$ \\
+Naj bo $S^+$ "stevilo pozitivnih $D_i$-jev, $S^-$ pa negativnih. Seveda je $S^+ + S^- = n$ \\
+Tedaj je $S^+ \sim Bin(n, \frac{1}{2})$, torej je
+
+\begin{equation*}
+    p_k = P(S^+ = k) = \binom{n}{k} 2^{-n} \; k = 0, 1 \cdots n
+\end{equation*}
+
+Pri dani stopnji zna"cilnosti $\alpha > 0$ je kriti"cno obmo"cje 
+\begin{equation*}
+    H_{\alpha} = \{k: k \leq k_{\alpha} \text{ ali } k \geq n - k_{\alpha}\}
+\end{equation*}
+
+kjer je $k_{\alpha}$ dolo"cen z zahtevama
+
+\begin{equation*}
+    \sum_{k=0}^{k_{\alpha}} p_k = P(S^+ \leq k_{\alpha}) \leq \frac{\alpha}{2}
+\end{equation*}
+
+in % toda?
+
+\begin{equation*}
+    \sum_{k=0}^{k_{\alpha} + 1} p_k = P(S^+ \leq k_{\alpha} + 1) > \frac{\alpha}{2} \\
+\end{equation*}
+
+% skica
+
+Pri velikem $n$ je $S^+$ pribli"zno normalno porazdeljen $N(\frac{n}{2}, \frac{\sqrt{n}}{2})$, ($\sqrt{npq} =
+\sqrt{n \frac{1}{2} \frac{1}{2}}$) torej je slu"cajna spremenljivka
+
+\begin{equation*}
+    Z := \frac{S^+ - \frac{n}{2}}{\frac{\sqrt{n}}{2}} = \frac{2S^+ - n}{\sqrt{n}}
+\end{equation*}
+
+pribli"zno normalno $N(0,1)$
+
+\begin{ex}
+    Zdravilo za zni"zevanje krvnega tlaka pri $n = 10$ bolnikih
+
+    \begin{center}
+        \begin{tabular}{c | c c c c c c c c c c}
+            $X_i$ & \multicolumn{10}{c}{sistoli"cni krvni tlak pred zdravljenjem} \\
+            \hline
+            $Y_i$ & \multicolumn{10}{c}{sistoli"cni krvni tlak po zdravljenju} \\
+            \hline
+            $D_i$ & -8 & 0 & 2 & 4 & 9 & 14 & 19 & 22 & 32 & 35    
+        \end{tabular}
+    \end{center}
+
+    $H_0(F_X = F_Y)$ zdravilo ne u"cinkuje \\
+    $0$ pre"crtamo in $n$ za $1$ zmanj"samo: $n = 9$ \\
+    Vzor"cna vrednost za $S^+$ je $8$ \\
+    Dolo"cimo kriti"cno obmo"cje $K_{\alpha}$ pri stopnji zma"cilnosti $\alpha = 0.05$ \\
+
+    % skica
+
+    \begin{align*}
+        &P(S^+ = 0) = \binom{9}{0} 2^{-9} < \frac{\alpha}{2} \\
+        &P(S^+ \leq 1) = \binom{9}{0} 2^{-9} < \frac{\alpha}{2} + \binom{9}{1} 2^{-9} = 10 \cdot 2^{-9} = 0.020
+            \leq \frac{\alpha}{2} = 0.025 \\
+        &P(S^+ \leq 2) = P(S^+ \leq 1) + P(S^+ = 2) = 10 \cdot 2^{-9} + \binom{9}{2} 2^{-9} = \\
+        &= 46 \cdot 2^{-9} \doteq 0.090 > \frac{\alpha}{2} = 0.025
+    \end{align*}
+
+    Vidimo, da je $k_{\alpha} = 1$, saj je $P(S^+ \leq 1) < \frac{\alpha}{2}$ in $P(S^+ \leq 2) > \frac{\alpha}{2}$ \\
+    Kriti"cno obmo"cje $K_{\alpha} = \{0, 1, 8, 9\}$ \\
+    Ker vzor"cna vrednost za $S^+$, ki je $8$, le"zi na $K_{\alpha}$, hipotezo $H_0$ zavrnemo
+\end{ex}
+
+Slabost tega testa je, da gledamo samo predznak razlike in ne velikost
+
+\begin{equation*}
+    Z = \frac{2S^+ - n}{\sqrt{n}}, \; n = 9
+\end{equation*}
+
+"Ceprav $n$ ni velik, izra"cunajmo velikost za $Z$
+
+\begin{equation*}
+    Z = \frac{2 \cdot 9 - 8}{\sqrt{9}} = \frac{7}{3} = 2.33
+\end{equation*}
+
+% skica
+
+\subsubsection{Inverzijski test}
+
+Wilcoxon-Mann-Whitney, 1945 \\
+$X, Y$ naj imata porazdelitveni funkciji $F_X$ in $F_Y$. Vzorca $(X_1, X_2 \cdots X_m)$ in $(Y_1, Y_2 \cdots Y_n)$ sta neodvisna in
+$m \leq n$ ("ce to ni res zamenjamo vlogi $X$ in $Y$). Testirajmo hipotezo $H_0(F_X = F_Y)$. Vzor"cne vrednosti vzorcev
+$X_1, X_2 \cdots X_m, Y_1, Y_2 \cdots Y_n$ razvrstimo po velikosti $z_1 \leq z_2 \leq \cdots \leq z_{m+n}$ (zapomnimo si ali je iz
+$X$ ali $Y$). Pripi"simo mesta (Range)
+
+\begin{equation*}
+    R_i = rang(x_i) = h, \text{ "ce je } z_k = x_i
+\end{equation*}
+
+Slu"cajna spremenljivka $r = R_1 + \cdots + R_m$ ima vrednosti med $\frac{m(m+1)}{2}$ in $mn + \frac{m(m+1)}{2}$ \\
+Vrednost $\frac{m(m+1)}{2}$ dobimo, "ce so $X_i$ na za"cetku zaporedja $\{z_m\}: 1 + 2 + \cdots + m = \frac{m(m+1)}{2}$ \\
+Najve"cjo vrednost pa dobimo, "ce so $X_i$ na koncu zaporedja: $Y_1, Y_2 \cdots Y_n, X_1, X_2 \cdots X_m$:
+
+\begin{equation*}
+    (n+1) + (n+2) + \cdots + (n+m) = n \cdot m + \frac{m(m+1)}{2}
+\end{equation*}
+
+"Ce velja $H_0(F_X = F_Y)$ in $m + n \geq 0, m, n \geq 4$, potem smemo privzeti, da je $V$ pribli"zno normalno porazdeljena
+
+\begin{equation*}
+    V \sim N(\frac{(m+n+1) \cdot m}{2}, \sqrt{\frac{mn (m+n+1)}{12}})
+\end{equation*}
+
+
+
 \end{document}
