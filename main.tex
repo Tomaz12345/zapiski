@@ -4698,4 +4698,79 @@ Najve"cjo vrednost pa dobimo, "ce so $X_i$ na koncu zaporedja: $Y_1, Y_2 \cdots 
 
 
 
+% 28. predavanje 30.5.
+
+oz.
+
+\begin{equation*}
+    Z := \sqrt{\frac{3}{mn(m+n+1)}} (2V - m(m+n+1)) \sim N(0,1)
+\end{equation*}
+
+\begin{defn}[Inverzija]
+    Inverzija med $x_i$ in $y_j$ se pojavi, "ce ima $y_j$ manj"si rang kot $x_i$
+\end{defn}
+
+Zaporedje $x_1, x_2 \cdots x_m, y_1 \cdots y_n$ nima inverzije \\
+Zaporedje $x_1 \cdots x_{m-1}, y_1, x_m, y_2 \cdots y_n$ ima eno inverzijo \\
+Naj bo $U$ "stevilo vseh inverzij \\
+Vsaka inverzija, ki jo naredimo, pove"ca "stevilo rangov $V$ za 1. Ker je pri
+
+\begin{equation*}
+    U = 0, V = \frac{m(m+1)}{2}
+\end{equation*}
+
+je
+
+\begin{equation*}
+    V = U + \frac{m(m+1)}{2}
+\end{equation*}
+
+\begin{ex}
+    2 zdravili proti nespe"cnosti. Vzor"cne vrednosti razvrstimo po velikosti $m=n=1$
+
+    \begin{center}
+        \begin{tabular}{c | c | c} 
+            $z_i$ & zdravilo & rang \\
+            \hline
+            $-1.6$ & y & 1 \\
+            $-1.2$ & y & 2 \\
+            $-0.2$ & y & 3 \\
+            $-0.1$ & y & 4.5 \\
+            $-0.1$ & x & 4.5 \\
+            $0.1$ & y & 6 \\
+            $0.1$ & x & 7 \\
+            $0.7$ & y & 8 \\
+            $0.8$ & x & 9.5 \\
+            $0.8$ & y & 9.5 \\
+            $1.1$ & x & 11 \\
+            $1.6$ & x & 12 \\
+            $1.9$ & x & 13 \\
+            $2.0$ & y & 14 \\
+            $3.4$ & x & 15.5 \\
+            $3.4$ & y & 15.5 \\
+            $3.7$ & y & 17 \\
+            $4.4$ & x & 18 \\
+            $4.9$ & x & 19 \\
+            $5.5$ & x & 20
+        \end{tabular}
+    \end{center}
+
+    Vsota rangov $V$ je $4.5 + 7 + 9.5 + 11 + 12 + 13 + 15.5 + 18 + 19 + 20$
+
+    \begin{equation*}
+        Z = \sqrt{\frac{3}{10 \cdot 10 \cdot 21}} (2V - 10 \cdot 21) = \frac{1}{5 \sqrt{7}} (V - 105)
+    \end{equation*}
+
+    % skica
+
+    $K_{\alpha} = (-\infty, -z_{\frac{\alpha}{2}}] \cup [z_{\frac{\alpha}{2}}, \infty)$ \\
+    Pri $\alpha = 0.05$ je $z_{\frac{\alpha}{2}}$ = 1.96 \\
+    Vzor"cna vrednost za $Z$ je 1.85 \\
+    Hipoteze $H_0(F_X = F_Y)$ = ``zdravili sta enako u"cinkoviti'' ne moremo zavrniti
+\end{ex}
+
+Inverzijski test je neparametri"cni analog primerjalnega Studentovaga testa \\
+Inverzijski test ``gleda'' samo urejenost in ne velikost podatkov
+
+
 \end{document}
