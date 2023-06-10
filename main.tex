@@ -144,11 +144,11 @@ Začetki verjetnosti (kot vede) so v 17. stoletju, motivacija igre na sre"co \\
 20. stol: Kolmogorov (okoli 1930), utemeljitelj sodobnega verjetnostnega ra"cuna \\
 
 \begin{defn}[Dogodek]
-    Izvajamo poskus, opazujemo nek pojav, ki se lahko zgodi in ga imenujemo dogodek
+    Izvajamo poskus, opazujemo nek pojav, ki se lahko zgodi in ga imenujemo dogodek.
 \end{defn}
 
 \begin{ex}
-    Met po"stene kocke, dogodek je npr. pade "sestica, ali npr. pade sodo "stevilo pik
+    Met po"stene kocke, dogodek je npr. pade "sestica, ali npr. pade sodo "stevilo pik.
 \end{ex}
 
 \begin{defn}[Frekvenca]
@@ -175,16 +175,18 @@ pri pogoju, da imajo vsi izidi enake mo"znosti
     Ali je $P(\text{vsota 7}) = \frac{1}{11}$? Ne, ker te vsote nimajo enakih mo"znosti: \\
     $2=1+1, 3=2+1=1+2$ \\
     Vsi mo"zni izidi so $\{(i,j): i,j \in \{1, 2 \cdots 6\}\} = \{1, 2 \cdots 6\} \times \{1, 2 \cdots 6\}$ \\
-    $\begin{matrix}
-        (1,1) & (1,2) & \cdots & (1,6) \\
-        (2,1) & (2,2) & \cdots & (2,6) \\
-         & \vdots & & \\
-        (6,1) & (6,2) & \cdots & (6,6) \\
-    \end{matrix}$ \\
+    \begin{center}
+        $\begin{matrix}
+            (1,1) & (1,2) & \cdots & (1,6) \\
+            (2,1) & (2,2) & \cdots & (2,6) \\
+            \vdots & \vdots & \ddots& \vdots\\
+            (6,1) & (6,2) & \cdots & (6,6) \\
+        \end{matrix}$
+    \end{center}
     $P(\text{vsota 7}) = \frac{6}{36} = \frac{1}{6}$
 \end{ex}
 
-"Ce je vseh izidov neskon"cno, si lahko pomagamo z geometrijsko definicijo verjetnosti
+"Ce je vseh izidov neskon"cno, si lahko pomagamo z geometrijsko definicijo verjetnosti.
 
 \begin{ex}
     Osebi se dogovorita za sestanek med 10. in 11. uro; "cas prihoda je slu"cajen. Vsak "caka najve"c 20 minut, najdlje
@@ -196,8 +198,10 @@ pri pogoju, da imajo vsi izidi enake mo"znosti
         \item $x \geq y: \; x - y \leq \frac{1}{3}$ oz. $x - \frac{1}{3} \leq y$
         \item $x \leq y: \; y - x \leq \frac{1}{3}$ oz. $y \leq x + \frac{1}{3}$
     \end{enumerate}
-    $P(\text{sre"canje}) = \frac{\text{plo"s"cina ozna"cenega lika}}{\text{polo"s"cina kvadrata}} =
-    \frac{1 - (\frac{2}{3})^2}{1} = \frac{5}{9}$
+    \begin{equation*}
+        P(\text{sre"canje}) = \frac{\text{plo"s"cina ozna"cenega lika}}{\text{polo"s"cina kvadrata}} =
+    \frac{1 - (\frac{2}{3})^2}{1} = \frac{5}{9}
+    \end{equation*}
 \end{ex}
 
 \begin{ex}
@@ -221,11 +225,11 @@ pri pogoju, da imajo vsi izidi enake mo"znosti
     \end{enumerate}
 \end{ex}
 
-V kvantni mehaniki so kroglice razli"cni delci, posode so energetska stanja \\
-V primeru (a) imamo Maxwell-Boltzmanovi statistiki, velja za molekule plina \\
-V primeru (b) imamo Bose-Einsteinovo statistiko, velja za bozone (npr. fotoni) \\
+V kvantni mehaniki so kroglice razli"cni delci, posode so energetska stanja. \\
+V primeru (a) imamo Maxwell-Boltzmanovi statistiki, velja za molekule plina. \\
+V primeru (b) imamo Bose-Einsteinovo statistiko, velja za bozone (npr. fotoni). \\
 V primeru (c) imamo Fermi-Diracovo statistiko, velja za fermione (npr elektroni);
-zanje velja Diracovo izklju"citveno na"celo: v vsakem stanju je najve"c en delec
+zanje velja Diracovo izklju"citveno na"celo: v vsakem stanju je najve"c en delec.
 
 \subsection{Aksiomati"cna definicija verjetnosti}
 
@@ -233,15 +237,15 @@ Kolmogorov (okoli 1930)
 
 \begin{defn}[Dogodek]
     Imamo prostor vseh dogodkov $\Omega$ (mo"zna oznaka je $G$). Dogodki so nekatere (ne nujno vse)
-    podmno"zice $A \subseteq \Omega$
+    podmno"zice $A \subseteq \Omega$.
 \end{defn}
 
 \begin{ex}
     Met kocke: $\Omega = \{1,2,3,4,5,6\}$, dogodki so vse podmno"zice,  $\{6\} \cdots$ dogodek, da pade "sestica,
-    $\{2,4,6\} \cdots$ dogodek, da pade sodo "stevilo pik
+    $\{2,4,6\} \cdots$ dogodek, da pade sodo "stevilo pik.
 \end{ex}
 
-Ra"cunanje z dogodki
+\subsubsection*{Ra"cunanje z dogodki}
 
 \begin{enumerate}
     \item Vsota dogodkov oz. unija dogodkov: $A + B$ oz. $A \cup B$: dogodek, da se zgodi vsaj eden od $A$ in $B$
@@ -252,18 +256,45 @@ Ra"cunanje z dogodki
 Pravila za ra"cunanje z dogodki:
 
 \begin{itemize}
-    \item idempotentnost: $A \cup A = A = A \cap A$
-    \item komutativnost: $A \cap B = B \cap A$ in $A \cup B = B \cup A$
+    \item idempotentnost:
+    \begin{equation*}
+        A \cup A = A = A \cap A
+    \end{equation*}
+    \item komutativnost: 
+    \begin{gather*}
+        A \cap B = B \cap A \\
+        A \cup B = B \cup A
+    \end{gather*}
 
 
 
 % 2. predavanje: 14.10.
 
-    \item asociativnost: $(A \cup B) \cup C = A \cup (B \cup C), (A \cap B) \cap C = A \cap (B \cap C)$
-    \item distributivnost: $(A \cap B) \cup C = (A \cup C) \cap (B \cup C), (A \cup B) \cap C = (A \cap C) \cup (B \cap C)$
-        oz. $(A \cdot B) + C = (A + C) \cdot (B + C), (A + B) \cdot C = (A \cdot C) + (B \cdot C)$
-    \item deMorganova zakona: $(A \cup B)^C = A^C \cap B^C, (A \cap B)^C = A^C \cup B^C$ \\
-        "se ve"c: $(\cup_{i \in I} A_i)^C = \cap_{i \in I} A_i^C, (\cap_{i \in I} A_i)^C = \cup_{i \in I} A_i^C$
+    \item asociativnost:
+    \begin{gather*}
+        (A \cup B) \cup C = A \cup (B \cup C) \\
+        (A \cap B) \cap C = A \cap (B \cap C)
+    \end{gather*}
+    \item distributivnost:
+    \begin{gather*}
+        (A \cap B) \cup C = (A \cup C) \cap (B \cup C) \\
+        (A \cup B) \cap C = (A \cap C) \cup (B \cap C)
+    \end{gather*}
+    oziroma
+    \begin{gather*}
+        (A \cdot B) + C = (A + C) \cdot (B + C) \\
+        (A + B) \cdot C = (A \cdot C) + (B \cdot C)
+    \end{gather*}
+    \item deMorganova zakona: 
+    \begin{gather*}
+        (A \cup B)^C = A^C \cap B^C \\
+        (A \cap B)^C = A^C \cup B^C
+    \end{gather*} \\
+        "se ve"c: 
+    \begin{gather*}
+        (\cup_{i \in I} A_i)^C = \cap_{i \in I} A_i^C \\
+        (\cap_{i \in I} A_i)^C = \cup_{i \in I} A_i^C
+    \end{gather*}
 \end{itemize}
 
 \begin{defn}[$\sigma$-algebra]
@@ -275,7 +306,7 @@ Pravila za ra"cunanje z dogodki:
     \end{enumerate}
 
     "Ce v 2) zahtevamo manj: \\
-    $A, B \in F \implies A \cup B \in F$ ("sibkej"si pogoj) pravimo, da je $F$ algebra
+    $A, B \in F \implies A \cup B \in F$ ("sibkej"si pogoj) pravimo, da je $F$ algebra.
 \end{defn}
 
 V algebri imamo zaprtost za kon"cne unije, t.j. $A_1 \cdots A_n \in F \implies \cup_{i=1}^n A_j \in F$ (zaradi
@@ -290,11 +321,11 @@ zato je
 \end{equation*}
 
 Najmanj"sa ($\sigma$-)algebra je $F = \{\emptyset, \Omega\}$, najve"cja ($\sigma$-)algebra je poten"cna mno"zica
-$P(\Omega)$
+$P(\Omega)$.
 
 \begin{ex}
     Izberimo $\emptyset \neq A \subsetneq \Omega$. Najmanj"sa $\sigma$-algebra, ki vsebuje $\{1\}, \{2\}, \{3\} \cdots$
-    je $P(\N)$, saj je $A = \cup_{k \in A} \{k\}$ za $\forall k \subseteq \N$ (kon"cna sli "stevna unija) \\
+    je $P(\N)$, saj je $A = \cup_{k \in A} \{k\}$ za $\forall k \subseteq \N$ (kon"cna ali "stevna unija) \\
     Najmanj"sa algebra $F$, ki vsebuje $\{1\}, \{2\}, \{3\} \cdots$ je enaka algebri
 
     \begin{equation*}
@@ -430,10 +461,10 @@ $(\Omega, F, P)$ verjetnostni prostor
     (kon"cni ali "stevni verjetnostni prostor) \\
     $\Omega = \{w_1, w_2 \cdots\}$ kon"cna ali "stevna mno"zica, paroma razli"cni, \\
     $F = P(\Omega), A = \cup_{i \in A} \{w_i\}$ kon"cna ali "stevna unija \\
-    $\{w_1\}, \{w_2\} \cdots$ so popoln sistem dogodkov \\
+    $\{w_1\}, \{w_2\} \dots$ so popoln sistem dogodkov \\
     "ce je $p_i := P(\{w_i\})$, je $P(A) = \sum_{i: w_i \in A} p_i$ in $\sum_i p_i = 1 = P(\Omega)$ \\
     Poseben primer: $\Omega$ ima $n$ elementov in $p_i = \frac{1}{n}, P(A) \frac{\text{mo"c}(A)}{n}$ \\
-    To je kla"si"cna definicija verjetnosti
+    To je kla"si"cna definicija verjetnosti.
 \end{ex}
 
 
@@ -3356,7 +3387,7 @@ je standardna napaka
     SE(Y) = \frac{\sigma}{\sqrt{n}}
 \end{equation*}
 
-- "cim vecji n, bolje oceni parameter $\mu$ \\
+- "cim ve"cji n, bolje oceni parameter $\mu$ \\
 Po CLI je pri velikem n slu"cajna spremenljivka $Z_n := \frac{S - n \mu}{\sigma \sqrt{n}} =
 \frac{\overline{X} - \mu}{\frac{\sigma}{\sqrt{n}}} = \frac{\overline{X} - \mu}{\sigma} \sqrt{n}$
 porazdeljena pribli"zno $N(0,1)$ oz. $\overline{X}$ je porazdeljen pribli"zno $N(\mu, \frac{\sigma}{\sqrt{n}})$ \\
@@ -3436,7 +3467,7 @@ $s^2$ dosledni cenilki za $\sigma^2$
 \begin{equation*}
     p(x) = \frac{1}{\sqrt{n} B(\frac{n}{2},\frac{1}{2})} (1 + \frac{x^2}{n})^{-\frac{n+1}{2}}
 \end{equation*}
-kjer je $B(p,q) = \frac{\Gamma(p) \Gamma(q)}{\Gamma(p+q)}$ Beta funkcija
+kjer je $B(p,q) = \frac{\Gamma(p) \Gamma(q)}{\Gamma(p+q)}$ Beta funkcija.
 
 \begin{align*}
     n = 1: &\quad \frac{1}{\pi} (1+x^2)^{-1} = \frac{1}{\pi (1+x^2)} \text{Cauchyjeva porazdelitev} \\
@@ -3450,7 +3481,7 @@ kjer je $B(p,q) = \frac{\Gamma(p) \Gamma(q)}{\Gamma(p+q)}$ Beta funkcija
     &\text{za } n \geq 3 \text{ je } D(X) = \frac{n}{n-2} > 1
 \end{align*}
 
-Leta 1908 jo je odkril W.S. Gosset, statistik v pivovarni guiness v Dublinu. Student je njegov prevdonim.
+Leta 1908 jo je odkril W.S. Gosset, statistik v pivovarni guiness v Dublinu. Student je njegov psevdonim.
 
 \subsubsection*{}
 
@@ -3480,7 +3511,7 @@ izra"cunamo, da ima $T$ Studentovo porazdelitev z $n-1$ prostorskimi stopnjami:
 
 \begin{defn}[Vzro"cni moment]
     Naj bo $(X_1, X_2 \cdots X_n)$ vzorec velikosti n, torej $X_1 \cdots X_n$ neodvisne slu"cajne spremenljivke,
-    porazdeljene kot slu"cajna spremenljivka $X$. Zacetni moment reda $k$ je $z_k = E(X^k)$. Definiramo k-ti
+    porazdeljene kot slu"cajna spremenljivka $X$. Za"cetni moment reda $k$ je $z_k = E(X^k)$. Definiramo k-ti
     vzro"cni moment $z_k := \frac{X_1^k + \cdots + X_n^k}{n}$. Le ta je nepristranska cenilka za $z_k:
     E(Z_k) = \frac{1}{n} (E(X_1^k) + \cdots + E(X_n^k)) = z_k$. $Z_k$ je tudi dosledna cenilka za $z_k$.
 \end{defn}
