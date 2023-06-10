@@ -76,6 +76,45 @@
 \def\z{\hspace{1.9ex}}    %BETWEEN TWO 2-DIGIT NUMBERS
 \stackMath
 
+
+% subsubsubsections (paragraphs)
+\usepackage{titlesec}
+\usepackage{hyperref}
+
+\titleclass{\subsubsubsection}{straight}[\subsection]
+
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}} % optional; useful if paragraphs are to be numbered
+
+\titleformat{\subsubsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
+  {3.25ex \@plus1ex \@minus.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}%
+  {3.25ex \@plus1ex \@minus .2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\def\toclevel@subsubsubsection{4}
+\def\toclevel@paragraph{5}
+\def\toclevel@paragraph{6}
+\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
+\def\l@paragraph{\@dottedtocline{5}{10em}{5em}}
+\def\l@subparagraph{\@dottedtocline{6}{14em}{6em}}
+\makeatother
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+
+
+
 \begin{document}
 
 \title{Verjetnost in statistika - zapiski s predavanj prof. Drnovška}
@@ -874,7 +913,7 @@ $F$ je odsekoma konstantna
 
 Pomembnej"se diskretne porazdelitve:
 
-\subsubsection{Enakomerna diskretna porazdelitev} na $n$ to"ckah
+\subsubsubsection{Enakomerna diskretna porazdelitev} na $n$ to"ckah
 
 \begin{equation*}
     X: \begin{pmatrix}
@@ -890,7 +929,7 @@ Pomembnej"se diskretne porazdelitve:
     \end{pmatrix}$
 \end{ex}
 
-\subsubsection{Binomska porazdelitev}
+\subsubsubsection{Binomska porazdelitev}
 
 $Bin(n,p), n \in \N, p \in (0,1), n-$krat ponovimo poskus, gledamo dogodek $A$ z verjetnostjo $P(A) = p$, $X$ je
 frekvenca dogodka $A$ v $n$ ponovitvah
@@ -898,7 +937,7 @@ frekvenca dogodka $A$ v $n$ ponovitvah
 \begin{align*}
     &X: \begin{pmatrix}
             0 & 1 & \cdots & n \\
-            p_0 & p_1 \cdots p_n
+            p_0 & p_1 & \cdots & p_n
         \end{pmatrix} \\
     &p_k = \binom{n}{k} p^k q^{n-k}
 \end{align*}
@@ -912,7 +951,7 @@ frekvenca dogodka $A$ v $n$ ponovitvah
 % 6. predavanje: 11.11.
 
 
-\subsubsection{Poissonova porazdelitev}
+\subsubsubsection{Poissonova porazdelitev}
 
 $Poi(\lambda), \lambda > 0$
 
@@ -941,7 +980,7 @@ $\implies$ to je res porazdelitev ($p_i \geq 0, \sum p_i = 1$)
     Raje vzamemo $Poi(\lambda)$ kot $Bin(n,p)$, ker je preprostej"sa
 \end{ex}
 
-\subsubsection{Geometrijska porazdelitev}
+\subsubsubsection{Geometrijska porazdelitev}
 
 $Geo(p), \; p \in (0,1)$ \\
 Ponavljamo poskus, v katerem opazujemo dogodek $A$ s $P(A) = p, q = 1-p$. $(X=k)$ je dogodek, da se $A$ zgodi prvi"c
@@ -960,7 +999,7 @@ v k-ti ponovitvi
     Me"cemo kocko, $X$ je "stevilo metov, da pade "sestica prvi"c. Potem je $X \sim Geo(\frac{1}{6})$
 \end{ex}
 
-\subsubsection{Pascalova ali negativna binomska porazdelitev}
+\subsubsubsection{Pascalova ali negativna binomska porazdelitev}
 
 $Pas(m,p), \; m \in \N, p \in (0,1)$ \\
 Ponavljamo poskus, v katerem nas zanima dogodek $A$ s $P(A) = p$. $(X=k)$ je dogodek, da se $A$ zgodi m-ti"c v
@@ -987,7 +1026,7 @@ oz. z direktno uporabo binomske vrste:
     Me"cemo kocko, $X$ je "stevilo potrebnih metov, da pade "sestica $m$-krat. Potem je $X \sim Pas(m, \frac{1}{6})$
 \end{ex}
 
-\subsubsection{Hipergeometrijska porazdelitev}
+\subsubsubsection{Hipergeometrijska porazdelitev}
 
 $Hip(n; M, N), \; 0 < M < N, n,M,N \in \N, n \leq \min\{M, N-M\}$ \\
 V posodi je $N$ kroglic, od tega $M$ belih, ostale "crne. Slu"cajno izberemo $n$ kroglic (brez vra"canja). $X$ je
@@ -1055,7 +1094,7 @@ Za $x_1 < x_2$ velja
 
 Pomembnej"se zvezne porazdelitve:
 
-\subsubsection{Enakomerna zvezna porazdelitev na $[a,b]$}
+\subsubsubsection{Enakomerna zvezna porazdelitev na $[a,b]$}
 
 \begin{align*}
     &p_X(x) = \begin{cases}
@@ -1073,7 +1112,7 @@ Pomembnej"se zvezne porazdelitve:
     Slu"cajno izberemo $X$ na $[0,1]$
 \end{ex}
 
-\subsubsection{Normalna ali Gaussova porazdelitev}
+\subsubsubsection{Normalna ali Gaussova porazdelitev}
 
 $N(\mu, \sigma), \; \mu \in \R, \sigma > 0$
 
@@ -1108,10 +1147,10 @@ Laplaceova integralaska formula pravi, da je $Bin(n,p) \approx N(np, \sqrt{npq})
 \begin{ex}
     Sistoli"cni krvni tlak \\
     %slika%
-    verjetnost, da ima slu"cajno oseba krvni tlak med $120$ in $130$ mmHg
+    Verjetnost, da ima slu"cajno oseba krvni tlak med $120$ in $130$ mmHg
 \end{ex}
 
-\subsubsection{Eksponentna porazdelitev}
+\subsubsubsection{Eksponentna porazdelitev}
 
 \begin{align*}
     &Exp(\lambda), \lambda > 0 \\
@@ -1133,7 +1172,7 @@ Laplaceova integralaska formula pravi, da je $Bin(n,p) \approx N(np, \sqrt{npq})
     $F(x)$ je verjetnost, da se radioaktivni razpad zgodi pred trenutkom $x \in \R^{+}$
 \end{ex}
 
-\subsubsection{Porazdelitev gama}
+\subsubsubsection{Porazdelitev gama}
 
 \begin{align*}
     &\Gamma(b,c), \; b, c > 0 \\
@@ -1158,7 +1197,7 @@ O"citno je $Exp(\lambda) = \Gamma(1, \lambda)$
 
 - je porazdelitev
 
-\subsubsection{Porazdelitev $\chi^2(n)$}
+\subsubsubsection{Porazdelitev $\chi^2(n)$}
 
 (hi-kvadrat), $n \in \N$, $n$ je "stevilo prostorskih stopenj
 
@@ -1170,7 +1209,7 @@ O"citno je $Exp(\lambda) = \Gamma(1, \lambda)$
     \end{cases}
 \end{align*}
 
-\subsubsection{Cauchyjeva porazdelitev}
+\subsubsubsection{Cauchyjeva porazdelitev}
 
 \begin{equation*}
     p(x) = \frac{1}{\pi (1+x^2)} \; x \in \R
@@ -2471,26 +2510,26 @@ Ima enake lastnosti kot porazdelitvena funkcija
 
 \begin{enumerate}[label=\Alph*]
     \item Diskreten primer \\
-        Naj bo (X,Y) diskretno porazdeljen slu"cajni vektor z verjetnostno funkcijo $p_{ij} = P(X=x_i, Y=y_i) i,j = 1, 2 \cdots$ \\
-        Za pogoj B vzemimo $B = (Y=y_j)$ pri nekem j, torej $q_j = P(Y=Y_j)$ \\
-        Potem je pogojna porazdelitvena funkcija slu"cajne spremenljivke X glede $F_X(X \mid Y=y) :=
+        Naj bo $(X,Y)$ diskretno porazdeljen slu"cajni vektor z verjetnostno funkcijo $p_{ij} = P(X=x_i, Y=y_i) i,j = 1, 2 \cdots$ \\
+        Za pogoj $B$ vzemimo $B = (Y=y_j)$ pri nekem $j$, torej $q_j = P(Y=Y_j)$ \\
+        Potem je pogojna porazdelitvena funkcija slu"cajne spremenljivke $X$ glede $F_X(X \mid Y=y) :=
         \frac{P(X \leq x \mid Y=y_j)}{P(Y=y_j)} = \frac{1}{q_{j}} \sum_{j: x_j \leq x} p_{ij}$ \\
         "Ce vpeljemo pogojno verjetnostno funkcije $P_{i \mid j} = P(X=x_i \mid Y=y_j) = \frac{p_{ij}}{q_j}$,
         $F_X(X \mid Y=y_j) = \sum_{i: x_i \leq X} p_{i \mid j}$ \\
         Pogojno matemati"cno upanje slu"cajne spremenljivke X glede na $Y=y_j$ je matemati"cno upanje te porazdelitve:
         \[E(X \mid Y=y_j) := \sum_{i} x_i \cdot p_{i \mid j} = \frac{1}{q_j} \sum_{i} x_j \cdot p_{ij} \]    % e(x_i)?
         Regresijska funkcija $\ell (y_j) = \sum (X \mid Y=y_j)$, ki je definirana na zalogi vrednoti slu"cajne
-        spremenljivke Y \\
+        spremenljivke $Y$ \\
         Definirajmo novo slu"cajno spremenljivko $E(X \mid Y) = \ell (y)$, ki ji re"cemo pogojno matemati"cno upanje
         slu"cajne spremenljivke X glede slu"cajne spremenljivke Y \\
         Ta ima shemo $E(X \mid Y) = \begin{pmatrix} \ell (y_1) & \ell (y_2) & \cdots \\ q_1 & q_2 & \cdots
         \end{pmatrix} = \begin{pmatrix} E(X \mid Y=y_1) & \cdots \\ q_1 & \cdots
         \end{pmatrix}$ \\
         Zanjo velja
-        \[E(X \mid Y) = \sum_j \ell (y_j) \cdot q_j ? \sum_j \sum_i x_i \cdot p_{ij} = \sim_i x_i (\sum_j p_{ij}) =
+        \[E(X \mid Y) = \sum_j \ell (y_j) \cdot q_j = \sum_j \sum_i x_i \cdot p_{ij} = \sum_i x_i (\sum_j p_{ij}) =
         \sum_i x_i \cdot p_i = E(X)\]
         kjer je $p_i = P(X=x_i)$ \\
-        Kaj dobimo, "ce sta X in Y neodvisni slu"cajni spremenljivki? \\
+        Kaj dobimo, "ce sta $X$ in $Y$ neodvisni slu"cajni spremenljivki? \\
         Tedaj je $p_{i \mid j} = \frac{p_{ij}}{q_j} = \frac{p_i \cdot q_j}{q_j} = p_i$ in
         $\ell (y_j) = E(E(X \mid Y=y_j)) = \sum_i x_i \cdot p_{i \mid j} = \sum_i x_i \cdot p_i = E(X)$, torej je
         regresijska funkcija kar konstanta $E(X)$ oz. je $E(X \mid Y)$ izrojena slu"cajna spremenljivka z vrednostjo $E(X)$
@@ -2586,10 +2625,10 @@ Ima enake lastnosti kot porazdelitvena funkcija
 \subsection{Vi"sji momenti in vrstilne karakteristike}
 
 \begin{defn}[Momenti]
-    Naj bo $k \in \N$ in $a \in \R$. Moment reda k glede na to"cko a je $m_k(a) := E((X-a)^k)$ ("ce obstaja)
+    Naj bo $k \in \N$ in $a \in \R$. Moment reda $k$ glede na to"cko $a$ je $m_k(a) := E((X-a)^k)$ ("ce obstaja)
 \end{defn}
 
-Za a obicajno vzamemo
+Za $a$ obicajno vzamemo
 \begin{enumerate}
     \item $a=0$: $z_k := m_k(0) = E(X^k)$ za"cetni moment reda k
     \item $a=E(X)$: $m_k := m_k(E(X))$ cenralni moment reda k
@@ -2603,10 +2642,14 @@ Ocitno je $z_1 = E(X), m_2 = D(X)$
 
 \begin{proof}
     (V zveznem primeru): \\
-    \[E((X-a)^k) = \int_{-\infty}^{\infty} (x-a)^k p_X(x) dx = \int{a-1}^{a+1} (X-a)^k p_X(x) dx +
-    \int_{(-\infty,a-1) \cup (a+1,\infty)} (x-a)^k p_X(x) dx \leq \]
-    \[\leq \int_{-\infty}^{\infty} p_X(x) dx + \int_{(-\infty,a-1) \cup (a+1,\infty)} (x-a)^k p_X(x) dx \leq\]
-    \[\leq 1 + E((X-a)^k) < \infty\]
+    \begin{align*}
+        E((X-a)^k) &= \int_{-\infty}^{\infty} (x-a)^k p_X(x) dx \\
+                   &= \int{a-1}^{a+1} (X-a)^k p_X(x) dx + \int_{(-\infty,a-1) \cup (a+1,\infty)} (x-a)^k p_X(x) dx \\
+                   &\leq \int_{-\infty}^{\infty} p_X(x) dx + \int_{(-\infty,a-1) \cup (a+1,\infty)} (x-a)^k p_X(x) dx \\
+                   &\leq 1 + E((X-a)^k) \\
+                   &< \infty
+    \end{align*}
+    
 \end{proof}
 
 \begin{claim}
