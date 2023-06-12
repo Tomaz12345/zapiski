@@ -1606,7 +1606,7 @@ $K = A^{-1} = \begin{bmatrix}
     -\rho \sigma_x \sigma_y & \sigma_y^2
 \end{bmatrix}$ kovarian"cna matrika (slu"cajnemu vektorju $X,Y$)
 
-\subsection{Neovdisnost slu"cajnih spremenljivk}
+\subsection{Neodvisnost slu"cajnih spremenljivk}
 
 \begin{defn}[Neodvisnost]
     Slu"cjane spremenljivke $x_1, x_2 \cdots x_n$ v slu"cjanem vektorju $x = (x_1 \cdots x_n)$ so neodvisne,
@@ -2079,28 +2079,28 @@ slu"cajne spremenljivke $X$ enako $E(X) = \int_{-\infty}^{\infty} x \cdot p_X(x)
             \begin{equation*}
                 U = \frac{x - \mu}{\sigma} \implies du = \frac{dx}{\sigma}
             \end{equation*}
-            \begin{align}
-                &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} (\sigma u + \mu) e^{-\frac{1}{2} u^2} du =
-                &= \frac{1}{\sqrt{2\pi}} \sigma \int_{-\infty}^{\infty} u \cdot e^{-\frac{1}{2} u^2} du +
-                    \mu \cdot \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} u \cdot e^{-\frac{1}{2} u^2} du =
+            \begin{align*}
+                &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} (\sigma u + \mu) e^{-\frac{1}{2} u^2} du = \\
+                &= \frac{1}{\sqrt{2\pi}} \sigma \int_{-\infty}^{\infty} u \cdot e^{-\frac{1}{2} u^2} du + 
+                    \mu \cdot \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} u \cdot e^{-\frac{1}{2} u^2} du = \\
                 &= \mu
-            \end{align}
+            \end{align*}
             Ker je v predzadnjem koraku 1. funkcija (v integralu) liha, 2. pa je gostota porazdelitve $N(0,1)$
         \item Cauchyjeva porazdelitev $p(x) = \frac{1}{\pi (1+x^2)}$ \\ % skica
             Nima matemati"cnega upanja, saj je $\int_{-\infty}^{\infty} |x| \cdot \frac{1}{\pi (1+x^2)} dx =
             \frac{2}{\pi} \int_{0}^{\infty} \frac{x}{1+x^2} dx = \frac{1}{\pi} ln(1+x^2) \vert_{0}^{\infty} = \infty$
         \item $1 - \frac{1}{2} + \frac{1}{3} - \cdots$ je pogojno konvergentna vrsta, t.j. konvergira, a ne absolutno
-            \begin{align*}
-                &X: \begin{pmatrix}
+            \begin{gather*}
+                X: \begin{pmatrix}
                     x_1 & x_2 & \cdots \\
                     p_1 & p_2 & \cdots \\
                 \end{pmatrix}, \sum_{k=1}^{\infty} x_k \cdot p_k = \sum_{k=1}^{\infty} \frac{(-1)^{k-1}}{k} \\
-                &x_k \cdot p_k = \frac{(-1)^{k-1}}{k} \\
-                &\sum_{k=1}^{\infty} p_k = 1
-                &p_k := \frac{1}{2^k} \text{ npr. ker je vsota 1} \\
-                &x_k := \frac{(-1)^{k-1}}{k} = 2^k
-            \end{align*}
-            Ta porazdelitev nima matemati"cnega upanja, ker vrsta ne konvergira absolutno
+                x_k \cdot p_k = \frac{(-1)^{k-1}}{k} \\
+                \sum_{k=1}^{\infty} p_k = 1 \\
+                p_k := \frac{1}{2^k} \text{ npr. ker je vsota 1} \\
+                x_k := \frac{(-1)^{k-1}}{k} = 2^k
+            \end{gather*}
+            Ta porazdelitev nima matemati"cnega upanja, ker vrsta ne konvergira absolutno.
     \end{enumerate}
 \end{ex}
 
@@ -2109,7 +2109,7 @@ slu"cajne spremenljivke $X$ enako $E(X) = \int_{-\infty}^{\infty} x \cdot p_X(x)
     \begin{enumerate}[label=(\alph*)]
         \item "Ce je $X: \begin{pmatrix} x_1 & x_2 & \cdots \\ p_1 & p_2 & \cdots \end{pmatrix}$ \\
             potem je $E(f \circ X) \equiv E(f(X)) = \sum_{k=1}^{\infty} f(x_k) \cdot p_k$
-            ("ce le to matema"ticno upanje obstaja)
+            ("ce le to matemati"cno upanje obstaja)
         \item "Ce je $X$ zvezno porazdeljena z gostoto $p_X$, potem je $E(f \circ X) =
             \int_{-\infty}^{\infty} f(x) \cdot p_X(x) dx$
     \end{enumerate}
@@ -2137,7 +2137,7 @@ slu"cajne spremenljivke $X$ enako $E(X) = \int_{-\infty}^{\infty} x \cdot p_X(x)
 
 \begin{conseq}
     Slu"cajna spremenljivka $X$ ima matemati"cno upanje $\iff$ $X$ ima matemati"cno upanje. Tedaj velja
-    $|E(X)| = E(|X|)$
+    $|E(X)| \leq E(|X|)$
 \end{conseq}
 
 \begin{proof}
@@ -2252,7 +2252,7 @@ sicer je $(X_k=0)$. Po zgornjem je $E(X) = n \cdot p$. Do tega lahko pridemo tud
 \begin{proof}
     $Y=1$, t.j. $Y: \begin{pmatrix}1 \\ 1\end{pmatrix} \implies$
     \begin{align*}
-        &E(|X \cdot 1|) \leq \sqrt{E(X^2) \cdot 1}  /^2
+        &E(|X \cdot 1|) \leq \sqrt{E(X^2) \cdot 1}  /^2 \\
         &(E(|X|))^2 \leq E(X^2)
     \end{align*}
 \end{proof}
@@ -2265,10 +2265,11 @@ sicer je $(X_k=0)$. Po zgornjem je $E(X) = n \cdot p$. Do tega lahko pridemo tud
 \begin{proof}
     (samo zvezem primer): \\
     \begin{align*}
-        &E(X \cdot Y) \stackrel{\text{trd}}{=} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} x \cdot y
-            \cdot p_{(X,Y)}(x,y) dx dx \stackrel{\text{neodvisnost}}{=} &
-        &=\underset{\R}{\iint} x \cdot y \cdot p_X(x) \cdot p_Y(y) dx dy =
-            \int_{-\infty}^{\infty} x p_X(x) dx \cdot \int_{-\infty}^{\infty} x p_Y(y) dy = E(X) \cdot E(Y)
+        E(X \cdot Y) &\stackrel{\text{trd}}{=} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} x \cdot y
+            \cdot p_{(X,Y)}(x,y) dx dy \\
+            &\stackrel{\text{neodvisnost}}{=} \underset{\R}{\iint} x \cdot y \cdot p_X(x) \cdot p_Y(y) dx dy \\
+            &= \int_{-\infty}^{\infty} x p_X(x) dx \cdot \int_{-\infty}^{\infty} x p_Y(y) dy \\
+            &= E(X) \cdot E(Y)
     \end{align*}
 \end{proof}
 
@@ -2286,8 +2287,8 @@ Po trditvi iz neodvisnosti sledi nekoreliranost. Obratno pa ne velja:
         &Y = sin(U): \begin{pmatrix}0 & 1 & 0 \\ \frac{1}{3} & \frac{1}{3} & \frac{1}{3}\end{pmatrix} =
             \begin{pmatrix}0 & 1 \\ \frac{2}{3} & \frac{1}{3}\end{pmatrix} \\
         &E(X) = 0, E(Y) = \frac{1}{3} \\
-        &X \cdot Y = sin(U) \cdot cos(U) = 0 \implies E(X \cdot Y) = 0 \implies \text{ X in Y sta nekorelirani
-            slu"cajni spremenljivki}
+        &X \cdot Y = sin(U) \cdot cos(U) = 0 \implies E(X \cdot Y) = 0 \implies \\
+        &\implies \text{ X in Y sta nekorelirani slu"cajni spremenljivki}
     \end{align*}
     \begin{center}
         \begin{tabular}{ c | c c | c}
@@ -2332,8 +2333,9 @@ Lastnosti disperzije:
     \item $\forall a \in \R$ velja: $E((X-a)^2) \geq D(X)$. Enakost velja le v primeru $a = E(X)$
         \begin{proof}
             \begin{align*}
-                &E((X-a)^2) = E(X^2 - 2aX + a^2) = E(X^2) - 2E(x)|a| + a^2 =
-                &= (a-E(X))^2 + E(X^2) - (E(X))^2 = D(X) + (a-E(X))^2 \geq D(X)
+                E((X-a)^2) &= E(X^2 - 2aX + a^2) = E(X^2) - 2E(x)|a| + a^2 \\
+                           &= (a-E(X))^2 + E(X^2) - (E(X))^2 \\
+                           &= D(X) + (a-E(X))^2 \geq D(X)
             \end{align*}
             Enakost velja samo za $a=E(X)$
         \end{proof}
@@ -2348,10 +2350,10 @@ Primeri nekaterih $E(X)$ in $D(X)$
 
 \begin{enumerate}
     \item enakomerna diskretna porazdelitev: $\begin{pmatrix}x_1 & \cdots & x_n \\ \frac{1}{n} & \cdots & \frac{1}{n}\end{pmatrix}$
-        \begin{align*}
-            E(X) = \frac{x_1 + \cdots + x_n}{n}, D(X) = E(X^2) - (E(X))^2 = \frac{x_1^2 + \cdots + x_n^2}{2} -
-            (\frac{x_1 + \cdots + x_n}{2})^2
-        \end{align*}
+        \begin{gather*}
+            E(X) = \frac{x_1 + \cdots + x_n}{n}, \\
+            D(X) = E(X^2) - (E(X))^2 = \frac{x_1^2 + \cdots + x_n^2}{2} - (\frac{x_1 + \cdots + x_n}{2})^2
+        \end{gather*}
     \item Binomska porazdelitev $Bin(n,p), n \in \N, p \in (0,1), q = 1-p$
         \begin{align*}
             E(X) = n \cdot p, D(X) = npq, \sigma(X) = \sqrt{npq}
@@ -2413,28 +2415,32 @@ Preverimo, da je $D(X) = \sigma^2$ za $X \sim N(\mu, \sigma)$
 \end{align*}
 
 \begin{defn}[Kovarianca]
-    Kovarianca slu"cajnih spremnljivk $K(X,Y) \equiv Cov(X,Y) := E((X-E(X))(Y-E(Y)))$
+    Kovarianca slu"cajnih spremenljivk $K(X,Y) \equiv Cov(X,Y) := E((X-E(X))(Y-E(Y)))$
 \end{defn}
 
 % ??
 Ker je
-\begin{equation*}
-    E((X-E(X))(Y-E(Y))) = E(XY - E(Y)X - E(X)Y + E(X)E(Y)) = E(XY) - E(X)E(X) - E(X)E(Y)+ E(X)E(Y)
-\end{equation*}
+\begin{align*}
+    E((X-E(X))(Y-E(Y))) &= E(XY - E(Y)X - E(X)Y + E(X)E(Y)) \\
+                        &= E(XY) - E(X)E(Y) - E(Y)E(X) + E(X)E(Y) \\
+                        &= E(XY) - E(X)E(Y)
+\end{align*}
 je $cov(X,Y) = E(XY) - E(X)E(Y)$ \\
 
 Lastnosti:
 
 \begin{enumerate}
     \item $K(X,X) = D(X)$
-    \item $K(X,Y) = 0 \iff$ $X$ in $Y$ sta neodvisni
+    \item $K(X,Y) = 0 \iff$ $X$ in $Y$ sta nekorelirani
     \item $K$ je simetri"cna in bilinearna funkcija:
         \begin{itemize}
             \item $K(X,Y) = K(Y,X)$
             \item $K(aX+bY,Z) = aK(X,Z) + bK(Y,Z) \forall a,b \in \R$
         \end{itemize}
-    \item "Ce obstajata $D(X)$ in $D(Y)$, potem obstaja tudi $K(X,Y)$. Tedaj velja $|K(X,Y)| \leq
-        \sqrt{D(X) \cdot D(Y)} = \sigma(X) \cdot \sigma(Y)$ \\
+    \item "Ce obstajata $D(X)$ in $D(Y)$, potem obstaja tudi $K(X,Y)$. Tedaj velja 
+        \begin{equation*}
+            |K(X,Y)| \leq \sqrt{D(X) \cdot D(Y)} = \sigma(X) \cdot \sigma(Y)
+        \end{equation*}
         To sledi iz Cauchy-Schwartzove neenakosti ($|E(U \cdot V)| \leq \sqrt{E(U^2) \cdot E(V^2)}$) za
         slu"cajni spremenljivki $X-E(X)$ in $Y-E(Y)$. Ena"caj v neenakosti velja $\iff$ $Y - E(Y) \pm
         \frac{\sigma(Y)}{\sigma(X)} (X - E(X))$ z verjetnostjo 1
@@ -2443,8 +2449,12 @@ Lastnosti:
         \begin{proof}
             Sledi iz enakosti
             \begin{align*}
-                &(X+Y-E(X+Y))^2 ? ((X-E(X))+(Y-E(Y)))^2 = (X-E(X))^2 + (Y-E(Y))^2 + 2(X-E(X))(Y-E(Y)) \quad E() \\
-                &D(X+Y) = E((X-E(X))^2) + E((Y-E(Y))^2) + E(2(X-E(X))(Y-E(Y))) = D(X) + D(Y) + 2K(X,Y)
+                (X+Y-E(X+Y))^2 &= ((X-E(X))+(Y-E(Y)))^2 \\
+                               &= (X-E(X))^2 + (Y-E(Y))^2 + 2(X-E(X))(Y-E(Y)) \\
+            \end{align*}\
+            \begin{align*}
+                D(X+Y) &= E((X-E(X))^2) + E((Y-E(Y))^2) + E(2(X-E(X))(Y-E(Y))) \\
+                       &= D(X) + D(Y) + 2K(X,Y)
             \end{align*}
         \end{proof}
     \item Posplo"sitev: $D(X_1 + \cdots + X_n) = D(X_1) + \cdots + D(X_n) + 2 \sum_{i<j} K(X_i,X_j)$ \\
@@ -2500,26 +2510,34 @@ Lastnosti:
     \end{equation*}
     Trdimo, da je $r(X,Y) = \rho$
     \begin{align*}
-        &(X_s,Y_s) \sim N(0,0,1,1,\rho) \\
-        &r(X,Y) = E(X_s \cdot Y_s) = \frac{1}{2\pi \sqrt{1-p^2}} \underset{\R}{\iint} x y 
-            e^{-\frac{1}{2(1-\rho^2)} (x^2 - 2\rho xy ' y^2)} dx dy \\
-    \end{align*}
-    \begin{equation*}
-        x^2 - 2 \rho xy + y^2 = (x-\rho y)^2 + (1-\rho^2)y^2
-    \end{equation*}
-    \begin{align*}
-        %
-        %
-        %
+        r(X, Y) &= E(X_s \cdot Y_s) \\
+                &= \frac{1}{2 \pi \sqrt{1-p^2}} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} X \cdot Y \cdot exp(-\frac{1}{2(1-p)^2} \underbrace{(x^2 - 2\rho xy + y^2)}_{(x-\rho y)^2 + (1-\rho^2)y^2}) dx dy \\%\underbrace{e^{x^2 - 2\rho xy + y^2}}_{e^{(x-\rho y)^2 + (1-\rho^2)y^2}} dx dy
 % 14. predavanje: 13.1.
-        %
-        &= \int_{-\infty}^{\infty} y e^{-\frac{1}{2}y^2} dy = \frac{1}{\sqrt{2\pi (1-\rho^2)}}
-        \int_{-\infty}^{\infty} x e^{-\frac{1}{2(1-\rho^2)} (x - \rho y)^2} dx = \\
-        &=E(N(\rho y, \sqrt{1-\rho^2})), \text{ ker je } p(x) = \frac{1}{\sigma \sqrt{2\pi}}
-        e^{-\frac{1}{2} (\frac{x - \mu}{\sigma})^2} = \\
-        &= \rho \frac{1}{\sqrt(2\pi)} \int_{-\infty}^{\infty} y^2 e^{-\frac{1}{2} y^2} dy = \\
-        &= (\frac{1}{\sqrt(2\pi)} \int_{-\infty}^{\infty} y^2 e^{-\frac{1}{2} y^2} = D(N(0,1)) = 1) \implies = \rho
+                &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} y e^{-\frac{y^2}{2}} dy \cdot \underbrace{\frac{1}{\sqrt{2 \pi (1-\rho^2)}} \cdot \int_{-\infty}^{\infty} x \cdot exp(-\frac{1}{2} (\frac{x - \rho y}{\sqrt{1-\rho^2}})^2) dx}_{E(N(\rho y, \sqrt{1-\rho^2})) = \rho y} \\
+                &= \rho \frac{1}{\sqrt{2 \pi}} \int_{- \infty}^{\infty} y^2 e^{-\frac{1}{2} y^2} dy \\
+                &= \rho
     \end{align*}
+%    \begin{align*}
+%        &(X_s,Y_s) \sim N(0,0,1,1,\rho) \\
+%        &r(X,Y) = E(X_s \cdot Y_s) = \frac{1}{2\pi \sqrt{1-p^2}} \underset{\R}{\iint} x y 
+%            e^{-\frac{1}{2(1-\rho^2)} (x^2 - 2\rho xy ' y^2)} dx dy \\
+%    \end{align*}
+%    \begin{equation*}
+%        x^2 - 2 \rho xy + y^2 = (x-\rho y)^2 + (1-\rho^2)y^2
+%    \end{equation*}
+%    \begin{align*}
+%        %
+%        %
+%        %
+%% 14. predavanje: 13.1.
+%        %
+%        &= \int_{-\infty}^{\infty} y e^{-\frac{1}{2}y^2} dy = \frac{1}{\sqrt{2\pi (1-\rho^2)}}
+%        \int_{-\infty}^{\infty} x e^{-\frac{1}{2(1-\rho^2)} (x - \rho y)^2} dx = \\
+%        &=E(N(\rho y, \sqrt{1-\rho^2})), \text{ ker je } p(x) = \frac{1}{\sigma \sqrt{2\pi}}
+%        e^{-\frac{1}{2} (\frac{x - \mu}{\sigma})^2} = \\
+%        &= \rho \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} y^2 e^{-\frac{1}{2} y^2} dy = \\
+%        &= (\frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} y^2 e^{-\frac{1}{2} y^2} = D(N(0,1)) = 1) \implies = \rho
+%    \end{align*}
 \end{ex}
 Torej sta X in Y nekorelirani $\stackrel{\text{v splo"snem}}{\iff} \rho = 0 \stackrel{\text{ta primer}}{\iff}
 X, Y$ neodvisni \\
@@ -2659,7 +2677,7 @@ Ima enake lastnosti kot porazdelitvena funkcija
     Naj bo $k \in \N$ in $a \in \R$. Moment reda $k$ glede na to"cko $a$ je $m_k(a) := E((X-a)^k)$ ("ce obstaja)
 \end{defn}
 
-Za $a$ obicajno vzamemo
+Za $a$ obi"cajno vzamemo
 \begin{enumerate}
     \item $a=0$: $z_k := m_k(0) = E(X^k)$ za"cetni moment reda k
     \item $a=E(X)$: $m_k := m_k(E(X))$ cenralni moment reda k
@@ -3008,18 +3026,28 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
 
 \begin{defn}[Verjetnostna konvergenca]
     Zaporedje slu"cajnih spremenljivk $\{X_n\}_{n \in \N}$ verjetnostno konvergira proti sku"cajni spremenljivki
-    X, "ce za $\forall \epsilon > 0$ velja $\lim_{n \to \infty} P(|X_n-X| \geq \epsilon) = 0$ \\
-    oz. $\lim_{n \to \infty} P(|X_n-X| < \epsilon) = 1$
+    X, "ce za $\forall \epsilon > 0$ velja 
+    \begin{equation*}
+        \lim_{n \to \infty} P(|X_n-X| \geq \epsilon) = 0
+    \end{equation*}
+    oziroma
+    \begin{equation*}
+        \lim_{n \to \infty} P(|X_n-X| < \epsilon) = 1
+    \end{equation*}
 \end{defn}
 
 \begin{defn}[Skoraj gotova konvergenca]     % izraz ?
     Zaporedje slu"cajnih spremenljivk $\{X_n\}_{n \in \N}$ skoraj gotovo konvergira proti sku"cajni spremenljivki
-    X, "ce velja P(p $\lim_{n \to \infty} X_n = X) = 1$ \\
-    Tukaj je $(\lim_{n \to \infty} X_n = X) = \{\omega \in \Omega: \lim_{n \to \infty} X_n(\omega) = X(\omega)\} =$
-    \[= \{\omega \in \Omega: \forall k (\in \N) \exists m \in \N \forall n \geq m: |X_n(\omega) - X(\omega)| < \frac{1}{k}\} =\]
-    \begin{align}
-        = \{\cap_{k \in \N} \cup_{m \in \N} \cap_{n \geq m} \omega \in \Omega: |X_n(\omega) - X(\omega)| < \frac{1}{k}\} \*
-    \end{align}
+    X, "ce velja 
+    \begin{equation*}
+        P(\lim_{n \to \infty} X_n = X) = 1
+    \end{equation*}
+    Tukaj je 
+    \begin{align*}
+        (\lim_{n \to \infty} X_n = X) &= \{\omega \in \Omega: \lim_{n \to \infty} X_n(\omega) = X(\omega)\} \\
+        &= \{\omega \in \Omega: \forall k (\in \N) \exists m \in \N \forall n \geq m: |X_n(\omega) - X(\omega)| < \frac{1}{k}\} \\
+        &= \{\cap_{k \in \N} \cup_{m \in \N} \cap_{n \geq m} \omega \in \Omega: |X_n(\omega) - X(\omega)| < \frac{1}{k}\}
+    \end{align*}
 \end{defn}
 
 \begin{rem}
@@ -3146,13 +3174,20 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
 
 \begin{defn}
     Naj bo $\{X_n\}_{n \in \N}$ zaporedje slu"cajnih spremenljivk s kon"cnimi disperzijami. Definiramo
-    $S_n := X_1 + \cdots + X_n$ in standardizirajmo: $Z_n = \frac{S_n - E(S_n)}{\sigma(S_n)}$, torej
-    $E(Z_n) = 0, D(Z_n) = 1$ \\
-    Za $\{X_n\}_{n \in \N}$ velja centralni limitni izrek, "ce je $F_{Z_n}(x) = P(Z_n \leq x)
-    \stackrel{n \to \infty}{\rightarrow} F_{N(0,1)} \forall x \in \R$, t.j.
+    $S_n := X_1 + \cdots + X_n$ in standardizirajmo: 
+    \begin{equation*}
+        Z_n = \frac{S_n - E(S_n)}{\sigma(S_n)}
+    \end{equation*}
+    torej imamo
+    \[E(Z_n) = 0, D(Z_n) = 1\]
+    Za $\{X_n\}_{n \in \N}$ velja centralni limitni izrek, "ce je 
+    \begin{equation*}
+        F_{Z_n}(x) = P(Z_n \leq x) \stackrel{n \to \infty}{\rightarrow} F_{N(0,1)} \forall x \in \R
+    \end{equation*}
+    to je
     \[P(\frac{S_n - E(S_n)}{\sigma(S_n)} \leq x) \stackrel{n \to \infty}{\rightarrow}
     \frac{1}{2 \pi} \int_{-\infty}^x e^{-\frac{t^2}{2}} dx \text{ za } \forall x \in \R\]
-    Pracimo, da $\{Z_n\}_{n \in \N}$ po porazdelitvi konvergira proti standardizirani normalni porazdelitvi.
+    Pravimo, da $\{Z_n\}_{n \in \N}$ po porazdelitvi konvergira proti standardizirani normalni porazdelitvi.
 \end{defn}
 
 \begin{theorem}[Centralni limitni izrek (CLI, osnovna verzija)]
@@ -3330,8 +3365,8 @@ Ocene za $\sigma$ so:
 
 \begin{itemize}
     \item vzor"cni razmak: razlika med najve"cjo in najmanj"so vrednostjo v vzorcu
-    \item vzor"cna disperzija: $s_0^2 ? \frac{1}{n} \sum_{i=1}^n (x_i - \overline{x})^2$
-    \item popravljena vzor"cna disperzija: $s^2 ? \frac{1}{n-1} \sum_{i=1}^n (x_i - \overline{x})^2 =
+    \item vzor"cna disperzija: $s_0^2 = \frac{1}{n} \sum_{i=1}^n (x_i - \overline{x})^2$
+    \item popravljena vzor"cna disperzija: $s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \overline{x})^2 =
         \frac{n}{n-1} s_0^2$
 \end{itemize}
 
@@ -3881,10 +3916,10 @@ Primeri testov znacilnosti
 \subsubsection{test $Z$}
 
 $X \sim N(\mu, \sigma), \sigma$ znan parameter \\
-Ni"celna domneva je $H_=(\mu = \mu_0)$, kjer je $\mu_0$ damo realno "stevilo \\
+Ni"celna domneva je $H = (\mu = \mu_0)$, kjer je $\mu_0$ damo realno "stevilo. \\
 Pri predpostavki $H_0(\mu = \mu_0)$ je $Z := \frac{\overline{X} - \mu}{\sigma} \sqrt{n}$ porazdeljena
 $N(0,1)$, saj je $\overline{X} \sim N(\mu_0, \frac{\sigma}{\sqrt{n}})$ \\
-Vzemimo $H_1(\mu \neq \mu_0)$. Tedaj $H_0$ zavrnemo, "ce vzor"cna vrednost za $Z$ le"zi na kriticnem obmocju
+Vzemimo $H_1(\mu \neq \mu_0)$. Tedaj $H_0$ zavrnemo, "ce vzor"cna vrednost za $Z$ le"zi na kriti"cnem obmo"cju
 
 \begin{equation*}
     K_{\alpha} = (-\infty, -z_{\frac{\alpha}{2}}] \cup [z_{\frac{\alpha}{2}}, \infty)
