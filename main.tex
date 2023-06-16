@@ -41,13 +41,13 @@
 \newtheorem{conseq}[counter]{Posledica}
 \newtheorem{claim}[counter]{Trditev}
 \newtheorem{theorem}[counter]{Izrek}
+\newtheorem{general}[counter]{Posplošitev}
 %%
 \theoremstyle{remark}
 \newtheorem*{ex}{Primer}
 \newtheorem*{rem}{Opomba}
 \newtheorem{rem*}[counter]{Opomba}
 \newtheorem{ex*}[counter]{Primer}
-\newtheorem{general}[counter]{Posplo"sitev}
 
 % I like my squares DARK
 \renewcommand\qedsymbol{$\blacksquare$}
@@ -171,16 +171,16 @@ pri pogoju, da imajo vsi izidi enake mo"znosti
 
 \begin{ex}
     Kolik"sna je verjetnost, da pri metu dveh kock zna"sa vsota pik 7? \\
-    Mo"zne vsote: $2, 3, 4 \cdots 7 \cdots 12$: 11 mo"znosti \\
+    Mo"zne vsote: $2, 3, 4 \dots 7 \dots 12$: 11 mo"znosti \\
     Ali je $P(\text{vsota 7}) = \frac{1}{11}$? Ne, ker te vsote nimajo enakih mo"znosti: \\
     $2=1+1, 3=2+1=1+2$ \\
-    Vsi mo"zni izidi so $\{(i,j): i,j \in \{1, 2 \cdots 6\}\} = \{1, 2 \cdots 6\} \times \{1, 2 \cdots 6\}$ \\
+    Vsi mo"zni izidi so $\{(i,j): i,j \in \{1, 2 \dots 6\}\} = \{1, 2 \dots 6\} \times \{1, 2 \dots 6\}$ \\
     \begin{center}
         $\begin{matrix}
-            (1,1) & (1,2) & \cdots & (1,6) \\
-            (2,1) & (2,2) & \cdots & (2,6) \\
+            (1,1) & (1,2) & \dots & (1,6) \\
+            (2,1) & (2,2) & \dots & (2,6) \\
             \vdots & \vdots & \ddots& \vdots\\
-            (6,1) & (6,2) & \cdots & (6,6) \\
+            (6,1) & (6,2) & \dots & (6,6) \\
         \end{matrix}$
     \end{center}
     $P(\text{vsota 7}) = \frac{6}{36} = \frac{1}{6}$
@@ -208,10 +208,10 @@ pri pogoju, da imajo vsi izidi enake mo"znosti
     Slu"cajno razporedimo $n$ kroglic v $m$ posod, kjer je $m>n$. Kolik"sna je verjetnost, da so vse kroglice v prvih
     $n$ posodah, v vsaki ena? \\
     Obravnavajmo 3 variante:
-    \begin{enumerate}
+    \begin{enumerate}[label=(\alph*)]
         \item kroglice razlikujemo \\
-            Vsi izidi: $m \cdot m \cdots m = m^2$ variacije \\
-            Ugodni izidi: $n \cdot (n-1) \cdots 1 = n!$ permutacija \\
+            Vsi izidi: $m \cdot m \dots m = m^n$ variacije \\
+            Ugodni izidi: $n \cdot (n-1) \dots 1 = n!$ permutacija \\
             $\implies P(A) = \frac{n!}{m^n}$
         \item kroglic ne razlikujemo \\
             $n$ kroglic, $m-1$ "crtic $\implies (m+n-1)$ mest \\
@@ -241,8 +241,8 @@ Kolmogorov (okoli 1930)
 \end{defn}
 
 \begin{ex}
-    Met kocke: $\Omega = \{1,2,3,4,5,6\}$, dogodki so vse podmno"zice,  $\{6\} \cdots$ dogodek, da pade "sestica,
-    $\{2,4,6\} \cdots$ dogodek, da pade sodo "stevilo pik.
+    Met kocke: $\Omega = \{1,2,3,4,5,6\}$, dogodki so vse podmno"zice,  $\{6\} \dots$ dogodek, da pade "sestica,
+    $\{2,4,6\} \dots$ dogodek, da pade sodo "stevilo pik.
 \end{ex}
 
 \subsubsection*{Ra"cunanje z dogodki}
@@ -298,18 +298,18 @@ Pravila za ra"cunanje z dogodki:
 \end{itemize}
 
 \begin{defn}[$\sigma$-algebra]
-    Neprazna dru"zina podmno"zic dogodkov $F$ v $\Omega$ je $\sigma$-algebra, "ce velja:
+    Neprazna dru"zina podmno"zic dogodkov $\mathcal{F}$ v $\Omega$ je $\sigma$-algebra, "ce velja:
 
     \begin{enumerate}
-        \item $A \in F \implies A^C \in F$ (zaprtost za komplement)
-        \item $A_1, A_2 \cdots \in F \implies \cup_{i=1}^{\infty} A_i \in F$ (zaprtost za "stevne unije)
+        \item $A \in \mathcal{F} \implies A^C \in F$ (zaprtost za komplement)
+        \item $A_1, A_2 \dots \in \mathcal{F} \implies \cup_{i=1}^{\infty} A_i \in F$ (zaprtost za "stevne unije)
     \end{enumerate}
 
     "Ce v 2) zahtevamo manj: \\
-    $A, B \in F \implies A \cup B \in F$ ("sibkej"si pogoj) pravimo, da je $F$ algebra.
+    $A, B \in \mathcal{F} \implies A \cup B \in F$ ("sibkej"si pogoj) pravimo, da je $\mathcal{F}$ algebra.
 \end{defn}
 
-V algebri imamo zaprtost za kon"cne unije, t.j. $A_1 \cdots A_n \in F \implies \cup_{i=1}^n A_j \in F$ (zaradi
+V algebri imamo zaprtost za kon"cne unije, t.j. $A_1 \dots A_n \in \mathcal{F} \implies \cup_{i=1}^n A_j \in F$ (zaradi
 indukcije). Ker je $\cap_i A_i^C = (\cup_i A_i)^C$ (deMorgan), je algebra zaprta za kon"cne preseke, $\sigma$-algebra
 pa za "stevne preseke. \\
 Ker je $A$ \textbackslash $B = A \cap B^C$, je algebra zaprta za razlike dogodkov. \\
@@ -317,16 +317,16 @@ Vsaka algebra vsebuje $\{\emptyset, \Omega\}$: ker je neprazna, obstaja dogodek 
 zato je 
 
 \begin{equation*}
-    \Omega = A \cup A^C \in F, \emptyset = A \cap A^C \in F
+    \mathcal{F}\Omega = A \cup A^C \in F, \emptyset = A \cap A^C \in \mathcal{F}
 \end{equation*}
 
-Najmanj"sa ($\sigma$-)algebra je $F = \{\emptyset, \Omega\}$, najve"cja ($\sigma$-)algebra je poten"cna mno"zica
+Najmanj"sa ($\sigma$-)algebra je $\mathcal{F} = \{\emptyset, \Omega\}$, najve"cja ($\sigma$-)algebra je poten"cna mno"zica
 $P(\Omega)$.
 
 \begin{ex}
-    Izberimo $\emptyset \neq A \subsetneq \Omega$. Najmanj"sa $\sigma$-algebra, ki vsebuje $\{1\}, \{2\}, \{3\} \cdots$
+    Izberimo $\emptyset \neq A \subsetneq \Omega$. Najmanj"sa $\sigma$-algebra, ki vsebuje $\{1\}, \{2\}, \{3\} \dots$
     je $P(\N)$, saj je $A = \cup_{k \in A} \{k\}$ za $\forall k \subseteq \N$ (kon"cna ali "stevna unija) \\
-    Najmanj"sa algebra $F$, ki vsebuje $\{1\}, \{2\}, \{3\} \cdots$ je enaka algebri
+    Najmanj"sa algebra $\mathcal{F}$, ki vsebuje $\{1\}, \{2\}, \{3\} \dots$ je enaka algebri
 
     \begin{equation*}
         g = \{A \subseteq \N: A \text{ je kon"cna ali } A^C \text{ je kon"cna}\}
@@ -350,14 +350,14 @@ $P(\Omega)$.
                 $A \in g$:
                 \begin{itemize}
                     \item $A$ je kon"cna: $A = \cup_{k \in A} \{k\} \in F$ (kon"cna unija)
-                    \item $A^C$ je kon"cna: $A^C = (\cup_{k \in A^C})^C \in F$ (kon"cna unija)
+                    \item $A^C$ je kon"cna: $A^C = (\cup_{k \in A^C})^C \in \mathcal{F}$ (kon"cna unija)
                 \end{itemize}
-                $\implies g \in F$
+                $\implies g \in \mathcal{F}$
         \end{enumerate}
     \end{enumerate}
 
-    Ker je $F$ najmanj"sa algebra, ki vsebuje $\{1\}, \{2\} \cdots$, je tukaj ena"caj, torej $g = F$ \\
-    Ker npr. mno"zica sodih "stevil ni v $g \in F$, je $g \notin P(\N)$, torej $g$ ni $\sigma$-algebra
+    Ker je $\mathcal{F}$ najmanj"sa algebra, ki vsebuje $\{1\}, \{2\} \dots$, je tukaj ena"caj, torej $g = \mathcal{F}$ \\
+    Ker npr. mno"zica sodih "stevil ni v $g \in \mathcal{F}$, je $g \notin P(\N)$, torej $g$ ni $\sigma$-algebra
 \end{ex}
 
 \begin{defn}[Nezdru"zljivost dogodkov]
@@ -370,12 +370,12 @@ $P(\Omega)$.
 \end{defn}
 
 \begin{defn}[Verjetnost]
-    Naj bo $F \sigma$-algebra na $\Omega$. Verjetnost na $(\Omega, F)$ je preslikava $P: F \to \R$ z lastnostmi:
+    Naj bo $\mathcal{F} \sigma$-algebra na $\Omega$. Verjetnost na $(\Omega, \mathcal{F})$ je preslikava $P: \mathcal{F} \to \R$ z lastnostmi:
 
     \begin{enumerate}
         \item $P(A) \geq 0 \forall A \in F$
         \item $P(\Omega) = 1$ \\
-        \item Za poljubne paroma nezdru"zljive dogodke $A_1, A_2 \cdots$ velja
+        \item Za poljubne paroma nezdru"zljive dogodke $A_1, A_2 \dots$ velja
             \begin{equation*}
                 P(\cup_{i=1}^{\infty} A_i) = \sum_{i=1}^{\infty} P(A_i)
             \end{equation*}
@@ -385,21 +385,21 @@ $P(\Omega)$.
 
 Lastnosti preslikave $P$:
 
-\begin{enumerate}
+\begin{enumerate}[label=(\alph*)]
     \item $P(\emptyset) = 0$
         \begin{proof}
-            v 3) vstavimo $A_1 = A_2 = \cdots = \emptyset$:
+            v 3) vstavimo $A_1 = A_2 = \dots = \emptyset$:
             \begin{align*}
-                &P(\emptyset) = P(\emptyset) + P(\emptyset) + \cdots + P(\emptyset) = k \cdot P(\emptyset) \implies \\
+                &P(\emptyset) = P(\emptyset) + P(\emptyset) + \dots + P(\emptyset) = k \cdot P(\emptyset) \implies \\
                 &\implies (k-1) P(\emptyset) = 0 \implies P(\emptyset) = 0
             \end{align*}
         \end{proof}
-    \item $P$ je kon"cno aditivna, t.j. za poljubne paroma nezdru"zljive dogodke $A_1 \cdots A_n$ velja
+    \item $P$ je kon"cno aditivna, t.j. za poljubne paroma nezdru"zljive dogodke $A_1 \dots A_n$ velja
         \begin{equation*}
             P(\cup_{i=1}^n A_i) = \sum_{i=1}^{n} P(A_i)
         \end{equation*}
         \begin{proof}
-            v 3) vzamemo $A_{n+1} = A_{n+2} = \cdots = \emptyset$:
+            v 3) vzamemo $A_{n+1} = A_{n+2} = \dots = \emptyset$:
             \begin{equation*}
                 P(\cup_{i=1}^n A_i) = \sum_{i=1}^{\infty} P(A_i) = \sum_{i=1}^{n} P(A_i)
                 (\text{zaradi} P(\emptyset) = 0)
@@ -420,9 +420,9 @@ Lastnosti preslikave $P$:
         \end{proof}
     \item $P$ je zvezna, t.j.
         \begin{enumerate}
-            \item iz $A_1 \subseteq A_2 \subseteq \cdots A_i \in F$ sledi
+            \item iz $A_1 \subseteq A_2 \subseteq \dots A_i \in F$ sledi
                 $P(\cup_{i=1}^{\infty} A_i) = \lim_{i \to \infty} P(A_i)$
-            \item iz $B_1 \supseteq B_2 \supseteq \cdots B_i \in F$ sledi
+            \item iz $B_1 \supseteq B_2 \supseteq \dots B_i \in F$ sledi
                 $P(\cap_{i=1}^{\infty} B_i) = \lim_{i \to \infty} P(B_i)$
         \end{enumerate}
         Definiramo
@@ -430,7 +430,7 @@ Lastnosti preslikave $P$:
             &C_1 = A_1 \\
             &C_i = A_i - A_{i-1} \text{ za } i \geq 2
         \end{align*}
-        Potem $C_i \cap C_j = \emptyset$ za $i \neq j$, $A_n = C_1 \cup \cdots \cup C_n$ in
+        Potem $C_i \cap C_j = \emptyset$ za $i \neq j$, $A_n = C_1 \cup \dots \cup C_n$ in
         $\cup_{i=1}^{\infty} A_i = \cup_{i=1}^{\infty} C_i$ \\
         Torej imamo
         \begin{align*}
@@ -440,7 +440,7 @@ Lastnosti preslikave $P$:
         \end{align*}
         \begin{proof}
             Dokazujemo ii):
-            iz $B_1 \supseteq B_2 \supseteq \cdots$ sledi $B_1^C \subseteq B_2^C \subseteq \cdots$ in zato po (i)
+            iz $B_1 \supseteq B_2 \supseteq \dots$ sledi $B_1^C \subseteq B_2^C \subseteq \dots$ in zato po (i)
             \begin{equation*}
                 P(\cup_{i=1}^{\infty} B_i^C) = \lim_{i \to \infty} P(B_i^C) \stackrel{a)}{=} 1 - \lim_{i \to \infty} P(B_i)
             \end{equation*}
@@ -455,12 +455,12 @@ Lastnosti preslikave $P$:
         \end{proof}
 \end{enumerate}
 
-$(\Omega, F, P)$ verjetnostni prostor
+$(\Omega, \mathcal{F}, P)$ verjetnostni prostor
 
 \begin{ex}
     (kon"cni ali "stevni verjetnostni prostor) \\
-    $\Omega = \{w_1, w_2 \cdots\}$ kon"cna ali "stevna mno"zica, paroma razli"cni, \\
-    $F = P(\Omega), A = \cup_{i \in A} \{w_i\}$ kon"cna ali "stevna unija \\
+    $\Omega = \{w_1, w_2 \dots\}$ kon"cna ali "stevna mno"zica, paroma razli"cni, \\
+    $\mathcal{F} = P(\Omega), A = \cup_{i \in A} \{w_i\}$ kon"cna ali "stevna unija \\
     $\{w_1\}, \{w_2\} \dots$ so popoln sistem dogodkov \\
     "ce je $p_i := P(\{w_i\})$, je $P(A) = \sum_{i: w_i \in A} p_i$ in $\sum_i p_i = 1 = P(\Omega)$ \\
     Poseben primer: $\Omega$ ima $n$ elementov in $p_i = \frac{1}{n}, P(A) \frac{\text{mo"c}(A)}{n}$ \\
@@ -471,7 +471,7 @@ $(\Omega, F, P)$ verjetnostni prostor
 
 % 3. predavanje: 28.10.
 
-$(\Omega, \Phi, P)$
+$(\Omega, \mathcal{F}, P)$
 
 \begin{ex}
     (Ne"stevni neskon"cni verjetnostni prostor) \\
@@ -533,23 +533,23 @@ oz. ``lep"se''
     P(A \cap B \cap C) = P(A) \cdot P(B \mid A) \cdot P(C \mid A \cap B)
 \end{equation*}
 
-To posplo"simo na $n$ dogodkov $A_1, A_2 \cdots A_n$:
+To posplo"simo na $n$ dogodkov $A_1, A_2 \dots A_n$:
 
 \begin{align*}
-    &P(A_1 \cap \cdots \cap A_n) = P(A_1) \cdot P(A_2 \mid A_1) \cdots P(A_n \mid A_1 \cap \cdots \cap A_{n-1}) = \\
+    &P(A_1 \cap \dots \cap A_n) = P(A_1) \cdot P(A_2 \mid A_1) \dots P(A_n \mid A_1 \cap \dots \cap A_{n-1}) = \\
     &= P(A_1) \cdot \prod_{i=2}^{n} P(A_i \mid \cap_{j=1}^{i-1} A_j)
 \end{align*}
 
 Desna stran:
 
 \begin{equation*}
-    P(A_1) \cdot \frac{P(A_1 \cap A_2)}{P(A_1)} \cdot \frac{P(A_1 \cap A_2 \cap A_3)}{P(A_1 \cap A_2)} \cdots
-    \frac{P(A_1 \cap \cdots \cap A_n)}{P(A_1 \cap \cdots \cap A_{n-1})}
+    P(A_1) \cdot \frac{P(A_1 \cap A_2)}{P(A_1)} \cdot \frac{P(A_1 \cap A_2 \cap A_3)}{P(A_1 \cap A_2)} \dots
+    \frac{P(A_1 \cap \dots \cap A_n)}{P(A_1 \cap \dots \cap A_{n-1})}
 \end{equation*}
 
 Imejmo poskus v dveh korakih (fazah). V 1. koraku se zgodi natanko en dogodek iz popolnega sistema dogodkov
-$H_1, H_2 \cdots$ (kon"cno/"stevno mnogo). V drugem koraku nas zanima dogodek $A$. Izrazimo $P(A)$ z verjetnostmi
-$P(H_1), P(H_2 \cdots)$ in $P(A \mid H_1), P(A \mid H_2) \cdots$. \\
+$H_1, H_2 \dots$ (kon"cno/"stevno mnogo). V drugem koraku nas zanima dogodek $A$. Izrazimo $P(A)$ z verjetnostmi
+$P(H_1), P(H_2 \dots)$ in $P(A \mid H_1), P(A \mid H_2) \dots$. \\
 Ker je $A = A \cap \Omega = A \cap (\cup_i H_i) = \cup_i (A \cap H_i)$ in ker so $\{A \cap H_i\}_i$ paroma
 nezrdu"zljivi dogodki (zaradi $H_i$), je
 
@@ -567,7 +567,7 @@ To je formula o popolni verjetnosti
         &P(\text{prvi dobi}) = \frac{m}{n} \\
         &P(\text{drugi dobi}) = P(\text{prvi dobi}) \cdot P(\text{drugi dobi} \mid \text{prvi dobi}) + \\
         &+ P(\text{prvi ne dobi}) \cdot P(\text{drugi dobi} \mid \text{prvi ne dobi}) = \\
-        &= \frac{m}{n} \cdot \frac{m-1}{n-1} + \frac{n-m}{n} \cdot \frac{m}{n-1} = \cdots = \frac{m}{n} 
+        &= \frac{m}{n} \cdot \frac{m-1}{n-1} + \frac{n-m}{n} \cdot \frac{m}{n-1} = \dots = \frac{m}{n} 
     \end{align*}
 \end{ex}
 
@@ -614,11 +614,11 @@ Dogodka $A$ in $B$ sta neodvisna, "ce je $P(A \cap B) = P(A) \cdot P(B)$ \\
 
 \begin{defn}[Neodvisnost]
     $A$ in $B$ sta neodvisna, "ce $P(A \cap B) = P(A) \cdot P(B)$ \\
-    Dogodki $\{A_i\}_i$ so neodvisni, "ce za poljuben kon"cen nabor razli"cnih dogodkov $A_{i_1}, A_{i_2} \cdots
+    Dogodki $\{A_i\}_i$ so neodvisni, "ce za poljuben kon"cen nabor razli"cnih dogodkov $A_{i_1}, A_{i_2} \dots
     A_{i_n}$ velja
 
     \begin{equation*}
-        P(A_{i_i} \cap \cdots \cap A_{i_n}) = P(A_{i_1}) \cdot \cdots \cdot P(A_{i_n})
+        P(A_{i_i} \cap \dots \cap A_{i_n}) = P(A_{i_1}) \cdot \dots \cdot P(A_{i_n})
     \end{equation*}
 
     "Ce zahtevamo le za $n=2$, t.j. $P(A_i \cap A_j) = P(A_i) \cdot P(A_j), i \neq j$, tedaj so dogodki paroma
@@ -664,7 +664,7 @@ O"citno iz neodvisnosti sledi paroma neodvisnost. Obratno ne velja
     v katerem je mo"zen $A$ s $P(A) = p \in (0,1)$. Potem je $q := P(A^C) = 1 - p$
 \end{defn}
 
-Z $A_n(k)$ ozna"cimo dogodek, da se v $k$ ponovitvah poskusa $A$ zgodi natanko $n$-krat, $k = 0, 1 \cdots n$ \\
+Z $A_n(k)$ ozna"cimo dogodek, da se v $k$ ponovitvah poskusa $A$ zgodi natanko $n$-krat, $k = 0, 1 \dots n$ \\
 Poka"zimo, da je njegova verjetnost $P_n(k) := P(A_n(k)) = \binom{n}{k} p^k q^{n-k}$ - Bernoullijeva formula \\
 $A_n(k)$ je disjunktna unija $\binom{n}{k}$ dogodkov, da se $A$ zgodi na predpisanih $k$ mestih, $A^C$ pa na
 preostalih $(n-k)$ mestih. Verjetnost le teh je produkt $p$-jev in $q$-jev: $p^k q^{n-k}$. Od tod sledi
@@ -688,15 +688,15 @@ Torej je $\lim_{n \to \infty} \frac{\sqrt{2\pi n}}{n!} (\frac{n}{e})^n = 1$
 
 \subsubsection{Aproksimacijski formuli za $P_n(k)$}
 
-\subsubsection{Poissonova formula}
+\subsubsubsection{Poissonova formula}
 
 "Ce je $n$ velik in $k$ majhen, je $P_n(k) \approx \frac{\lambda^k}{k!} e^{-\lambda}$, kjer je $\lambda = np$
 
 \begin{proof}
     \begin{align*}
         &P_n(k) \stackrel{\text{def}}{=} \binom{n}{k} p^k q^{n-k} =
-            \frac{n(n-1) \cdots (n-k+1)}{k!} (\frac{\lambda}{n})^k (1 - \frac{\lambda}{n})^{n-k} = \\
-        &= \frac{\lambda}{k!} \frac{n}{n} \frac{n-1}{n} \cdots \frac{n-k+1}{n}
+            \frac{n(n-1) \dots (n-k+1)}{k!} (\frac{\lambda}{n})^k (1 - \frac{\lambda}{n})^{n-k} = \\
+        &= \frac{\lambda}{k!} \frac{n}{n} \frac{n-1}{n} \dots \frac{n-k+1}{n}
             (1 - \frac{\lambda}{n})^n (1 - \frac{\lambda}{n})^{-k} \approx \\
         &\frac{n-i}{n} \to 1, (1 - \frac{\lambda}{n})^n \to e^{-\lambda}, (1 - \frac{\lambda}{n})^{-k} \to 1 \\
         &\approx \frac{\lambda^k}{k!} e^{-\lambda}
@@ -712,7 +712,7 @@ Torej je $\lim_{n \to \infty} \frac{\sqrt{2\pi n}}{n!} (\frac{n}{e})^n = 1$
     \end{align*}
 \end{ex}
 
-\subsubsection{Laplaceova lokalna formula}
+\subsubsubsection{Laplaceova lokalna formula}
 
 "Ce je $n$ velik, potem je $P_n(k) \approx \frac{1}{\sqrt{2\pi npq}} \cdot e^{-\frac{(k-np)^2}{2npq}}$ \\
 Kasneje (2. semester) bomo dokazali splo"snej"si izrek (centralni limitni izrek) \\
@@ -745,14 +745,14 @@ Neenakost se obrne pri $k \approx np$
     \end{align*}
 \end{ex}
 
-\subsubsection{Laplaceova integralska formula}
+\subsubsubsection{Laplaceova integralska formula}
 
 Zanima nas dogodek $B_n(k_1, k_2)$, da se n $n$ ponovitvah poskusa dogodek $A$ zgodi vsaj $k_1$-krat in manj kot
 $k_2$-krat, $0 \leq k_1 < k_2 \leq n+1$ \\
 Ker je 
 
 \begin{equation*}
-    B_n(k_1, k_2) = A_n(k_1) \cup A_n(k_1+1) \cup \cdots \cup A_n(k_2-1)
+    B_n(k_1, k_2) = A_n(k_1) \cup A_n(k_1+1) \cup \dots \cup A_n(k_2-1)
 \end{equation*}
 
 (disjunktna unija), je
@@ -808,7 +808,7 @@ Poka"zimo, da je $\lim_{x \to \infty} \Phi(x) = \frac{1}{2}$. S pomo"cjo $\Gamma
     &x = \frac{t^2}{2}, dx = t dt, dt = \frac{dx}{t} = \frac{dx}{\sqrt{2x}} \\
     &= \frac{1}{\sqrt{2\pi}} \int_{0}^{\infty} e^{-x} \frac{dx}{\sqrt{2x}} = \\
     &= \frac{1}{2\sqrt{\pi}} \int_{0}^{\infty} x^{-\frac{1}{2}} e^{-x} dx = \\
-    &\stackrel{\Gamma(\frac{1}{2}) = \sqrt{pi}}{=} \frac{1}{2}
+    &\stackrel{\Gamma(\frac{1}{2}) = \sqrt{\pi}}{=} \frac{1}{2}
 \end{align*}
 
 Laplaceova formula se glasi:
@@ -915,10 +915,10 @@ Najpomembnej"sa razreda slu"cajnih spremenljivk sta
 
 \begin{defn}[Diskretna slu"cajna spremenljivka]
     Slu"cajna spremenljivka $X: \Omega \to \R$ je diskretno porazdeljena, "ce je njena zaloga vrednosti kon"cna ali
-    "stevna mno"zica. Naj bo $\{x_1, x_2 \cdots\}$ zaloga vrednosti slu"cajne spremenljivke $X$.
+    "stevna mno"zica. Naj bo $\{x_1, x_2 \dots\}$ zaloga vrednosti slu"cajne spremenljivke $X$.
 \end{defn}
 
-Vpeljimo verjetnostno funkcijo $p_n := P(X = x_n) \; n = 1, 2 \cdots$. Potem je
+Vpeljimo verjetnostno funkcijo $p_n := P(X = x_n) \; n = 1, 2 \dots$. Potem je
 
 \begin{equation*}
     \sum_n p_n = P(\cup_n (X = x_n)) = P(\Omega) = 1
@@ -928,7 +928,7 @@ in
 
 \begin{align*}
     &F_X(x) = P(X \leq x) = P(\cup_{n: x_n \leq x} (X = x_n)) = \\
-    &\text{paroma nezdru"zljivi dogodki} \\
+    &= (\text{paroma nezdru"zljivi dogodki}=) = \\
     &= \sum_{n: x_n \leq x} P(X = x_n) = \sum_{n: x_n \leq x} p_n
 \end{align*}
 
@@ -937,8 +937,8 @@ $F$ je odsekoma konstantna
 
 \begin{equation*}
     X: \begin{pmatrix}
-        x_1 & x_2 & \cdots \\
-        p_1 & p_2 & \cdots
+        x_1 & x_2 & \dots \\
+        p_1 & p_2 & \dots
     \end{pmatrix}
 \end{equation*}
 
@@ -948,8 +948,8 @@ Pomembnej"se diskretne porazdelitve:
 
 \begin{equation*}
     X: \begin{pmatrix}
-        x_1 & x_2 & \cdots & x_n \\
-        \frac{1}{n} & \frac{1}{n} & \cdots & \frac{1}{n}
+        x_1 & x_2 & \dots & x_n \\
+        \frac{1}{n} & \frac{1}{n} & \dots & \frac{1}{n}
     \end{pmatrix}
 \end{equation*}
 
@@ -967,8 +967,8 @@ frekvenca dogodka $A$ v $n$ ponovitvah
 
 \begin{align*}
     &X: \begin{pmatrix}
-            0 & 1 & \cdots & n \\
-            p_0 & p_1 & \cdots & p_n
+            0 & 1 & \dots & n \\
+            p_0 & p_1 & \dots & p_n
         \end{pmatrix} \\
     &p_k = \binom{n}{k} p^k q^{n-k}
 \end{align*}
@@ -987,7 +987,7 @@ frekvenca dogodka $A$ v $n$ ponovitvah
 $Poi(\lambda), \lambda > 0$
 
 \begin{align*}
-    &p_k = P(X = k) = \frac{\lambda^k}{k!} e^{-\lambda} \; k = 0, 1, 2 \cdots \\
+    &p_k = P(X = k) = \frac{\lambda^k}{k!} e^{-\lambda} \; k = 0, 1, 2 \dots \\
     &\sum_{k=0}^{\infty} p_k = (\sum_{k=0}^{\infty} \frac{\lambda^k}{k!}) e^{-\lambda} =
         e^{\lambda} e^{-\lambda} = 1
 \end{align*}
@@ -1018,7 +1018,7 @@ Ponavljamo poskus, v katerem opazujemo dogodek $A$ s $P(A) = p, q = 1-p$. $(X=k)
 v k-ti ponovitvi
 
 \begin{equation*}
-    p_k = P(A = k) = p \cdot q^{k-1} \; k = 1, 2 \cdots
+    p_k = P(A = k) = p \cdot q^{k-1} \; k = 1, 2 \dots
 \end{equation*}
 
 \begin{equation*}
@@ -1037,7 +1037,7 @@ Ponavljamo poskus, v katerem nas zanima dogodek $A$ s $P(A) = p$. $(X=k)$ je dog
 k-ti ponovitvi poskusa. Torej $Pas(1,p) = Geo(p)$
 
 \begin{equation*}
-    p_k = P(X = k) = \binom{k-1}{m-1} p^m q^{k-m} \; k = m, m+1 \cdots
+    p_k = P(X = k) = \binom{k-1}{m-1} p^m q^{k-m} \; k = m, m+1 \dots
 \end{equation*}
 
 ($A$ se zgodi ($m-1$)-krat, $\overline{A}$ pa ($k-m$)-krat) \\
@@ -1065,10 +1065,10 @@ V posodi je $N$ kroglic, od tega $M$ belih, ostale "crne. Slu"cajno izberemo $n$
 belih
 
 \begin{align*}
-    &p_k = P(X = k) = \frac{\binom{m}{k} \binom{N-m}{n-k}}{\binom{N}{n}} \; k = 0, 1 \cdots n \\
-    &\binom{m}{k} \cdots k \text{ belih} \\
-    &\binom{N-m}{n-k} \cdots \text{ ostale "crne} \\
-    &\binom{n}{N} \cdots \text{ izberemo } n \text{ izmed } N
+    &p_k = P(X = k) = \frac{\binom{m}{k} \binom{N-m}{n-k}}{\binom{N}{n}} \; k = 0, 1 \dots n \\
+    &\binom{m}{k} \dots k \text{ belih} \\
+    &\binom{N-m}{n-k} \dots \text{ ostale "crne} \\
+    &\binom{N}{n} \dots \text{ izberemo } n \text{ izmed } N
 \end{align*}
 
 Ker je $\{(X = k)\}^n$ popoln sistem dogodkov, je jasno, da je $\sum_{k=0}^{n} p_k = 1$ \\
@@ -1088,8 +1088,8 @@ Torej velja binomska identiteta
 "Ce je $n << \min\{M, N-M\}$, potem je $Hip(n; M, n) \approx Bin(n, \frac{M}{N})$:
 
 \begin{align*}
-    &p_k = \frac{\frac{M(M-1) \cdots (M_k+1)}{k!} \frac{(N-m)(N-m+1) \cdots (N-m-n+k+1)}{(n-k)!}}
-        {\frac{N(N-1) \cdots (N-n+1)}{n!}} \approx \\
+    &p_k = \frac{\frac{M(M-1) \dots (M_k+1)}{k!} \frac{(N-m)(N-m+1) \dots (N-m-n+k+1)}{(n-k)!}}
+        {\frac{N(N-1) \dots (N-n+1)}{n!}} \approx \\
     &\stackrel{\substack{k \leq m \\ n \leq N}}{\approx} \frac{\frac{M^k}{k!} \frac{(N-m)^{n-k}}{(n-k)!}}
         {\frac{N^n}{n!}} = \binom{n}{k} (\frac{M}{N})^k (\frac{N-M}{N})^{n-k} = \binom{n}{k} p^k q^{n-k}
 \end{align*}
@@ -1110,8 +1110,8 @@ izvle"cenih kroglic binomsko porazdeljeno: $X \sim Bin(n, \frac{M}{N})$
 \end{defn}
 
 Analogija z diskretnimi porazdelitvami: $F_X(x) = \sum_{n: X_n \leq x} p_k, X: \begin{pmatrix}
-    x_1 & \cdots \\
-    p_1 & \cdots
+    x_1 & \dots \\
+    p_1 & \dots
 \end{pmatrix}$ \\
 Tedaj je $F_X$ zvezna funkcija. V to"ckah, kjer je $p_X$ zvezna, je $F_X$ zvezno odvedljiva in velja
 $F_X^{'}(x) = p_X(x)$ \\
@@ -1165,7 +1165,7 @@ Porazdelitvena funkcija:
     &F(X) = \frac{1}{\sigma \sqrt{2\pi}} \int_{-\infty}^{x} e^{-\frac{1}{2} (\frac{t-\mu}{\sigma})^2} dt = \\
     &u = \frac{t-\mu}{\sigma}, du = \frac{dt}{\sigma} \\
     &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\frac{x-\mu}{\sigma}} e^{-\frac{1}{2}u^2} du = \\
-    &= \frac{1}{\sqrt{2\pi}} (\int_{-\infty}^{0} \cdots + \int_{0}^{\frac{x-\mu}{\sigma}} \cdots) = \\
+    &= \frac{1}{\sqrt{2\pi}} (\int_{-\infty}^{0} \dots + \int_{0}^{\frac{x-\mu}{\sigma}} \dots) = \\
     &= \frac{1}{2} + \Phi(\frac{x-\mu}{\sigma})
 \end{align*}
 
@@ -1184,9 +1184,9 @@ Laplaceova integralaska formula pravi, da je $Bin(n,p) \approx N(np, \sqrt{npq})
 \subsubsubsection{Eksponentna porazdelitev}
 
 \begin{align*}
-    &Exp(\lambda), \lambda > 0 \\
+    &Exp(\lambda), \quad \lambda > 0 \\
     &p(x) = \begin{cases}
-            \lambda e^{-\lambda x} \lambda \geq 0 \\
+            \lambda e^{-\lambda x} \quad \lambda \geq 0 \\
             0 \quad \text{sicer}
         \end{cases}
 \end{align*}
@@ -1206,9 +1206,9 @@ Laplaceova integralaska formula pravi, da je $Bin(n,p) \approx N(np, \sqrt{npq})
 \subsubsubsection{Porazdelitev gama}
 
 \begin{align*}
-    &\Gamma(b,c), \; b, c > 0 \\
+    &\Gamma(b,c), \quad b, c > 0 \\
     &p(x) = \begin{cases}
-            \frac{c^b}{\Gamma(b)} x^{b-1} e^{-cx} x > 0 \\
+            \frac{c^b}{\Gamma(b)} x^{b-1} e^{-cx} \quad x > 0 \\
             0 \quad \text{sicer}
         \end{cases}
 \end{align*}
@@ -1243,7 +1243,7 @@ O"citno je $Exp(\lambda) = \Gamma(1, \lambda)$
 \subsubsubsection{Cauchyjeva porazdelitev}
 
 \begin{equation*}
-    p(x) = \frac{1}{\pi (1+x^2)} \; x \in \R
+    p(x) = \frac{1}{\pi (1+x^2)} \quad x \in \R
 \end{equation*}
 
 \begin{align*}
@@ -1258,7 +1258,7 @@ O"citno je $Exp(\lambda) = \Gamma(1, \lambda)$
     Izra"cunamo porazdelitveno funkcijo:
 
     \begin{align*}
-        &F(x) = P(X \leq x) = \stackrel{x \in [0,2]}{=} P(\text{grb}) \cdot P(X \leq x \mid \text{grb}) +
+        &F(x) = P(X \leq x) \stackrel{x \in [0,2]}{=} P(\text{grb}) \cdot P(X \leq x \mid \text{grb}) +
             P(\text{cifra}) \cdot P(X \leq x \mid \text{cifra})
     \end{align*}
 
@@ -1291,20 +1291,20 @@ O"citno je $Exp(\lambda) = \Gamma(1, \lambda)$
 
 \begin{defn}[Slu"cajni vektor]
     Naj bo $(\Omega, \Phi, P)$ verjetnostni prostor. Slu"cajni vektor je n-terica slu"cajnih spremenljivk
-    $x = (x_1 \cdots x_n): \Omega \to \R^n$ z lastnostjo, da je mno"zica
+    $x = (x_1 \dots x_n): \Omega \to \R^n$ z lastnostjo, da je mno"zica
     
     \begin{equation*}
-        (X_1 \leq x_1 \cdots X_n \leq x_n) := \{\omega \in \Omega: X_1(\omega) \leq x_1 \cdots X_n(\omega) \leq x_n\}
+        (X_1 \leq x_1 \dots X_n \leq x_n) := \{\omega \in \Omega: X_1(\omega) \leq x_1 \dots X_n(\omega) \leq x_n\}
     \end{equation*}
 
-    dogodek za vse n-terice $x = (x_1 \cdots x_n)$, se pravi v $\Phi$ za $\forall x = (x_1 \cdots x_n) \in \R^n$
+    dogodek za vse n-terice $x = (x_1 \dots x_n)$, se pravi v $\Phi$ za $\forall x = (x_1 \dots x_n) \in \R^n$
 \end{defn}
 
 \begin{defn}[Porazdelitvena funkcija]
-    Porazdelitvena funkcija slu"cajnega vektorja $X = (X_1 \cdots X_n)$ je funkcija, definirana z
+    Porazdelitvena funkcija slu"cajnega vektorja $X = (X_1 \dots X_n)$ je funkcija, definirana z
 
     \begin{equation*}
-        F_X(x) = F_{(X_1 \cdots X_n)}(x_1 \cdots x_n) := P(X_1 \leq x_1 \cdots X_n \leq x_n)
+        F_X(x) = F_{(X_1 \dots X_n)}(x_1 \dots x_n) := P(X_1 \leq x_1 \dots X_n \leq x_n)
     \end{equation*}
 
     Torej $F_X: \R^n \to \R$
@@ -1315,21 +1315,21 @@ O"citno je $0 \leq F_X(x) \leq 1$ za $\forall x \in \R^n$, glede na vsako spreme
 in z desne zvezna, velja "se:
 
 \begin{equation*}
-    \lim_{\substack{x_1 \to \infty \\ \vdots \\ x_n \to \infty}} F_{(X_1 \cdots X_n)}(x_1 \cdots x_n) = 1
+    \lim_{\substack{x_1 \to \infty \\ \vdots \\ x_n \to \infty}} F_{(X_1 \dots X_n)}(x_1 \dots x_n) = 1
 \end{equation*}
 
 \begin{defn}[Robna porazdelitev]
     "Ce po"sljemo v $\infty$ samo nekatere spremenljivke, dobimo porazdelitveno funkcijo slu"cajnega podvektorja, npr.
 
     \begin{equation*}
-        \lim_{\substack{x_2 \to \infty \\ \vdots \\ x_n \to \infty}} F_{(X_1 \cdots X_n)}(x_1 \cdots x_n) = F_{X_1}(x_1)
+        \lim_{\substack{x_2 \to \infty \\ \vdots \\ x_n \to \infty}} F_{(X_1 \dots X_n)}(x_1 \dots x_n) = F_{X_1}(x_1)
     \end{equation*}
 
     ali pa
 
     \begin{equation*}
-        \lim_{x_n \to \infty} F_{(X_1 \cdots X_n)}(x_1 \cdots x_n) =
-            F_{X_1 \cdots X_{n-1}}(x_1 \cdots x_{n-1})
+        \lim_{x_n \to \infty} F_{(X_1 \dots X_n)}(x_1 \dots x_n) =
+            F_{X_1 \dots X_{n-1}}(x_1 \dots x_{n-1})
     \end{equation*}
 
     Takim porazdelitvam re"cemo robne (marginalne) porazdelitve
@@ -1402,27 +1402,27 @@ Najpomembnej"sa razreda ve"crazse"znih porazdelitev sta
 \subsubsection{Diskretne porazdelitve}
 
 \begin{defn}
-    Slu"cajni vektor $X = (X_1 \cdots X_n): \Omega \to \R^n$ je diskretno porazdeljen, "ce je njegova zaloga vrednosti
+    Slu"cajni vektor $X = (X_1 \dots X_n): \Omega \to \R^n$ je diskretno porazdeljen, "ce je njegova zaloga vrednosti
     kon"cna/"stevna mno"zica to"ck v $\R^n$. Omejimo se na $n=2: \Omega \to \R^2$. \\
-    Naj bo $\{x_1, x_2 \cdots\}$ zaloga vrednosti slu"cajne spremenljivke $X$ in $\{y_1, y_2 \cdots\}$ zaloga
+    Naj bo $\{x_1, x_2 \dots\}$ zaloga vrednosti slu"cajne spremenljivke $X$ in $\{y_1, y_2 \dots\}$ zaloga
     vrednosti slu"cajne spremenljivke $Y$. Potem je zaloga vrednosti vektorja $(X,Y)$ vsebovana v
-    $\{(x_i, y_i): i = 1,2 \cdots j = 1,2 \cdots \}$. \\
-    Definiramo verjetnostno funkcijo $p_{ij} := P(X = x_i, Y = y_j) i = 1,2 \cdots j = 1,2 \cdots$ \\
+    $\{(x_i, y_i): i = 1,2 \dots j = 1,2 \dots \}$. \\
+    Definiramo verjetnostno funkcijo $p_{ij} := P(X = x_i, Y = y_j) i = 1,2 \dots j = 1,2 \dots$ \\
     Ker je $\{(X = x_i, Y = y_j)\}_{ij}$ popoln sistem dogodkov, je $\sum_i \sum_j p_{ij} = 1$
 \end{defn}
 
 %tabelca
 \begin{align*}
     &X: \begin{pmatrix}
-            x_1 & x_2 & \cdots \\
-            p_1 & p_2 & \cdots
+            x_1 & x_2 & \dots \\
+            p_1 & p_2 & \dots
         \end{pmatrix} \\
-    &p_i = P(X = x_i) = P(\cup_j (X = x_i, Y = y_j)) = \sum_j P(X = x_i, Y = y_j) = \sum_j p_{ij} \; i = 1,2 \cdots \\
+    &p_i = P(X = x_i) = P(\cup_j (X = x_i, Y = y_j)) = \sum_j P(X = x_i, Y = y_j) = \sum_j p_{ij} \; i = 1,2 \dots \\
     &\text{"ce je } Y: \begin{pmatrix}
-            y_1 & y_2 & \cdots \\
-            q_1 & q_2 & \cdots
+            y_1 & y_2 & \dots \\
+            q_1 & q_2 & \dots
         \end{pmatrix} \text{, je } \\
-    &q_j = P(Y = y_i) = P(\cup_i (X = x_i, Y = y_j)) = \sum_i P(X = x_i, Y = y_j) = \sum_i p_{ij} \; j = 1,2 \cdots
+    &q_j = P(Y = y_i) = P(\cup_i (X = x_i, Y = y_j)) = \sum_i P(X = x_i, Y = y_j) = \sum_i p_{ij} \; j = 1,2 \dots
 \end{align*}
 
 \begin{ex}
@@ -1432,25 +1432,26 @@ Najpomembnej"sa razreda ve"crazse"znih porazdelitev sta
 \subsubsection{Zvezne porazdelitve}
 
 \begin{defn}
-    Slu"cajni vektor $X = (X_1 \cdots X_n)$ je zvezno porazdeljen, "ce obstaja integrabilna funkcija $p_X: \R^n \to \R$,
+    Slu"cajni vektor $X = (X_1 \dots X_n)$ je zvezno porazdeljen, "ce obstaja integrabilna funkcija $p_X: \R^n \to \R$,
     imenovana gostota porazdelitve, da je
 
     \begin{align*}
-        &F_X(x) = F_{(X_1 \cdots X_n)}(x_1 \cdots x_n) = \int_{-\infty}^{x_1} dt_1 \int_{-\infty}^{x_2} dt_2 \cdots
-            \int_{-\infty}^{x_n} p_X(t_1 \cdots t_n) dt_n \text{ za } \forall x = (x_1 \cdots x_n) \in \R^n
+        &F_X(x) = F_{(X_1 \dots X_n)}(x_1 \dots x_n) = \\
+        &= \int_{-\infty}^{x_1} dt_1 \int_{-\infty}^{x_2} dt_2 \dots
+            \int_{-\infty}^{x_n} p_X(t_1 \dots t_n) dt_n \text{ za } \forall x = (x_1 \dots x_n) \in \R^n
     \end{align*}
 \end{defn}
 
-Ker je $\lim_{\substack{x_1 \to \infty \\ \vdots \\ x_n \to \infty}} F_X(x_1 \cdots x_n) = 1$, je
+Ker je $\lim_{\substack{x_1 \to \infty \\ \vdots \\ x_n \to \infty}} F_X(x_1 \dots x_n) = 1$, je
 
 \begin{equation*}
-    \int \cdots_{\R^n} \int p_X(t_1 \cdots t_n) dt_1 \cdots dt_n = 1
+    \int \dots_{\R^n} \int p_X(t_1 \dots t_n) dt_1 \dots dt_n = 1
 \end{equation*}
 
 Za vsako Borelovo mno"zico $A \subseteq \R^n$ (najmanj"sa $\sigma$-algebra z vsemi odprtimi pravokotniki) je
 
 \begin{equation*}
-    P(X \in A) \equiv P((x_1 \cdots x_n) \in A) = \int \cdots_{A} \int p_X(t_1 \cdots t_n) dt_1 \cdots dt_n
+    P(X \in A) \equiv P((x_1 \dots x_n) \in A) = \int \dots_{A} \int p_X(t_1 \dots t_n) dt_1 \dots dt_n
 \end{equation*}
 
 Omejimo se na $n=2: F_{(X,Y)}(x,y) = \int_{-\infty}^{x} du \int_{-\infty}^{y} p_{(X,Y)}(u,v) dv$ \\
@@ -1502,7 +1503,7 @@ Nivojnice, izohipse se: $x^2 - 2 \rho x y + y^2 = c$
 Robni porazdelitvi sta
 
 \begin{equation*}
-    p_X(x) = \int_{-\infty}^{\infty} p(x,y) dx = \cdots = \frac{1}{\sigma_x \sqrt{2\pi}}
+    p_X(x) = \int_{-\infty}^{\infty} p(x,y) dx = \dots = \frac{1}{\sigma_x \sqrt{2\pi}}
     e^{-\frac{1}{2} (\frac{x-\mu_x}{\sigma_x})^2}
 \end{equation*}
 
@@ -1514,8 +1515,8 @@ torej $X \sim N(\mu_x, \sigma_x)$. Podobno $Y \sim N(\mu_y, \sigma_y)$
 \end{ex}
 
 Dvorazse"zna normalna porazdelitev je posebni primer ve"crazse"zne normalne porazdelitve $N(\mu, A)$, kjer je
-$\mu = (\mu_1 \cdots \mu_n)^T$ in $A$ pozitivno definitna matrika. \\
-Gostota v to"cki $x = (x_1 \cdots x_n)^T$ je
+$\mu = (\mu_1 \dots \mu_n)^T$ in $A$ pozitivno definitna matrika. \\
+Gostota v to"cki $x = (x_1 \dots x_n)^T$ je
 
 \begin{align*}
     &p(X) = \sqrt{\frac{det A}{(2\pi)^n}} e^{-\frac{1}{2} (x-\mu)^T A (x-\mu)} \\
@@ -1525,13 +1526,13 @@ Gostota v to"cki $x = (x_1 \cdots x_n)^T$ je
 Za dokaz enakosti
 
 \begin{equation*}
-    \int \cdots_{\R^n} \int p(x) dx_1 \cdots dx_n = 1
+    \int \dots_{\R^n} \int p(x) dx_1 \dots dx_n = 1
 \end{equation*}
 
 izra"cunajmo integral
 
 \begin{equation*}
-    \int \cdots_{\R^n} \int e^{-\frac{1}{2} (x-\mu)^T A (x-\mu)} dx_1 \cdots dx_n =
+    \int \dots_{\R^n} \int e^{-\frac{1}{2} (x-\mu)^T A (x-\mu)} dx_1 \dots dx_n =
     \sqrt{\frac{(2\pi)^n}{det A}}
 \end{equation*}
 
@@ -1546,7 +1547,7 @@ za katero velja
     x^T A x = \langle Ax, x \rangle > 0 \; \forall x \in \R^n \text{\textbackslash} \{0^n\}
 \end{equation*}
 
-V to"cki $x = (x_1 \cdots x_n)^T$ je
+V to"cki $x = (x_1 \dots x_n)^T$ je
 
 \begin{equation*}
     p(x) = \sqrt{\frac{detA}{(2\pi)^n}} \cdot e^{-\frac{1}{2} (x-\mu)^T A (x-\mu)}
@@ -1555,25 +1556,25 @@ V to"cki $x = (x_1 \cdots x_n)^T$ je
 Izra"cunajmo integral
 
 \begin{align*}
-    &\int \underbrace{\cdots}_{\R^n} \int e^{-\frac{1}{2} (x-\mu)^T A (x-\mu)} dx = \\
+    &\int \underbrace{\dots}_{\R^n} \int e^{-\frac{1}{2} (x-\mu)^T A (x-\mu)} dx = \\
     &y = x - \mu \implies dy = dx \\
-    &= \int \underbrace{\cdots}_{\R^n} \int e^{-\frac{1}{2} y^T A y} dy
+    &= \int \underbrace{\dots}_{\R^n} \int e^{-\frac{1}{2} y^T A y} dy
 \end{align*}
 
 Ker je $A$ pozitivna definitna matrika, obstaja ortogonalna matrika $U$ in diagonalna matrika
-$D = diag(\lambda_1 \cdots \lambda_n)$, da je $A = U^T D U$
+$D = diag(\lambda_1 \dots \lambda_n)$, da je $A = U^T D U$
 
 \begin{align*}
-    &= \int \underbrace{\cdots}_{\R^n} \int e^{-\frac{1}{2} y^T U^T D U y} dy = \\
+    &= \int \underbrace{\dots}_{\R^n} \int e^{-\frac{1}{2} y^T U^T D U y} dy = \\
     &z = U y, y = U^T z, dy = |det U^T| dz = dz \\
-    &= \int \underbrace{\cdots}_{\R^n} \int e^{-\frac{1}{2} z^T D z} dz = \\
-    &= \int \underbrace{\cdots}_{\R^n} \int e^{-\frac{1}{2} (\lambda_1 z_1^2 + \cdots + \lambda_n z_n^2)}
-        dz_1 \cdots dz_n = \\
-    &= \int_{\R} e^{-\frac{1}{2} \lambda_1 z_1^2} dz_1 \cdots \int_{\R} e^{-\frac{1}{2} \lambda_1 z_n^2} dz_n = \\
+    &= \int \underbrace{\dots}_{\R^n} \int e^{-\frac{1}{2} z^T D z} dz = \\
+    &= \int \underbrace{\dots}_{\R^n} \int e^{-\frac{1}{2} (\lambda_1 z_1^2 + \dots + \lambda_n z_n^2)}
+        dz_1 \dots dz_n = \\
+    &= \int_{\R} e^{-\frac{1}{2} \lambda_1 z_1^2} dz_1 \dots \int_{\R} e^{-\frac{1}{2} \lambda_1 z_n^2} dz_n = \\
 \end{align*}
 
 Ker je $\int_{\R} e^{-\frac{1}{2} \lambda z^2} dz = \sqrt{\frac{2\pi}{\lambda}}$ - $z \in \R$ - s pomo"cjo
-$\Gamma$ funkcije, Bronsterin, sledi iz
+$\Gamma$ funkcije, Bronstein, sledi iz
 
 \begin{equation*}
     \frac{1}{\sqrt{2\pi}\sigma} = \int_{\R} e^{-\frac{1}{2} (\frac{x}{\sigma})^2} dx = 1
@@ -1582,11 +1583,11 @@ $\Gamma$ funkcije, Bronsterin, sledi iz
 Gostota za $N(0, \sigma), \lambda := \frac{1}{\sigma^2}, \sigma = \frac{1}{\sqrt{\lambda}}$
 
 \begin{align*}
-    &= \sqrt{\frac{2\pi}{\lambda_1}} \cdot \cdots \cdot \sqrt{\frac{2\pi}{\lambda_1}} =
+    &= \sqrt{\frac{2\pi}{\lambda_1}} \cdot \dots \cdot \sqrt{\frac{2\pi}{\lambda_1}} =
         \sqrt{\frac{(2\pi)^n}{det A}}
 \end{align*}
 
-Torej je $\int \underbrace{\cdots}_{\R^n} \int p(x) dx = 1$ \\
+Torej je $\int \underbrace{\dots}_{\R^n} \int p(x) dx = 1$ \\
 Dvoraz"se"zni primer je posebni primer
 
 \begin{align*}
@@ -1609,20 +1610,20 @@ $K = A^{-1} = \begin{bmatrix}
 \subsection{Neodvisnost slu"cajnih spremenljivk}
 
 \begin{defn}[Neodvisnost]
-    Slu"cjane spremenljivke $x_1, x_2 \cdots x_n$ v slu"cjanem vektorju $x = (x_1 \cdots x_n)$ so neodvisne,
+    Slu"cjane spremenljivke $x_1, x_2 \dots x_n$ v slu"cjanem vektorju $x = (x_1 \dots x_n)$ so neodvisne,
     "ce je
 
     \begin{equation*}
-        F_X(x_1 \cdots x_n) = F_{X_1}(x_1) \cdots F_{X_n}(x_n) \text{ za } \forall x \in \R^n
+        F_X(x_1 \dots x_n) = F_{X_1}(x_1) \dots F_{X_n}(x_n) \text{ za } \forall x \in \R^n
     \end{equation*}
     
     oziroma
 
     \begin{equation*}
-        P(X_1 \leq x_1, X_2 \leq x_2 \cdots X_n \leq x_n) = P(X_1 \leq x_1) \cdots P(X_n \leq x_n)
+        P(X_1 \leq x_1, X_2 \leq x_2 \dots X_n \leq x_n) = P(X_1 \leq x_1) \dots P(X_n \leq x_n)
     \end{equation*}
 
-    oziroma dogodki $(X_1 \leq x_1) \cdots (X_n \leq x_n)$ so neodvisni
+    oziroma dogodki $(X_1 \leq x_1) \dots (X_n \leq x_n)$ so neodvisni
 \end{defn}
 
 Oglejmo si dvorazse"zni diskretni primer
@@ -1681,7 +1682,7 @@ Torej sta $X$ in $Y$ neodvisni slu"cajni spremenljivki
     $(X,Y) \sim N(\mu_x, \mu_y, \sigma_x, \sigma_y, \rho)$. Tedaj je
 
     \begin{align*}
-        &X \sim N(\mu_x, \sigma), Y \sim N(\mu_y, \sigma_y) \\
+        &X \sim N(\mu_x, \sigma_x), Y \sim N(\mu_y, \sigma_y) \\
         &X \text{ in } Y \text{ sta neodvisni } \iff \rho = 0 \\
         &p_{(X,Y)}(x,y) = \frac{1}{2\pi \sigma_x \sigma_y} e^{-\frac{1}{2} ((\frac{x-\mu_x}{\sigma_x})^2 +
             (\frac{y-\mu_y}{\sigma_y})^2)} = \\
@@ -1700,7 +1701,7 @@ Torej sta $X$ in $Y$ neodvisni slu"cajni spremenljivki
     f(x) \cdot g(y)$ za neki integrabilni funkciji $f$ in $g$
 \end{claim}
 
-\begin{proof}
+\begin{proof} \text{} \\
     ($\Rightarrow$) jasno na zadnji trditvi \\
     ($\Leftarrow$)
 
@@ -1731,9 +1732,8 @@ Torej sta $X$ in $Y$ neodvisni slu"cajni spremenljivki
     (Borelova $\sigma$-algebra: najmanj"sa $\sigma$-algebra z odprtimi mno"zicami)
 \end{theorem}
 
-\begin{proof}
+\begin{proof} \text{} \\
     ($\Leftarrow$)
-
     \begin{align*}
         &A = (-\infty, x], B = (-\infty, y] \\
         &P(X \leq x, Y \leq y) = P(X \in (-\infty, x], Y \in (-\infty, y]) = \\
@@ -1828,7 +1828,7 @@ Podobno ravnamo v primeru, ko je f strogo padajo"ca ($(a,b)$ zaloga vrednosti)
     \begin{align*}
         &F_Y(y) = P(|X| \leq \sqrt{y}) = P(-\sqrt{y} \leq X \leq \sqrt{y}) = F_X(\sqrt{y}) - F_X(-\sqrt{y}) = \\
         &= \frac{1}{\sqrt{2\pi} \int_{-\sqrt{y}}^{\sqrt{y}}} e^{-\frac{x^2}{2}} dx
-            \stackrel{e^{-\frac{x^2}{2}}\text{ soda}}{under}\text{=} \frac{2}{\sqrt{2\pi}}
+            \stackrel{e^{-\frac{x^2}{2}}\text{ soda}}{\text{=}} \frac{2}{\sqrt{2\pi}}
             \int_{0}^{\sqrt{y}} e^{-\frac{x^2}{2}} dx
     \end{align*}
 
@@ -1864,25 +1864,25 @@ Podobno ravnamo v primeru, ko je f strogo padajo"ca ($(a,b)$ zaloga vrednosti)
 \end{proof}
 
 \begin{theorem}
-    Naj bo $X = (X_1 \cdots X_n): \Omega \to \R^n$ slu"cajni vektor in $f = (f_1 \cdots f_m): \R^n \to \R^m$ zvezna
+    Naj bo $X = (X_1 \dots X_n): \Omega \to \R^n$ slu"cajni vektor in $f = (f_1 \dots f_m): \R^n \to \R^m$ zvezna
     preslikava. Potem je $Y = f \circ X \equiv f(X): \Omega \to \R^m$ tudi slu"cajni vektor (brez dokaza).
 \end{theorem}
 
-$Y$ je funkcija slu"cajnega vektorja $X$ in ima $m$ komponent $Y = (Y_1 \cdots Y_m)$. \\
-Porazdelitvena funkcija za $Y_j, (j = 1, 2 \cdots m)$ je
+$Y$ je funkcija slu"cajnega vektorja $X$ in ima $m$ komponent $Y = (Y_1 \dots Y_m)$. \\
+Porazdelitvena funkcija za $Y_j, (j = 1, 2 \dots m)$ je
 
 \begin{equation*}
-    F_{Y_j}(y) = P(f_i(x_1 \cdots x_n) \leq y) = P((x_1 \cdots x_n) \in f_j^{-1}((-\infty, y])) \text{ mno"zica v} \R^n
+    F_{Y_j}(y) = P(f_i(x_1 \dots x_n) \leq y) = P((x_1 \dots x_n) \in f_j^{-1}((-\infty, y])) \text{ mno"zica v} \R^n
 \end{equation*}
 
-"Ce je $X = (X_1 \cdots X_n)$ zvezno porazdeljena, je torej
+"Ce je $X = (X_1 \dots X_n)$ zvezno porazdeljena, je torej
 
 \begin{equation*}
-    F_{Y_j}(y) = \int \underbrace{\cdots}_{f^{-1}((-\infty, y])} \int p_X(x_1 \cdots x_n) dx_1 \cdots dx_n
+    F_{Y_j}(y) = \int \underbrace{\dots}_{f^{-1}((-\infty, y])} \int p_X(x_1 \dots x_n) dx_1 \dots dx_n
 \end{equation*}
 
 \begin{ex}
-    $n = 2, m = 1$, $(x,y): \Omega \to \R^2$ zvezno porazdeljen
+    $n = 2, m = 1$, $(x,y): \Omega \to \R^2, f(x,y) = x + y$ zvezno porazdeljen
 
     \begin{align*}
         &F_Z(z) = P(Z \leq z) = P(f(x,y) \leq z) = P((X,Y) \in f^{-1}((-\infty, z])) = \\
@@ -1954,13 +1954,13 @@ Dokazali smo
 % 11. predavanje: 16.12.
 
 \begin{conseq}
-    "Ce so $X_1, X_2 \cdots X_n$ neodvisne slu"cajne spremenljivke, porazdeljene $N(0,1)$, potem je
-    $Y := X_1^2 + \cdots + X_n^2$ porazdeljena po $\chi^2(n)$
+    "Ce so $X_1, X_2 \dots X_n$ neodvisne slu"cajne spremenljivke, porazdeljene $N(0,1)$, potem je
+    $Y := X_1^2 + \dots + X_n^2$ porazdeljena po $\chi^2(n)$
 \end{conseq}
 
 \begin{proof}
-    Vemo, da je $X_i^2 \sim \chi^2(1)$ in da so $X_1^2 \cdots X_n^2$ neodvisne spremenljivke. Potem je po trditvi
-    + indukciji $Y \sim \chi^2(1 + \cdots + 1) = \chi^2(n)$
+    Vemo, da je $X_i^2 \sim \chi^2(1)$ in da so $X_1^2 \dots X_n^2$ neodvisne spremenljivke. Potem je po trditvi
+    + indukciji $Y \sim \chi^2(1 + \dots + 1) = \chi^2(n)$
 \end{proof}
 
 Oglejmo si transformacijo $f: \R^2 \to \R, (x,y) \to (u,v)$, ki preslika zvezno porazdeljen slu"cajni vektor $(x,y)$ v
@@ -1983,7 +1983,7 @@ Privzemimo "se, da je f zvezno odvedljiva bijekcija. Potem je $f: \R^2 \to \R^2,
 odvedljiva. Z zamenjavo spremenljivk $x = X(u,v), y = Y(u,v)$ v zadnjem intergalu dobimo
 
 \begin{equation*}
-    F_{(U,V)}(u,v) = \underset{A_{u,v}}{\iint} p_{(X,Y)}(x(s,t),y(s,t)) \cdot |J(s,t)| dx ds
+    F_{(U,V)}(u,v) = \underset{A_{u,v}}{\iint} p_{(X,Y)}(x(s,t),y(s,t)) \cdot |J(s,t)| ds dt
 \end{equation*}
 
 kjer je
@@ -2030,11 +2030,11 @@ Oglejmo si poseben primer
 
 \subsection{Matemati"cno upanje oz. pri"cakovana vrednost}
 
-V primeru $X : \begin{pmatrix}x_1 & \cdots & x_n \\ p_1 & \cdots & p_n
+V primeru $X : \begin{pmatrix}x_1 & \dots & x_n \\ p_1 & \dots & p_n
 \end{pmatrix}$ je matemati"cno upanje oz. pricakovana vrednost vsota $E(X) := \sum_{k=1}^{n} x_k \cdot p_k$ \\
 
-V posebnem primeru $p_1 = \cdots = p_n = \frac{1}{n}$ je $E(X) = \frac{1}{n} \sum_{k=1}^{n} x_k =
-\frac{x_1 + \cdots + x_n}{n}$ - povpre"cje "stevil $x_1 \cdots x_n$ \\
+V posebnem primeru $p_1 = \dots = p_n = \frac{1}{n}$ je $E(X) = \frac{1}{n} \sum_{k=1}^{n} x_k =
+\frac{x_1 + \dots + x_n}{n}$ - povpre"cje "stevil $x_1 \dots x_n$ \\
 
 expected value, expectation, mean value \\
 
@@ -2042,22 +2042,22 @@ Naj bo $X$ diskretno porazdeljena slu"cajna spremenljivka z neskon"cno zalogo vr
 
 \begin{equation*}
     X: \begin{pmatrix}
-        x_1 & x_2 & x_3 & \cdots \\
-        p_1 & p_2 & p_3 & \cdots \\
+        x_1 & x_2 & x_3 & \dots \\
+        p_1 & p_2 & p_3 & \dots \\
     \end{pmatrix}
 \end{equation*}
 
 $X$ ima matemati"cno upanje oz. pri"cakovano vrednost, "ce je $\sum_{k=1}^{\infty} |x_k| p_k < \infty$ \\
 Tedaj je matemati"cno upanje definirano kot $E(X) = \sum_{k=1}^{\infty} x_k \cdot p_k$ \\
 Naj bo sedaj $X$ zvezno porazdeljena slu"cajna spremenljivka z gostoto $p_X$. Potem ima $X$ matemati"cno
-upanje, "ce je $\int_{-\infty}^{\infty} |x| \cdot p_X(x) dx < \infty$. Tedaje je matemati"cno upanje
+upanje, "ce je $\int_{-\infty}^{\infty} |x| \cdot p_X(x) dx < \infty$. Tedaj je je matemati"cno upanje
 slu"cajne spremenljivke $X$ enako $E(X) = \int_{-\infty}^{\infty} x \cdot p_X(x) dx$
 
 \begin{ex} \text{} \\
     \begin{enumerate}
         \item $X \sim Ber(p)$ oz. $X: \begin{pmatrix}0 & 1 \\ q & p
             \end{pmatrix} q = 1-p, E(X) = 0 \cdot q + 1 \cdot p = p$
-        \item $X \sim Poi(\lambda)$, torej $p_k = P(X=k) = \frac{\lambda^k}{k!} e^{-\lambda} k = 0, 1 \cdots$
+        \item $X \sim Poi(\lambda)$, torej $p_k = P(X=k) = \frac{\lambda^k}{k!} e^{-\lambda} k = 0, 1 \dots$
             \begin{equation*}
                 E(X) = \sum_{k=0}^{\infty} k \cdot p_k = \sum_{k=0}^{\infty} k \cdot \frac{\lambda^k}{k!} e^{-\lambda} =
                 e^{-\lambda} \cdot \lambda \sum_{k=1}^{\infty} \frac{\lambda^{k-1}}{(k-1)!} = \lambda
@@ -2089,11 +2089,11 @@ slu"cajne spremenljivke $X$ enako $E(X) = \int_{-\infty}^{\infty} x \cdot p_X(x)
         \item Cauchyjeva porazdelitev $p(x) = \frac{1}{\pi (1+x^2)}$ \\ % skica
             Nima matemati"cnega upanja, saj je $\int_{-\infty}^{\infty} |x| \cdot \frac{1}{\pi (1+x^2)} dx =
             \frac{2}{\pi} \int_{0}^{\infty} \frac{x}{1+x^2} dx = \frac{1}{\pi} ln(1+x^2) \vert_{0}^{\infty} = \infty$
-        \item $1 - \frac{1}{2} + \frac{1}{3} - \cdots$ je pogojno konvergentna vrsta, t.j. konvergira, a ne absolutno
+        \item $1 - \frac{1}{2} + \frac{1}{3} - \dots$ je pogojno konvergentna vrsta, t.j. konvergira, a ne absolutno
             \begin{gather*}
                 X: \begin{pmatrix}
-                    x_1 & x_2 & \cdots \\
-                    p_1 & p_2 & \cdots \\
+                    x_1 & x_2 & \dots \\
+                    p_1 & p_2 & \dots \\
                 \end{pmatrix}, \sum_{k=1}^{\infty} x_k \cdot p_k = \sum_{k=1}^{\infty} \frac{(-1)^{k-1}}{k} \\
                 x_k \cdot p_k = \frac{(-1)^{k-1}}{k} \\
                 \sum_{k=1}^{\infty} p_k = 1 \\
@@ -2107,7 +2107,7 @@ slu"cajne spremenljivke $X$ enako $E(X) = \int_{-\infty}^{\infty} x \cdot p_X(x)
 \begin{claim}
     Naj bo $f: \R \to \R$ zvezna funkcija
     \begin{enumerate}[label=(\alph*)]
-        \item "Ce je $X: \begin{pmatrix} x_1 & x_2 & \cdots \\ p_1 & p_2 & \cdots \end{pmatrix}$ \\
+        \item "Ce je $X: \begin{pmatrix} x_1 & x_2 & \dots \\ p_1 & p_2 & \dots \end{pmatrix}$ \\
             potem je $E(f \circ X) \equiv E(f(X)) = \sum_{k=1}^{\infty} f(x_k) \cdot p_k$
             ("ce le to matemati"cno upanje obstaja)
         \item "Ce je $X$ zvezno porazdeljena z gostoto $p_X$, potem je $E(f \circ X) =
@@ -2119,15 +2119,15 @@ slu"cajne spremenljivke $X$ enako $E(X) = \int_{-\infty}^{\infty} x \cdot p_X(x)
     (samo (a)): \\
     \begin{equation*}
         f \circ X: \begin{pmatrix}
-            f(x_1) & f(x_2) & \cdots \\
-            p_1 & p_2 & \cdots \\
+            f(x_1) & f(x_2) & \dots \\
+            p_1 & p_2 & \dots \\
         \end{pmatrix}
     \end{equation*}
     npr "ce $f(x_1) = f(x_3) \implies \begin{pmatrix}
-        f(x_1) & f(x_2) & \cdots \\
-        p_1 + p_3 & p_2 & \cdots \\
+        f(x_1) & f(x_2) & \dots \\
+        p_1 + p_3 & p_2 & \dots \\
     \end{pmatrix}$ \\
-    ($E(f \circ X) = \int_{-\infty}^{\infty} x \cdot p_{f(x)}(x) dx = \cdots =
+    ($E(f \circ X) = \int_{-\infty}^{\infty} x \cdot p_{f(x)}(x) dx = \dots =
     \int_{-\infty}^{\infty} f(x) \cdot p_X(x) dx$ - substitucija $y=f(x)$ v integralu)
 \end{proof}
 
@@ -2184,27 +2184,27 @@ Podobno kot zadnjo trditev se doka"ze
 \end{proof}
 
 \begin{conseq}
-    Za slu"cajne spremenljivke $X_1 \cdots X_n$, ki imajo matemati"cno upanje, velja $E(a_1 X_1 + \cdots + a_n X_n) =
-    a_1 E(X_1) + \cdots + a_n E(X_n)$ z $\forall a_1 \cdots a_n \in \R$
+    Za slu"cajne spremenljivke $X_1 \dots X_n$, ki imajo matemati"cno upanje, velja $E(a_1 X_1 + \dots + a_n X_n) =
+    a_1 E(X_1) + \dots + a_n E(X_n)$ z $\forall a_1 \dots a_n \in \R$
 \end{conseq}
 
 \begin{equation*}
     E(X+Y) = \int_{-\infty}^{\infty} x \cdot p_{X+Y}(x) dx \stackrel{\text{?}}{=} E(X) + E(Y) \text{ ni o"citno iz tega}
 \end{equation*}
 
-\begin{ex}
+\begin{ex} \text{} \\
     \begin{enumerate}
         \item "Ce ima $X$ matemati"cno upanje, potem $E(X-E(X)) = E(X) - E(E(X)) = E(X) - E(X) = 0$
         \item $X_k \sim Ber(p)$, t.j. $X_k \sim \begin{pmatrix}0 & 1 \\ q & p\end{pmatrix}, q = 1 - p$
             \begin{equation*}
-                X = X_1 + \cdots + X_n \implies E(X) = E(X_1) + \cdots + E(X_n) = n \cdot p
+                X = X_1 + \dots + X_n \implies E(X) = E(X_1) + \dots + E(X_n) = n \cdot p
             \end{equation*}
     \end{enumerate}
 \end{ex}
 
 Posebej to (v 2. zgledu) velja v primeru, ko so $\{X_k\}_{i=1}^n$ neodvisne. To velja tudi za Bernoullijevo zaporedje
 ponovitev poskusa: opazujemo dogodek A s $P(A) = p$. $X$ je frekvenca dogodka A v n ponovitvah poskusa. Potem je
-$X \sim Bin(n,p)$ in $X = X_1 + \cdots + X_n$, kjer je $(X_k=1)$ dogodek, da se A zgodi v k-ti ponovitvi poskusa,
+$X \sim Bin(n,p)$ in $X = X_1 + \dots + X_n$, kjer je $(X_k=1)$ dogodek, da se A zgodi v k-ti ponovitvi poskusa,
 sicer je $(X_k=0)$. Po zgornjem je $E(X) = n \cdot p$. Do tega lahko pridemo tudi direktno:
 \begin{align*}
     &E(X) = \sum_{k=0}^{n} k \cdot p_k = \sum_{k=0}^{n} k \cdot \binom{n}{k} p^k q^{n-k} = \\
@@ -2349,10 +2349,10 @@ Zanjo velja $\sigma(aX) = |a| \cdot \sigma(X)$ za $\forall a \in \R$ \\
 Primeri nekaterih $E(X)$ in $D(X)$
 
 \begin{enumerate}
-    \item enakomerna diskretna porazdelitev: $\begin{pmatrix}x_1 & \cdots & x_n \\ \frac{1}{n} & \cdots & \frac{1}{n}\end{pmatrix}$
+    \item enakomerna diskretna porazdelitev: $\begin{pmatrix}x_1 & \dots & x_n \\ \frac{1}{n} & \dots & \frac{1}{n}\end{pmatrix}$
         \begin{gather*}
-            E(X) = \frac{x_1 + \cdots + x_n}{n}, \\
-            D(X) = E(X^2) - (E(X))^2 = \frac{x_1^2 + \cdots + x_n^2}{2} - (\frac{x_1 + \cdots + x_n}{2})^2
+            E(X) = \frac{x_1 + \dots + x_n}{n}, \\
+            D(X) = E(X^2) - (E(X))^2 = \frac{x_1^2 + \dots + x_n^2}{2} - (\frac{x_1 + \dots + x_n}{2})^2
         \end{gather*}
     \item Binomska porazdelitev $Bin(n,p), n \in \N, p \in (0,1), q = 1-p$
         \begin{align*}
@@ -2410,7 +2410,7 @@ Preverimo, da je $D(X) = \sigma^2$ za $X \sim N(\mu, \sigma)$
 \end{align*}   
 \begin{align*}
     &\frac{\sigma^2}{\sqrt{2\pi}} (-t e^{-\frac{1}{2}t^2} \vert_{-\infty}^{\infty}) +
-        \int_{-\infty}^{\infty} e^{-\frac{1}{2}t^2} dt=
+        \int_{-\infty}^{\infty} e^{-\frac{1}{2}t^2} dt = \\
     &= \frac{\sigma^2}{\sqrt{2\pi}} (0 + \sqrt{2\pi}) = \sigma^2
 \end{align*}
 
@@ -2457,15 +2457,15 @@ Lastnosti:
                        &= D(X) + D(Y) + 2K(X,Y)
             \end{align*}
         \end{proof}
-    \item Posplo"sitev: $D(X_1 + \cdots + X_n) = D(X_1) + \cdots + D(X_n) + 2 \sum_{i<j} K(X_i,X_j)$ \\
-        "Ce so $X_1 \cdots X_n$ paroma nekorelirani (posebej neodvisni), potem je $D(X_1 + \cdots + X_n) =
-        D(X_1) + \cdots + D(X_n)$
+    \item Posplo"sitev: $D(X_1 + \dots + X_n) = D(X_1) + \dots + D(X_n) + 2 \sum_{i<j} K(X_i,X_j)$ \\
+        "Ce so $X_1 \dots X_n$ paroma nekorelirani (posebej neodvisni), potem je $D(X_1 + \dots + X_n) =
+        D(X_1) + \dots + D(X_n)$
 \end{enumerate}
 
 \begin{ex}
-    $Bin(n,p)$ je vsota $X = X_1 + \cdots + X_n$, kjer je $X_i \sim Ber(p)$, t.j. $X_i \sim
+    $Bin(n,p)$ je vsota $X = X_1 + \dots + X_n$, kjer je $X_i \sim Ber(p)$, t.j. $X_i \sim
     \begin{pmatrix}0 & 1 \\ q & p\end{pmatrix}$, ki so neodvisne \\
-    Zato je $D(X) = D(X_1 + \cdots + X_n) = n \cdot D(X_1) = n \cdot p \cdot q$, saj je
+    Zato je $D(X) = D(X_1 + \dots + X_n) = n \cdot D(X_1) = n \cdot p \cdot q$, saj je
     $D(X_n) = E(X_n^2) - (E(X_n))^2 = p - p^2 = pq$
 \end{ex}
 
@@ -2544,7 +2544,7 @@ X, Y$ neodvisni \\
 Kak"sna je gostota, "ce je $\rho$ blizu 1?
 $\rho \uparrow 1:$ %skica
 $\rho \downarrow -1:$ \\ %skica
-gostota je \"skoraj skoncentrirana\" na neki premici, torej med X in Y obstaja skoraj linearna zveza
+gostota je ``skoraj skoncentrirana'' na neki premici, torej med X in Y obstaja skoraj linearna zveza
 
 \subsection{Pogojna porazdelitev in pogojno matemati"cno upanje}
 
@@ -2559,11 +2559,11 @@ Ima enake lastnosti kot porazdelitvena funkcija
 
 \begin{enumerate}[label=\Alph*]
     \item Diskreten primer \\
-        Naj bo $(X,Y)$ diskretno porazdeljen slu"cajni vektor z verjetnostno funkcijo $p_{ij} = P(X=x_i, Y=y_i) i,j = 1, 2 \cdots$ \\
+        Naj bo $(X,Y)$ diskretno porazdeljen slu"cajni vektor z verjetnostno funkcijo $p_{ij} = P(X=x_i, Y=y_i) \; i,j = 1, 2 \dots$ \\
         Za pogoj $B$ vzemimo $B = (Y=y_j)$ pri nekem $j$, torej $q_j = P(Y=Y_j)$ \\
         Potem je pogojna porazdelitvena funkcija slu"cajne spremenljivke $X$ glede $F_X(X \mid Y=y) :=
         \frac{P(X \leq x \mid Y=y_j)}{P(Y=y_j)} = \frac{1}{q_{j}} \sum_{j: x_j \leq x} p_{ij}$ \\
-        "Ce vpeljemo pogojno verjetnostno funkcije $P_{i \mid j} = P(X=x_i \mid Y=y_j) = \frac{p_{ij}}{q_j}$,
+        "Ce vpeljemo pogojno verjetnostno funkcije $p_{i \mid j} = P(X=x_i \mid Y=y_j) = \frac{p_{ij}}{q_j}$,
         $F_X(X \mid Y=y_j) = \sum_{i: x_i \leq X} p_{i \mid j}$ \\
         Pogojno matemati"cno upanje slu"cajne spremenljivke X glede na $Y=y_j$ je matemati"cno upanje te porazdelitve:
         \[E(X \mid Y=y_j) := \sum_{i} x_i \cdot p_{i \mid j} = \frac{1}{q_j} \sum_{i} x_j \cdot p_{ij} \]    % e(x_i)?
@@ -2571,12 +2571,14 @@ Ima enake lastnosti kot porazdelitvena funkcija
         spremenljivke $Y$ \\
         Definirajmo novo slu"cajno spremenljivko $E(X \mid Y) = \ell (y)$, ki ji re"cemo pogojno matemati"cno upanje
         slu"cajne spremenljivke X glede slu"cajne spremenljivke Y \\
-        Ta ima shemo $E(X \mid Y) = \begin{pmatrix} \ell (y_1) & \ell (y_2) & \cdots \\ q_1 & q_2 & \cdots
-        \end{pmatrix} = \begin{pmatrix} E(X \mid Y=y_1) & \cdots \\ q_1 & \cdots
+        Ta ima shemo $E(X \mid Y) = \begin{pmatrix} \ell (y_1) & \ell (y_2) & \dots \\ q_1 & q_2 & \dots
+        \end{pmatrix} = \begin{pmatrix} E(X \mid Y=y_1) & \dots \\ q_1 & \dots
         \end{pmatrix}$ \\
         Zanjo velja
-        \[E(X \mid Y) = \sum_j \ell (y_j) \cdot q_j = \sum_j \sum_i x_i \cdot p_{ij} = \sum_i x_i (\sum_j p_{ij}) =
-        \sum_i x_i \cdot p_i = E(X)\]
+        \begin{equation*}
+            E(E(X \mid Y)) = \sum_j \ell (y_j) \cdot q_j = \sum_j \sum_i x_i \cdot p_{ij} = \sum_i x_i (\sum_j p_{ij}) =
+        \sum_i x_i \cdot p_i = E(X)
+        \end{equation*}
         kjer je $p_i = P(X=x_i)$ \\
         Kaj dobimo, "ce sta $X$ in $Y$ neodvisni slu"cajni spremenljivki? \\
         Tedaj je $p_{i \mid j} = \frac{p_{ij}}{q_j} = \frac{p_i \cdot q_j}{q_j} = p_i$ in
@@ -2585,24 +2587,26 @@ Ima enake lastnosti kot porazdelitvena funkcija
 
         \begin{ex}
             Koko"s znese N jajc, kjer je $N \sim Poi(\lambda)$ z $\lambda > 0$. Iz vsakega jajca se z verjetnostjo
-            $p \in (0,1)$ izvali pi"s"canec, neodvisno od drugih jajc. Naj bo K "stevilo pi"s"cancev Dolocino $E(K \mid N),
-            E(K) in E(N \mid K)$ \\
-            \[P(N=n) = \frac{\lambda^n}{n!} e^{-\lambda} \; n = 0, 1, 2 \cdots \]
-            \[P(K=k \mid N=n) = \binom{n}{k} p^k q^{n-k} \; k = 0, 1 \cdots n \]
+            $p \in (0,1)$ izvali pi"s"canec, neodvisno od drugih jajc. Naj bo K "stevilo pi"s"cancev. Dolo"cimo $E(K \mid N),
+            E(K)$ in $E(N \mid K)$ \\
+            \begin{equation*}
+                P(N=n) = \frac{\lambda^n}{n!} e^{-\lambda} \; n = 0, 1, 2 \dots
+            \end{equation*}
+            \[P(K=k \mid N=n) = \binom{n}{k} p^k q^{n-k} \; k = 0, 1 \dots n \]
             \[\ell(n) = E(K \mid N=n) = E(Bin(n,p)) = n \cdot p\]
             torej je $E(K \mid N) = \ell(n) = p \cdot N$
-            \[E(K \mid N) = \begin{pmatrix}p \cdot 0 & p \cdot 1 & p \cdot 2 & \cdots \\ P(N=0) & P(N=1) & P(N=2) & \cdots
+            \[E(K \mid N) = \begin{pmatrix}p \cdot 0 & p \cdot 1 & p \cdot 2 & \dots \\ P(N=0) & P(N=1) & P(N=2) & \dots
             \end{pmatrix} \]
             \[E(K) = E(E(K \mid N)) = E(p \cdot N) = p \cdot E(N) = p \cdot \lambda \]
             \[P(K=k) = \sum_{n=k}^{\infty} P(K=k \mid N=n) \cdot P(N \leq n) = \sum_{n=k}^{\infty} \frac{n!}{k!(n-k)!}
             p^k q^{n-k} \cdot \frac{\lambda^n}{n!} e^{-\lambda} = \]
             \[= \frac{1}{k!} e^{-\lambda} p^k \lambda^k
             \sum_{n=k}^{\infty} \frac{(qk)^{n-k}}{(n-k)!} = \frac{(p\lambda)^k}{k!} e^{-\lambda} e^{q\lambda} =
-            \frac{(p\lambda)^k}{k!} e^{-p\lambda} \; k = 0, 1 \cdots n\]
+            \frac{(p\lambda)^k}{k!} e^{-p\lambda} \; k = 0, 1 \dots n\]
             Torej je $K \sim Poi(p \cdot \lambda)$ \\
             \[P(N=n \mid K=k) = \frac{P(N=n, K=k)}{P(K=k)} = \frac{P(K=k \mid N=n) \cdot P(N=n)}{P(K=k)} =\]
             \[= \frac{n! p^k q^{n-k}}{k! (n-k)!} \cdot \frac{\lambda^n e^{-\lambda}}{n!} \cdot
-            \frac{p k! e^{p\lambda}}{(p \lambda)^k} = \frac{(q\lambda)^{n-k}}{(n-k)!} \cdot e^{-q\lambda} n = k, k+1 \cdots\]
+            \frac{p k! e^{p\lambda}}{(p \lambda)^k} = \frac{(q\lambda)^{n-k}}{(n-k)!} \cdot e^{-q\lambda} n = k, k+1 \dots\]
             To je za k premaknjena Poissonova porazdelitev: $k + Poi(q \lambda)$ \\
             Potem je $\psi(k) = E(N \mid K=k) = E(k + Poi(q k)) = k + q \cdot \lambda$ in zato je $E(N \mid K) = \psi(k) =
             k \cdot q + \lambda$ \\
@@ -2640,7 +2644,7 @@ Ima enake lastnosti kot porazdelitvena funkcija
             $(X,Y) \sim N(\mu_x,\mu_y,\sigma_x,\sigma_y,\rho)$ \\
             Robna gostota za Y je $N(\mu_y,\sigma_y)$ \\
             Zato je pogojna gostota
-            \[p_X(x \mid y) = \frac{p_{(X,Y)}(x,y)}{p_y(x)} = \stackrel{\text{D.N.}}{\cdots} = \frac{1}{\sigma_x \sqrt(2\pi) (1-\rho^2)}
+            \[p_X(x \mid y) = \frac{p_{(X,Y)}(x,y)}{p_y(x)} = \stackrel{\text{D.N.}}{\dots} = \frac{1}{\sigma_x \sqrt(2\pi) (1-\rho^2)}
             exp(-\frac{1}{2 (1-\rho)^2} (\frac{x-\mu_x}{\sigma_x} - \rho \frac{y-\mu_y}{\sigma_y})^2)\]
             torej je $N(\mu_x + \rho \frac{\sigma_x}{\sigma_y}(y-\mu_y), \sigma_x \sqrt{1 - \rho^2})$ \\
             Eksponent: $\frac{1}{2 (1 -\rho^2)} \sigma_x^2 (x - (\mu_x + \rho \frac{\sigma_x}{\sigma_y} (y-\mu_y)))^2$ \\
@@ -2715,14 +2719,19 @@ Centralne momente lahko izrazimo z za"cetnimi:
 
 Asimetrija slu"cajne spremenljivke X je $A(X) := E(X_s^3) = E((\frac{X-E(X)}{\sigma_x})^3) =
 \frac{m_3}{m_{2}^{\frac{3}{2}}}$ $m_2 = \sigma^2 = D(X)$ \\
-$A(N(\mu,\sigma)) = 0, $ ker $A(X) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} x^3 e^{-\frac{1}{2}x^2} dx$ \\
+$A(N(\mu,\sigma)) = 0, $ ker
+
+\begin{equation*}
+    A(X) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} x^3 e^{-\frac{1}{2}x^2} dx = 0
+\end{equation*}
+
 Splo"s"cenost (kurtozis) $K(X) := E(X_s^4) = \frac{m_4}{m_2^2}$ \\
 $K(N(\mu,\sigma)) = 3$ \\
-Ce momenti ne obstajajo (npr. "ze $E(X)$ ne), potem si lahko pomagamo z vrstilnimi karakteristikami
+"Ce momenti ne obstajajo (npr. "ze $E(X)$ ne), potem si lahko pomagamo z vrstilnimi karakteristikami
 
 \begin{defn}[Mediana]
     Mediana slu"cajne spremenljivke X je vsaka vrednost $x \in \R$, za katero velja $P(X \leq x) \leq \frac{1}{2}$
-    in $P(Y \geq x) \geq \frac{1}{2} (1-P(X < x) = 1 - F(x-))$
+    in $P(Y \geq x) \geq \frac{1}{2}$ oz. $(1-P(X < x) = 1 - F(x-))$
 \end{defn}
 
 "Ce je F porazdelitvena funkcija za X, je to ekvivalentno s pogojem $F(x-) \leq \frac{1}{2} \leq F(x)$ \\
@@ -2760,7 +2769,7 @@ Te vrednosti (lahko jih je ve"c) ozna"cimo z $X_{\frac{1}{2}}$
 
 \begin{itemize}
     \item Kvartili: $X_{\frac{1}{4}}, X_{\frac{2}{4}}, X_{\frac{3}{4}}$
-    \item Percentili: $X_{\frac{1}{100}}, X_{\frac{2}{100}}, \cdots X_{\frac{99}{100}}$
+    \item Percentili: $X_{\frac{1}{100}}, X_{\frac{2}{100}}, \dots X_{\frac{99}{100}}$
 \end{itemize}
 
 \begin{ex}
@@ -2796,15 +2805,15 @@ je nadomestek (analog) za standardno deviacijo
 \subsection{Rodovne funkcije}
 
 \begin{defn}
-    Naj bo X slu"cajna spremenljivka z vrednostmi v $\N \cup \{0\}: p_k = P(X = k) k = 0, 1, 2 \cdots \;
+    Naj bo X slu"cajna spremenljivka z vrednostmi v $\N \cup \{0\}: p_k = P(X = k) k = 0, 1, 2 \dots \;
     p_k \geq 0, \sum_{k = 0}^{\infty} = 1$ \\
     Rodovna funkcija sku"cajne spremenljivke X je
-    \[G_X(s) = p_0 + p_1 s + p_2 s^2 + \cdots = \sum_{k = 0}^{\infty} p_k \cdots s^k\]
+    \[G_X(s) = p_0 + p_1 s + p_2 s^2 + \dots = \sum_{k = 0}^{\infty} p_k \dots s^k\]
     za $\forall s \in \R$, za katere vrsta absolutno konvergira.
 \end{defn}
 
 O"citno je $G_X(0) = p_0, G_X(1) = \sum_{k = 0}^{\infty} p_k = 1$ \\
-Ker je $s^X: \begin{pmatrix}s^0 & s^1 & s^2 & \cdots \\ p_0 & p_1 & p_2 & \cdots\end{pmatrix}$, je $G_X(s) = E(s^X)$ \\
+Ker je $s^X: \begin{pmatrix}s^0 & s^1 & s^2 & \dots \\ p_0 & p_1 & p_2 & \dots\end{pmatrix}$, je $G_X(s) = E(s^X)$ \\
 Za $s \in [-1,1]$ velja $|p_k \cdot s^k| \leq P_k$ in $\sum_{k = 0}^{\infty} p_k = 1$. Zato je vrsta
 konvergentna, "ce je $|s| \leq 1$. Torej je konvergen"cni radij vrste vsaj 1
 
@@ -2812,7 +2821,7 @@ konvergentna, "ce je $|s| \leq 1$. Torej je konvergen"cni radij vrste vsaj 1
     \begin{itemize}
         \item $X \sim geo(p)$, $p \in (0,1)$
             \begin{align*}
-                &p_k = P(X = k) = p \cdot q^{k-1} \; k = 1,2,3 \cdots \\
+                &p_k = P(X = k) = p \cdot q^{k-1} \; k = 1,2,3 \dots \\
                 &G_X(s) = \sum_{k = 1}^{\infty} p \cdot q^{k - 1} s^k = ps \sum_{k = 0}^{\infty} (qs)^{k-1} \\
                 &= ps \frac{1}{1 - qs}
             \end{align*}
@@ -2829,7 +2838,7 @@ Iz teorije Taylorjevih vrst sledi
 
 \begin{theorem}[O enili"cnosti]
     Naj imata X in Y rodovni funkciji $G_X$ in $G_Y$. Potem je $G_X(s) = G_Y(s)$ za $\forall s \in [-1,1] \leftrightarrow
-    P(X = k) = P(Y = k)$ za vse $k = 0, 1, 2 \cdots$ \\
+    P(X = k) = P(Y = k)$ za vse $k = 0, 1, 2 \dots$ \\
     Tedaj velja $P(X = k) = \frac{1}{k!} G_X^{k}(0)$
 \end{theorem}
 
@@ -2840,16 +2849,23 @@ $G_X^{'}(s) = \sum_{k = 1}^{\infty} k \cdot p_k s^{k-1}$ \\
 
 \begin{theorem}
     Naj ima X rodovno funkcijo $G_X(s)$ in naj bo $n \in \N$. Potem je
-    \[G_X^{n}(1-) \equiv \lim_{s \nearrow 1} G_X^{n}(s) = E(X (X-1) (X-2) \cdots (X-N+1))\]
+    \begin{equation*}
+        G_X^{n}(1-) \equiv \lim_{s \nearrow 1} G_X^{n}(s) = E(X (X-1) (X-2) \dots (X-N+1))
+    \end{equation*}
 \end{theorem}
 
 \begin{proof}
-    Za $\forall s \in [0,1)$ je $G_X^{n}(s) = \sum_{k = n}^{\infty} k(k-1)(k-2) \cdots (k-n+1) p_k s^{k-n+1} =$
-    \[= E(X(X-1)(X-2) \cdots (X-n+1) \cdot s^{X-n}) \]
+    Za $\forall s \in [0,1)$ je
+    \begin{gather*}
+        G_X^{n}(s) = \sum_{k = n}^{\infty} k(k-1)(k-2) \dots (k-n+1) p_k s^{k-n+1} = \\
+        = E(X(X-1)(X-2) \dots (X-n+1) \cdot s^{X-n})
+    \end{gather*}
     Ko gre $s \uparrow 1$, z uporabo Abelove leme dobimo
-    \[\lim_{s \nearrow 1} G_X^{n}(s) = \lim_{s \nearrow 1} \sum_{k = n}^{\infty} k(k-1) \cdot (k-n+1) =\]
-    \[\stackrel{\text{Abelova lema}}{=} \sum_{k = n}^{\infty} lim_{s \nearrow 1} k(k-1) \cdot (k-n+1) =
-    \sum_{k = n}^{\infty} k(k-1) \cdot (k-n+1) p_k = E(X(X-1) \cdots (X-n+1))\]
+    \begin{gather*}
+        \lim_{s \nearrow 1} G_X^{n}(s) = \lim_{s \nearrow 1} \sum_{k = n}^{\infty} k(k-1) \cdot (k-n+1) = \\
+        \stackrel{\text{Abelova lema}}{=} \sum_{k = n}^{\infty} \lim_{s \nearrow 1} k(k-1) \cdot (k-n+1) = \\
+        \sum_{k = n}^{\infty} k(k-1) \cdot (k-n+1) p_k = E(X(X-1) \dots (X-n+1))
+    \end{gather*}
 \end{proof}
 
 \begin{conseq}
@@ -2868,32 +2884,37 @@ $G_X^{'}(s) = \sum_{k = 1}^{\infty} k \cdot p_k s^{k-1}$ \\
 \end{proof}
 
 \begin{general}
-    "Ce so $X_1, X_2 \cdots X_n$ neodvisne slu"cajne spremenljivke, potem je za vse $s \in [-1,1] G_{X_1 + \cdots + X_n}(s) =
-    G_{X_1}(s) \cdot \cdots \cdot G_{X_n}(s).$ \\
-    "Ce so $X_1, X_2 \cdots X_n$ enako porazdeljene in neodvisne, potem je
-    \begin{align*}
-        G_{X_1 + \cdots + X_n}(s) = (G_X(s))^n    % (*)
-    \end{align*}
+    "Ce so $X_1, X_2 \dots X_n$ neodvisne slu"cajne spremenljivke, potem je za vse $s \in [-1,1] G_{X_1 + \dots + X_n}(s) =
+    G_{X_1}(s) \cdot \dots \cdot G_{X_n}(s).$ \\
+    "Ce so $X_1, X_2 \dots X_n$ enako porazdeljene in neodvisne, potem je
+    \begin{equation}
+        \label{eq:rodovne_potenca} G_{X_1 + \dots + X_n}(s) = (G_X(s))^n % \tag{asdf}
+    \end{equation}
 \end{general}
 
 \begin{theorem}
-    Naj bodo za $\forall n \in \N$ slu"cajne spremenljivke $N, X_1, X_2 \cdots X_n$ neodvisne. Naj ima N rodovno
-    funkcijo $G_N, X_n$ pa rodovno funkcijo $G_X$. Potem ima slu"cajna spemenljivka $S := X_1 + X_2 + \cdots + X_n$
+    Naj bodo za $\forall n \in \N$ slu"cajne spremenljivke $N, X_1, X_2 \dots X_n$ neodvisne. Naj ima N rodovno
+    funkcijo $G_N, X_n$ pa rodovno funkcijo $G_X$. Potem ima slu"cajna spemenljivka $S := X_1 + X_2 + \dots + X_n$
     rodovno funkcijo enako $G_S = G_N \circ G_X$ oz. $G_S(s) = G_N(G_X(s))$ za $s \in [-1,1]$
 \end{theorem}
 
-To je posplo"sitev formule dd: $P(N = n) = 1, G_N(s) = 1 \cdot s^n = s^n$%(*)
+To je posplo"sitev formule ~\ref{eq:rodovne_potenca}: $P(N = n) = 1, G_N(s) = 1 \cdot s^n = s^n$%(*)
 
 \begin{proof}
-    Zaradi neodvisnosti imamo $P(S = k) = \sum_{n=0}^{\infty} P(S = k, N = n) =$
-    \[= \sum_{n=0}^{\infty} P(N = n, X_1 + \cdots + X_n = k) \stackrel{\text{neodvisnost}}{=}
-    \sum_{n=0}^{\infty} P(N = n) \cdot P(X_1 + \cdots + X_n = k)\]
+    Zaradi neodvisnosti imamo 
+    \begin{gather*}
+        P(S = k) = \sum_{n=0}^{\infty} P(S = k, N = n) = \\
+        = \sum_{n=0}^{\infty} P(N = n, X_1 + \dots + X_n = k) \stackrel{\text{neodvisnost}}{=} \\
+        \sum_{n=0}^{\infty} P(N = n) \cdot P(X_1 + \dots + X_n = k) \\
+    \end{gather*}
     Zato je
-    \[G_S(s) = \sum_{k=0}^{\infty} P(S = k) \cdot s^k =
-    \sum_{k=0}^{\infty} \sum_{n=1}^{\infty} P(N = n) \cdot P(X_1 + \cdots + X_n = k) \cdot s^k =\]
-    \[= \sum_{n=1}^{\infty} P(N = n) (\sum_{k=0}^{\infty} P(X_1 + \cdots + X_n = k) \cdot s^k) =\]
-    \[\stackrel{G_{X_1 + \cdots + X_n}(s) \stackrel{\text{neodvisnost}}{\*} (G_X(s)^n)}{=}
-    \sum_{n=1}^{\infty} P(N = n) \cdot (G_X(s))^n = G_N(G_X(s))\]
+    \begin{gather*}
+        G_S(s) = \sum_{k=0}^{\infty} P(S = k) \cdot s^k \\
+        \sum_{k=0}^{\infty} \sum_{n=1}^{\infty} P(N = n) \cdot P(X_1 + \dots + X_n = k) \cdot s^k \\
+        = \sum_{n=1}^{\infty} P(N = n) (\sum_{k=0}^{\infty} P(X_1 + \dots + X_n = k) \cdot s^k) = \\
+        = (G_{X_1 + \dots + X_n}(s) \stackrel{\text{neodvisnost}}{=} (G_X(s)^n)) = \\
+        \sum_{n=1}^{\infty} P(N = n) \cdot (G_X(s))^n = G_N(G_X(s))
+    \end{gather*}
     za vse $s \in [-1,1]$
 \end{proof}
 
@@ -2906,10 +2927,10 @@ To je posplo"sitev formule dd: $P(N = n) = 1, G_N(s) = 1 \cdot s^n = s^n$%(*)
 \end{conseq}
 
 \begin{proof}
-    \begin{align}
-    &G_S(s) = G_N(G_X(s)) \forall s \in [-1,1] \\
-    &E(S) = G_s^{'}(1-) = G_N^{'}(G_X(1-)) \cdot G_X^{'}(1-) = E(N) \cdot E(X)
-    \end{align}
+    \begin{gather*}
+        G_S(s) = G_N(G_X(s)) \forall s \in [-1,1] \\
+        E(S) = G_s^{'}(1-) = G_N^{'}(G_X(1-)) \cdot G_X^{'}(1-) = E(N) \cdot E(X)
+    \end{gather*}
 \end{proof}
 
 \begin{ex}
@@ -2921,7 +2942,7 @@ To je posplo"sitev formule dd: $P(N = n) = 1, G_N(s) = 1 \cdot s^n = s^n$%(*)
         0 & 1 \\
         q & p
     \end{pmatrix}, q = 1 - p$ in $X_i$ so neodvisne slu"cajne spremenljivke. \\
-    O"citno je $K = X_1 + X_2 + \cdots + X_n$ \\
+    O"citno je $K = X_1 + X_2 + \dots + X_n$ \\
     Ker je $G_N(s) = e^{\lambda(s-1)}$ in $G_X(s) = q \cdot s^0 + p \cdot s = q + ps$, je po
     izreku $G_K(s) = G_N(G_X(s)) = e^{\lambda(q + ps - 1)} = e^{\lambda(ps - p)} = e^{\lambda p(s-1)} \forall s \in [-1,1]$,
     zato je $K \sim Poi(\lambda p)$
@@ -2935,12 +2956,18 @@ To je posplo"sitev formule dd: $P(N = n) = 1, G_N(s) = 1 \cdot s^n = s^n$%(*)
 
 V primeru zvezne porazdelitve je $M_X(t) = \int_{-\infty}^{\infty} e^{tx} p_X(x) dx$ \\
 To je Laplaceova transformacija funkcije $p_X$ \\
-V diskretnem primeru $X: \begin{pmatrix}x_1 & x_2 & \cdots \\ p_1 & p_2 & \cdots \end{pmatrix}$ je
+V diskretnem primeru $X: \begin{pmatrix}x_1 & x_2 & \dots \\ p_1 & p_2 & \dots \end{pmatrix}$ je
 $M_X(t) = \sum_i e^{tx} p_i$ \\
 
-V posebnem primeru, ko ima X nenegative celo"stevilske vrednosti, je $M_X(t) = \sum_{i=0}^{\infty} e^{it} p_i =$
-\[= \sum_{i=0}^{\infty} p_i (e^{t})^{i} = G_X(e^t) \; (M_X(t) = E((e^t)^X) = G_X(e^t))\]
-\[G_X(s) = E(s^X)\]
+V posebnem primeru, ko ima X nenegative celo"stevilske vrednosti, je
+\begin{gather*}
+    M_X(t) = \sum_{i=0}^{\infty} e^{it} p_i = \\
+    = \sum_{i=0}^{\infty} p_i (e^{t})^{i} = G_X(e^t)
+\end{gather*}
+
+\begin{equation*}
+    M_X(t) = E((e^t)^X) = G_X(e^t), G_X(s) = E(s^X)
+\end{equation*}
 
 O"citno je $M_X(0) = E(e^0) = E(1) = 1$
 
@@ -2948,7 +2975,7 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
     \[X \sim N(0,1)\]
     \[M_X(t) = \int_{-\infty}^{\infty} e^{tx} \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} dx =\]
     \[= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{(x-t)^2}{2}} dx \cdot e^{-\frac{t^2}{2}} =\]
-    \[= e^{\frac{t^2}{2}} \forall t \in \R\]
+    \[= e^{\frac{t^2}{2}} \; \forall t \in \R\]
     ker je $\frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{(x-t)^2}{2}}$ gostota za $N(0,1)$
 \end{ex}
 
@@ -3017,8 +3044,8 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
         \item lihi koeficienti: $z_{2k-1} = 0 \; k \in \N$
         \item sodi koeficienti:
         \[\frac{z_{2k}}{(2k)!} = \frac{1}{k! 2^k} \implies z_{2k} = \frac{(2k)!}{k! 2^k} =\]
-        \[= \frac{1 \cdot 2 \cdot 3 \cdot \cdots \cdot (2k)}{2 \cdot 4 \cdot 5 \cdot \cdots \cdot (2k)} =
-        1 \cdot 3 \cdot 5 \cdot \cdots \cdot (2k-1) = (2k-1)!! \; k \in \N\]
+        \[= \frac{1 \cdot 2 \cdot 3 \cdot \dots \cdot (2k)}{2 \cdot 4 \cdot 5 \cdot \dots \cdot (2k)} =
+        1 \cdot 3 \cdot 5 \cdot \dots \cdot (2k-1) = (2k-1)!! \; k \in \N\]
     \end{itemize}
 \end{ex}
 
@@ -3061,7 +3088,7 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
 
 \begin{proof}
     Ozna"cimo $c_m := (|X_n - X| < \epsilon \text{ za } n \geq m) = \cap_{n=m}^{\infty} (|x_n - X| < \epsilon)$. \\
-    Potem je $c_1 \subseteq c_2 \subseteq \cdots$ \\
+    Potem je $c_1 \subseteq c_2 \subseteq \dots$ \\
     \* je $c_m$ za $\epsilon = \frac{1}{k}$ in $(\lim_{n \to \infty} X_n = X) \subseteq \cup_{n=1}^{\infty} c_m$ (presek) \\
     Torej je $1 = P(\lim_{n \to \infty} X_n = X) \subseteq =(\cup_{m=1}^{\infty} c_m) = \lim_{m \to \infty} P(c_m)$ \\
     Od tod sledi $\lim_{m \to \infty} P(c_m) = 1$
@@ -3086,8 +3113,8 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
 % 18. predavanje: 7.3.
 
 \begin{defn}
-    Naj bo $X_1, X_2, X_3 \cdots$ zaporedje slu"cajnih spremenljivk, ki imajo matemati"cno upanje.
-    Definirajmo $Y_n = \frac{S_n - E(S_n)}{n} = \frac{X_1 + \cdots + X_n}{n} - \frac{E(X_1) + \cdots + E(X_n)}{n}$ \\
+    Naj bo $X_1, X_2, X_3 \dots$ zaporedje slu"cajnih spremenljivk, ki imajo matemati"cno upanje.
+    Definirajmo $Y_n = \frac{S_n - E(S_n)}{n} = \frac{X_1 + \dots + X_n}{n} - \frac{E(X_1) + \dots + E(X_n)}{n}$ \\
     Potem je $E(Y_n) = 0$ \\
     Za $\{Y_n\}_{n \in \N}$ velja "sibki zakon velikih "stevil ("SZV"S), kadar $Y_n \stackrel{n \to \infty}{\rightarrow} 0$
     verjetnostno, torej za $\forall \epsilon > 0 \lim_{n \to \infty} (|y| < \epsilon) = 1 =
@@ -3098,8 +3125,8 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
 \end{defn}
 
 \begin{ex}
-    Me"cemo kocko, $X_k$ je $\#$ pik v k-tem metu. Potem je $E(X_k) = \frac{7}{2}$ in $Y_n = \frac{X_1 + \cdots + X_n}{n} - \frac{7}{2}$ \\
-    Ali konvergira $\frac{X_1 + \cdots + X_n}{n} \stackrel{n \to \infty}{\rightarrow} \frac{7}{2}$ skoraj gotovo? (Da)
+    Me"cemo kocko, $X_k$ je $\#$ pik v k-tem metu. Potem je $E(X_k) = \frac{7}{2}$ in $Y_n = \frac{X_1 + \dots + X_n}{n} - \frac{7}{2}$ \\
+    Ali konvergira $\frac{X_1 + \dots + X_n}{n} \stackrel{n \to \infty}{\rightarrow} \frac{7}{2}$ skoraj gotovo? (Da)
 \end{ex}
 
 \begin{theorem} \text{} \\
@@ -3126,7 +3153,7 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
 
 \begin{theorem}[Markov]
     "Ce za zaporedje slu"cajnih spremenljivk $\{X_n\}_{n \in \N}$ velja $\frac{D(S_n)}{n^2} \stackrel{n \to \infty}{\rightarrow} 0$,
-    potem velja "SZV"S. Tukaj je $S_n := X_1 + \cdots + X_n$
+    potem velja "SZV"S. Tukaj je $S_n := X_1 + \dots + X_n$
 \end{theorem}
 
 \begin{proof}
@@ -3138,12 +3165,12 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
 \end{proof}
 
 \begin{conseq}[Izrek "Cebi"sev]
-    "Ce so $X_1, X_2 \cdots X_n$ paroma nekorelirane slu"cajne spremenljivke in $\sup_{n \in \N} D(X_n) < \infty$, potem
+    "Ce so $X_1, X_2 \dots X_n$ paroma nekorelirane slu"cajne spremenljivke in $\sup_{n \in \N} D(X_n) < \infty$, potem
     za $\{X_n\}_{n \in \infty}$ velja "SVZ"S
 \end{conseq}
 
 \begin{proof}
-    Ker je $D(S_n) = D(X_1) + \cdots + D(X_n) \leq n \cdot c$, je $\frac{D(S_n)}{n^2} \leq \frac{n \cdot c}{n^2}
+    Ker je $D(S_n) = D(X_1) + \dots + D(X_n) \leq n \cdot c$, je $\frac{D(S_n)}{n^2} \leq \frac{n \cdot c}{n^2}
     = \frac{c}{n} \stackrel{n \to \infty}{\rightarrow} 0$, zato po izreku Markova velja "SZV"S
 \end{proof}
 
@@ -3152,7 +3179,7 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
     E(S_n) = n \cdot p$ \\
     Po izreku "Cebi"seva velja "SZV"S: $P(\frac{|S_n - E(S_n)|}{n} \geq \epsilon) \stackrel{n \to \infty}{\rightarrow} 0$
     \[\implies P(|\frac{S_n}{n} - p| \geq \epsilon) \stackrel{n \to \infty}{\rightarrow} 0\]
-    $S_n$ je frekvenca dogodka, $\frac{S_n}{n}$ je relativna frekvenca, $\frac{S_n}{n} = \frac{X_1 + \cdots + X_n}{n}
+    $S_n$ je frekvenca dogodka, $\frac{S_n}{n}$ je relativna frekvenca, $\frac{S_n}{n} = \frac{X_1 + \dots + X_n}{n}
     \stackrel{n \to \infty}{\rightarrow} p$ verjetnostno \\
     To je Bernoulijev zakon velikih "stevil iz 1713
 \end{ex}
@@ -3165,7 +3192,7 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
 
 \begin{ex}
     $X_n: \begin{pmatrix}0 & 1 \\ q & p\end{pmatrix}$ neodvisne slu"cajne spremenljivke, $D(X_n) = pq$ \\
-    Po izreku Kolmogorova velja KVZ"S, t.j. $\frac{S_n}{n} = \frac{X_1 + \cdots + X_n}{n}
+    Po izreku Kolmogorova velja KVZ"S, t.j. $\frac{S_n}{n} = \frac{X_1 + \dots + X_n}{n}
     \stackrel{n \to \infty}{\rightarrow} p$ skoraj gotovo. \\
     To posplo"suje Bernoullijev zakon
 \end{ex}
@@ -3174,7 +3201,7 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
 
 \begin{defn}
     Naj bo $\{X_n\}_{n \in \N}$ zaporedje slu"cajnih spremenljivk s kon"cnimi disperzijami. Definiramo
-    $S_n := X_1 + \cdots + X_n$ in standardizirajmo: 
+    $S_n := X_1 + \dots + X_n$ in standardizirajmo: 
     \begin{equation*}
         Z_n = \frac{S_n - E(S_n)}{\sigma(S_n)}
     \end{equation*}
@@ -3191,7 +3218,7 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
 \end{defn}
 
 \begin{theorem}[Centralni limitni izrek (CLI, osnovna verzija)]
-    Naj bodo $X_1, X_2 \cdots$ neodvisne in enako porazdeljene slu"cajne spremenljivke. Potem zanje velja centralni limitni
+    Naj bodo $X_1, X_2 \dots$ neodvisne in enako porazdeljene slu"cajne spremenljivke. Potem zanje velja centralni limitni
     zakon, t.j
     \[P(\frac{S_n - E(S_n)}{\sigma(S_n)} \leq x) \stackrel{n \to \infty}{\rightarrow}
     \int_{-\infty}^x e^{\frac{t^2}{2}} dx \text{ za } \forall x \in \R\]
@@ -3211,11 +3238,11 @@ Dokazal je Ljapunov (1900), s tem je posplo"sil Laplaceov izrek iz leta 1812. V 
     Naj bo $E(X_n) = \mu, D(X_n) = \sigma^2$ in $U_n := X_n - \mu = X_n - E(X_n)$. Torej je $E(U_n) = 0$ in
     $D(U_n) = \sigma^2$ ter $M_{U}(t) = 1 + t E(U_n) + \frac{t^2}{2!} E(U_n^2) + o(t^2) =$ \\
     $= 1 + \frac{t^2}{2} \sigma^2 + o(t^2)$ ($\lim_{n \to \infty} \frac{o(n)}{n} = 0$) \\
-    Ker je $D(S_n) \stackrel{\text{neodvisne}}{=} D(X_1) + \cdots + D(X_n) = n \cdot \sigma^2$ in
-    $E(S_n) = n \cdot \mu = E(X_1) + \cdots + E(X_n)$, je $Z_n = \frac{S_n - E(S_n)}{\sigma(S_n)} =$ \\
+    Ker je $D(S_n) \stackrel{\text{neodvisne}}{=} D(X_1) + \dots + D(X_n) = n \cdot \sigma^2$ in
+    $E(S_n) = n \cdot \mu = E(X_1) + \dots + E(X_n)$, je $Z_n = \frac{S_n - E(S_n)}{\sigma(S_n)} =$ \\
     $= \frac{1}{\sigma \sqrt{n}}$ ($\sum_{n=0}^{n} U_i$) \\
-    Potem je $M_{Z_n}(t) = E(e^{t Z_n}) = E(e^{\frac{t}{\sigma \sqrt{n}}(U_1 + \cdots + U_n)}) =
-    E(e^{\frac{t}{\sigma \sqrt{n}} U_1}) \cdot \cdots \cdot E(e^{\frac{t}{\sigma \sqrt{n}} U_n}) =$ \\
+    Potem je $M_{Z_n}(t) = E(e^{t Z_n}) = E(e^{\frac{t}{\sigma \sqrt{n}}(U_1 + \dots + U_n)}) =
+    E(e^{\frac{t}{\sigma \sqrt{n}} U_1}) \cdot \dots \cdot E(e^{\frac{t}{\sigma \sqrt{n}} U_n}) =$ \\
     $\stackrel{\text{enaki}}{=} (M_U(\frac{t}{\sigma \sqrt{n}}))^n = (1 + \frac{t^2}{2n} + o(\frac{1}{n}))^n$ \\
     $\stackrel{n \to \infty \equiv o(\frac{1}{n} \to 0)}{\rightarrow} e^{\frac{t^2}{2}}$
     \begin{lemma}
@@ -3243,33 +3270,33 @@ V splo"snem se CLI doka"ze s pomo"cjo karakteristi"cnih funkcij: \\
 naj bo X slu"cajna spremenljivka, $\ell_X(t) := E(e^{itX}) = E(cos(tX)) + iE(sin(tX)) t \in \R$ \\
 za razliko od momentno rodovnih funkcij karakteristi"cne funkcije vedno odstajajo \\
 v zveznem primeru je $\int_{-\infty}^{\infty} e^{itx}p(x)dx$ - Fourierova transformacija funkcije $p_X(x)$ \\
-$X_1, X_2 \cdots X_n$ neodvisne, enako porazdeljene
+$X_1, X_2 \dots X_n$ neodvisne, enako porazdeljene
 
 \begin{align*}
     &\mu := E(X_n), \sigma := \sigma(X_n) \\
-    &E(S_n) \stackrel{\text{neodvisnost}}{=} E(X_1) + \cdots + E(X_n) = n \mu \\
-    &D(S_n) \stackrel{\text{neodvisnost}}{=} D(X_1) + \cdots + D(X_n) = n \sigma^2
+    &E(S_n) \stackrel{\text{neodvisnost}}{=} E(X_1) + \dots + E(X_n) = n \mu \\
+    &D(S_n) \stackrel{\text{neodvisnost}}{=} D(X_1) + \dots + D(X_n) = n \sigma^2
 \end{align*}
 
-$X_1, X_2 \cdots X_n$ neodvisne slu"cajne spremenljivke
+$X_1, X_2 \dots X_n$ neodvisne slu"cajne spremenljivke
 
 \begin{align*}
     &Z_n = \frac{S_n - E(S_n)}{\sigma(S_n)} = \frac{S_n - n \mu}{\sqrt{n} \sigma} =
         \frac{\frac{S_n}{n} - \mu}{\frac{\sigma}{\sqrt{n}}} \\
-    &\overline{Z_n} := \frac{S_n}{n} = \frac{X_1 + \cdots + X_n}{n} \implies
+    &\overline{Z_n} := \frac{S_n}{n} = \frac{X_1 + \dots + X_n}{n} \implies
         Z_n = \frac{\overline{X} - \mu}{\frac{\sigma}{\sqrt{n}}}
 \end{align*}
 
 Po CLI za velike n velja $Z_n \approx N(0,1)$, zato je $\overline{X} \approx N(\mu, \frac{\sigma}{\sqrt{n}})$ oz.
 $S_n \approx N(n \mu, \sigma \sqrt{n})$ \\
-"Ce so $X_1, X_2 \cdots$ porazdeljene normalno $N(\mu, \sigma)$, potem je $Z_n \sim N(0,1)$, torej
+"Ce so $X_1, X_2 \dots$ porazdeljene normalno $N(\mu, \sigma)$, potem je $Z_n \sim N(0,1)$, torej
 $F_{Z_n}(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{x} e^{-\frac{t^2}{2}} dt$ \\
 
 \begin{ex}
     Laplaceova formula je poseben primer CLI: \\
     $X_n: \begin{pmatrix}0 & 1 \\ q & p\end{pmatrix}, X_n = 1$ je dogodek, da se dogodek A (s $P(A) = p$) zgodi
     v n-ti ponovitvi poskusa, sicer je $X_n = 0$ \\
-    $E(X_n) = p, S_n = X_1 + \cdots + X_n$ frekvenca dogodka A v prvih n ponovitvah \\
+    $E(X_n) = p, S_n = X_1 + \dots + X_n$ frekvenca dogodka A v prvih n ponovitvah \\
     $S_n \sim Bin(n,p), E(S_n) = np, D(S_n) = npq$, ker je $D(X_1) = pq$ \\
     $Z_n = \frac{S_n - E(S_n)}{\sigma(S_n)} = \frac{S_n - np}{\sqrt{npq}} \stackrel{\text{CLI}}{\approx} N(0,1)$,
     "ce je n velik \\
@@ -3295,7 +3322,7 @@ $F_{Z_n}(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{x} e^{-\frac{t^2}{2}} dt$ \\
 \begin{ex}
     Te"za vre"cke kostanja je porazdeljena pribli"zno normalno, saj je vsota te"z posameznih kostanjev, ki so neodvisne,
     enako porazdeljene slu"cajne spremenljivke \\
-    $X_n \cdots$ te"za n-tega kostanja, $S_n = X_1 + \cdots + X_n \approx$ normalno - aditiven efekt
+    $X_n \dots$ te"za n-tega kostanja, $S_n = X_1 + \dots + X_n \approx$ normalno - aditiven efekt
 \end{ex}
 
 \begin{ex}
@@ -3331,16 +3358,16 @@ Kot vedo statistiko razdelimo na:
         \item kontrole kvalitete: populacija je mno"zica (serija) izdelka, npr. dnevna proizvodnja, merimo
             lastnosti izdelkov, npr. "zivljensko dobo
         \item testiranje seb: populacija je mno"zica vseh zaposlenih v dr"zavi, merimo npr. starost,
-            vi"sino place $\cdots$
+            vi"sino place $\dots$
     \end{enumerate}
 \end{ex}
 
 Matemati"cni pogled: na verjetnostnem prostoru $(\Omega, \mathcal{F})$ imamo slu"cajno spremenljivko X. \\
 Praviloma ne moremo izmeriti cele populacije, ampak meritve opravimo na relativno majhnem delu populacije,
 na vzorcu. Le-ta mora biti reprezentativen, izbran nepristransko in dovolj velik. \\
-Matemati"cni pogled: vzorec velikosti n je slu"cajni vektor $(x_1 \cdots x_n)$, kjer so komponente enako porazdeljene
+Matemati"cni pogled: vzorec velikosti n je slu"cajni vektor $(x_1 \dots x_n)$, kjer so komponente enako porazdeljene
 kot slu"cajna spremenljivka X in med seboj neodvisne. \\
-Vrednost tega slu"cajnega vektorja pri enem naboru n meritev je realizacija vzorca: $(x_1 \cdots x_n)$: to so
+Vrednost tega slu"cajnega vektorja pri enem naboru n meritev je realizacija vzorca: $(x_1 \dots x_n)$: to so
 konkretni podatki, ki jih analiziramo. Pri opisni statistiki predstavimo in obdelamo te podatke. \\
 Iz teh vzor"cnih podatkov "zelimo oceniti nekatere lastnosti populacije, kot sta:
 
@@ -3356,7 +3383,7 @@ Iz teh vzor"cnih podatkov "zelimo oceniti nekatere lastnosti populacije, kot sta
 Ocene za $\mu$ so:
 
 \begin{itemize}
-    \item vzor"cno povpre"cje: $\overline{x} = \frac{x_1 + \cdots + x_n}{n}$
+    \item vzor"cno povpre"cje: $\overline{x} = \frac{x_1 + \dots + x_n}{n}$
     \item vzor"cni modus: najpogostej"sa vrednost v vzorcu
     \item vzor"cna mediana: srednja vrednost v vzorcu, urejenem po velikosti
 \end{itemize}
@@ -3373,14 +3400,14 @@ Ocene za $\sigma$ so:
 \subsection{Vzor"cne statistike in cenilke}
 
 \begin{defn}[Vzor"cna statistika]
-    Naj bo $(X_1, X_2 \cdots X_n)$ vzorec t.i. slu"cajni vektor, kjer so $X_1 \cdots X_n$ enako porazdeljene
+    Naj bo $(X_1, X_2 \dots X_n)$ vzorec t.i. slu"cajni vektor, kjer so $X_1 \dots X_n$ enako porazdeljene
     kot slucajna spremenljivka $X$ in med seboj neodvisne. \\
-    Vzor"cna statistika je simetri"cna funkcija vzorca $y = g(X_1, X_2 \cdots X_n)$, kjer je $g$ simetricna
+    Vzor"cna statistika je simetri"cna funkcija vzorca $y = g(X_1, X_2 \dots X_n)$, kjer je $g$ simetricna
     funkcije n spremenljivk
 \end{defn}
 
 Praviloma vzor"cna statistika ocenjuje vrednost nekega parametra $\xi$. Tedaj je y cenilka za parameter. \\
-y je odvisna od n, zato pi"semo tudi $y_n = g(X_1 \cdots X_n)$. \\
+y je odvisna od n, zato pi"semo tudi $y_n = g(X_1 \dots X_n)$. \\
 
 \begin{defn}[Nepristranskost, doslednost]
     "Ce je $E(Y) = \xi$, je $Y$ nepristranska cenilka za parameter $xi$ \\
@@ -3396,9 +3423,9 @@ y je odvisna od n, zato pi"semo tudi $y_n = g(X_1 \cdots X_n)$. \\
 
 \begin{defn}[Vzor"cno povprecje]
     Naj bo $X$ slu"cajna spremenljivka na populaciji, ki ima matemati"cno upanje $E(X) = \mu$ in standardno
-    deviacijo $\sigma(X) = \sigma$. Naj bo $(X_1 \cdots X_n)$ vzorec. Definirajmo vzor"cno povprecje
+    deviacijo $\sigma(X) = \sigma$. Naj bo $(X_1 \dots X_n)$ vzorec. Definirajmo vzor"cno povprecje
     \begin{equation*}
-        \overline{X} = \frac{X_1 + \cdots + X_n}{n}
+        \overline{X} = \frac{X_1 + \dots + X_n}{n}
     \end{equation*}
     ki je vzor"cna statistika. \\
 \end{defn}
@@ -3406,7 +3433,7 @@ y je odvisna od n, zato pi"semo tudi $y_n = g(X_1 \cdots X_n)$. \\
 Je cenilka za $\overline{X}$, ki je nepristranska:
 
 \begin{equation*}
-    E(\overline{X}) = \frac{1}{n} (E(X_1) + \cdots + E(X_n)) = \frac{1}{n} n \cdot \mu = \mu
+    E(\overline{X}) = \frac{1}{n} (E(X_1) + \dots + E(X_n)) = \frac{1}{n} n \cdot \mu = \mu
 \end{equation*}
 
 Po "SZV"S (izreku "Cebi"seva) je to dosledna cenilka za $\mu$. \\
@@ -3479,7 +3506,7 @@ Kako sta porazdeljeni, "ce je $X \sim N(\mu, \sigma)$? \\
 Raje vzemimo vzor"cno statistiko: $\chi^2 := \frac{1}{\sigma^2} \sum_{i=1}^n (x_i - \overline{x})^2 =
 \frac{n}{\sigma^2} s_0^2 = \frac{n-1}{\sigma^2} s^2$ \\
 Ni lahko izra"cunati, da je $\chi^2 \sim \chi^2(n-1)$ \\
-Ideja izpeljave je $\chi^2 = Z_1^2 + \cdots + Z_{n-1}^2$ za $Z_i \sim N(0,1)$ in med seboj neodvisne.
+Ideja izpeljave je $\chi^2 = Z_1^2 + \dots + Z_{n-1}^2$ za $Z_i \sim N(0,1)$ in med seboj neodvisne.
 Potem uporabimo trditev iz verjetnosti: $Z_i^2 \sim \chi^2(1)$, torej $E(\chi^2) = n-1$, $D(\chi^2) = 2(n-1)$.
 Od tod sledi
 \begin{equation*}
@@ -3521,7 +3548,7 @@ Leta 1908 jo je odkril W.S. Gosset, statistik v pivovarni guiness v Dublinu. Stu
 \subsubsection*{}
 
 Pri normalni porazdelitvi slu"cajne spremenljivke $X \sim N(\mu, \sigma)$ je vzor"cno povpre"cje  $\overline{X}$
-porazdeljeno $N(\mu, \frac{\sigma}{\sqrt{n}}), \overline{X} = \frac{X_1 + \cdots + X_n}{n}$, torej je
+porazdeljeno $N(\mu, \frac{\sigma}{\sqrt{n}}), \overline{X} = \frac{X_1 + \dots + X_n}{n}$, torej je
 $Z := \frac{\overline{X} - \mu}{\frac{\sigma}{\sqrt{n}}} = \frac{\overline{X} - \mu}{\sigma} \sqrt{n}$
 porazdeljena N(0,1). "Ce poznamo $\sigma$, potem bomo znali povedati, kako dobra ocena za $\mu$ je $\overline{X}$
 ($\to$ intervali zaupanja). \\
@@ -3545,23 +3572,23 @@ izra"cunamo, da ima $T$ Studentovo porazdelitev z $n-1$ prostorskimi stopnjami:
 \subsubsection{Metoda momentov}
 
 \begin{defn}[Vzro"cni moment]
-    Naj bo $(X_1, X_2 \cdots X_n)$ vzorec velikosti n, torej $X_1 \cdots X_n$ neodvisne slu"cajne spremenljivke,
+    Naj bo $(X_1, X_2 \dots X_n)$ vzorec velikosti n, torej $X_1 \dots X_n$ neodvisne slu"cajne spremenljivke,
     porazdeljene kot slu"cajna spremenljivka $X$. Za"cetni moment reda $k$ je $z_k = E(X^k)$. Definiramo k-ti
-    vzro"cni moment $z_k := \frac{X_1^k + \cdots + X_n^k}{n}$. Le ta je nepristranska cenilka za $z_k:
-    E(Z_k) = \frac{1}{n} (E(X_1^k) + \cdots + E(X_n^k)) = z_k$. $Z_k$ je tudi dosledna cenilka za $z_k$.
+    vzro"cni moment $z_k := \frac{X_1^k + \dots + X_n^k}{n}$. Le ta je nepristranska cenilka za $z_k:
+    E(Z_k) = \frac{1}{n} (E(X_1^k) + \dots + E(X_n^k)) = z_k$. $Z_k$ je tudi dosledna cenilka za $z_k$.
 \end{defn}
 
-Naj bo gostota slu"cajne spremenljivke $X$ odvisna od parametrov $\xi_1 \cdots \xi_n: p(X; \xi_1 \cdots \xi_m)$.
-Naj odstajajo za"cetni momenti $z_k = E(X^k) = \int_{-\infty}^{\infty} p(x; \xi_1 \cdots \xi_n) dx, k = 1, 2 \cdots m$.
-Denimo, da iz teh m ena"cb lahko izrazimo parametre: $\xi_k = \phi_k(z_1, z_2 \cdots z_m), k = 1 \cdots m$ za neko
-funkcijo $\phi_k$. Potem je $c_k := \phi_k(z_1 \cdots z_m)$ cenilka za parameter $\xi_k, k = 1 \cdots n$
+Naj bo gostota slu"cajne spremenljivke $X$ odvisna od parametrov $\xi_1 \dots \xi_n: p(X; \xi_1 \dots \xi_m)$.
+Naj odstajajo za"cetni momenti $z_k = E(X^k) = \int_{-\infty}^{\infty} p(x; \xi_1 \dots \xi_n) dx, k = 1, 2 \dots m$.
+Denimo, da iz teh m ena"cb lahko izrazimo parametre: $\xi_k = \phi_k(z_1, z_2 \dots z_m), k = 1 \dots m$ za neko
+funkcijo $\phi_k$. Potem je $c_k := \phi_k(z_1 \dots z_m)$ cenilka za parameter $\xi_k, k = 1 \dots n$
 
 \begin{ex}
     Naj bo $X \sim N(\mu, \sigma)$, kjer sta $\mu$ in $\sigma$ neznana parametra. Potem je $z_1 = E(X) = \mu,
     z_2 = E(X^2) = E(X^2) - (E(X))^2 + (E(X))^2 = D(X) + (E(X))^2 = \sigma^2 + \mu^2$ (m = 2) \\
     Iz teh dveh ena"cb izrazimo parametra $\mu$ in $\sigma$: $\mu = z_1, \sigma^2 = z_2 - \mu^2 = z_2 - z_1^2$. \\
-    Cenilka za $\mu$ je $Z_1 = \overline{X} = \frac{X_1 + \cdots + X_n}{n}$, cenilka za $\sigma^2$ je
-    $Z_2 - Z_1^2 = \frac{X_1^2 + \cdots + X_n^2}{n} - \overline{X}^2$. To je enako
+    Cenilka za $\mu$ je $Z_1 = \overline{X} = \frac{X_1 + \dots + X_n}{n}$, cenilka za $\sigma^2$ je
+    $Z_2 - Z_1^2 = \frac{X_1^2 + \dots + X_n^2}{n} - \overline{X}^2$. To je enako
     \begin{align*}
         &S_0^2 = \frac{1}{n} \sum_{i=1}^n (X_i - \overline{X})^2 = \\
         &= \frac{1}{n} \sum_{i=1}^n (X_i^2 - 2 X_i \overline{X} + \overline{X}^2) = \\
@@ -3617,13 +3644,13 @@ funkcijo $\phi_k$. Potem je $c_k := \phi_k(z_1 \cdots z_m)$ cenilka za parameter
     Naj bo gostota slu"cajne spremenljivke $X$ odvisna od parametra $\xi$, torej $p(x; \xi)$. Funkcija
     zanesljivosti (likelihood function) je
     \begin{equation*}
-        L(x_1 \cdots x_n; \xi) = p(x_1; \xi) \cdot \cdots \cdot p(x_n; \xi)
+        L(x_1 \dots x_n; \xi) = p(x_1; \xi) \cdot \dots \cdot p(x_n; \xi)
     \end{equation*}
 \end{defn}
 
-Pri danih $x_1 \cdots x_n$ izberimo tak $\xi_{max}$, da ima $L$ tam maksimum. Ta vrednost parametra je odvisna od
-$x_1 \cdots x_n$, torej $\xi_{max} = \phi(x_1, x_2 \cdots x_n)$ za neko funkcijo $\phi$. Tako dobimo cenilko
-$c := \phi(x_1 \cdots x_n)$ za parameter $\xi$
+Pri danih $x_1 \dots x_n$ izberimo tak $\xi_{max}$, da ima $L$ tam maksimum. Ta vrednost parametra je odvisna od
+$x_1 \dots x_n$, torej $\xi_{max} = \phi(x_1, x_2 \dots x_n)$ za neko funkcijo $\phi$. Tako dobimo cenilko
+$c := \phi(x_1 \dots x_n)$ za parameter $\xi$
 
 \begin{ex}
     \begin{equation*}
@@ -3634,22 +3661,22 @@ $c := \phi(x_1 \cdots x_n)$ za parameter $\xi$
     \end{equation*}
     $\lambda$ je neznan parameter, ki ga ocenjujemo
     \begin{equation*}
-        L(x_1 \cdots x_n; \lambda) = \lambda e^{-\lambda x_1} \cdot \cdots \cdot \lambda e^{-\lambda x_n} =
-        \lambda^n e^{-(x_1 + \cdots + x_n)}
+        L(x_1 \dots x_n; \lambda) = \lambda e^{-\lambda x_1} \cdot \dots \cdot \lambda e^{-\lambda x_n} =
+        \lambda^n e^{-(x_1 + \dots + x_n)}
     \end{equation*}
     Poiskati moramo $\lambda_{max}$, pri katerem je dose"zen maksimum funkcije $L$ (oz. maksimum funkcije $\ln(L)$)
     \begin{align*}
-        &\ln L(x_1 \cdots x_n; \lambda) = n \cdot \ln \lambda - \lambda \sum_{i=1}^{n} x_i \\
-        &\frac{\partial}{\partial \lambda} (\ln L(x_1 \cdots x_n; \lambda)) = \frac{n}{\lambda} -
+        &\ln L(x_1 \dots x_n; \lambda) = n \cdot \ln \lambda - \lambda \sum_{i=1}^{n} x_i \\
+        &\frac{\partial}{\partial \lambda} (\ln L(x_1 \dots x_n; \lambda)) = \frac{n}{\lambda} -
             \sum_{i=1}^{n} x_i = 0 \\
         &\quad \implies \lambda_{max} = \frac{n}{\sum_{i=1}^n x_i} = \frac{1}{\overline{x}}
     \end{align*}
-    Ker je $\frac{\partial^2}{\partial \lambda^2} \ln L(x_1 \cdots x_n; \lambda) = -\frac{n}{\lambda^2} < 0$,
+    Ker je $\frac{\partial^2}{\partial \lambda^2} \ln L(x_1 \dots x_n; \lambda) = -\frac{n}{\lambda^2} < 0$,
     je v $\lambda_{max}$ maksimum. \\
     Cenilka za $\lambda$ je $c := \frac{1}{\overline{X}}$ \\
     Isto cenilko dobimo z metodo momentov:
     \begin{align*}
-        &z_1 = E(X) = \frac{0}{\infty} x \lambda e^{-\lambda x} dx = \stackrel{\text{D.N.}}{\cdots} \frac{1}{\lambda} &
+        &z_1 = E(X) = \frac{0}{\infty} x \lambda e^{-\lambda x} dx = \stackrel{\text{D.N.}}{\dots} \frac{1}{\lambda} &
         &\implies \lambda = \frac{1}{z_1} = \frac{1}{\overline{x}}
     \end{align*}
     cenilka za $\lambda$ je $c := \frac{1}{\overline{X}}$
@@ -3658,19 +3685,19 @@ $c := \phi(x_1 \cdots x_n)$ za parameter $\xi$
 \begin{ex}
     $X \sim N(\mu, \sigma)$, $\mu, \sigma$ neznana parametra, ki ju ocenjujemo
     \begin{align*}
-        &L(x_1 \cdots x_n; \mu, \sigma) := \frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2} (\frac{x_1-\mu}{\sigma})^2} \cdot
-            \cdots \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2} (\frac{x_n-\mu}{\sigma})^2} = \\
+        &L(x_1 \dots x_n; \mu, \sigma) := \frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2} (\frac{x_1-\mu}{\sigma})^2} \cdot
+            \dots \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2} (\frac{x_n-\mu}{\sigma})^2} = \\
         &= \frac{1}{(2\pi)^{\frac{n}{2}}} \cdot \frac{1}{\sigma^n} e^{-\frac{1}{2 \sigma^2}
-            (x_1 - \mu)^2 + \cdots + (x_n - \mu)^2} \\
-        &\ln L = -\frac{n}{2} \ln 2\pi - n \cdot \ln \sigma - \frac{1}{2 \sigma^2} ((x_1 - \mu)^2 + \cdots +
+            (x_1 - \mu)^2 + \dots + (x_n - \mu)^2} \\
+        &\ln L = -\frac{n}{2} \ln 2\pi - n \cdot \ln \sigma - \frac{1}{2 \sigma^2} ((x_1 - \mu)^2 + \dots +
             (x_n - \mu)^2) \\
-        &\frac{\partial}{\partial \mu} \ln L = -\frac{1}{2 \sigma^2} (2(x_1 - \mu)(-1) + \cdots +
-            2(x_1 - \mu)(-1)) = \frac{1}{\sigma^2} (x_1 - \mu + \cdots + x_n - \mu) = 0 \\
-        &x_1 + \cdots + x_n - n\mu = 0 \implies \mu = \frac{x_1 + \cdots + x_n}{n} = \overline{x} \\
+        &\frac{\partial}{\partial \mu} \ln L = -\frac{1}{2 \sigma^2} (2(x_1 - \mu)(-1) + \dots +
+            2(x_1 - \mu)(-1)) = \frac{1}{\sigma^2} (x_1 - \mu + \dots + x_n - \mu) = 0 \\
+        &x_1 + \dots + x_n - n\mu = 0 \implies \mu = \frac{x_1 + \dots + x_n}{n} = \overline{x} \\
         &\frac{\partial}{\partial \sigma} \ln L = -\frac{n}{\sigma} + \frac{1}{\sigma^3}
-            ((x_1 - \mu)^2 + \cdots + (x_n - \mu)^2) = 0 \\
-        &\implies \sigma^2 = \frac{1}{n} ((x_1 - \mu)^2 + \cdots + (x_n - \mu)^2) = \\
-        &= \frac{1}{n} ((x_1 - \overline{x})^2 + \cdots + (x_n - \overline{x})^2) = s_0^2
+            ((x_1 - \mu)^2 + \dots + (x_n - \mu)^2) = 0 \\
+        &\implies \sigma^2 = \frac{1}{n} ((x_1 - \mu)^2 + \dots + (x_n - \mu)^2) = \\
+        &= \frac{1}{n} ((x_1 - \overline{x})^2 + \dots + (x_n - \overline{x})^2) = s_0^2
     \end{align*}
     Cenilka za $\mu$ je $\overline{X}$, cenilka za $\sigma^2$ je $S_0^2 =
     \frac{1}{n} \sum_{i=1}^{n} (X_i - \overline{X})^2$
@@ -3680,22 +3707,22 @@ $c := \phi(x_1 \cdots x_n)$ za parameter $\xi$
     $Bin(1,p) = Ber(p), X: \begin{pmatrix}0 & 1 \\ q & p\end{pmatrix} q = 1-p, p$ neznan parameter
     \begin{align*}
         &P(X=x) = p^x (1-p)^{1-x} x \in \{0, 1\} \\
-        &L(x_1 \cdots x_n; p) = p^{x_1} (1-p)^{1-x_1} \cdot \cdots \cdot p^{x_n} (1-p)^{1-x_n} = \\
-        &= p^{x_1 + \cdots + x_n} (1-p)^{n - (x_1 + \cdots + x_n)} \\
-        &x := x_1 + \cdots + x_n \implies L(x_1 \cdots x_n; p) = p^x (1-p)^{1-x} x \in \{0, 1 \cdots n\} \\
+        &L(x_1 \dots x_n; p) = p^{x_1} (1-p)^{1-x_1} \cdot \dots \cdot p^{x_n} (1-p)^{1-x_n} = \\
+        &= p^{x_1 + \dots + x_n} (1-p)^{n - (x_1 + \dots + x_n)} \\
+        &x := x_1 + \dots + x_n \implies L(x_1 \dots x_n; p) = p^x (1-p)^{1-x} x \in \{0, 1 \dots n\} \\
         &\ln L = x \ln p + (n-x) \ln(1-p) \\
         &\frac{\partial}{\partial p} \ln L = \frac{x}{p} - \frac{n-x}{1-p} = 0 \\
         &\implies x(1-p) = (n-x)p \implies x - xp = np - xp \implies p = \frac{x}{n} = \overline{x}
     \end{align*}
-    Cenilka za $p$ je $P := \overline{X} = \frac{X_1 + \cdots + X_n}{n}$ \\
+    Cenilka za $p$ je $P := \overline{X} = \frac{X_1 + \dots + X_n}{n}$ \\
     Ker je
     \begin{equation*}
-        E(P) = \frac{1}{n} (E(X_1) + \cdots + E(X_n)) = p
+        E(P) = \frac{1}{n} (E(X_1) + \dots + E(X_n)) = p
     \end{equation*}
     je $P$ nepristranska cenilka \\
     Ker je
     \begin{equation*}
-        D(P) = \frac{1}{n^2} (D(X_1 + \cdots + D(X_n))) = \frac{1}{n^2} n D(X_1) =
+        D(P) = \frac{1}{n^2} (D(X_1 + \dots + D(X_n))) = \frac{1}{n^2} n D(X_1) =
         \frac{1}{n} D(X_1) \stackrel{n \to \infty}{\to} 0
     \end{equation*}
     po trditvi sledi, da je $\overline{X}$ dosledna cenilka za $P$
@@ -3705,7 +3732,7 @@ $c := \phi(x_1 \cdots x_n)$ za parameter $\xi$
 
 \begin{defn}[Interval zaupanja]
     Naj bo gostota slu"cajne spremenljivke $X$ odvisna od parametra $\xi$. Interval $[A,B]$ (odvisen le od
-    $(x_1 \cdots x_n)$ in ne do $\xi$) je interval zaupanja za parameter $\xi$, pri stopnji tveganja
+    $(x_1 \dots x_n)$ in ne do $\xi$) je interval zaupanja za parameter $\xi$, pri stopnji tveganja
     $\alpha \in (0,1)$, "ce je
     \begin{equation*}
         P(\xi \in [A,B]) = 1-\alpha \text{ oz. } P(\xi \notin [A,B]) = \alpha
@@ -3828,7 +3855,7 @@ $A$ in $B$ sta vzor"cni statistiki, $1 - \alpha$ je stopnja zaupanja
         0 & 1 \\
         q & p
     \end{pmatrix}, q = 1-p, p$ neznan parameter, ki ga ocenjujemo \\
-    $(x_1 \cdots x_n)$ vzorec. Potem je $S_n = X_1 + \cdots + X_n \sim Bin(n,p)$ in $\overline{X} = \frac{S_n}{n}$
+    $(x_1 \dots x_n)$ vzorec. Potem je $S_n = X_1 + \dots + X_n \sim Bin(n,p)$ in $\overline{X} = \frac{S_n}{n}$
     je nepristranska in dosledna cenilka za $p$. Po CLI (Laplaceovi formuli) je pri velikih n
     $Z := \frac{S_n - np}{\sqrt{npq}} \sim N(0,1)$ oz. $Z = \frac{\overline{X} - p}{\sqrt{pq}} \sqrt{n} \sim N(0,1)$
     oz. $\overline{X} \sim N(p, \sqrt{\frac{pq}{n}})$ \\
@@ -3996,7 +4023,7 @@ $K_{\alpha} = (-\infty, -t_{\frac{\alpha}{2}}] \cup [t_{\frac{\alpha}{2}}, \inft
 
 \begin{ex}
     V klini"cnem poskusu testirajo zdravila za zni"zevanje krvnega tlaka so 10 bolnikom izmerili sistoli"cno krvni
-    tlak pred in po zdravljenju. Razlike \"pred-po\" so $-8,0,2,4,9,14,19,22,32,35 mmHg$. Predpostavimo normalni model
+    tlak pred in po zdravljenju. Razlike ``pred-po'' so $-8,0,2,4,9,14,19,22,32,35 \; mmHg$. Predpostavimo normalni model
     $N(\mu, \sigma)$ z neznanima $\mu$ in $\sigma$. Testiramo hipotezo $H_0(\mu = 0) : H_1(\mu > 0)$. Naredimo
     test zna"cilnosti (parametri"cni test zna"cilnosti)
     
@@ -4111,10 +4138,10 @@ Poleg populacijskega povpre"cja $\mu$ lahko testiramo tudi druge koli"cine:
 (Pearson) \\
 Preizkus domneve o tipu porazdelitvenega zakona, torej $H_0(F = F_0) : H_1(F \neq F_0)$, kjer je $F_0$ dana
 porazdelitvena funkcija. Zalogo vrednosti slu"cajne spremenljivke $X$ razdelimo na $r$ razredov (disjunktno)
-$S_1, S_2 \cdots S_r$, da je
+$S_1, S_2 \dots S_r$, da je
 
 \begin{equation*}
-    p_k = P(X \in S_k \mid H_k) > 0 \; \forall k = 1, 2 \cdots r
+    p_k = P(X \in S_k \mid H_k) > 0 \; \forall k = 1, 2 \dots r
 \end{equation*}
 
 Potem je $\sum_{k=1}^{r} p_k = 1, \sum_{k=1}^{r} N_k = n$ ter $N_k \sim Bin(n, p_k)$ in $E(N_k) = p \cdot n_k$
@@ -4125,7 +4152,7 @@ porazdelitev $\chi^2(r-1)$ \\
 $K_{\alpha} = [c_{\alpha}, \infty), P(\chi^2 > c_{\alpha}) = \alpha$
 
 \begin{ex}
-    Preizku"samo \"po"stenost\" kocke \\
+    Preizku"samo ``po"stenost'' kocke \\
     v $n=120$ dobimo za "stevilo pik
 
     \begin{center}
@@ -4139,7 +4166,7 @@ $K_{\alpha} = [c_{\alpha}, \infty), P(\chi^2 > c_{\alpha}) = \alpha$
     $r = 6, p_k = \frac{1}{6}$
 
     \begin{equation*}
-        \chi^2 = \frac{(20-20)^2}{20} + \frac{(22-20)^2}{20} + \cdots + \frac{(24-20)^2}{20} = \frac{34}{20} = 1.7
+        \chi^2 = \frac{(20-20)^2}{20} + \frac{(22-20)^2}{20} + \dots + \frac{(24-20)^2}{20} = \frac{34}{20} = 1.7
     \end{equation*}
 
     Pri $\alpha = 0.05$ in 5 prostorskih stopnjah je $c_{\alpha} = 11.1$ \\
@@ -4151,18 +4178,18 @@ $K_{\alpha} = [c_{\alpha}, \infty), P(\chi^2 > c_{\alpha}) = \alpha$
 
     \begin{center}
         \begin{tabular}{c c c c c c c c}
-            "stevilo potresov & 0 & 1 & 2 & 3 & 4 & 5 & $\cdots$ \\
-            "stevilo let s toliko potresiv & 15 & 13 & 4 & 1 & 0 & 0 & $\cdots$
+            "stevilo potresov & 0 & 1 & 2 & 3 & 4 & 5 & $\dots$ \\
+            "stevilo let s toliko potresiv & 15 & 13 & 4 & 1 & 0 & 0 & $\dots$
         \end{tabular}
     \end{center}
 
-    Hipoteza $H_0:$ podatki so porazdeljeni po $Poisson(1.5): p_k = e^{-1.5} \frac{(1.5)^k}{k!} k = 0, 1, 2 \cdots$ \\
+    Hipoteza $H_0:$ podatki so porazdeljeni po $Poisson(1.5): p_k = e^{-1.5} \frac{(1.5)^k}{k!} k = 0, 1, 2 \dots$ \\
     Pri"cakovane frekvence so
 
     \begin{center}
         \begin{tabular}{c c c c c c c}
-            "stevilo potresov & 0 & 1 & 2 & 3 & 4 & $\cdots$ \\
-            "stevilo let s toliko potresiv & 7.4 & 11.0 & 8.3 & 4.1 & 1.6 & $\cdots$
+            "stevilo potresov & 0 & 1 & 2 & 3 & 4 & $\dots$ \\
+            "stevilo let s toliko potresiv & 7.4 & 11.0 & 8.3 & 4.1 & 1.6 & $\dots$
         \end{tabular}
     \end{center}
 
@@ -4206,7 +4233,7 @@ $K_{\alpha} = [c_{\alpha}, \infty), P(\chi^2 > c_{\alpha}) = \alpha$
     Torej
 
     \begin{equation*}
-        p_k(\hat{\lambda}) = e^{-0.73} \frac{(0.73)^k}{k!} \; k = 0, 1 \cdots
+        p_k(\hat{\lambda}) = e^{-0.73} \frac{(0.73)^k}{k!} \; k = 0, 1 \dots
     \end{equation*}
 
     \begin{center}
@@ -4244,10 +4271,10 @@ $K_{\alpha} = [c_{\alpha}, \infty), P(\chi^2 > c_{\alpha}) = \alpha$
     pozitiven $\sigma$ oz. $Y \sim N(a+bx, \sigma)$
 \end{defn}
 
-Za razli"cne vrednosti $x_1, x_2 \cdots x_n$ dobimo slu"cajni vektor $(y_1, y_2 \cdots y_n)$, kjer je $y_k \sim N(a + bx_k, \sigma)$ \\
+Za razli"cne vrednosti $x_1, x_2 \dots x_n$ dobimo slu"cajni vektor $(y_1, y_2 \dots y_n)$, kjer je $y_k \sim N(a + bx_k, \sigma)$ \\
 $y = a + bx$ je regresijska premica \\
 % skica
-$y_k$ je vrednost za $Y_k, k = 1, 2 \cdots n$ \\
+$y_k$ je vrednost za $Y_k, k = 1, 2 \dots n$ \\
 Radi bi ocenili $a$ in $b$ \\
 Z metodo maksimalne zanesljivosti se dobi cenilki
 
@@ -4308,8 +4335,8 @@ in
     \begin{center}
         \begin{tabular}{c | c c c c c c}
             \hline
-            oddaljenost [mega Parsek] & 0.032 & 0.034 & 0.214 & $\cdots$ & 2.0 & 2.0 \\
-            hitrost oddaljevanja [km/s] & 170 & 290 & -130 & $\cdots$ & 800 & 1090
+            oddaljenost [mega Parsek] & 0.032 & 0.034 & 0.214 & $\dots$ & 2.0 & 2.0 \\
+            hitrost oddaljevanja [km/s] & 170 & 290 & -130 & $\dots$ & 800 & 1090
         \end{tabular}
     \end{center}
 
@@ -4401,7 +4428,7 @@ Ni"celna hipoteza $H_0$: dogodka $A$ in $B$ sta neodvisna \\
 "Ce sta $p$ in $q$ znana parametra (obi"cajno nista), uporabimo test $\chi^2$ za $r=4$:
 
 \begin{equation*}
-    \chi^2 = \frac{(N_{A \cap B} - npq)^2}{npq} + \cdots + \frac{(N_{A^C \cap B^C} - n(1-p)(1-q))^2}{n(1-p)(1-q)}
+    \chi^2 = \frac{(N_{A \cap B} - npq)^2}{npq} + \dots + \frac{(N_{A^C \cap B^C} - n(1-p)(1-q))^2}{n(1-p)(1-q)}
 \end{equation*}
 
 Kjer je $N_{A \cap B}$ opa"zena frekvenca dogodka $A \cap B$ in $n$ velikost vzorca \\
@@ -4435,7 +4462,7 @@ Cenilki za $p$ in $q$ sta $\hat{p} := \frac{X_{11} + X_{12}}{n}, \; \hat{q} := \
 Statistika $\chi^2$ je potem
 
 \begin{equation*}
-    \chi^2 = \frac{(X_{11} - n \hat{p} \hat{q})^2}{n \hat{p} \hat{q}} + \cdots +
+    \chi^2 = \frac{(X_{11} - n \hat{p} \hat{q})^2}{n \hat{p} \hat{q}} + \dots +
         \frac{(X_{22} - n (1-\hat{p}) (1-\hat{q}))^2}{n (1-\hat{p}) (1-\hat{q})}
 \end{equation*}
 
@@ -4458,7 +4485,7 @@ Izka"ze se, da je $\chi^2 \sim \chi^2(1)$ za velik $n$
     Testirajno pri stopnji zna"cilnosti $\alpha = 0.05$
 
     \begin{equation*}
-        n = 4526, X_{11} = 1385 \cdots
+        n = 4526, X_{11} = 1385 \dots
     \end{equation*}
 
     \begin{equation*}
@@ -4481,7 +4508,7 @@ Izka"ze se, da je $\chi^2 \sim \chi^2(1)$ za velik $n$
     \end{equation*}
 
     \begin{equation*}
-        \chi^2 = \frac{(1385 - 903)^2}{903} + \cdots + \frac{(1702 - 1220)^2}{1220} = 957.1
+        \chi^2 = \frac{(1385 - 903)^2}{903} + \dots + \frac{(1702 - 1220)^2}{1220} = 957.1
     \end{equation*}
 
     Pri $\alpha = 0.05$ je $c_{\alpha} = 3.84$ \\
@@ -4493,22 +4520,22 @@ Izka"ze se, da je $\chi^2 \sim \chi^2(1)$ za velik $n$
 \end{ex}
 
 Opisani test lahko posplo"simo na ve"cje kontingen"cne tabele: \\
-Denimo, da 1. karakteristika dolo"ca $r$ kategorij $A_1, A_2 \cdots A_r$, 2. pa $s$ kategorij $B_1, B_2 \cdots B_s$. \\
-Naj bo $p_i = P(A_i) i = 1, 2 \cdots r$ in $q_j = P(B_j) j = 1, 2 \cdots s \quad (\sum_{i=1}^{r} p_i = 1, \sum_{j=1}^{s} q_j = 1)$ \\
+Denimo, da 1. karakteristika dolo"ca $r$ kategorij $A_1, A_2 \dots A_r$, 2. pa $s$ kategorij $B_1, B_2 \dots B_s$. \\
+Naj bo $p_i = P(A_i) i = 1, 2 \dots r$ in $q_j = P(B_j) j = 1, 2 \dots s \quad (\sum_{i=1}^{r} p_i = 1, \sum_{j=1}^{s} q_j = 1)$ \\
 Ni"celna hipoteza $H_0$: $A_i$ in $B_j$ sta neodvisna za vsak $i$ in vsak $j$ \\
 Vzorec velikosti $n$ \\
 Opa"zene frekvence:
 
 \begin{center}
     \begin{tabular}{c | c c c c | c} 
-        & $B_1$ & $B_2$ & $\cdots$ & $B_r$ & \\
+        & $B_1$ & $B_2$ & $\dots$ & $B_r$ & \\
         \hline
-        $A_1$ & $X_{11}$ & $X_{12}$ & $\cdots$ & $X_{1s}$ & $n \cdot \hat{p_1}$ \\ 
-        $A_2$ & $X_{21}$ & $X_{22}$ & $\cdots$ & $X_{2s}$ & $n \cdot \hat{p_2}$ \\ 
+        $A_1$ & $X_{11}$ & $X_{12}$ & $\dots$ & $X_{1s}$ & $n \cdot \hat{p_1}$ \\ 
+        $A_2$ & $X_{21}$ & $X_{22}$ & $\dots$ & $X_{2s}$ & $n \cdot \hat{p_2}$ \\ 
         $\vdots$ & $\vdots$ & & & & $\vdots$ \\ 
-        $A_r$ & $X_{r1}$ & $X_{r2}$ & $\cdots$ & $X_{rs}$ & $n \cdot \hat{p_r}$ \\
+        $A_r$ & $X_{r1}$ & $X_{r2}$ & $\dots$ & $X_{rs}$ & $n \cdot \hat{p_r}$ \\
         \hline
-        & $n \cdot \hat{q_1}$ & $n \cdot \hat{q_2}$ & $\cdots$ & $n \cdot \hat{q_s}$ & $n$
+        & $n \cdot \hat{q_1}$ & $n \cdot \hat{q_2}$ & $\dots$ & $n \cdot \hat{q_s}$ & $n$
     \end{tabular}
 \end{center}
 
@@ -4559,7 +4586,7 @@ Izka"ze se, da je pri velikih $n$ $\chi^2$ pribli"no porazdeljena $\chi^2((r-1)(
     \end{center}
 
     \begin{equation*}
-        \chi^2 = \frac{(320 - 325)^2}{325} + \cdots + \frac{(65 - 75.5)^2}{75.5} = 3.54
+        \chi^2 = \frac{(320 - 325)^2}{325} + \dots + \frac{(65 - 75.5)^2}{75.5} = 3.54
     \end{equation*}
 
     $\chi^2(3), \alpha = 0.05$ \\
@@ -4588,7 +4615,7 @@ Oglejmo si primer, ko je $r=2$
 \end{center}
 
 $p = P($prvi razred$)$ \\
-$N \cdots$ "stevilo vrednosti vzorca, ki padejo v 1. razred $S_1$ \\
+$N \dots$ "stevilo vrednosti vzorca, ki padejo v 1. razred $S_1$ \\
 Potem je
 
 \begin{align*}
@@ -4608,7 +4635,7 @@ Iz verjetnostnega dela vemo, da je kvadrat porazdelitve $N(0,1)$ porazdeljen po 
 $\chi^2(1)$ pri velikem $n$. \\
 V splo"snem primeru (pri poljubnem $r \in \N$) se $\chi^2$ zapi"se kotvsota $(r-1)$ kvadratov slu"cajnih spremenljivk, ki so porazdeljene po
 $N(0,1)$ in neodvisne. Ker za porazdelitev $\chi^2$ velja $\chi^2(m) + \chi^2(n) \sim \chi^2(m+n)$ (za neodvisne slu"cajne
-spremenljivke), je potem $\chi^2$ porazdeljena po $\chi^2(1 + 1 + \cdots + 1) = \chi^2(r-1)$
+spremenljivke), je potem $\chi^2$ porazdeljena po $\chi^2(1 + 1 + \dots + 1) = \chi^2(r-1)$
 
 \subsection{Test za neznan dele"z}
 
@@ -4659,7 +4686,7 @@ $K_{\alpha} = (-\infty, -z_{\frac{\alpha}{2}}] \cup [z_{\frac{\alpha}{2}}, \inft
 Za smiselnost testa je pomembno hipoteze formulirati pred analizo podatkov
 
 \begin{ex}
-    Pri neki loteriji izmed "stevil $0, 1 \cdots 9$ "zrebajo po eno "stevilo vsak dan. Pri pregledu podatkov za dalj"se "casovno odbobje
+    Pri neki loteriji izmed "stevil $0, 1 \dots 9$ "zrebajo po eno "stevilo vsak dan. Pri pregledu podatkov za dalj"se "casovno odbobje
     opaimo, da se "stevilo $7$ pojavi velikokrat ob sredah: izmed $150$ "stevil se $7$ pojavi $22$ krat. Testirajmo pri stopnji
     zna"cilnosti $\alpha = 0.05$ hipotezo, da se $7$ pojavi preve"ckrat ob sredah \\
     $H_0(p = 0.1) : H_1(p > 0.1)$ enostranski test \\
@@ -4686,22 +4713,22 @@ so parametri"cni testi. \\
 
 To je analog testa T \\
 Na populaciji imamo $2$ slu"cajni spremenljivki: $X$ s porazdelitveno funkcijo $F_X$ in $Y$ s porazdelitveno funkcijo $F_Y$. \\
-Obravnavamo $2$ slu"cajna vektorja $(X_1, X_2 \cdots X_m)$ in $(Y_1, Y_2 \cdots Y_n)$, kjer je $X_i$ in $Y_i$ dobimo na istem
+Obravnavamo $2$ slu"cajna vektorja $(X_1, X_2 \dots X_m)$ in $(Y_1, Y_2 \dots Y_n)$, kjer je $X_i$ in $Y_i$ dobimo na istem
 elementu v populaciji. \\
 Testiramo hipotezo $H_0(F_X = F_Y)$ \\
 Definiramo razlike
 
 \begin{equation*}
-    D_i := X_i - Y_i \; i = 1, 2 \cdots n
+    D_i := X_i - Y_i \; i = 1, 2 \dots n
 \end{equation*}
 
-Tukaj smo privzeli, da so vrednosti slu"cajnega vektorja $(D_1, D_2 \cdots D_n)$ razli"cne od $0$, sicer jih izpustimo in
-zmanj"samo $n$. "Ce velja $H_0(F_X = F_Y)$, potem je $P(D_i > 0) = \frac{1}{2} = P(D_i < 0)$ za vsak $i = 1, 2 \cdots n$ \\
+Tukaj smo privzeli, da so vrednosti slu"cajnega vektorja $(D_1, D_2 \dots D_n)$ razli"cne od $0$, sicer jih izpustimo in
+zmanj"samo $n$. "Ce velja $H_0(F_X = F_Y)$, potem je $P(D_i > 0) = \frac{1}{2} = P(D_i < 0)$ za vsak $i = 1, 2 \dots n$ \\
 Naj bo $S^+$ "stevilo pozitivnih $D_i$-jev, $S^-$ pa negativnih. Seveda je $S^+ + S^- = n$ \\
 Tedaj je $S^+ \sim Bin(n, \frac{1}{2})$, torej je
 
 \begin{equation*}
-    p_k = P(S^+ = k) = \binom{n}{k} 2^{-n} \; k = 0, 1 \cdots n
+    p_k = P(S^+ = k) = \binom{n}{k} 2^{-n} \; k = 0, 1 \dots n
 \end{equation*}
 
 Pri dani stopnji zna"cilnosti $\alpha > 0$ je kriti"cno obmo"cje 
@@ -4782,21 +4809,21 @@ Slabost tega testa je, da gledamo samo predznak razlike in ne velikost
 \subsubsection{Inverzijski test}
 
 Wilcoxon-Mann-Whitney, 1945 \\
-$X, Y$ naj imata porazdelitveni funkciji $F_X$ in $F_Y$. Vzorca $(X_1, X_2 \cdots X_m)$ in $(Y_1, Y_2 \cdots Y_n)$ sta neodvisna in
+$X, Y$ naj imata porazdelitveni funkciji $F_X$ in $F_Y$. Vzorca $(X_1, X_2 \dots X_m)$ in $(Y_1, Y_2 \dots Y_n)$ sta neodvisna in
 $m \leq n$ ("ce to ni res zamenjamo vlogi $X$ in $Y$). Testirajmo hipotezo $H_0(F_X = F_Y)$. Vzor"cne vrednosti vzorcev
-$X_1, X_2 \cdots X_m, Y_1, Y_2 \cdots Y_n$ razvrstimo po velikosti $z_1 \leq z_2 \leq \cdots \leq z_{m+n}$ (zapomnimo si ali je iz
+$X_1, X_2 \dots X_m, Y_1, Y_2 \dots Y_n$ razvrstimo po velikosti $z_1 \leq z_2 \leq \dots \leq z_{m+n}$ (zapomnimo si ali je iz
 $X$ ali $Y$). Pripi"simo mesta (Range)
 
 \begin{equation*}
     R_i = rang(x_i) = h, \text{ "ce je } z_k = x_i
 \end{equation*}
 
-Slu"cajna spremenljivka $r = R_1 + \cdots + R_m$ ima vrednosti med $\frac{m(m+1)}{2}$ in $mn + \frac{m(m+1)}{2}$ \\
-Vrednost $\frac{m(m+1)}{2}$ dobimo, "ce so $X_i$ na za"cetku zaporedja $\{z_m\}: 1 + 2 + \cdots + m = \frac{m(m+1)}{2}$ \\
-Najve"cjo vrednost pa dobimo, "ce so $X_i$ na koncu zaporedja: $Y_1, Y_2 \cdots Y_n, X_1, X_2 \cdots X_m$:
+Slu"cajna spremenljivka $r = R_1 + \dots + R_m$ ima vrednosti med $\frac{m(m+1)}{2}$ in $mn + \frac{m(m+1)}{2}$ \\
+Vrednost $\frac{m(m+1)}{2}$ dobimo, "ce so $X_i$ na za"cetku zaporedja $\{z_m\}: 1 + 2 + \dots + m = \frac{m(m+1)}{2}$ \\
+Najve"cjo vrednost pa dobimo, "ce so $X_i$ na koncu zaporedja: $Y_1, Y_2 \dots Y_n, X_1, X_2 \dots X_m$:
 
 \begin{equation*}
-    (n+1) + (n+2) + \cdots + (n+m) = n \cdot m + \frac{m(m+1)}{2}
+    (n+1) + (n+2) + \dots + (n+m) = n \cdot m + \frac{m(m+1)}{2}
 \end{equation*}
 
 "Ce velja $H_0(F_X = F_Y)$ in $m + n \geq 0, m, n \geq 4$, potem smemo privzeti, da je $V$ pribli"zno normalno porazdeljena
@@ -4819,8 +4846,8 @@ oz.
     Inverzija med $x_i$ in $y_j$ se pojavi, "ce ima $y_j$ manj"si rang kot $x_i$
 \end{defn}
 
-Zaporedje $x_1, x_2 \cdots x_m, y_1 \cdots y_n$ nima inverzije \\
-Zaporedje $x_1 \cdots x_{m-1}, y_1, x_m, y_2 \cdots y_n$ ima eno inverzijo \\
+Zaporedje $x_1, x_2 \dots x_m, y_1 \dots y_n$ nima inverzije \\
+Zaporedje $x_1 \dots x_{m-1}, y_1, x_m, y_2 \dots y_n$ ima eno inverzijo \\
 Naj bo $U$ "stevilo vseh inverzij \\
 Vsaka inverzija, ki jo naredimo, pove"ca "stevilo rangov $V$ za 1. Ker je pri
 
