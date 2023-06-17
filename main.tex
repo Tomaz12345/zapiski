@@ -125,7 +125,8 @@
 \maketitle
 
 
-\pagenumbering{roman}
+\pagenumbering{gobble}
+\newpage
 \tableofcontents
 \newpage
 \pagenumbering{arabic}
@@ -876,11 +877,21 @@ Lastnosti porazdelitvene funkcije $F_X \equiv F$:
 
             Drugo poka"zemo podobno (namesto $\cup$ je $\cap$)
         \end{proof}
-    \item $F$ je zvezna z desne, t.j. $F(X+) = F(X) \forall x \in \R$
+    \item $F$ je zvezna z desne, t.j. $F(X+) = F(X) \; \forall x \in \R$
         \begin{proof}
-            obstoj limite ni problemati"cen: $F(x+) = \lim_{x \to 0} F(x+h) = \lim_{n \to \infty} F(x_n)$, kjer
-            je $\{x_n\}_n \subseteq \R$ strogo nara"s"cajo"ce zaporedje z limito v $x$ \\
-            $\{(X \leq x_n)\}_{n \in \N}$ je padajo"ce zaporedje s presekom
+            obstoj limite ni problemati"cen:
+            
+            \begin{equation*}
+                F(x+) = \lim_{x \to 0} F(x+h) = \lim_{n \to \infty} F(x_n)
+            \end{equation*}
+            
+            kjer je $\{x_n\}_n \subseteq \R$ strogo padajo"ce zaporedje z limito v $x$ \\
+            
+            \begin{equation*}
+                \{(X \leq x_n)\}_{n \in \N}
+            \end{equation*}
+            
+            je padajo"ce zaporedje s presekom
 
             \begin{align*}
                 &\{(X \leq x_n)\} = \cap_{n=1}^{\infty} \{\omega \in \Omega: X(\omega) \leq x_n\} = \\
@@ -1018,7 +1029,7 @@ Ponavljamo poskus, v katerem opazujemo dogodek $A$ s $P(A) = p, q = 1-p$. $(X=k)
 v k-ti ponovitvi
 
 \begin{equation*}
-    p_k = P(A = k) = p \cdot q^{k-1} \; k = 1, 2 \dots
+    p_k = P(X = k) = p \cdot q^{k-1} \; k = 1, 2 \dots
 \end{equation*}
 
 \begin{equation*}
@@ -1105,7 +1116,7 @@ izvle"cenih kroglic binomsko porazdeljeno: $X \sim Bin(n, \frac{M}{N})$
     $p_X$, imenovana gostota porazdelitve, da je
 
     \begin{equation*}
-        F_X(x) = \int_{-\infty}^{\infty} p_X(t) dt \text{ za } \forall x \in \R
+        F_X(x) = \int_{-\infty}^{x} p_X(t) dt \text{ za } \forall x \in \R
     \end{equation*}
 \end{defn}
 
@@ -1684,7 +1695,7 @@ Torej sta $X$ in $Y$ neodvisni slu"cajni spremenljivki
     \begin{align*}
         &X \sim N(\mu_x, \sigma_x), Y \sim N(\mu_y, \sigma_y) \\
         &X \text{ in } Y \text{ sta neodvisni } \iff \rho = 0 \\
-        &p_{(X,Y)}(x,y) = \frac{1}{2\pi \sigma_x \sigma_y} e^{-\frac{1}{2} ((\frac{x-\mu_x}{\sigma_x})^2 +
+        &p_{(X,Y)}(x,y) = \frac{1}{2\pi \sigma_x \sigma_y} e^{-\frac{1}{2} ((\frac{x-\mu_x}{\sigma_x})^2 \cdot
             (\frac{y-\mu_y}{\sigma_y})^2)} = \\
         &= \frac{1}{\sqrt{2\pi} \sigma_x} e^{-\frac{1}{2} (\frac{x-\mu_x}{\sigma_x})^2} +
             \frac{1}{\sqrt{2\pi} \sigma_y} e^{-\frac{1}{2} (\frac{y-\mu_y}{\sigma_y})^2} = p_X(x) \cdot p_Y(y)
@@ -1945,7 +1956,7 @@ Torej $X + Y \sim \chi^n(m+n)$ \\
 Dokazali smo
 
 \begin{claim}
-    Naj bosta neodvisni slu"cajni spremenljivki $X \sim \chi^2(m), Y \sim \chi^2(n)$z. Potem je
+    Naj bosta neodvisni slu"cajni spremenljivki $X \sim \chi^2(m), Y \sim \chi^2(n)$. Potem je
     $X + Y \sim \chi^2(m+n)$
 \end{claim}
 
@@ -1963,7 +1974,7 @@ Dokazali smo
     + indukciji $Y \sim \chi^2(1 + \dots + 1) = \chi^2(n)$
 \end{proof}
 
-Oglejmo si transformacijo $f: \R^2 \to \R, (x,y) \to (u,v)$, ki preslika zvezno porazdeljen slu"cajni vektor $(x,y)$ v
+Oglejmo si transformacijo $f: \R^2 \to \R^2, (x,y) \to (u,v)$, ki preslika zvezno porazdeljen slu"cajni vektor $(x,y)$ v
 zvezno porazdeljen slu"cajni vektor $(u,v)$, torej $U = u(x,y), V = v(x,y)$ \\
 Ozna"cimo "se $A_{u,v} = (-\infty,u] \times (-\infty,v]$ \\
 Potem je
@@ -2263,11 +2274,11 @@ sicer je $(X_k=0)$. Po zgornjem je $E(X) = n \cdot p$. Do tega lahko pridemo tud
 \end{claim}
 
 \begin{proof}
-    (samo zvezem primer): \\
+    (samo zvezen primer): \\
     \begin{align*}
         E(X \cdot Y) &\stackrel{\text{trd}}{=} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} x \cdot y
             \cdot p_{(X,Y)}(x,y) dx dy \\
-            &\stackrel{\text{neodvisnost}}{=} \underset{\R}{\iint} x \cdot y \cdot p_X(x) \cdot p_Y(y) dx dy \\
+            &\stackrel{\text{neodvisnost}}{=} \underset{\R^2}{\iint} x \cdot y \cdot p_X(x) \cdot p_Y(y) dx dy \\
             &= \int_{-\infty}^{\infty} x p_X(x) dx \cdot \int_{-\infty}^{\infty} x p_Y(y) dy \\
             &= E(X) \cdot E(Y)
     \end{align*}
@@ -2563,7 +2574,7 @@ Ima enake lastnosti kot porazdelitvena funkcija
         Za pogoj $B$ vzemimo $B = (Y=y_j)$ pri nekem $j$, torej $q_j = P(Y=Y_j)$ \\
         Potem je pogojna porazdelitvena funkcija slu"cajne spremenljivke $X$ glede $F_X(X \mid Y=y) :=
         \frac{P(X \leq x \mid Y=y_j)}{P(Y=y_j)} = \frac{1}{q_{j}} \sum_{j: x_j \leq x} p_{ij}$ \\
-        "Ce vpeljemo pogojno verjetnostno funkcije $p_{i \mid j} = P(X=x_i \mid Y=y_j) = \frac{p_{ij}}{q_j}$,
+        "Ce vpeljemo pogojno verjetnostno funkcijo $p_{i \mid j} = P(X=x_i \mid Y=y_j) = \frac{p_{ij}}{q_j}$,
         $F_X(X \mid Y=y_j) = \sum_{i: x_i \leq X} p_{i \mid j}$ \\
         Pogojno matemati"cno upanje slu"cajne spremenljivke X glede na $Y=y_j$ je matemati"cno upanje te porazdelitve:
         \[E(X \mid Y=y_j) := \sum_{i} x_i \cdot p_{i \mid j} = \frac{1}{q_j} \sum_{i} x_j \cdot p_{ij} \]    % e(x_i)?
@@ -2836,7 +2847,7 @@ konvergentna, "ce je $|s| \leq 1$. Torej je konvergen"cni radij vrste vsaj 1
 
 Iz teorije Taylorjevih vrst sledi
 
-\begin{theorem}[O enili"cnosti]
+\begin{theorem}[O enoli"cnosti]
     Naj imata X in Y rodovni funkciji $G_X$ in $G_Y$. Potem je $G_X(s) = G_Y(s)$ za $\forall s \in [-1,1] \leftrightarrow
     P(X = k) = P(Y = k)$ za vse $k = 0, 1, 2 \dots$ \\
     Tedaj velja $P(X = k) = \frac{1}{k!} G_X^{k}(0)$
@@ -2850,27 +2861,33 @@ $G_X^{'}(s) = \sum_{k = 1}^{\infty} k \cdot p_k s^{k-1}$ \\
 \begin{theorem}
     Naj ima X rodovno funkcijo $G_X(s)$ in naj bo $n \in \N$. Potem je
     \begin{equation*}
-        G_X^{n}(1-) \equiv \lim_{s \nearrow 1} G_X^{n}(s) = E(X (X-1) (X-2) \dots (X-N+1))
+        G_X^{(n)}(1-) \equiv \lim_{s \nearrow 1} G_X^{(n)}(s) = E(X (X-1) (X-2) \dots (X-N+1))
     \end{equation*}
 \end{theorem}
 
 \begin{proof}
     Za $\forall s \in [0,1)$ je
     \begin{gather*}
-        G_X^{n}(s) = \sum_{k = n}^{\infty} k(k-1)(k-2) \dots (k-n+1) p_k s^{k-n+1} = \\
+        G_X^{(n)}(s) = \sum_{k = n}^{\infty} k(k-1)(k-2) \dots (k-n+1) p_k s^{k-n+1} = \\
         = E(X(X-1)(X-2) \dots (X-n+1) \cdot s^{X-n})
     \end{gather*}
     Ko gre $s \uparrow 1$, z uporabo Abelove leme dobimo
     \begin{gather*}
         \lim_{s \nearrow 1} G_X^{n}(s) = \lim_{s \nearrow 1} \sum_{k = n}^{\infty} k(k-1) \cdot (k-n+1) = \\
         \stackrel{\text{Abelova lema}}{=} \sum_{k = n}^{\infty} \lim_{s \nearrow 1} k(k-1) \cdot (k-n+1) = \\
-        \sum_{k = n}^{\infty} k(k-1) \cdot (k-n+1) p_k = E(X(X-1) \dots (X-n+1))
+        = \sum_{k = n}^{\infty} k(k-1) \cdot (k-n+1) p_k = E(X(X-1) \dots (X-n+1))
     \end{gather*}
 \end{proof}
 
 \begin{conseq}
-    \[E(X) = G_{X}^{'}(1-)\]
-    \[D(X) = E(X^2) - (E(X))^2 = E(X(X-1)) + E(X) - (E(X))^2 = G_X^{(2)}(1-) + G_X^{(1)}(1) - (G_X^{(1)}(1-))^2\]
+    \begin{equation*}
+        E(X) = G_{X}^{'}(1-)
+    \end{equation*}
+    \begin{align*}
+        &D(X) = E(X^2) - (E(X))^2 = \\
+        &E(X(X-1)) + E(X) - (E(X))^2 = \\
+        &G_X^{(2)}(1-) + G_X^{(1)}(1) - (G_X^{(1)}(1-))^2
+    \end{align*}
 \end{conseq}
 
 \begin{theorem}
@@ -3023,7 +3040,7 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
     po zadnji trditvi. Potem je
     \[M_U(t) = e^{\frac{t^2}{2}}\]
     je
-    \[M_X(t) = e^{\mu_x t} \cdot e^{\frac{\sigma_x^2 t^2}{2}} = e^{\frac{\sigma_x^2 t^2}{2} + \mu_x t} \; \forall t \ in \R\]
+    \[M_X(t) = e^{\mu_x t} \cdot e^{\frac{\sigma_x^2 t^2}{2}} = e^{\frac{\sigma_x^2 t^2}{2} + \mu_x t} \quad \forall t \in \R\]
     za $Y$ velja podobno. Po zadnjem izreku je
     \[M_{X+Y}(t) = M_X(t) \cdot M_Y(t) = e^{\frac{\sigma_x^2 t^2}{2} + \mu_x t} \cdot e^{\frac{\sigma_y^2 t^2}{2} + \mu_y t} =\]
     \[= e^{\frac{(\sigma_x^2 + \sigma_y^2) t^2}{2} + (\mu_x + \mu_y) t}\]
@@ -3041,7 +3058,10 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
     Po drugi strani je $M_X(t) = \sum_{j=0}^{\infty} \frac{z_j}{j!} t^j \; \forall t \in \R$ \\
     Primerjamo koeficiente:
     \begin{itemize}
-        \item lihi koeficienti: $z_{2k-1} = 0 \; k \in \N$
+        \item lihi koeficienti:
+            \begin{equation*}
+                z_{2k-1} = 0 \; k \in \N
+            \end{equation*}
         \item sodi koeficienti:
         \[\frac{z_{2k}}{(2k)!} = \frac{1}{k! 2^k} \implies z_{2k} = \frac{(2k)!}{k! 2^k} =\]
         \[= \frac{1 \cdot 2 \cdot 3 \cdot \dots \cdot (2k)}{2 \cdot 4 \cdot 5 \cdot \dots \cdot (2k)} =
@@ -3052,7 +3072,7 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
 \subsection{"Sibki in krepki zakon velikih "stevil}
 
 \begin{defn}[Verjetnostna konvergenca]
-    Zaporedje slu"cajnih spremenljivk $\{X_n\}_{n \in \N}$ verjetnostno konvergira proti sku"cajni spremenljivki
+    Zaporedje slu"cajnih spremenljivk $\{X_n\}_{n \in \N}$ verjetnostno konvergira proti slu"cajni spremenljivki
     X, "ce za $\forall \epsilon > 0$ velja 
     \begin{equation*}
         \lim_{n \to \infty} P(|X_n-X| \geq \epsilon) = 0
@@ -3064,7 +3084,7 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
 \end{defn}
 
 \begin{defn}[Skoraj gotova konvergenca]     % izraz ?
-    Zaporedje slu"cajnih spremenljivk $\{X_n\}_{n \in \N}$ skoraj gotovo konvergira proti sku"cajni spremenljivki
+    Zaporedje slu"cajnih spremenljivk $\{X_n\}_{n \in \N}$ skoraj gotovo konvergira proti slu"cajni spremenljivki
     X, "ce velja 
     \begin{equation*}
         P(\lim_{n \to \infty} X_n = X) = 1
@@ -3072,8 +3092,8 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
     Tukaj je 
     \begin{align*}
         (\lim_{n \to \infty} X_n = X) &= \{\omega \in \Omega: \lim_{n \to \infty} X_n(\omega) = X(\omega)\} \\
-        &= \{\omega \in \Omega: \forall k (\in \N) \exists m \in \N \forall n \geq m: |X_n(\omega) - X(\omega)| < \frac{1}{k}\} \\
-        &= \{\cap_{k \in \N} \cup_{m \in \N} \cap_{n \geq m} \omega \in \Omega: |X_n(\omega) - X(\omega)| < \frac{1}{k}\}
+        &= \{\omega \in \Omega: \forall k (\in \N) \; \exists m \in \N \; \forall n \geq m: |X_n(\omega) - X(\omega)| < \frac{1}{k}\} \\
+        &= \{\cap_{k \in \N} \; \cup_{m \in \N} \; \cap_{n \geq m} \; \omega \in \Omega: |X_n(\omega) - X(\omega)| < \frac{1}{k}\}
     \end{align*}
 \end{defn}
 
@@ -3116,11 +3136,30 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
     Naj bo $X_1, X_2, X_3 \dots$ zaporedje slu"cajnih spremenljivk, ki imajo matemati"cno upanje.
     Definirajmo $Y_n = \frac{S_n - E(S_n)}{n} = \frac{X_1 + \dots + X_n}{n} - \frac{E(X_1) + \dots + E(X_n)}{n}$ \\
     Potem je $E(Y_n) = 0$ \\
-    Za $\{Y_n\}_{n \in \N}$ velja "sibki zakon velikih "stevil ("SZV"S), kadar $Y_n \stackrel{n \to \infty}{\rightarrow} 0$
-    verjetnostno, torej za $\forall \epsilon > 0 \lim_{n \to \infty} (|y| < \epsilon) = 1 =
-    \lim_{n \to \infty} (|\frac{S_n - E(S_n)}{n}| < \epsilon)$
-    Za $\{Y_n\}_{n \in \N}$ velja krepki zakon velikih "stevil (KZV"S), kadar $Y_n \stackrel{n \to \infty}{\rightarrow} 0$
-    skoraj gotovo, torej $P(\lim_{n \to \infty} \frac{S_n - E(S_n)}{n} = 0) = 1$ \\
+    Za $\{X_n\}_{n \in \N}$ velja "sibki zakon velikih "stevil ("SZV"S), kadar
+    
+    \begin{equation*}
+        Y_n \stackrel{n \to \infty}{\rightarrow} 0
+    \end{equation*}
+    
+    verjetnostno, torej za
+    
+    \begin{equation*}
+        \forall \epsilon > 0 \lim_{n \to \infty} (|y| < \epsilon) = 1 = \lim_{n \to \infty} (|\frac{S_n - E(S_n)}{n}| < \epsilon)
+    \end{equation*}
+    
+    Za $\{X_n\}_{n \in \N}$ velja krepki zakon velikih "stevil (KZV"S), kadar
+    
+    \begin{equation*}
+        Y_n \stackrel{n \to \infty}{\rightarrow} 0
+    \end{equation*}
+    
+    skoraj gotovo, torej
+    
+    \begin{equation*}
+        P(\lim_{n \to \infty} \frac{S_n - E(S_n)}{n} = 0) = 1
+    \end{equation*}
+    
     "Ce velja KVZ"S, potem velja "SVZ"S
 \end{defn}
 
@@ -3146,7 +3185,7 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
     \begin{enumerate}[label=\alph*]
         \item \[E(X) = \int_{-\infty}^{\infty} |x| p_x(x) dx \geq \int_{\{x: |x| \geq a\}} |x| p_x(x) dx \geq\]
             \[|a| \int_{\{x: |x| \geq a\}} p_x(x) dx = a \cdot P(|X| \geq a)\]
-        \item \[P((X - E(X)) \geq \epsilon) = P((X - E(X))^2 \geq \epsilon^2)
+        \item \[P(|X - E(X)| \geq \epsilon) = P((X - E(X))^2 \geq \epsilon^2)
             \stackrel{\text{(a) za X-E(X)}}{\leq} \frac{E((X-E(X))^2)}{\epsilon^2} = \frac{D(X)}{\epsilon^2}\]
     \end{enumerate}
 \end{proof}
@@ -3158,7 +3197,7 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
 
 \begin{proof}
     V neenakosti "Cebi"seva vzamemo $X = \frac{S_n}{n}$
-    \[P(\frac{|S_n - E(S_n)|}{n} \geq \epsilon) \leq \frac{P(S_n)}{n^2 \epsilon^2} \stackrel{n \to \infty}{\rightarrow} 0\]
+    \[P(\frac{|S_n - E(S_n)|}{n} \geq \epsilon) \leq \frac{D(S_n)}{n^2 \epsilon^2} \stackrel{n \to \infty}{\rightarrow} 0\]
     "Ce vzamemo $Y_n = \frac{|S_n - E(S_n)|}{n}$, je $P(|Y_n| \geq \epsilon) \stackrel{n \to \infty}{\rightarrow} 0$ \\
     oz. $P(|Y_n| < \epsilon) \stackrel{n \to \infty}{\rightarrow} 1$ \\
     Zato $Y_n \stackrel{n \to \infty}{\rightarrow} 0$ verjetnostno, torej velja "SZV"S za zaporedje $\{X_n\}_{n \in \N}$
@@ -3186,7 +3225,7 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
 
 \begin{theorem}[Kolmogorov]
     "Ce za neodvisne slu"cajne spremenljivke $\{X_n\}_{n \in \N}$ velja $\sum_{n=1}^{\infty} \frac{D_n}{n^2} < \infty$,
-    potem velja KZV"S, t.j. $P(\lim_{n \to \infty} \frac{S-n - E(S_n)}{n} = 0) = 1$. \\
+    potem velja KZV"S, t.j. $P(\lim_{n \to \infty} \frac{S_n - E(S_n)}{n} = 0) = 1$. \\
     Posebej je pogoj za vrsto izpolnjen, "ce je $\sup_n D(X_n) < \infty$ 
 \end{theorem}
 
@@ -3209,19 +3248,28 @@ O"citno je $M_X(0) = E(e^0) = E(1) = 1$
     \[E(Z_n) = 0, D(Z_n) = 1\]
     Za $\{X_n\}_{n \in \N}$ velja centralni limitni izrek, "ce je 
     \begin{equation*}
-        F_{Z_n}(x) = P(Z_n \leq x) \stackrel{n \to \infty}{\rightarrow} F_{N(0,1)} \forall x \in \R
+        F_{Z_n}(x) = P(Z_n \leq x) \stackrel{n \to \infty}{\rightarrow} F_{N(0,1)} \; \forall x \in \R
     \end{equation*}
     to je
-    \[P(\frac{S_n - E(S_n)}{\sigma(S_n)} \leq x) \stackrel{n \to \infty}{\rightarrow}
-    \frac{1}{2 \pi} \int_{-\infty}^x e^{-\frac{t^2}{2}} dx \text{ za } \forall x \in \R\]
+
+    \begin{equation*}
+        P(\frac{S_n - E(S_n)}{\sigma(S_n)} \leq x) \stackrel{n \to \infty}{\rightarrow}
+        \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^x e^{-\frac{t^2}{2}} dt \text{ za } \forall x \in \R
+    \end{equation*}
+
     Pravimo, da $\{Z_n\}_{n \in \N}$ po porazdelitvi konvergira proti standardizirani normalni porazdelitvi.
 \end{defn}
 
 \begin{theorem}[Centralni limitni izrek (CLI, osnovna verzija)]
     Naj bodo $X_1, X_2 \dots$ neodvisne in enako porazdeljene slu"cajne spremenljivke. Potem zanje velja centralni limitni
     zakon, t.j
-    \[P(\frac{S_n - E(S_n)}{\sigma(S_n)} \leq x) \stackrel{n \to \infty}{\rightarrow}
-    \int_{-\infty}^x e^{\frac{t^2}{2}} dx \text{ za } \forall x \in \R\]
+
+    \begin{equation*}
+        P(\frac{S_n - E(S_n)}{\sigma(S_n)} \leq x) \stackrel{n \to \infty}{\rightarrow}
+        \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^x e^{\frac{t^2}{2}} dt
+    \end{equation*}
+
+    $\forall x \in \R$
 \end{theorem}
 
 Dokazal je Ljapunov (1900), s tem je posplo"sil Laplaceov izrek iz leta 1812. V dokazu bomo uporabili
@@ -3267,7 +3315,12 @@ Dokazal je Ljapunov (1900), s tem je posplo"sil Laplaceov izrek iz leta 1812. V 
 \end{proof}
 
 V splo"snem se CLI doka"ze s pomo"cjo karakteristi"cnih funkcij: \\
-naj bo X slu"cajna spremenljivka, $\ell_X(t) := E(e^{itX}) = E(cos(tX)) + iE(sin(tX)) t \in \R$ \\
+naj bo X slu"cajna spremenljivka,
+
+\begin{equation*}
+    \ell_X(t) := E(e^{itX}) = E(cos(tX)) + iE(sin(tX)) \; t \in \R
+\end{equation*}
+
 za razliko od momentno rodovnih funkcij karakteristi"cne funkcije vedno odstajajo \\
 v zveznem primeru je $\int_{-\infty}^{\infty} e^{itx}p(x)dx$ - Fourierova transformacija funkcije $p_X(x)$ \\
 $X_1, X_2 \dots X_n$ neodvisne, enako porazdeljene
@@ -3283,7 +3336,7 @@ $X_1, X_2 \dots X_n$ neodvisne slu"cajne spremenljivke
 \begin{align*}
     &Z_n = \frac{S_n - E(S_n)}{\sigma(S_n)} = \frac{S_n - n \mu}{\sqrt{n} \sigma} =
         \frac{\frac{S_n}{n} - \mu}{\frac{\sigma}{\sqrt{n}}} \\
-    &\overline{Z_n} := \frac{S_n}{n} = \frac{X_1 + \dots + X_n}{n} \implies
+    &\overline{X} := \frac{S_n}{n} = \frac{X_1 + \dots + X_n}{n} \implies
         Z_n = \frac{\overline{X} - \mu}{\frac{\sigma}{\sqrt{n}}}
 \end{align*}
 
@@ -3346,7 +3399,7 @@ $F_{Z_n}(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{x} e^{-\frac{t^2}{2}} dt$ \\
 Kot vedo statistiko razdelimo na:
 \begin{enumerate}
     \item opisno statistiko: zbiranje, razvr"s"canje, prikazovanje podatkov, ra"cunanje osnovnih koli"cin
-    \item analiti"cno statistiko: upraba podatkov pri sklepanju glede zakonitosti danega podro"cja
+    \item analiti"cno statistiko: uporaba podatkov pri sklepanju glede zakonitosti danega podro"cja
 \end{enumerate}
 
 \begin{defn}[Populacija]
@@ -3410,7 +3463,7 @@ Praviloma vzor"cna statistika ocenjuje vrednost nekega parametra $\xi$. Tedaj je
 y je odvisna od n, zato pi"semo tudi $y_n = g(X_1 \dots X_n)$. \\
 
 \begin{defn}[Nepristranskost, doslednost]
-    "Ce je $E(Y) = \xi$, je $Y$ nepristranska cenilka za parameter $xi$ \\
+    "Ce je $E(Y) = \xi$, je $Y$ nepristranska cenilka za parameter $\xi$ \\
     Cenilka $Y=Y_n$ je dosledna, "ce $Y_n \stackrel{n \to \infty}{\to} \xi$
     verjetnostno, t.i. $\forall \epsilon > 0$ je $\lim_{n \to \infty} P(|Y_n - \xi| \geq \epsilon) = 0$ oz.
     $\lim_{n \to \infty} P(|Y_n - \xi| < \epsilon) = 1$
@@ -3421,9 +3474,9 @@ y je odvisna od n, zato pi"semo tudi $y_n = g(X_1 \dots X_n)$. \\
     $SE(Y) := \sigma(Y)$
 \end{defn}
 
-\begin{defn}[Vzor"cno povprecje]
+\begin{defn}[Vzor"cno povpre"cje]
     Naj bo $X$ slu"cajna spremenljivka na populaciji, ki ima matemati"cno upanje $E(X) = \mu$ in standardno
-    deviacijo $\sigma(X) = \sigma$. Naj bo $(X_1 \dots X_n)$ vzorec. Definirajmo vzor"cno povprecje
+    deviacijo $\sigma(X) = \sigma$. Naj bo $(X_1 \dots X_n)$ vzorec. Definirajmo vzor"cno povpre"cje
     \begin{equation*}
         \overline{X} = \frac{X_1 + \dots + X_n}{n}
     \end{equation*}
@@ -3571,29 +3624,60 @@ izra"cunamo, da ima $T$ Studentovo porazdelitev z $n-1$ prostorskimi stopnjami:
 
 \subsubsection{Metoda momentov}
 
-\begin{defn}[Vzro"cni moment]
+\begin{defn}[Vzor"cni moment]
     Naj bo $(X_1, X_2 \dots X_n)$ vzorec velikosti n, torej $X_1 \dots X_n$ neodvisne slu"cajne spremenljivke,
     porazdeljene kot slu"cajna spremenljivka $X$. Za"cetni moment reda $k$ je $z_k = E(X^k)$. Definiramo k-ti
-    vzro"cni moment $z_k := \frac{X_1^k + \dots + X_n^k}{n}$. Le ta je nepristranska cenilka za $z_k:
-    E(Z_k) = \frac{1}{n} (E(X_1^k) + \dots + E(X_n^k)) = z_k$. $Z_k$ je tudi dosledna cenilka za $z_k$.
+    vzor"cni moment
+
+    \begin{equation*}
+        z_k := \frac{X_1^k + \dots + X_n^k}{n}
+    \end{equation*}
+    
+    Le ta je nepristranska cenilka za $z_k$:
+
+    \begin{equation*}
+        E(Z_k) = \frac{1}{n} (E(X_1^k) + \dots + E(X_n^k)) = z_k
+    \end{equation*}
+    
+    $Z_k$ je tudi dosledna cenilka za $z_k$.
 \end{defn}
 
-Naj bo gostota slu"cajne spremenljivke $X$ odvisna od parametrov $\xi_1 \dots \xi_n: p(X; \xi_1 \dots \xi_m)$.
-Naj odstajajo za"cetni momenti $z_k = E(X^k) = \int_{-\infty}^{\infty} p(x; \xi_1 \dots \xi_n) dx, k = 1, 2 \dots m$.
-Denimo, da iz teh m ena"cb lahko izrazimo parametre: $\xi_k = \phi_k(z_1, z_2 \dots z_m), k = 1 \dots m$ za neko
-funkcijo $\phi_k$. Potem je $c_k := \phi_k(z_1 \dots z_m)$ cenilka za parameter $\xi_k, k = 1 \dots n$
+Naj bo gostota slu"cajne spremenljivke $X$ odvisna od parametrov $\xi_1 \dots \xi_n: p(X; \xi_1 \dots \xi_m)$. \\
+Naj odstajajo za"cetni momenti
+
+\begin{equation*}
+    z_k = E(X^k) = \int_{-\infty}^{\infty} p(x; \xi_1 \dots \xi_n) dx, k = 1, 2 \dots m
+\end{equation*}
+
+Denimo, da iz teh m ena"cb lahko izrazimo parametre:
+
+\begin{equation*}
+    \xi_k = \phi_k(z_1, z_2 \dots z_m), k = 1 \dots m
+\end{equation*}
+Za neko funkcijo $\phi_k$. Potem je
+
+\begin{equation*}
+    c_k := \phi_k(z_1 \dots z_m)
+\end{equation*}
+
+cenilka za parameter $\xi_k, k = 1 \dots n$
 
 \begin{ex}
     Naj bo $X \sim N(\mu, \sigma)$, kjer sta $\mu$ in $\sigma$ neznana parametra. Potem je $z_1 = E(X) = \mu,
     z_2 = E(X^2) = E(X^2) - (E(X))^2 + (E(X))^2 = D(X) + (E(X))^2 = \sigma^2 + \mu^2$ (m = 2) \\
-    Iz teh dveh ena"cb izrazimo parametra $\mu$ in $\sigma$: $\mu = z_1, \sigma^2 = z_2 - \mu^2 = z_2 - z_1^2$. \\
+    Iz teh dveh ena"cb izrazimo parametra $\mu$ in $\sigma$:
+    
+    \begin{equation*}
+        \mu = z_1, \; \sigma^2 = z_2 - \mu^2 = z_2 - z_1^2
+    \end{equation*}
+
     Cenilka za $\mu$ je $Z_1 = \overline{X} = \frac{X_1 + \dots + X_n}{n}$, cenilka za $\sigma^2$ je
     $Z_2 - Z_1^2 = \frac{X_1^2 + \dots + X_n^2}{n} - \overline{X}^2$. To je enako
     \begin{align*}
         &S_0^2 = \frac{1}{n} \sum_{i=1}^n (X_i - \overline{X})^2 = \\
         &= \frac{1}{n} \sum_{i=1}^n (X_i^2 - 2 X_i \overline{X} + \overline{X}^2) = \\
-        &= \frac{1}{n} \sum_{i=1}^n X_i^2 - 2 \overline{X} \overline{X} + \overline{X}^2 = \\
-        &= \frac{1}{n} \sum_{i=1}^2 X_i^2 - \overline{X}^2
+        &= \frac{1}{n} \sum_{i=1}^n (X_i^2) - 2 \overline{X} \overline{X} + \overline{X}^2 = \\
+        &= \frac{1}{n} \sum_{i=1}^2 (X_i^2) - \overline{X}^2
     \end{align*}
     Torej bodimo "ze znani cenilki za parametra $\mu$ in $\sigma^2$
 \end{ex}
@@ -3622,15 +3706,21 @@ funkcijo $\phi_k$. Potem je $c_k := \phi_k(z_1 \dots z_m)$ cenilka za parameter 
     \end{align*}
     Cenilka za a je
     \begin{align*}
-        &A := Z_1 \pm \frac{1}{2} 2\sqrt{3} \sqrt{Z_2 - Z_1^2}
-        &A := Z_1 \pm \frac{1}{2} 2\sqrt{3} \sqrt{Z_2 - Z_1^2} = Z_1 - S_0 \sqrt{3} \text{ po prej"snjem primeru}
-            = \overline{X} - S_0 \sqrt{3}
+        &A := Z_1 \pm \frac{1}{2} 2\sqrt{3} \sqrt{Z_2 - Z_1^2} \\
+        &A := Z_1 \pm \frac{1}{2} 2\sqrt{3} \sqrt{Z_2 - Z_1^2} = \\
+        &= Z_1 - S_0 \sqrt{3} = \\
+        &\text{(po prej"snjem primeru)} \\
+        &= \overline{X} - S_0 \sqrt{3}
     \end{align*}
-    Cenilka za b je $B = \overline{X} + S_0 \sqrt{3}$
+    Cenilka za b je $B = \overline{X} + S_0 \sqrt{3}$ \\
     Denimo da imamo konkreten vzorec $-2, 0, 1, 2, 4 (n=5)$ \\
-    $\overline{X} = \frac{-2 + 0 + 1 + 2 + 4}{5} = 1$ \\
-    $S_0^2 = \frac{1}{n} \sum_{i=1}^n (X_i - \overline{X})^2 = \frac{1}{5} ((-3)^2 + (-1)^2 + 0^2 + 1^2 + 3^2) = 4$
-    Vzor"cna vrednost za $A$ je $\overline{X} - S_0 \sqrt{3} = 1 - 2\sqrt{3} = \doteq -2.46$, vzor"cna
+    
+    \begin{gather*}
+        \overline{X} = \frac{-2 + 0 + 1 + 2 + 4}{5} = 1 \\
+        S_0^2 = \frac{1}{n} \sum_{i=1}^n (X_i - \overline{X})^2 = \frac{1}{5} ((-3)^2 + (-1)^2 + 0^2 + 1^2 + 3^2) = 4
+    \end{gather*}
+    
+    Vzor"cna vrednost za $A$ je $\overline{X} - S_0 \sqrt{3} = 1 - 2\sqrt{3} \doteq -2.46$, vzor"cna
     vrednost z $B$ je $\overline{X} + S_0 \sqrt{3} = 1 + 2\sqrt{3} \doteq 4.46$
 \end{ex}
 
@@ -3638,8 +3728,9 @@ funkcijo $\phi_k$. Potem je $c_k := \phi_k(z_1 \dots z_m)$ cenilka za parameter 
 
 % 22. predavanje: 4.4.
 
-\subsubsection{Metoda maksimalne zanesljivosti (oz. najve"cjega verjetja)}
+\subsubsection{Metoda maksimalne zanesljivosti}
 
+oz. najve"cjega verjetja
 \begin{defn}[Funkcija zanesljivosti]
     Naj bo gostota slu"cajne spremenljivke $X$ odvisna od parametra $\xi$, torej $p(x; \xi)$. Funkcija
     zanesljivosti (likelihood function) je
@@ -3676,7 +3767,7 @@ $c := \phi(x_1 \dots x_n)$ za parameter $\xi$
     Cenilka za $\lambda$ je $c := \frac{1}{\overline{X}}$ \\
     Isto cenilko dobimo z metodo momentov:
     \begin{align*}
-        &z_1 = E(X) = \frac{0}{\infty} x \lambda e^{-\lambda x} dx = \stackrel{\text{D.N.}}{\dots} \frac{1}{\lambda} &
+        &z_1 = E(X) = \int_{0}^{\infty} x \lambda e^{-\lambda x} dx = \stackrel{\text{D.N.}}{\dots} \frac{1}{\lambda} \\
         &\implies \lambda = \frac{1}{z_1} = \frac{1}{\overline{x}}
     \end{align*}
     cenilka za $\lambda$ je $c := \frac{1}{\overline{X}}$
@@ -3692,7 +3783,8 @@ $c := \phi(x_1 \dots x_n)$ za parameter $\xi$
         &\ln L = -\frac{n}{2} \ln 2\pi - n \cdot \ln \sigma - \frac{1}{2 \sigma^2} ((x_1 - \mu)^2 + \dots +
             (x_n - \mu)^2) \\
         &\frac{\partial}{\partial \mu} \ln L = -\frac{1}{2 \sigma^2} (2(x_1 - \mu)(-1) + \dots +
-            2(x_1 - \mu)(-1)) = \frac{1}{\sigma^2} (x_1 - \mu + \dots + x_n - \mu) = 0 \\
+            2(x_1 - \mu)(-1)) = \\
+        &= \frac{1}{\sigma^2} (x_1 - \mu + \dots + x_n - \mu) = 0 \\
         &x_1 + \dots + x_n - n\mu = 0 \implies \mu = \frac{x_1 + \dots + x_n}{n} = \overline{x} \\
         &\frac{\partial}{\partial \sigma} \ln L = -\frac{n}{\sigma} + \frac{1}{\sigma^3}
             ((x_1 - \mu)^2 + \dots + (x_n - \mu)^2) = 0 \\
@@ -3732,7 +3824,7 @@ $c := \phi(x_1 \dots x_n)$ za parameter $\xi$
 
 \begin{defn}[Interval zaupanja]
     Naj bo gostota slu"cajne spremenljivke $X$ odvisna od parametra $\xi$. Interval $[A,B]$ (odvisen le od
-    $(x_1 \dots x_n)$ in ne do $\xi$) je interval zaupanja za parameter $\xi$, pri stopnji tveganja
+    $(x_1 \dots x_n)$ in ne od $\xi$) je interval zaupanja za parameter $\xi$, pri stopnji tveganja
     $\alpha \in (0,1)$, "ce je
     \begin{equation*}
         P(\xi \in [A,B]) = 1-\alpha \text{ oz. } P(\xi \notin [A,B]) = \alpha
@@ -3855,13 +3947,48 @@ $A$ in $B$ sta vzor"cni statistiki, $1 - \alpha$ je stopnja zaupanja
         0 & 1 \\
         q & p
     \end{pmatrix}, q = 1-p, p$ neznan parameter, ki ga ocenjujemo \\
-    $(x_1 \dots x_n)$ vzorec. Potem je $S_n = X_1 + \dots + X_n \sim Bin(n,p)$ in $\overline{X} = \frac{S_n}{n}$
-    je nepristranska in dosledna cenilka za $p$. Po CLI (Laplaceovi formuli) je pri velikih n
-    $Z := \frac{S_n - np}{\sqrt{npq}} \sim N(0,1)$ oz. $Z = \frac{\overline{X} - p}{\sqrt{pq}} \sqrt{n} \sim N(0,1)$
-    oz. $\overline{X} \sim N(p, \sqrt{\frac{pq}{n}})$ \\
-    Pri danem $\alpha > 0$ izberimo $z_{\frac{\alpha}{2}} > 0$, da je $P(|Z| < z_{\frac{\alpha}{2}}) = 1 - \alpha$ \\P
-    Pogoj $|Z| < z_{\frac{\alpha}{2}}$ pomeni $|S - np| < z_{\frac{\alpha}{2}} \sqrt{npq}$ oz.
-    $|\overline{X} - p| < z_{\frac{\alpha}{2}} \cdot \sqrt{\frac{pq}{n}}$ \\
+    $(x_1 \dots x_n)$ vzorec. Potem je
+    
+    \begin{equation*}
+        S_n = X_1 + \dots + X_n \sim Bin(n,p) \text{ in } \overline{X} = \frac{S_n}{n}
+    \end{equation*}
+
+    nepristranska in dosledna cenilka za $p$. Po CLI (Laplaceovi formuli) je pri velikih n
+
+    \begin{equation*}
+        Z := \frac{S_n - np}{\sqrt{npq}} \sim N(0,1)
+    \end{equation*}
+    
+    oz. 
+    
+    \begin{equation*}
+        Z = \frac{\overline{X} - p}{\sqrt{pq}} \sqrt{n} \sim N(0,1)
+    \end{equation*}
+
+    oz.
+    
+    \begin{equation*}
+        \overline{X} \sim N(p, \sqrt{\frac{pq}{n}})
+    \end{equation*}
+    
+    Pri danem $\alpha > 0$ izberimo $z_{\frac{\alpha}{2}} > 0$, da je
+    
+    \begin{equation*}
+        P(|Z| < z_{\frac{\alpha}{2}}) = 1 - \alpha
+    \end{equation*}
+
+    Pogoj $|Z| < z_{\frac{\alpha}{2}}$ pomeni
+    
+    \begin{equation*}
+        |S - np| < z_{\frac{\alpha}{2}} \sqrt{npq}
+    \end{equation*}
+    
+    oz.
+
+    \begin{equation*}
+        |\overline{X} - p| < z_{\frac{\alpha}{2}} \cdot \sqrt{\frac{pq}{n}}
+    \end{equation*}
+
     "Ce na desni strani naredimo aproksimacijo $\overline{X} \approx p$, dobimo pogoj
 
     \begin{equation*}
@@ -3993,8 +4120,9 @@ $K_{\alpha}$ kriti"cno obmo"cje \\
     Ker $z = -2.82 \in K_{\alpha}, H_0$ zavrnemo tudi sedaj
 \end{ex}
 
-\subsubsection{test T: $X \sim N(\mu, \sigma)$, $\mu$ neznan}
+\subsubsection{test T}
 
+$X \sim N(\mu, \sigma)$ \\
 $H_0(\mu = \mu_0) : H_1(\mu \neq \mu_0), \mu_0$ je dano "stevilo \\
 Testna statistika
 
@@ -4043,7 +4171,7 @@ $K_{\alpha} = (-\infty, -t_{\frac{\alpha}{2}}] \cup [t_{\frac{\alpha}{2}}, \inft
 \end{ex}
 
 \begin{defn}[P-vrednost]
-    P-vrednost je najmanj"sa stopnja zna"cilnosti, pri kateri "se lahko zavrnemo hipotezo (pro danih vzor"cnih
+    P-vrednost je najmanj"sa stopnja zna"cilnosti, pri kateri "se lahko zavrnemo hipotezo (pri danih vzor"cnih
     podatkih)
 \end{defn}
 
@@ -4163,11 +4291,10 @@ $K_{\alpha} = [c_{\alpha}, \infty), P(\chi^2 > c_{\alpha}) = \alpha$
             \end{tabular}
     \end{center}
 
-    $r = 6, p_k = \frac{1}{6}$
-
-    \begin{equation*}
+    \begin{gather*}
+        r = 6, p_k = \frac{1}{6} \\
         \chi^2 = \frac{(20-20)^2}{20} + \frac{(22-20)^2}{20} + \dots + \frac{(24-20)^2}{20} = \frac{34}{20} = 1.7
-    \end{equation*}
+    \end{gather*}
 
     Pri $\alpha = 0.05$ in 5 prostorskih stopnjah je $c_{\alpha} = 11.1$ \\
     Ker $1.7 \notin K_{\alpha}$, hipoetzo $H_0$, da gre za enakomerno porazdelitev na 6 to"ckah ne moremo zavrniti
@@ -4194,7 +4321,7 @@ $K_{\alpha} = [c_{\alpha}, \infty), P(\chi^2 > c_{\alpha}) = \alpha$
     \end{center}
 
     Vsota za od (vklju"cno z) 3 naprej je 6.3 \\
-    Teorija priporo"ca, da so pri"cakovane frekvence vsaj 5, zato vpeljemo razred ``$\geq 3$"
+    Teorija priporo"ca, da so pri"cakovane frekvence vsaj 5, zato vpeljemo razred ``$\geq 3$''
 
     \begin{center}
         \begin{tabular}{c c c c c}
@@ -4229,7 +4356,7 @@ $K_{\alpha} = [c_{\alpha}, \infty), P(\chi^2 > c_{\alpha}) = \alpha$
         \hat{\lambda} = \overline{X} = \frac{0 \cdot 15 + 1 \cdot 13 + 2 \cdot 4 + 3 \cdot 1}{33} = \frac{8}{11} = 0.73
     \end{equation*}
 
-    (ista cenilka tako po metodi momentov kot po moetodi najve"cjega verjetja) \\
+    (ista cenilka tako po metodi momentov kot po metodi najve"cjega verjetja) \\
     Torej
 
     \begin{equation*}
@@ -4307,7 +4434,7 @@ je "stevec
     &= S_{xY} - \frac{1}{n} S_x S_Y
 \end{align*}
 
-in
+in imenovalec
 
 \begin{align*}
     &\sum_{k=1}^{n} (x_k - \overline{X})^2 = \sum_{k=1}^{n} (x_k^2  2 x_n \overline{X})^2 = \\
@@ -4438,12 +4565,12 @@ Kjer je $N_{A \cap B}$ opa"zena frekvenca dogodka $A \cap B$ in $n$ velikost vzo
 
 \begin{equation*}
     K_{\alpha} = [c_{\alpha}, \infty)
-\end{equation*}"
+\end{equation*}
 
 "Ce je vzor"cna vrednost za $\chi^2$ na $K_{\alpha}$, hipotezo $H_0$ zavrnemo \\
 Obi"cajno $p$ in $q$ nista znana parametra, zato ju ocenimo iz podatkov \\
 
-Kontngen"cna matrika:
+Kontingen"cna matrika:
 \begin{center}
     \begin{tabular}{c | c c} 
         & $B$ & $B^C$ \\
@@ -4551,7 +4678,7 @@ Definiramo
     \chi^2 = \sum_{i=1}^{r} \sum_{j=1}^{s} \frac{(X_{ij} - n \hat{p_i} \hat{q_j})^2}{n \hat{p_i} \hat{q_j}}
 \end{equation*}
 
-Izka"ze se, da je pri velikih $n$ $\chi^2$ pribli"no porazdeljena $\chi^2((r-1)(s-1))$ \\
+Izka"ze se, da je pri velikih $n$ $\chi^2$ pribliz"no porazdeljena $\chi^2((r-1)(s-1))$ \\
 
 % skica
 
@@ -4633,7 +4760,7 @@ Ker je $N$ porazdeljena binomsko $Bin(n,p)$, je pri velikem $n$ slu"cajna spreme
 porazdeljena po $N(0,1)$ (Laplaceova formula oz. CLI) \\
 Iz verjetnostnega dela vemo, da je kvadrat porazdelitve $N(0,1)$ porazdeljen po $\chi^2(1)$. Torej je $\chi^2$ porazdeljena po
 $\chi^2(1)$ pri velikem $n$. \\
-V splo"snem primeru (pri poljubnem $r \in \N$) se $\chi^2$ zapi"se kotvsota $(r-1)$ kvadratov slu"cajnih spremenljivk, ki so porazdeljene po
+V splo"snem primeru (pri poljubnem $r \in \N$) se $\chi^2$ zapi"se kot vsota $(r-1)$ kvadratov slu"cajnih spremenljivk, ki so porazdeljene po
 $N(0,1)$ in neodvisne. Ker za porazdelitev $\chi^2$ velja $\chi^2(m) + \chi^2(n) \sim \chi^2(m+n)$ (za neodvisne slu"cajne
 spremenljivke), je potem $\chi^2$ porazdeljena po $\chi^2(1 + 1 + \dots + 1) = \chi^2(r-1)$
 
@@ -4687,7 +4814,7 @@ Za smiselnost testa je pomembno hipoteze formulirati pred analizo podatkov
 
 \begin{ex}
     Pri neki loteriji izmed "stevil $0, 1 \dots 9$ "zrebajo po eno "stevilo vsak dan. Pri pregledu podatkov za dalj"se "casovno odbobje
-    opaimo, da se "stevilo $7$ pojavi velikokrat ob sredah: izmed $150$ "stevil se $7$ pojavi $22$ krat. Testirajmo pri stopnji
+    opazimo, da se "stevilo $7$ pojavi velikokrat ob sredah: izmed $150$ "stevil se $7$ pojavi $22$ krat. Testirajmo pri stopnji
     zna"cilnosti $\alpha = 0.05$ hipotezo, da se $7$ pojavi preve"ckrat ob sredah \\
     $H_0(p = 0.1) : H_1(p > 0.1)$ enostranski test \\
     $\overline{X} = \frac{22}{150} = 0.147, z_{\alpha} = 1.64$ kot v prej"snjem primeru \\
@@ -4751,7 +4878,7 @@ in % toda?
 % skica
 
 Pri velikem $n$ je $S^+$ pribli"zno normalno porazdeljen $N(\frac{n}{2}, \frac{\sqrt{n}}{2})$, ($\sqrt{npq} =
-\sqrt{n \frac{1}{2} \frac{1}{2}}$) torej je slu"cajna spremenljivka
+\sqrt{n \cdot \frac{1}{2} \cdot \frac{1}{2}}$) torej je slu"cajna spremenljivka
 
 \begin{equation*}
     Z := \frac{S^+ - \frac{n}{2}}{\frac{\sqrt{n}}{2}} = \frac{2S^+ - n}{\sqrt{n}}
