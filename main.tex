@@ -477,17 +477,17 @@ $(\Omega, \mathcal{F}, P)$
 \begin{ex}
     (Ne"stevni neskon"cni verjetnostni prostor) \\
     $\Omega = [0,1] \times [0,1]$ \\
-    $\Phi :=$ najmanj"sa $\sigma$-algebra, ki vsebuje vse odprte pravokotnike $(a,b) \times (c,d),
+    $\mathcal{F} :=$ najmanj"sa $\sigma$-algebra, ki vsebuje vse odprte pravokotnike $(a,b) \times (c,d),
     \; a,b,c,d \in (0,1)$ \\
     npr. elipse: $\frac{1}{n}$ radij, za $\forall n$ vzamemo kvadrate v elipsi, izberemo unijo \\
     = najmanj"sa $\sigma$-algebra, ki vsebuje vse zaprte pravokotnike $[a,b] \times [c,d], \; a,b,c,d \in [0,1]$ -
     Borelova $\sigma$-algebra \\
-    Izka"ze se, da $\Phi \neq P(\Omega)$
+    Izka"ze se, da $\mathcal{F} \neq P(\Omega)$
 \end{ex}
 
 Verjetnost $P$ definiramo na pravokotnikih s $P((a,b) \times (c,d)) = (b-a) (d-c)$ \\
 Ni lahko videti, da je to mo"zno raz"siriti do "stevno aditivne preslikave na $P(\Omega)$ \\
-Verjetnostna preslikava $P$ (na $\Phi$) se imenuje Lebesgueova mera \\
+Verjetnostna preslikava $P$ (na $\mathcal{F}$) se imenuje Lebesgueova mera \\
 To je geometrijska definicija verjetnosti:
 
 \begin{equation*}
@@ -661,7 +661,7 @@ O"citno iz neodvisnosti sledi paroma neodvisnost. Obratno ne velja
 \subsection{Zaporedja neodvisnih ponovitev poskusa}
 
 \begin{defn}
-    Imejmo zaporedje $n$ neodvisnih ponovitev poskusa, dolo"cenega v verjetnostnem prostoru $(\Omega, \Phi, P)$,
+    Imejmo zaporedje $n$ neodvisnih ponovitev poskusa, dolo"cenega v verjetnostnem prostoru $(\Omega, \mathcal{F}, P)$,
     v katerem je mo"zen $A$ s $P(A) = p \in (0,1)$. Potem je $q := P(A^C) = 1 - p$
 \end{defn}
 
@@ -886,12 +886,7 @@ Lastnosti porazdelitvene funkcije $F_X \equiv F$:
             \end{equation*}
             
             kjer je $\{x_n\}_n \subseteq \R$ strogo padajo"ce zaporedje z limito v $x$ \\
-            
-            \begin{equation*}
-                \{(X \leq x_n)\}_{n \in \N}
-            \end{equation*}
-            
-            je padajo"ce zaporedje s presekom
+            $\{(X \leq x_n)\}_{n \in \N}$ je padajo"ce zaporedje s presekom
 
             \begin{align*}
                 &\{(X \leq x_n)\} = \cap_{n=1}^{\infty} \{\omega \in \Omega: X(\omega) \leq x_n\} = \\
@@ -939,7 +934,7 @@ in
 
 \begin{align*}
     &F_X(x) = P(X \leq x) = P(\cup_{n: x_n \leq x} (X = x_n)) = \\
-    &= (\text{paroma nezdru"zljivi dogodki}=) = \\
+    &\text{paroma nezdru"zljivi dogodki} \\
     &= \sum_{n: x_n \leq x} P(X = x_n) = \sum_{n: x_n \leq x} p_n
 \end{align*}
 
@@ -1695,16 +1690,16 @@ Torej sta $X$ in $Y$ neodvisni slu"cajni spremenljivki
     \begin{align*}
         &X \sim N(\mu_x, \sigma_x), Y \sim N(\mu_y, \sigma_y) \\
         &X \text{ in } Y \text{ sta neodvisni } \iff \rho = 0 \\
-        &p_{(X,Y)}(x,y) = \frac{1}{2\pi \sigma_x \sigma_y} e^{-\frac{1}{2} ((\frac{x-\mu_x}{\sigma_x})^2 \cdot
+        &p_{(X,Y)}(x,y) = \frac{1}{2\pi \sigma_x \sigma_y} e^{-\frac{1}{2} ((\frac{x-\mu_x}{\sigma_x})^2 +
             (\frac{y-\mu_y}{\sigma_y})^2)} = \\
-        &= \frac{1}{\sqrt{2\pi} \sigma_x} e^{-\frac{1}{2} (\frac{x-\mu_x}{\sigma_x})^2} +
-            \frac{1}{\sqrt{2\pi} \sigma_y} e^{-\frac{1}{2} (\frac{y-\mu_y}{\sigma_y})^2} = p_X(x) \cdot p_Y(y)
+        &= \frac{1}{\sqrt{2\pi} \sigma_x} e^{-\frac{1}{2} (\frac{x-\mu_x}{\sigma_x})^2} \cdot
+            \frac{1}{\sqrt{2\pi} \sigma_y} e^{-\frac{1}{2} (\frac{y-\mu_y}{\sigma_y})^2} = \\
+        &= p_X(x) \cdot p_Y(y)
     \end{align*}
-
-    \begin{align*}
-        &N(0,0,1,1,\rho): x^2 - 2\rho x y + y^2 = c \text{ - ovojnica} \\
-        &\quad \rho = 0: x^2 + y^2 = c \text{ - kro"znica}
-    \end{align*}
+    \begin{gather*}
+        N(0,0,1,1,\rho): x^2 - 2\rho x y + y^2 = c \text{ - ovojnica} \\
+        \quad \rho = 0: x^2 + y^2 = c \text{ - kro"znica}
+    \end{gather*}
 \end{ex}
 
 \begin{claim}
@@ -1713,7 +1708,7 @@ Torej sta $X$ in $Y$ neodvisni slu"cajni spremenljivki
 \end{claim}
 
 \begin{proof} \text{} \\
-    ($\Rightarrow$) jasno na zadnji trditvi \\
+    ($\Rightarrow$) jasno po zadnji trditvi \\
     ($\Leftarrow$)
 
     \begin{align*}
@@ -1838,7 +1833,7 @@ Podobno ravnamo v primeru, ko je f strogo padajo"ca ($(a,b)$ zaloga vrednosti)
 
     \begin{align*}
         &F_Y(y) = P(|X| \leq \sqrt{y}) = P(-\sqrt{y} \leq X \leq \sqrt{y}) = F_X(\sqrt{y}) - F_X(-\sqrt{y}) = \\
-        &= \frac{1}{\sqrt{2\pi} \int_{-\sqrt{y}}^{\sqrt{y}}} e^{-\frac{x^2}{2}} dx
+        &= \frac{1}{\sqrt{2\pi}} \int_{-\sqrt{y}}^{\sqrt{y}} e^{-\frac{x^2}{2}} dx
             \stackrel{e^{-\frac{x^2}{2}}\text{ soda}}{\text{=}} \frac{2}{\sqrt{2\pi}}
             \int_{0}^{\sqrt{y}} e^{-\frac{x^2}{2}} dx
     \end{align*}
@@ -1854,7 +1849,7 @@ Podobno ravnamo v primeru, ko je f strogo padajo"ca ($(a,b)$ zaloga vrednosti)
     kar je $\chi^2(1)$, saj je
 
     \begin{equation*}
-        \chi^2(n): p_X(x) = \frac{1}{2^{\frac{n}{2}} \gamma(\frac{n}{2})} x^{\frac{n}{2} - 1} e^{-\frac{x}{2}}
+        \chi^2(n): p_X(x) = \frac{1}{2^{\frac{n}{2}} \Gamma(\frac{n}{2})} x^{\frac{n}{2} - 1} e^{-\frac{x}{2}}
     \end{equation*}
 
     za $x > 0$, sicer $p_X(x) = 0$
@@ -2196,7 +2191,7 @@ Podobno kot zadnjo trditev se doka"ze
 
 \begin{conseq}
     Za slu"cajne spremenljivke $X_1 \dots X_n$, ki imajo matemati"cno upanje, velja $E(a_1 X_1 + \dots + a_n X_n) =
-    a_1 E(X_1) + \dots + a_n E(X_n)$ z $\forall a_1 \dots a_n \in \R$
+    a_1 E(X_1) + \dots + a_n E(X_n)$ za $\forall a_1 \dots a_n \in \R$
 \end{conseq}
 
 \begin{equation*}
@@ -2570,14 +2565,27 @@ Ima enake lastnosti kot porazdelitvena funkcija
 
 \begin{enumerate}[label=\Alph*]
     \item Diskreten primer \\
-        Naj bo $(X,Y)$ diskretno porazdeljen slu"cajni vektor z verjetnostno funkcijo $p_{ij} = P(X=x_i, Y=y_i) \; i,j = 1, 2 \dots$ \\
+        Naj bo $(X,Y)$ diskretno porazdeljen slu"cajni vektor z verjetnostno funkcijo $p_{ij} = P(X=x_i, Y=y_j) \; i,j = 1, 2 \dots$ \\
         Za pogoj $B$ vzemimo $B = (Y=y_j)$ pri nekem $j$, torej $q_j = P(Y=Y_j)$ \\
-        Potem je pogojna porazdelitvena funkcija slu"cajne spremenljivke $X$ glede $F_X(X \mid Y=y) :=
-        \frac{P(X \leq x \mid Y=y_j)}{P(Y=y_j)} = \frac{1}{q_{j}} \sum_{j: x_j \leq x} p_{ij}$ \\
-        "Ce vpeljemo pogojno verjetnostno funkcijo $p_{i \mid j} = P(X=x_i \mid Y=y_j) = \frac{p_{ij}}{q_j}$,
-        $F_X(X \mid Y=y_j) = \sum_{i: x_i \leq X} p_{i \mid j}$ \\
+        Potem je pogojna porazdelitvena funkcija slu"cajne spremenljivke $X$ glede
+        
+        \begin{equation*}
+            F_X(X \mid Y=y_j) := \frac{P(X \leq x \mid Y=y_j)}{P(Y=y_j)} = \frac{1}{q_{j}} \sum_{j: x_j \leq x} p_{ij}
+        \end{equation*}
+
+        "Ce vpeljemo pogojno verjetnostno funkcijo
+        
+        \begin{gather*}
+            p_{i \mid j} = P(X=x_i \mid Y=y_j) = \frac{p_{ij}}{q_j} \\
+            F_X(X \mid Y=y_j) = \sum_{i: x_i \leq X} p_{i \mid j}
+        \end{gather*}
+
         Pogojno matemati"cno upanje slu"cajne spremenljivke X glede na $Y=y_j$ je matemati"cno upanje te porazdelitve:
-        \[E(X \mid Y=y_j) := \sum_{i} x_i \cdot p_{i \mid j} = \frac{1}{q_j} \sum_{i} x_j \cdot p_{ij} \]    % e(x_i)?
+        
+        \begin{equation*}
+            E(X \mid Y=y_j) := \sum_{i} x_i \cdot p_{i \mid j} = \frac{1}{q_j} \sum_{i} x_j \cdot p_{ij}    % e(x_i)?
+        \end{equation*}
+            
         Regresijska funkcija $\ell (y_j) = \sum (X \mid Y=y_j)$, ki je definirana na zalogi vrednoti slu"cajne
         spremenljivke $Y$ \\
         Definirajmo novo slu"cajno spremenljivko $E(X \mid Y) = \ell (y)$, ki ji re"cemo pogojno matemati"cno upanje
